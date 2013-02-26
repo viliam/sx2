@@ -1,0 +1,6 @@
+cislo n = 3;
+
+cislo suma(cislo n) {
+   vrat 3;
+   vrat n +1;
+}

@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+test {
+    useTestNG()
+}
+
+dependencies {
+    compile "commons-io:commons-io:2.4"
+    testCompile "org.testng:testng:6.1.1"
+}

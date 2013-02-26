@@ -1,0 +1,6 @@
+cislo fib(n) {
+   ak ( n <=1 ) {
+       vrat n;
+   }
+   vrat fib(n-1) + fib(n-2);
+}

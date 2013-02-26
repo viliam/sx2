@@ -1,0 +1,48 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestSuit" verbose="1" >
+
+  <test name="Zakladna funkcionalita" >
+    <classes>
+        <class name="sk.wlio.sx2.unit.readers.symbol.SlovoReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.znak.SymbolAbstractReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.instrukcia.VratReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.instrukcia.PrikazReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.instrukcia.ParametreReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.instrukcia.InstrukciaReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.deklaracia.DeklaraciaPremennejReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.deklaracia.BlokReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.deklaracia.DeklaraciaPrikazReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.deklaracia.DeklaraciaParameterReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.deklaracia.DeklaraciaTriedaReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.vyraz.PremennaReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazJednoduchyReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.instrukcia.PriradenieReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.instrukcia.PodmienkaReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.vyraz.CisloReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.OperatorReaderTest" />
+        <class name="sk.wlio.sx2.unit.TextContextTest" />
+        <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazAritmReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazAritmVzatvorkeReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazBoolReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.znak.ZatvorkaReaderTest" />
+        <class name="sk.wlio.sx2.unit.visitors.TypVyrazuVisitorTest" />
+        <class name="sk.wlio.sx2.unit.visitors.DeklaracieVisitorTest" />
+        <class name="sk.wlio.sx2.unit.visitors.KontextovaKontrolaVisitorTest" />
+        <class name="sk.wlio.sx2.integra.SxExceptionTest" />
+        <class name="sk.wlio.sx2.integra.JazykSxTest" />
+        <class name="sk.wlio.sx2.integra.znak.CiarkaReaderTest" />
+        <class name="sk.wlio.sx2.integra.deklaracia.DeklaraciaParameterReaderTest"/>
+        <class name="sk.wlio.sx2.integra.deklaracia.DeklaraciaPremennejReaderTest"/>
+        <class name="sk.wlio.sx2.integra.deklaracia.BlokReaderTest"/>
+        <class name="sk.wlio.sx2.integra.vyraz.VyrazReaderTest" />
+        <class name="sk.wlio.sx2.integra.vyraz.VyrazAritmReaderTest"/>
+        <class name="sk.wlio.sx2.integra.vyraz.VyrazBoolReaderTest"/>
+        <class name="sk.wlio.sx2.integra.visitors.TypVyrazuVisitorTest"/>
+        <class name="sk.wlio.sx2.integra.visitors.DeklaracieVisitorTest"/>
+        <class name="sk.wlio.sx2.integra.visitors.KontextovaKontrolaVisitorTest"/>
+    </classes>
+  </test>
+
+</suite>

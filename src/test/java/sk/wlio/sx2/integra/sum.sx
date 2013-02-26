@@ -1,0 +1,3 @@
+cislo sum(cislo a, cislo b) {
+  vrat a + b;
+}

@@ -1,0 +1,7 @@
+SYNTAX ELEMENT
+
+cislo - integer
+vrat  - return
+ak    - if
+
+ANOTHER:
