@@ -1,7 +1,7 @@
 package sk.wlio.sx2.readers;
 
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovaEnum;
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovoEnum;
+import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
+import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 
 public class RezervovaneSlovaAbstractReaderTest {
@@ -14,7 +14,7 @@ public class RezervovaneSlovaAbstractReaderTest {
         }
 
         @Override
-        protected RezervovaneSlovaEnum getZakazaneSlova() {
+        protected RezervedWordsEnum getZakazaneSlova() {
 //            return new TestZakazaneSlova();
             return null;
         }
@@ -25,8 +25,8 @@ public class RezervovaneSlovaAbstractReaderTest {
             return true;
         }
 
-        public RezervovaneSlovoEnum vrat(String s) {
-            return RezervovaneSlovoEnum.AK;
+        public ReservedWordEnum vrat(String s) {
+            return ReservedWordEnum.IF;
         }
     }
 }

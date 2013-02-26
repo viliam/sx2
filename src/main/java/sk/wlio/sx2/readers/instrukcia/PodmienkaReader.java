@@ -2,9 +2,9 @@ package sk.wlio.sx2.readers.instrukcia;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Condition;
+import sk.wlio.sx2.beans.reservedwords.InstructionWord;
+import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
-import sk.wlio.sx2.beans.rezervovaneslova.InstrukciaSlovo;
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovoEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
@@ -15,8 +15,8 @@ import sk.wlio.sx2.rozhrania.IVyraz;
 public class PodmienkaReader implements TextReader<Condition> {
 
     public Condition citaj(TextContext tC)        {
-        InstrukciaSlovo akSlovo = Readers.instrukciaSlovo().citaj(tC);
-        if ( !RezervovaneSlovoEnum.AK.je( akSlovo.toString())  )
+        InstructionWord akSlovo = Readers.instrukciaSlovo().citaj(tC);
+        if ( !ReservedWordEnum.IF.je( akSlovo.toString())  )
             throw SxException.create( SxExTyp.CAKAL_AK, tC);
 
 

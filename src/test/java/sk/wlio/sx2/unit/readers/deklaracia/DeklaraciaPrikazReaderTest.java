@@ -3,7 +3,7 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.DeclarationCommand;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
+import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -24,7 +24,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
                 public void nastavReader() {
                     mr.dekParameter().setPosun( 2,0);
                     mr.datovyTyp().setPosun( 5,0);
-                    mr.datovyTyp().setVystup( new DatovyTyp( null, "bool"));
+                    mr.datovyTyp().setVystup( new DataType( null, "bool"));
                     mr.slovo().setPosun(6,0,  6,0 );
                     mr.slovo().setVystup( new Slovo(null, "aa"), new Slovo(null, "ahoj"));
                     mr.blok().setPosun( 11, 0 );
@@ -40,7 +40,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
     public void testNiejeDatovyTyp() {
         try {
             mr.datovyTyp().setPosun( 5,0 );
-            mr.datovyTyp().setVystup( new DatovyTyp(null, "boool"));
+            mr.datovyTyp().setVystup( new DataType(null, "boool"));
 
             citajDekPrikaz("  boool ahoj() { vrat 3; } ");
             fail("Cakal chybu, zla deklaracia prikazu");
@@ -53,7 +53,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
     public void testZlyNazovPrikazu() {
         try {
             mr.datovyTyp().setPosun( 5,0 );
-            mr.datovyTyp().setVystup( new DatovyTyp(null, "bool"));
+            mr.datovyTyp().setVystup( new DataType(null, "bool"));
 
             mr.slovo().setPosun( 4,0 ,  4,0 );
             mr.slovo().setVystup( new Slovo(null, "3ahoj"));

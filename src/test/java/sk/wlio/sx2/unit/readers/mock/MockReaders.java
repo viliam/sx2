@@ -1,15 +1,15 @@
 package sk.wlio.sx2.unit.readers.mock;
 
 import sk.wlio.sx2.beans.Program;
+import sk.wlio.sx2.beans.reservedwords.DataType;
+import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.vyraz.Cislo;
-import sk.wlio.sx2.beans.rezervovaneslova.InstrukciaSlovo;
 import sk.wlio.sx2.readers.IReaders;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.IVyraz;
@@ -38,8 +38,8 @@ public class MockReaders implements IReaders {
     protected MockReader<Zatvorka> mZatvorka;
     protected MockReader<Ciarka> mCiarka;
 
-    protected MockReader<DatovyTyp> mDatovyTyp;
-    protected MockReader<InstrukciaSlovo> mInstrukciaSlovo;
+    protected MockReader<DataType> mDatovyTyp;
+    protected MockReader<InstructionWord> mInstrukciaSlovo;
 
     protected MockReader<Instrukcia> mInstrukcia;
     protected MockReader<Assignment> mPriradenie;
@@ -76,8 +76,8 @@ public class MockReaders implements IReaders {
         mZatvorka = new MockReader<Zatvorka>("zatvorka", postupVolania);
         mCiarka= new MockReader<Ciarka>("ciarka", postupVolania);
 
-        mInstrukciaSlovo= new MockReader<InstrukciaSlovo>("instrukciaSlovo", postupVolania);
-        mDatovyTyp= new MockReader<DatovyTyp>("datovyTyp", postupVolania);
+        mInstrukciaSlovo= new MockReader<InstructionWord>("instrukciaSlovo", postupVolania);
+        mDatovyTyp= new MockReader<DataType>("datovyTyp", postupVolania);
 
         mInstrukcia= new MockReader<Instrukcia>("instruction", postupVolania);
         mPriradenie= new MockReader<Assignment>("priradenie", postupVolania);
@@ -111,8 +111,8 @@ public class MockReaders implements IReaders {
     public MockReader<Zatvorka> zatvorka() {  return mZatvorka; }
     public MockReader<Ciarka> ciarka  () {  return mCiarka; }
 
-    public MockReader<InstrukciaSlovo> instrukciaSlovo() {  return mInstrukciaSlovo; }
-    public MockReader<DatovyTyp> datovyTyp() {  return mDatovyTyp; }
+    public MockReader<InstructionWord> instrukciaSlovo() {  return mInstrukciaSlovo; }
+    public MockReader<DataType> datovyTyp() {  return mDatovyTyp; }
 
     public MockReader<Instrukcia> instrukcia() {  return mInstrukcia; }
     public MockReader<Assignment> priradenie() {  return mPriradenie; }

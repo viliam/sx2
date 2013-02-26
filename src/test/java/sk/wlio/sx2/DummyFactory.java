@@ -5,11 +5,11 @@ import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
+import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.vyraz.Cislo;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
 public class DummyFactory {
@@ -32,7 +32,7 @@ public class DummyFactory {
 
     public static DeclarationVariable createDeklaraciaPremennej(String typ, String nazov) {
         return new DeclarationVariable(
-                new DatovyTyp( null, typ),
+                new DataType( null, typ),
                 new Slovo(null, nazov), new Ciarka(null, null)
         );
     }

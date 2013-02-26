@@ -1,8 +1,8 @@
 package sk.wlio.sx2.gui.komponenty;
 
 import sk.wlio.sx2.TextUtils;
+import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovoEnum;
 
 import javax.swing.*;
 import javax.swing.text.*;
@@ -65,7 +65,7 @@ public class SxDocumentFilter extends DocumentFilter {
                 zac++;
             }
 
-            if ( RezervovaneSlovoEnum.jeZakazaneSlovo(s)) {
+            if ( ReservedWordEnum.jeZakazaneSlovo(s)) {
                 setHighLightStyle(a);
                 super.insertString(fb,offs + zac, str.substring( zac, inx) ,  a);
                 setNormalStyle(a);

@@ -3,7 +3,7 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Condition;
-import sk.wlio.sx2.beans.rezervovaneslova.InstrukciaSlovo;
+import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.instrukcia.PodmienkaReader;
@@ -21,7 +21,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
             @Override
             public void nastavReader() {
                 mr.instrukciaSlovo().setPosun(  3,0 );
-                mr.instrukciaSlovo().setVystup(new InstrukciaSlovo( null, "ak"));
+                mr.instrukciaSlovo().setVystup(new InstructionWord( null, "ak"));
                 mr.zatvorka().setPosun(  1,0 ,  1,0 );
                 mr.vrzBool().setPosun(5, 0);
                 mr.instrukcia().setPosun(9,0);
@@ -32,7 +32,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
     @Test
     public void testNeznameSlovo() {
         mr.instrukciaSlovo().setPosun(4,0);
-        mr.instrukciaSlovo().setVystup( new InstrukciaSlovo(null, "trat"));
+        mr.instrukciaSlovo().setVystup( new InstructionWord(null, "trat"));
 
         TextContext tC = new TextContext("trat 4;  ");
         try {

@@ -2,7 +2,7 @@ package sk.wlio.sx2.readers;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovaEnum;
+import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.rozhrania.TextReader;
@@ -13,7 +13,7 @@ public abstract class RezervovaneSlovaAbstractReader<E extends Slovo> implements
         Slovo slovo = Readers.slovo().citaj( tC);
         String s = slovo.toString();
 
-        if (!getZakazaneSlova().je(s))
+        if (!getZakazaneSlova().is(s))
            throw SxException.create(getSxExceptionTyp(), tC);
 
         return (E) slovo;
@@ -21,6 +21,6 @@ public abstract class RezervovaneSlovaAbstractReader<E extends Slovo> implements
 
     protected abstract SxExTyp getSxExceptionTyp();
 
-    protected abstract RezervovaneSlovaEnum getZakazaneSlova();
+    protected abstract RezervedWordsEnum getZakazaneSlova();
 
 }

@@ -1,18 +1,18 @@
-package sk.wlio.sx2.beans.rezervovaneslova.enums;
+package sk.wlio.sx2.beans.reservedwords.enums;
 
-public enum RezervovaneSlovoEnum {
+public enum ReservedWordEnum {
 
-    CISLO("cislo") ,
+    INT("int") ,
     BOOL("bool"),
-    VRAT("vrat"),
-    AK("ak"),
-    NIC("nic"),
-    ANO("ano"),
-    NIE("nie");
+    RETURN("return"),
+    IF("if"),
+    VOID("void"),
+    TRUE("true"),
+    FALSE("false");
 
     private final String symbol;
 
-    RezervovaneSlovoEnum(String symbol) {
+    ReservedWordEnum(String symbol) {
         this.symbol = symbol;
     }
 
@@ -24,8 +24,8 @@ public enum RezervovaneSlovoEnum {
         return symbol;
     }
 
-    public static RezervovaneSlovoEnum makeSymbol(String sZakaz) {
-        for ( RezervovaneSlovoEnum zakaz : RezervovaneSlovoEnum.values()) {
+    public static ReservedWordEnum makeSymbol(String sZakaz) {
+        for ( ReservedWordEnum zakaz : ReservedWordEnum.values()) {
             if ( zakaz.toString().equals(sZakaz))
                 return zakaz;
         }
@@ -37,14 +37,14 @@ public enum RezervovaneSlovoEnum {
     }
     
     public static boolean jeZakazaneSlovo(String zakazaneSlovo) {
-        for ( RezervovaneSlovoEnum zs : RezervovaneSlovoEnum.values())
+        for ( ReservedWordEnum zs : ReservedWordEnum.values())
             if (zs.getSymbol().equals( zakazaneSlovo) )
                 return true;
         return false;
     }
 
     public static String[] getZakazaneSlova() {
-        RezervovaneSlovoEnum[] zs = RezervovaneSlovoEnum.values();
+        ReservedWordEnum[] zs = ReservedWordEnum.values();
         String[] strs = new String[ zs.length];
         for (int i=0; i <zs.length; i++) {
             strs[i] = zs[i].getSymbol();

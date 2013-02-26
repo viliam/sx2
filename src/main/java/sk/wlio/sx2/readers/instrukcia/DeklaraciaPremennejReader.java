@@ -3,7 +3,7 @@ package sk.wlio.sx2.readers.instrukcia;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
+import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.symbol.Operator;
@@ -14,7 +14,7 @@ import sk.wlio.sx2.rozhrania.IVyraz;
 public class DeklaraciaPremennejReader implements TextReader<DeclarationVariable> {
 
     public DeclarationVariable citaj(TextContext tC)  {
-        DatovyTyp datovyTyp = Readers.datovyTyp().citaj(tC);
+        DataType datovyTyp = Readers.datovyTyp().citaj(tC);
         Slovo nazov = Readers.slovo().citaj( tC);
 
         if ( tC.jePrefixOperatorPriradenia() ) {

@@ -1,18 +1,18 @@
 package sk.wlio.sx2.beans.instruction;
 
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
+import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.visitors.IVisitor;
 
 public class DeclarationCommand extends SlovoAbstract {
 
-    private DatovyTyp datovyTyp;
+    private DataType datovyTyp;
     private Slovo nazov;
     private DeclarationParameter dekParam;
     private Block telo;
 
-    public DeclarationCommand(DatovyTyp datovyTyp, Slovo nazov, DeclarationParameter dekParam, Block telo) {
+    public DeclarationCommand(DataType datovyTyp, Slovo nazov, DeclarationParameter dekParam, Block telo) {
         super(datovyTyp.getPozicia());
         this.nazov = nazov;
         this.dekParam = dekParam;
@@ -48,11 +48,11 @@ public class DeclarationCommand extends SlovoAbstract {
         this.telo = telo;
     }
 
-    public DatovyTyp getDatovyTyp() {
+    public DataType getDatovyTyp() {
         return datovyTyp;
     }
 
-    public void setDatovyTyp(DatovyTyp datovyTyp) {
+    public void setDatovyTyp(DataType datovyTyp) {
         this.datovyTyp = datovyTyp;
     }
 }

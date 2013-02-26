@@ -18,7 +18,7 @@ public class InstrukciaReader implements TextReader<Instrukcia> {
 
         if (tC.jePrefixInstrukcia() ) {
             switch ( tC.vratPrefixZakazaneSlovo()) {
-                case VRAT:
+                case RETURN:
                     return Readers.vrat().citaj(tC);
 //                    case ZakazaneSlova.AK : {
 //                        Podmienka pod = odkusniPodmienku();

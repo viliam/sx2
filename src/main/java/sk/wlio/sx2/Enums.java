@@ -1,8 +1,8 @@
 package sk.wlio.sx2;
 
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovaEnum;
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovoEnum;
+import sk.wlio.sx2.beans.reservedwords.DataType;
+import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
+import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 
@@ -12,14 +12,14 @@ public class Enums {
         NIC ,CISLO, BOOL, POROVNANIE, NEURCENY;
 
         
-        public static VyrazTyp getDatovyTyp( DatovyTyp dt)  {
-            RezervovaneSlovoEnum zs = RezervovaneSlovaEnum.DATOVY_TYP.vrat(dt.getObsah());
+        public static VyrazTyp getDatovyTyp( DataType dt)  {
+            ReservedWordEnum zs = RezervedWordsEnum.DATA_TYPE.vrat(dt.getObsah());
 
             switch ( zs) {
-                case CISLO : return Enums.VyrazTyp.CISLO;
-                case VRAT  : return Enums.VyrazTyp.NEURCENY;
-                case AK    : case NIC  : return Enums.VyrazTyp.NIC;
-                case BOOL  : case ANO   : case NIE  :  return Enums.VyrazTyp.BOOL;
+                case INT : return Enums.VyrazTyp.CISLO;
+                case RETURN: return Enums.VyrazTyp.NEURCENY;
+                case IF    : case VOID: return Enums.VyrazTyp.NIC;
+                case BOOL  : case TRUE: case FALSE:  return Enums.VyrazTyp.BOOL;
             }
             throw SxException.create(SxExTyp.CAKAL_DATOVY_TYP, dt.getPozicia());
         }
@@ -33,37 +33,37 @@ public class Enums {
 //
 //    public static enum Znak {
 //        PISMENO{
-//            public boolean je(char a) {
-//                return !Znak.CIARKA.je(a)
-//                    && !Znak.CISLO.je(a)
-//                    && !Znak.OPERATOR.je(a)
-//                    && !Znak.ZATVORKA.je(a) ;  //vsetko ostatne
+//            public boolean is(char a) {
+//                return !Znak.CIARKA.is(a)
+//                    && !Znak.CISLO.is(a)
+//                    && !Znak.OPERATOR.is(a)
+//                    && !Znak.ZATVORKA.is(a) ;  //vsetko ostatne
 //            }
 //        },
 //        CISLO {
-//            public boolean je(char a) {
-//                return je("0123456789", a);
+//            public boolean is(char a) {
+//                return is("0123456789", a);
 //            }
 //        },
 //        OPERATOR{
-//            public boolean je(char a) {
-//                return je("+-/%&|<>=!", a);
+//            public boolean is(char a) {
+//                return is("+-/%&|<>=!", a);
 //            }
 //        },
 //        ZATVORKA{
-//            public boolean je(char a) {
-//                return je("(){}[]", a);
+//            public boolean is(char a) {
+//                return is("(){}[]", a);
 //            }
 //        },
 //        CIARKA {
-//            public boolean je(char a) {
-//                return je(";,", a);
+//            public boolean is(char a) {
+//                return is(";,", a);
 //            }
 //        };
 //
-//        public abstract boolean je(char a);
+//        public abstract boolean is(char a);
 //
-//        protected boolean je(String s, char a) {
+//        protected boolean is(String s, char a) {
 //            return s.indexOf(a) != -1;
 //        }
 //    }

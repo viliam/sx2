@@ -1,15 +1,15 @@
 package sk.wlio.sx2.readers.zakazaneslova;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovaHodnota;
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovaEnum;
+import sk.wlio.sx2.beans.reservedwords.DataValue;
+import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.readers.RezervovaneSlovaAbstractReader;
 
-public class DatovaHodnotaReader extends RezervovaneSlovaAbstractReader<DatovaHodnota> {
+public class DatovaHodnotaReader extends RezervovaneSlovaAbstractReader<DataValue> {
 
-    public DatovaHodnota citaj(TextContext tC)  {
-        return new DatovaHodnota( super.citaj(tC) );
+    public DataValue citaj(TextContext tC)  {
+        return new DataValue( super.citaj(tC) );
     }
 
     @Override
@@ -18,8 +18,8 @@ public class DatovaHodnotaReader extends RezervovaneSlovaAbstractReader<DatovaHo
     }
 
     @Override
-    protected RezervovaneSlovaEnum getZakazaneSlova() {
-        return RezervovaneSlovaEnum.DATOVA_HODNOTA;
+    protected RezervedWordsEnum getZakazaneSlova() {
+        return RezervedWordsEnum.DATA_VALUE;
     }
 
 }

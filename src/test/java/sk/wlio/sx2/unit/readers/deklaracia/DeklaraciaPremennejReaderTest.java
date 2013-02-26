@@ -2,7 +2,7 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
+import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.readers.instrukcia.DeklaraciaPremennejReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
@@ -17,7 +17,7 @@ public class DeklaraciaPremennejReaderTest extends AbstractReaderTest {
         new TestTemplate<DeclarationVariable>(sb, new DeklaraciaPremennejReader()) {
             @Override public void nastavReader() {
 
-                mr.datovyTyp().setVystup( new DatovyTyp(null, "cislo"));
+                mr.datovyTyp().setVystup( new DataType(null, "cislo"));
                 mr.datovyTyp().setPosun( 5,0 );
                 mr.slovo().setPosun(  0,0 ,  1,0);
                 mr.slovo().setVystup( new Slovo(null, "a"));

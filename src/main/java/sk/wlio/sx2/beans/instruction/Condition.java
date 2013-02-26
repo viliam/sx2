@@ -1,19 +1,19 @@
 package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
-import sk.wlio.sx2.beans.rezervovaneslova.InstrukciaSlovo;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
 public class Condition extends SlovoAbstract {
 
-    private final InstrukciaSlovo ak;
+    private final InstructionWord ak;
     private final Zatvorka z1, z2;
     private final IVyraz vrzBool;
     private final Instrukcia instrukcia;
 
-    public Condition(InstrukciaSlovo ak, IVyraz vrzBool, Instrukcia instrukcia, Zatvorka z1, Zatvorka z2) {
+    public Condition(InstructionWord ak, IVyraz vrzBool, Instrukcia instrukcia, Zatvorka z1, Zatvorka z2) {
         super(ak.getPozicia());
         this.ak = ak;
         this.vrzBool = vrzBool;
@@ -22,7 +22,7 @@ public class Condition extends SlovoAbstract {
         this.z2 = z2;
     }
 
-    public InstrukciaSlovo getAk() {
+    public InstructionWord getAk() {
         return ak;
     }
 

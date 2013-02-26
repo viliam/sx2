@@ -1,6 +1,6 @@
 package sk.wlio.sx2.gui;
 
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovoEnum;
+import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.gui.komponenty.CislovanieRiadkov;
 import sk.wlio.sx2.gui.akcie.KlavesnicaListener;
 import sk.wlio.sx2.gui.komponenty.SxDocumentFilter;
@@ -34,7 +34,7 @@ public class FrmSx extends JFrame {
         StyledDocument styledDoc = txtEditor.getStyledDocument();
         if (styledDoc instanceof AbstractDocument) {
             AbstractDocument  doc = (AbstractDocument)styledDoc;
-            doc.setDocumentFilter( new SxDocumentFilter(RezervovaneSlovoEnum.getZakazaneSlova(), txtEditor));
+            doc.setDocumentFilter( new SxDocumentFilter(ReservedWordEnum.getZakazaneSlova(), txtEditor));
         }
         txtEditor.setFont( aktualnyFont);
         txtOutput.setFont( aktualnyFont);

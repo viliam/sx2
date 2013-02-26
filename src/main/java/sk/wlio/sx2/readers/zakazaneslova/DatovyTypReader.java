@@ -2,15 +2,15 @@ package sk.wlio.sx2.readers.zakazaneslova;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
-import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovaEnum;
+import sk.wlio.sx2.beans.reservedwords.DataType;
+import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.readers.RezervovaneSlovaAbstractReader;
 
-public class DatovyTypReader extends RezervovaneSlovaAbstractReader<DatovyTyp> {
+public class DatovyTypReader extends RezervovaneSlovaAbstractReader<DataType> {
 
-    public DatovyTyp citaj(TextContext tC)  {
-        DatovyTyp dt = new DatovyTyp( super.citaj(tC) );
+    public DataType citaj(TextContext tC)  {
+        DataType dt = new DataType( super.citaj(tC) );
         dt.setTyp( Enums.VyrazTyp.getDatovyTyp( dt));
 
         return dt;
@@ -22,7 +22,7 @@ public class DatovyTypReader extends RezervovaneSlovaAbstractReader<DatovyTyp> {
     }
 
     @Override
-    protected RezervovaneSlovaEnum getZakazaneSlova() {
-        return RezervovaneSlovaEnum.DATOVY_TYP;
+    protected RezervedWordsEnum getZakazaneSlova() {
+        return RezervedWordsEnum.DATA_TYPE;
     }
 }

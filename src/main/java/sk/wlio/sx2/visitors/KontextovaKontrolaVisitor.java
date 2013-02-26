@@ -4,12 +4,12 @@ import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.instruction.*;
+import sk.wlio.sx2.beans.reservedwords.DataType;
+import sk.wlio.sx2.beans.reservedwords.DataValue;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.vyraz.Cislo;
 import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovaHodnota;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.rozhrania.ISlovo;
@@ -176,8 +176,8 @@ public class KontextovaKontrolaVisitor implements IVisitor {
 
     public void visit(Operator operator) {}
 
-    public void visit(DatovyTyp datovyTyp) {}
-    public void visit(DatovaHodnota datovaHodnota) {}
+    public void visit(DataType datovyTyp) {}
+    public void visit(DataValue dataValue) {}
 
     public void visit(Cislo cislo) {}
 

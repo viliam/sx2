@@ -1,15 +1,15 @@
 package sk.wlio.sx2.readers;
 
 import sk.wlio.sx2.beans.Program;
-import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
+import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.instruction.*;
+import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
 import sk.wlio.sx2.beans.vyraz.Cislo;
-import sk.wlio.sx2.beans.rezervovaneslova.InstrukciaSlovo;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
@@ -42,8 +42,8 @@ public class Readers {
     public static TextReader<Zatvorka> zatvorka() { return readers.zatvorka(); }
     public static TextReader<Ciarka> ciarka() { return readers.ciarka(); }
 
-    public static TextReader<DatovyTyp> datovyTyp() { return readers.datovyTyp(); }
-    public static TextReader<InstrukciaSlovo> instrukciaSlovo() { return readers.instrukciaSlovo();}
+    public static TextReader<DataType> datovyTyp() { return readers.datovyTyp(); }
+    public static TextReader<InstructionWord> instrukciaSlovo() { return readers.instrukciaSlovo();}
 
     public static TextReader<Instrukcia> instrukcia() { return readers.instrukcia(); }
     public static TextReader<Assignment> priradenie() { return readers.priradenie(); }
