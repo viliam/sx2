@@ -1,19 +1,17 @@
-package sk.wlio.sx2.beans.instrukcia;
+package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.SlovoAbstract;
-import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
 import sk.wlio.sx2.rozhrania.Instrukcia;
-import sk.wlio.sx2.visitors.DeklaracieVisitor;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Blok extends SlovoAbstract implements Instrukcia {
+public class Block extends SlovoAbstract implements Instrukcia {
 
     private Instrukcia[] instrukcie;
     private Zatvorka z1;
     private Zatvorka z2;
 
-    public Blok(Instrukcia[] instrukcie , Zatvorka z1, Zatvorka z2) {
+    public Block(Instrukcia[] instrukcie, Zatvorka z1, Zatvorka z2) {
         super(z1.getPozicia());
         this.z1 = z1;
         this.z2 = z2;

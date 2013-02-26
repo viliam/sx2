@@ -2,7 +2,7 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.*;
+import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.readers.instrukcia.PrikazReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
@@ -14,7 +14,7 @@ public class PrikazReaderTest extends AbstractReaderTest {
 
     @Test
     public void testPrikaz()  {
-        TestTemplate<Prikaz> tt =new TestTemplate<Prikaz>( sb, new PrikazReader()) {
+        TestTemplate<Command> tt =new TestTemplate<Command>( sb, new PrikazReader()) {
             @Override public void nastavReader() {
                 mr.slovo().setPosun( 4,0);
                 mr.slovo().setVystup( new Slovo( null, "ahoj"));
@@ -22,9 +22,9 @@ public class PrikazReaderTest extends AbstractReaderTest {
             }
         };
         tt.run("   ahoj(3 , p);  ","slovo;parametre;");
-        Prikaz prikaz = tt.getVysledok();
-        assertNotNull(prikaz);
-        assertEquals( "ahoj", prikaz.getNazov().toString() );
+        Command command = tt.getVysledok();
+        assertNotNull(command);
+        assertEquals( "ahoj", command.getNazov().toString() );
     }
 
 }

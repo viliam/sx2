@@ -1,18 +1,18 @@
-package sk.wlio.sx2.beans.instrukcia;
+package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class DeklaraciaPrikaz extends SlovoAbstract {
+public class DeclarationCommand extends SlovoAbstract {
 
     private DatovyTyp datovyTyp;
     private Slovo nazov;
-    private DeklaraciaParameter dekParam;
-    private Blok telo;
+    private DeclarationParameter dekParam;
+    private Block telo;
 
-    public DeklaraciaPrikaz(DatovyTyp datovyTyp, Slovo nazov, DeklaraciaParameter dekParam, Blok telo) {
+    public DeclarationCommand(DatovyTyp datovyTyp, Slovo nazov, DeclarationParameter dekParam, Block telo) {
         super(datovyTyp.getPozicia());
         this.nazov = nazov;
         this.dekParam = dekParam;
@@ -32,19 +32,19 @@ public class DeklaraciaPrikaz extends SlovoAbstract {
         this.nazov = nazov;
     }
 
-    public DeklaraciaParameter getDekParam() {
+    public DeclarationParameter getDekParam() {
         return dekParam;
     }
 
-    public void setDekParam(DeklaraciaParameter dekParam) {
+    public void setDekParam(DeclarationParameter dekParam) {
         this.dekParam = dekParam;
     }
 
-    public Blok getTelo() {
+    public Block getTelo() {
         return telo;
     }
 
-    public void setTelo(Blok telo) {
+    public void setTelo(Block telo) {
         this.telo = telo;
     }
 

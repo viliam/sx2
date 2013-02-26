@@ -3,7 +3,7 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.Vrat;
+import sk.wlio.sx2.beans.instruction.Return;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.instrukcia.VratReader;
@@ -17,7 +17,7 @@ public class VratReaderTest extends AbstractReaderTest {
 
     @Test
     public void testVrat()  {
-        new TestTemplate<Vrat>(sb, new VratReader()) {
+        new TestTemplate<Return>(sb, new VratReader()) {
             @Override
             public void nastavReader() {
                 mr.slovo().setPosun( 4,0) ;

@@ -2,7 +2,7 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instrukcia.DeklaraciaParameter;
+import sk.wlio.sx2.beans.instruction.DeclarationParameter;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.instrukcia.DeklaraciaParameterReader;
@@ -17,8 +17,8 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
 
     @Test
     public void testBasic()  {
-        TestTemplate<DeklaraciaParameter> tt =
-            new TestTemplate<DeklaraciaParameter>(sb, new DeklaraciaParameterReader()) {
+        TestTemplate<DeclarationParameter> tt =
+            new TestTemplate<DeclarationParameter>(sb, new DeklaraciaParameterReader()) {
                 @Override
                 public void nastavReader() {
                     mr.zatvorka().setPosun(  1,0 ,  1,0 );
@@ -31,8 +31,8 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
 
     @Test
     public void testEmpty()  {
-        TestTemplate<DeklaraciaParameter> tt =
-            new TestTemplate<DeklaraciaParameter>(sb, new DeklaraciaParameterReader()) {
+        TestTemplate<DeclarationParameter> tt =
+            new TestTemplate<DeclarationParameter>(sb, new DeklaraciaParameterReader()) {
                 @Override
                 public void nastavReader() {
                     mr.zatvorka().setPosun(  1,0 ,  1,0 );
@@ -55,10 +55,10 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
 
     }
 
-    private DeklaraciaParameter citajDekParameter(String ts)  {
+    private DeclarationParameter citajDekParameter(String ts)  {
         TextContext text = new TextContext(ts);
-        TextReader<DeklaraciaParameter> dpReader = new DeklaraciaParameterReader();
-        DeklaraciaParameter dekParameter= dpReader.citaj( text);
+        TextReader<DeclarationParameter> dpReader = new DeklaraciaParameterReader();
+        DeclarationParameter dekParameter= dpReader.citaj( text);
         return dekParameter;
     }
 

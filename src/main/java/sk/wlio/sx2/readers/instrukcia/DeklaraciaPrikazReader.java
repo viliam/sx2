@@ -3,16 +3,16 @@ package sk.wlio.sx2.readers.instrukcia;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.*;
+import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.rezervovaneslova.enums.RezervovaneSlovaEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 
-public class DeklaraciaPrikazReader implements TextReader<DeklaraciaPrikaz>  {
+public class DeklaraciaPrikazReader implements TextReader<DeclarationCommand>  {
 
-    public DeklaraciaPrikaz citaj(TextContext tC)  {
+    public DeclarationCommand citaj(TextContext tC)  {
        DatovyTyp datovyTyp = Readers.datovyTyp().citaj( tC);
        String sDatovyTyp = datovyTyp.toString();
        if (!RezervovaneSlovaEnum.DATOVY_TYP.je( sDatovyTyp))
@@ -23,9 +23,9 @@ public class DeklaraciaPrikazReader implements TextReader<DeklaraciaPrikaz>  {
 
        Slovo nazov = Readers.slovo().citaj( tC);
        //odkusnem parametre
-       DeklaraciaParameter dekParam = Readers.dekParameter().citaj(tC);
-       Blok blok = Readers.blok().citaj( tC);
+       DeclarationParameter dekParam = Readers.dekParameter().citaj(tC);
+       Block block = Readers.blok().citaj( tC);
 
-       return new DeklaraciaPrikaz(datovyTyp, nazov, dekParam, blok);
+       return new DeclarationCommand(datovyTyp, nazov, dekParam, block);
     }
 }

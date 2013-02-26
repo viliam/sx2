@@ -4,7 +4,7 @@ import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.*;
+import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
@@ -42,15 +42,15 @@ public class ReadersImpl implements  IReaders {
     public TextReader<InstrukciaSlovo> instrukciaSlovo() { return new InstrukciaSlovoReader(); }
 
     public TextReader<Instrukcia> instrukcia() {  return   new InstrukciaReader(); }
-    public TextReader<Priradenie> priradenie() {  return   new PriradenieReader(); }
-    public TextReader<Blok> blok() {  return   new BlokReader(); }
+    public TextReader<Assignment> priradenie() {  return   new PriradenieReader(); }
+    public TextReader<Block> blok() {  return   new BlokReader(); }
     public TextReader<Premenna> premenna() {  return   new PremennaReader(); }
-    public TextReader<DeklaraciaPremennej> dekPremennej() {  return   new DeklaraciaPremennejReader(); }
-    public TextReader<Prikaz> prikaz() {  return   new PrikazReader(); }
-    public TextReader<DeklaraciaPrikaz> dekPrikaz () {  return   new DeklaraciaPrikazReader(); }
+    public TextReader<DeclarationVariable> dekPremennej() {  return   new DeklaraciaPremennejReader(); }
+    public TextReader<Command> prikaz() {  return   new PrikazReader(); }
+    public TextReader<DeclarationCommand> dekPrikaz () {  return   new DeklaraciaPrikazReader(); }
     public TextReader<Program> dekTrieda() {   return new ProgramReader();  }
 
-    public TextReader<Parametre> parametre() {  return   new ParametreReader(); }
-    public TextReader<DeklaraciaParameter> dekParameter() {  return   new DeklaraciaParameterReader(); }
-    public TextReader<Vrat> vrat() {  return   new VratReader(); }
+    public TextReader<Parameters> parametre() {  return   new ParametreReader(); }
+    public TextReader<DeclarationParameter> dekParameter() {  return   new DeklaraciaParameterReader(); }
+    public TextReader<Return> vrat() {  return   new VratReader(); }
 }

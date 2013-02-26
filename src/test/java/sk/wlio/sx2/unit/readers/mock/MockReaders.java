@@ -7,7 +7,7 @@ import sk.wlio.sx2.beans.symbol.Zatvorka;
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.*;
+import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.vyraz.Cislo;
 import sk.wlio.sx2.beans.rezervovaneslova.InstrukciaSlovo;
 import sk.wlio.sx2.readers.IReaders;
@@ -42,16 +42,16 @@ public class MockReaders implements IReaders {
     protected MockReader<InstrukciaSlovo> mInstrukciaSlovo;
 
     protected MockReader<Instrukcia> mInstrukcia;
-    protected MockReader<Priradenie> mPriradenie;
-    protected MockReader<Blok> mBlok;
+    protected MockReader<Assignment> mPriradenie;
+    protected MockReader<Block> mBlok;
     protected MockReader<Premenna> mPremenna;
-    protected MockReader<DeklaraciaPremennej> mDekPremennej;
-    protected MockReader<Prikaz> mPrikaz;
-    protected MockReader<DeklaraciaPrikaz> mDekPrikaz;
+    protected MockReader<DeclarationVariable> mDekPremennej;
+    protected MockReader<Command> mPrikaz;
+    protected MockReader<DeclarationCommand> mDekPrikaz;
     protected MockReader<Program> mDekTrieda;
-    protected MockReader<Parametre> mParametre;
-    protected MockReader<DeklaraciaParameter> mDekParameter;
-    protected MockReader<Vrat> mVrat;
+    protected MockReader<Parameters> mParametre;
+    protected MockReader<DeclarationParameter> mDekParameter;
+    protected MockReader<Return> mVrat;
 
 
     public MockReaders(StringBuffer postupVolania) {
@@ -79,16 +79,16 @@ public class MockReaders implements IReaders {
         mInstrukciaSlovo= new MockReader<InstrukciaSlovo>("instrukciaSlovo", postupVolania);
         mDatovyTyp= new MockReader<DatovyTyp>("datovyTyp", postupVolania);
 
-        mInstrukcia= new MockReader<Instrukcia>("instrukcia", postupVolania);
-        mPriradenie= new MockReader<Priradenie>("priradenie", postupVolania);
-        mBlok= new MockReader<Blok>("blok", postupVolania);
+        mInstrukcia= new MockReader<Instrukcia>("instruction", postupVolania);
+        mPriradenie= new MockReader<Assignment>("priradenie", postupVolania);
+        mBlok= new MockReader<Block>("blok", postupVolania);
         mPremenna =new MockReader<Premenna>("premenna", postupVolania);
-        mDekPremennej = new MockReader<DeklaraciaPremennej>("dekPremennej", postupVolania);
-        mPrikaz= new MockReader<Prikaz>("prikaz", postupVolania);
-        mDekPrikaz= new MockReader<DeklaraciaPrikaz>("dekPrikaz", postupVolania);
-        mParametre= new MockReader<Parametre>("parametre", postupVolania);
-        mDekParameter= new MockReader<DeklaraciaParameter>("dekParameter", postupVolania);
-        mVrat=new MockReader<Vrat>("vrat", postupVolania);
+        mDekPremennej = new MockReader<DeclarationVariable>("dekPremennej", postupVolania);
+        mPrikaz= new MockReader<Command>("prikaz", postupVolania);
+        mDekPrikaz= new MockReader<DeclarationCommand>("dekPrikaz", postupVolania);
+        mParametre= new MockReader<Parameters>("parametre", postupVolania);
+        mDekParameter= new MockReader<DeclarationParameter>("dekParameter", postupVolania);
+        mVrat=new MockReader<Return>("vrat", postupVolania);
 
     }
 
@@ -115,19 +115,19 @@ public class MockReaders implements IReaders {
     public MockReader<DatovyTyp> datovyTyp() {  return mDatovyTyp; }
 
     public MockReader<Instrukcia> instrukcia() {  return mInstrukcia; }
-    public MockReader<Priradenie> priradenie() {  return mPriradenie; }
-    public MockReader<Blok> blok() {  return mBlok; }
+    public MockReader<Assignment> priradenie() {  return mPriradenie; }
+    public MockReader<Block> blok() {  return mBlok; }
     public MockReader<Premenna> premenna() {  return mPremenna; }
-    public MockReader<DeklaraciaPremennej> dekPremennej() {  return mDekPremennej; }
-    public MockReader<Prikaz> prikaz() {  return mPrikaz; }
-    public MockReader<DeklaraciaPrikaz> dekPrikaz () {  return mDekPrikaz; }
+    public MockReader<DeclarationVariable> dekPremennej() {  return mDekPremennej; }
+    public MockReader<Command> prikaz() {  return mPrikaz; }
+    public MockReader<DeclarationCommand> dekPrikaz () {  return mDekPrikaz; }
 
     public TextReader<Program> dekTrieda() {
         return mDekTrieda;
     }
 
-    public MockReader<Parametre> parametre() {  return mParametre;}
-    public MockReader<DeklaraciaParameter> dekParameter() {  return mDekParameter; }
-    public MockReader<Vrat> vrat() {  return mVrat; }
+    public MockReader<Parameters> parametre() {  return mParametre;}
+    public MockReader<DeclarationParameter> dekParameter() {  return mDekParameter; }
+    public MockReader<Return> vrat() {  return mVrat; }
 
 }

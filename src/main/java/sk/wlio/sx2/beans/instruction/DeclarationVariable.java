@@ -1,4 +1,4 @@
-package sk.wlio.sx2.beans.instrukcia;
+package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
@@ -7,24 +7,24 @@ import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class DeklaraciaPremennej extends SlovoAbstract implements Instrukcia {
+public class DeclarationVariable extends SlovoAbstract implements Instrukcia {
 
     private DatovyTyp datovyTyp;
     private Slovo nazov;
-    private Priradenie priradenie;
+    private Assignment assignment;
     private Ciarka ciarka;
 
-    public  DeklaraciaPremennej(DatovyTyp datovyTyp, Slovo nazov, Ciarka ciarka ) {
+    public DeclarationVariable(DatovyTyp datovyTyp, Slovo nazov, Ciarka ciarka) {
         super(datovyTyp.getPozicia());
         this.nazov = nazov;
         this.datovyTyp = datovyTyp;
         this.ciarka = ciarka;
     }
 
-    public  DeklaraciaPremennej( DatovyTyp datovyTyp, Slovo nazov, Priradenie priradenie) {
+    public DeclarationVariable(DatovyTyp datovyTyp, Slovo nazov, Assignment assignment) {
         super(datovyTyp.getPozicia());
         this.nazov = nazov;
-        this.priradenie = priradenie;
+        this.assignment = assignment;
         this.datovyTyp = datovyTyp;
     }
 
@@ -40,8 +40,8 @@ public class DeklaraciaPremennej extends SlovoAbstract implements Instrukcia {
         return nazov;
     }
 
-    public Priradenie getPriradenie() {
-        return priradenie;
+    public Assignment getAssignment() {
+        return assignment;
     }
 
 }

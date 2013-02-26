@@ -4,7 +4,7 @@ import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.*;
+import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
@@ -46,16 +46,16 @@ public class Readers {
     public static TextReader<InstrukciaSlovo> instrukciaSlovo() { return readers.instrukciaSlovo();}
 
     public static TextReader<Instrukcia> instrukcia() { return readers.instrukcia(); }
-    public static TextReader<Priradenie> priradenie() { return readers.priradenie(); }
-    public static TextReader<Blok> blok() { return readers.blok(); }
+    public static TextReader<Assignment> priradenie() { return readers.priradenie(); }
+    public static TextReader<Block> blok() { return readers.blok(); }
     public static TextReader<Premenna> premena() { return readers.premenna(); }
-    public static TextReader<DeklaraciaPremennej> dekPremennej() { return readers.dekPremennej(); }
-    public static TextReader<Prikaz> prikaz() { return readers.prikaz(); }
-    public static TextReader<DeklaraciaPrikaz> dekPrikaz() { return readers.dekPrikaz(); }
-    public static TextReader<Parametre> parametre() { return readers.parametre(); }
-    public static TextReader<DeklaraciaParameter> dekParameter() { return readers.dekParameter(); }
+    public static TextReader<DeclarationVariable> dekPremennej() { return readers.dekPremennej(); }
+    public static TextReader<Command> prikaz() { return readers.prikaz(); }
+    public static TextReader<DeclarationCommand> dekPrikaz() { return readers.dekPrikaz(); }
+    public static TextReader<Parameters> parametre() { return readers.parametre(); }
+    public static TextReader<DeclarationParameter> dekParameter() { return readers.dekParameter(); }
     public static TextReader<Program> dekTrieda() { return readers.dekTrieda();}
-    public static TextReader<Vrat> vrat() { return readers.vrat(); }
+    public static TextReader<Return> vrat() { return readers.vrat(); }
 
 
 }

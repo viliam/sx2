@@ -1,19 +1,19 @@
 package sk.wlio.sx2.readers.instrukcia;
 
 import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.instruction.Assignment;
+import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.DeklaraciaPremennej;
-import sk.wlio.sx2.beans.instrukcia.Priradenie;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class DeklaraciaPremennejReader implements TextReader<DeklaraciaPremennej> {
+public class DeklaraciaPremennejReader implements TextReader<DeclarationVariable> {
 
-    public DeklaraciaPremennej citaj(TextContext tC)  {
+    public DeclarationVariable citaj(TextContext tC)  {
         DatovyTyp datovyTyp = Readers.datovyTyp().citaj(tC);
         Slovo nazov = Readers.slovo().citaj( tC);
 
@@ -23,11 +23,11 @@ public class DeklaraciaPremennejReader implements TextReader<DeklaraciaPremennej
 
             Premenna pre = new Premenna(nazov);
             pre.setVyrazTyp( datovyTyp.getVyrazTyp());
-            Priradenie pri = new Priradenie( pre,op,v , tC.nacitajAkJeBodkoCiarka());
-            return new DeklaraciaPremennej( datovyTyp, nazov , pri);
+            Assignment pri = new Assignment( pre,op,v , tC.nacitajAkJeBodkoCiarka());
+            return new DeclarationVariable( datovyTyp, nazov , pri);
         }
 
-        return new DeklaraciaPremennej( datovyTyp, nazov,tC.nacitajAkJeBodkoCiarka());
+        return new DeclarationVariable( datovyTyp, nazov,tC.nacitajAkJeBodkoCiarka());
     }
 
 }

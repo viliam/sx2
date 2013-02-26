@@ -1,12 +1,8 @@
 package sk.wlio.sx2.visitors;
 
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.instrukcia.Parametre;
-import sk.wlio.sx2.beans.instrukcia.Prikaz;
-import sk.wlio.sx2.beans.instrukcia.Priradenie;
-import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
+import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -40,9 +36,9 @@ public class TypVyrazuVisitor extends VisitorAbstract {
     }
 
     @Override
-    public void visit(Priradenie priradenie) {
-        Premenna premenna = priradenie.getPremenna();
-        IVyraz vyraz = priradenie.getVyraz();
+    public void visit(Assignment assignment) {
+        Premenna premenna = assignment.getPremenna();
+        IVyraz vyraz = assignment.getVyraz();
         if (premenna.getVyrazTyp() != vyraz.getVyrazTyp() )
             throw SxException.create(SxExTyp.ZLY_DATOVY_TYP, vyraz.getPozicia());
     }

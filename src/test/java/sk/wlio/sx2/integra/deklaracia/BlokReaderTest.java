@@ -2,7 +2,7 @@ package sk.wlio.sx2.integra.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instrukcia.Blok;
+import sk.wlio.sx2.beans.instruction.Block;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.ISlovo;
@@ -25,8 +25,8 @@ public class BlokReaderTest {
     @Test
     public void testZloziteBloky()  {
         for (String v: zloziteBloky) {
-            Blok blok = citajBlok(v);
-            assertNotNull( blok);
+            Block block = citajBlok(v);
+            assertNotNull(block);
         }
     }
 
@@ -41,19 +41,19 @@ public class BlokReaderTest {
             } catch (SxException ex) {}
     }
     
-    private Blok citajBlok(String tento)  {
+    private Block citajBlok(String tento)  {
         TextContext tC = new TextContext(tento);
         return citajBlok(tC, true);
     }
     
-    private Blok citajBlok(TextContext tC, boolean checkKoniec)  {
+    private Block citajBlok(TextContext tC, boolean checkKoniec)  {
         ISlovo slovo = Readers.blok().citaj(tC);
 
         assertNotNull(slovo);
         assertTrue( "Slovo nie je instancia Blok. Slovo.class = " + slovo.getClass().getName()
-                , slovo instanceof Blok);
+                , slovo instanceof Block);
 
         if (checkKoniec) assertTrue( tC.jeKoniec());
-        return (Blok) slovo;
+        return (Block) slovo;
     }
 }

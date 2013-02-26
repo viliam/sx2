@@ -2,9 +2,9 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.instruction.DeclarationCommand;
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.DeklaraciaPrikaz;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.instrukcia.DeklaraciaPrikazReader;
@@ -18,8 +18,8 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
 
     @Test
     public void testBasic()  {
-        TestTemplate<DeklaraciaPrikaz> tt =
-            new TestTemplate<DeklaraciaPrikaz>(sb, new DeklaraciaPrikazReader()) {
+        TestTemplate<DeclarationCommand> tt =
+            new TestTemplate<DeclarationCommand>(sb, new DeklaraciaPrikazReader()) {
                 @Override
                 public void nastavReader() {
                     mr.dekParameter().setPosun( 2,0);
@@ -32,7 +32,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
             };
         tt.run("  bool ahoj() { vrat 3; } ", "datovyTyp;slovo;slovo;dekParameter;blok;");
 
-        DeklaraciaPrikaz dp = tt.getVysledok();
+        DeclarationCommand dp = tt.getVysledok();
         assertEquals("nazov prikazu", "ahoj", dp.getNazov().toString() );
     }
 
@@ -65,10 +65,10 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
         }
     }
 
-    private DeklaraciaPrikaz citajDekPrikaz(String ts)  {
+    private DeclarationCommand citajDekPrikaz(String ts)  {
         TextContext text = new TextContext(ts);
-        TextReader<DeklaraciaPrikaz> dpReader = new DeklaraciaPrikazReader();
-        DeklaraciaPrikaz dekPrikaz= dpReader.citaj( text);
+        TextReader<DeclarationCommand> dpReader = new DeklaraciaPrikazReader();
+        DeclarationCommand dekPrikaz= dpReader.citaj( text);
         assertNotNull("nenulovy prikaz", dekPrikaz);
         return dekPrikaz;
     }

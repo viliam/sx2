@@ -2,7 +2,7 @@ package sk.wlio.sx2.visitors;
 
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.instrukcia.*;
+import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.vyraz.Cislo;
 import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
@@ -27,12 +27,12 @@ public class VisitorAbstract implements IVisitor {
 
     public void visit(Premenna premenna) {}
 
-    public void visit(Prikaz prikaz) {
-        prikaz.getParametre().visit(this);
+    public void visit(Command command) {
+        command.getParameters().visit(this);
     }
 
-    public void visit(Parametre parametre) {
-        for (IVyraz vyraz : parametre.getParametre() )
+    public void visit(Parameters parameters) {
+        for (IVyraz vyraz : parameters.getParametre() )
             vyraz.visit( this);
     }
 
@@ -43,42 +43,42 @@ public class VisitorAbstract implements IVisitor {
 
     public void visit(Cislo cislo) {}
 
-    public void visit(Priradenie priradenie) {
-        priradenie.getVyraz().visit( this);
+    public void visit(Assignment assignment) {
+        assignment.getVyraz().visit( this);
     }
 
-    public void visit(Blok blok) {
-        for (Instrukcia instrukcia : blok.getInstrukcie())
+    public void visit(Block block) {
+        for (Instrukcia instrukcia : block.getInstrukcie())
             instrukcia.visit(this);
     }
 
-    public void visit(Vrat vrat) {
-        vrat.getVyraz().visit( this);
+    public void visit(Return aReturn) {
+        aReturn.getVyraz().visit( this);
     }
 
-    public void visit(DeklaraciaPremennej dekPremennej) {
-        if (dekPremennej.getPriradenie() != null)
-            dekPremennej.getPriradenie().visit( this);
+    public void visit(DeclarationVariable dekPremennej) {
+        if (dekPremennej.getAssignment() != null)
+            dekPremennej.getAssignment().visit( this);
     }
 
-    public void visit(DeklaraciaPrikaz dekPrikaz) {
+    public void visit(DeclarationCommand dekPrikaz) {
         dekPrikaz.getDekParam().visit(this);
         dekPrikaz.getTelo().visit( this);
     }
 
-    public void visit(DeklaraciaParameter dekParameter) {
-        for (DeklaraciaPremennej dekPremenna: dekParameter.getLiDekPremennej()) {
+    public void visit(DeclarationParameter dekParameter) {
+        for (DeclarationVariable dekPremenna: dekParameter.getLiDekPremennej()) {
             dekPremenna.visit(this);
         }
     }
     public void visit(Program program) {
         //nacita deklaraciu vsetkych premmennych
-        for (DeklaraciaPremennej dekPremennej: program.getMapPremenna().values() ) {
+        for (DeclarationVariable dekPremennej: program.getMapPremenna().values() ) {
             dekPremennej.visit(this);
         }
 
         //skontroluje deklaraciu prikazov, premennych
-        for (DeklaraciaPrikaz dekPrikaz : program.getMapPrikaz().values())
+        for (DeclarationCommand dekPrikaz : program.getMapPrikaz().values())
             dekPrikaz.visit( this);
     }
 

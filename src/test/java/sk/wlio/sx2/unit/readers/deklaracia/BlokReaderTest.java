@@ -2,7 +2,7 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.instrukcia.Blok;
+import sk.wlio.sx2.beans.instruction.Block;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.readers.instrukcia.BlokReader;
@@ -16,7 +16,7 @@ public class BlokReaderTest extends AbstractReaderTest {
 
     @Test
     public void testBlok()  {
-        TestTemplate<Blok> tt = new TestTemplate<Blok>(sb, new BlokReader()) {
+        TestTemplate<Block> tt = new TestTemplate<Block>(sb, new BlokReader()) {
             @Override public void nastavReader() {
                 mr.zatvorka().setVystup( new Zatvorka(new Pozicia(0,0), SymbolEnum.ZATVORKA_NORM_OTOVRENA));
                 mr.zatvorka().setPosun( 3,0 ,  2,0 );
@@ -24,10 +24,10 @@ public class BlokReaderTest extends AbstractReaderTest {
             }
         };
         tt.run( "  { a = 4; cislo b; } ",
-                "zatvorka;instrukcia;instrukcia;zatvorka;");
+                "zatvorka;instruction;instruction;zatvorka;");
 
-        Blok blok = tt.getVysledok();
-        Instrukcia[] inst = blok.getInstrukcie();
+        Block block = tt.getVysledok();
+        Instrukcia[] inst = block.getInstrukcie();
         assertEquals( inst.length, 2);
     }
 

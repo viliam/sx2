@@ -5,7 +5,7 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Pozicia;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.Priradenie;
+import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.instrukcia.PriradenieReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
@@ -17,7 +17,7 @@ public class PriradenieReaderTest extends AbstractReaderTest {
 
     @Test
     public void testPriradenie()  {
-        new TestTemplate<Priradenie>(sb, new PriradenieReader()) {
+        new TestTemplate<Assignment>(sb, new PriradenieReader()) {
             @Override
             public void nastavReader() {
                 mr.premenna().setPosun( 1, 0 );

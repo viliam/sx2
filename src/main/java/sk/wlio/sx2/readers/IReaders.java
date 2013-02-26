@@ -4,7 +4,7 @@ import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.rezervovaneslova.DatovyTyp;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.*;
+import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
@@ -34,16 +34,16 @@ public interface IReaders {
     public TextReader<DatovyTyp> datovyTyp();
 
     public TextReader<Instrukcia> instrukcia();
-    public TextReader<Priradenie> priradenie();
-    public TextReader<Blok> blok();
+    public TextReader<Assignment> priradenie();
+    public TextReader<Block> blok();
     public TextReader<Premenna> premenna();
-    public TextReader<DeklaraciaPremennej> dekPremennej();
-    public TextReader<Prikaz> prikaz();
-    public TextReader<DeklaraciaPrikaz> dekPrikaz();
+    public TextReader<DeclarationVariable> dekPremennej();
+    public TextReader<Command> prikaz();
+    public TextReader<DeclarationCommand> dekPrikaz();
     public TextReader<Program> dekTrieda();
-    public TextReader<Parametre> parametre();
-    public TextReader<DeklaraciaParameter> dekParameter();
-    public TextReader<Vrat> vrat();
+    public TextReader<Parameters> parametre();
+    public TextReader<DeclarationParameter> dekParameter();
+    public TextReader<Return> vrat();
 
     public TextReader<InstrukciaSlovo> instrukciaSlovo();
 

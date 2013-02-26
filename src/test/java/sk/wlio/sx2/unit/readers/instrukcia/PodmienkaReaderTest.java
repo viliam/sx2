@@ -2,7 +2,7 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instrukcia.Podmienka;
+import sk.wlio.sx2.beans.instruction.Condition;
 import sk.wlio.sx2.beans.rezervovaneslova.InstrukciaSlovo;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -17,7 +17,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
 
     @Test
     public void testAk()  {
-        new TestTemplate<Podmienka>(sb, new PodmienkaReader()) {
+        new TestTemplate<Condition>(sb, new PodmienkaReader()) {
             @Override
             public void nastavReader() {
                 mr.instrukciaSlovo().setPosun(  3,0 );
@@ -26,7 +26,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
                 mr.vrzBool().setPosun(5, 0);
                 mr.instrukcia().setPosun(9,0);
             }
-        }.run("ak ( b>32) nieco();", "instrukciaSlovo;zatvorka;vrzBool;zatvorka;instrukcia;");
+        }.run("ak ( b>32) nieco();", "instrukciaSlovo;zatvorka;vrzBool;zatvorka;instruction;");
     }
 
     @Test

@@ -3,8 +3,8 @@ package sk.wlio.sx2;
 import sk.wlio.sx2.beans.Pozicia;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.instrukcia.DeklaraciaPremennej;
-import sk.wlio.sx2.beans.instrukcia.Priradenie;
+import sk.wlio.sx2.beans.instruction.Assignment;
+import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.symbol.Ciarka;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
@@ -26,12 +26,12 @@ public class DummyFactory {
         return new Premenna( new Slovo(new Pozicia(0,0), nazov));
     }
 
-    public static Priradenie createPriradenie(Premenna premenna, IVyraz vyraz) {
-        return new Priradenie(premenna, createOperator(SymbolEnum.PRIRAD), vyraz, null);
+    public static Assignment createPriradenie(Premenna premenna, IVyraz vyraz) {
+        return new Assignment(premenna, createOperator(SymbolEnum.PRIRAD), vyraz, null);
     }
 
-    public static DeklaraciaPremennej createDeklaraciaPremennej(String typ, String nazov) {
-        return new DeklaraciaPremennej(
+    public static DeclarationVariable createDeklaraciaPremennej(String typ, String nazov) {
+        return new DeclarationVariable(
                 new DatovyTyp( null, typ),
                 new Slovo(null, nazov), new Ciarka(null, null)
         );

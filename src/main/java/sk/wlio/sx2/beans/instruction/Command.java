@@ -1,4 +1,4 @@
-package sk.wlio.sx2.beans.instrukcia;
+package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Slovo;
@@ -6,24 +6,24 @@ import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Prikaz extends SlovoAbstract implements IVyraz{
+public class Command extends SlovoAbstract implements IVyraz{
 
     Slovo nazov;
-    Parametre parametre;
+    Parameters parameters;
     Enums.VyrazTyp vyrazTyp = Enums.VyrazTyp.NEURCENY;
 
-    public Prikaz(Slovo nazov, Parametre parametre) {
+    public Command(Slovo nazov, Parameters parameters) {
         super(nazov.getPozicia());
         this.nazov = nazov;
-        this.parametre =parametre;
+        this.parameters = parameters;
     }
 
     public Slovo getNazov() {
         return nazov;
     }
 
-    public Parametre getParametre() {
-        return parametre;
+    public Parameters getParameters() {
+        return parameters;
     }
 
     public Enums.VyrazTyp getVyrazTyp() {

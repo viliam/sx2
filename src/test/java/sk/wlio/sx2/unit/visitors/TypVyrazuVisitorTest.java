@@ -3,7 +3,7 @@ package sk.wlio.sx2.unit.visitors;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.instrukcia.Priradenie;
+import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.vyraz.Cislo;
@@ -72,9 +72,9 @@ public class TypVyrazuVisitorTest {
         Premenna premenna = DummyFactory.createPremenna( "ahoj");
         premenna.setVyrazTyp( Enums.VyrazTyp.CISLO);
         Cislo cislo = DummyFactory.createCislo(3);
-        Priradenie priradenie = DummyFactory.createPriradenie(premenna, cislo);
+        Assignment assignment = DummyFactory.createPriradenie(premenna, cislo);
 
-        new TypVyrazuVisitor( ).visit(priradenie);
+        new TypVyrazuVisitor( ).visit(assignment);
     }
 
     @Test
@@ -82,10 +82,10 @@ public class TypVyrazuVisitorTest {
         Premenna premenna = DummyFactory.createPremenna( "ahoj");
         premenna.setVyrazTyp( Enums.VyrazTyp.BOOL);
         Cislo cislo = DummyFactory.createCislo(3);
-        Priradenie priradenie = DummyFactory.createPriradenie(premenna, cislo);
+        Assignment assignment = DummyFactory.createPriradenie(premenna, cislo);
 
         try {
-            new TypVyrazuVisitor( ).visit(priradenie);
+            new TypVyrazuVisitor( ).visit(assignment);
             fail();
         } catch (SxException e) {
             assertEquals(SxExTyp.ZLY_DATOVY_TYP, e.getTyp());

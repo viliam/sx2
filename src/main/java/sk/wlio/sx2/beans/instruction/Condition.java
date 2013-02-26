@@ -1,4 +1,4 @@
-package sk.wlio.sx2.beans.instrukcia;
+package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
@@ -6,14 +6,14 @@ import sk.wlio.sx2.beans.rezervovaneslova.InstrukciaSlovo;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class Podmienka extends SlovoAbstract {
+public class Condition extends SlovoAbstract {
 
     private final InstrukciaSlovo ak;
     private final Zatvorka z1, z2;
     private final IVyraz vrzBool;
     private final Instrukcia instrukcia;
 
-    public Podmienka(InstrukciaSlovo ak, IVyraz vrzBool, Instrukcia instrukcia, Zatvorka z1, Zatvorka z2) {
+    public Condition(InstrukciaSlovo ak, IVyraz vrzBool, Instrukcia instrukcia, Zatvorka z1, Zatvorka z2) {
         super(ak.getPozicia());
         this.ak = ak;
         this.vrzBool = vrzBool;

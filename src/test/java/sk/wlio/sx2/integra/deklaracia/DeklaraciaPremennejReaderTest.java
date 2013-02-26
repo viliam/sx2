@@ -4,8 +4,8 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.instrukcia.DeklaraciaPremennej;
-import sk.wlio.sx2.beans.instrukcia.Priradenie;
+import sk.wlio.sx2.beans.instruction.Assignment;
+import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.instrukcia.DeklaraciaPremennejReader;
 import sk.wlio.sx2.rozhrania.TextReader;
@@ -17,7 +17,7 @@ import static org.testng.AssertJUnit.fail;
 public class DeklaraciaPremennejReaderTest {
     @Test
     public void testCislo()  {
-        DeklaraciaPremennej dekPremena = citajDekPremennej("  cislo a; ");
+        DeclarationVariable dekPremena = citajDekPremennej("  cislo a; ");
         assertNotNull( dekPremena);
         assertEquals( "a" , dekPremena.getNazov().toString());
         assertEquals(Enums.VyrazTyp.CISLO , dekPremena.getDatovyTyp().getTyp() );
@@ -26,7 +26,7 @@ public class DeklaraciaPremennejReaderTest {
 
     @Test
     public void testBool()  {
-        DeklaraciaPremennej dekPremena = citajDekPremennej("  bool a; ");
+        DeclarationVariable dekPremena = citajDekPremennej("  bool a; ");
         assertNotNull( dekPremena);
         assertEquals( "a" , dekPremena.getNazov().toString());
         assertEquals(Enums.VyrazTyp.BOOL , dekPremena.getDatovyTyp().getTyp() );
@@ -35,20 +35,20 @@ public class DeklaraciaPremennejReaderTest {
 
     @Test
     public void testPriradenie()  {
-        DeklaraciaPremennej dekPremena = citajDekPremennej(" cislo v = 3;");
+        DeclarationVariable dekPremena = citajDekPremennej(" cislo v = 3;");
         assertNotNull( dekPremena);
         assertEquals( "v" , dekPremena.getNazov().toString());
         assertEquals(Enums.VyrazTyp.CISLO, dekPremena.getDatovyTyp().getTyp() );
         assertEquals(new Pozicia(1,0) , dekPremena.getPozicia());
 
-        Priradenie p = dekPremena.getPriradenie();
+        Assignment p = dekPremena.getAssignment();
         assertNotNull( p);
     }
 
     @Test
     public void testZlyDatovyTyp() {
         TextContext text = new TextContext("  nic a; ");
-        TextReader<DeklaraciaPremennej> dpReader = new DeklaraciaPremennejReader();
+        TextReader<DeclarationVariable> dpReader = new DeklaraciaPremennejReader();
         try {
             dpReader.citaj( text);
             fail();
@@ -69,10 +69,10 @@ public class DeklaraciaPremennejReaderTest {
 //        }
 //    }
 
-    private DeklaraciaPremennej citajDekPremennej(String ts)  {
+    private DeclarationVariable citajDekPremennej(String ts)  {
         TextContext text = new TextContext(ts);
-        TextReader<DeklaraciaPremennej> dpReader = new DeklaraciaPremennejReader();
-        DeklaraciaPremennej dekPremena= dpReader.citaj( text);
+        TextReader<DeclarationVariable> dpReader = new DeklaraciaPremennejReader();
+        DeclarationVariable dekPremena= dpReader.citaj( text);
         return dekPremena;
     }
 

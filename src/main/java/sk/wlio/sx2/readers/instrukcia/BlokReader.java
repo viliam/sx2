@@ -1,10 +1,8 @@
 package sk.wlio.sx2.readers.instrukcia;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instrukcia.Blok;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.instruction.Block;
 import sk.wlio.sx2.beans.symbol.Zatvorka;
-import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.TextReader;
@@ -12,9 +10,9 @@ import sk.wlio.sx2.rozhrania.TextReader;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BlokReader implements TextReader<Blok> {
+public class BlokReader implements TextReader<Block> {
 
-    public Blok citaj(TextContext tC)  {
+    public Block citaj(TextContext tC)  {
         TextReader<Zatvorka> zR = Readers.zatvorka();
         Zatvorka z1 = zR.citaj(tC);
 
@@ -30,6 +28,6 @@ public class BlokReader implements TextReader<Blok> {
         //prehodim LinkedList na pole
         Instrukcia[] inf= riadkyList.toArray(new Instrukcia[riadkyList.size()]);
 
-        return new Blok( inf,  z1,z2);
+        return new Block( inf,  z1,z2);
     }
 }
