@@ -15,29 +15,35 @@
 
 package sk.wlio.sx2.beans;
 
-public class Slovo extends SlovoAbstract {
+import sk.wlio.sx2.Enums;
+import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.visitors.IVisitor;
 
-    private String obsah;
+public class Variable extends WordAbstract implements IVyraz {
 
-    public Slovo(Pozicia pozicia, String obsah) {
-        super(pozicia);
-        this.obsah = obsah;
+    private Enums.VyrazTyp vyrazTyp;
+    private Word nazov;
+
+    public Variable(Word nazov) {
+        super(nazov.getPosition());
+        this.nazov = nazov;
+        vyrazTyp = Enums.VyrazTyp.NEURCENY;
     }
 
-    public Slovo(Pozicia pozicia) {
-        super(pozicia);
+    public Word getNazov() {
+        return nazov;
     }
 
-    public Slovo(Slovo slovo) {
-        this(slovo.getPozicia(),slovo.getObsah());
+    public Enums.VyrazTyp getVyrazTyp() {
+        return vyrazTyp;
     }
 
-    @Override
-    public String toString() { return obsah;}
-
-    public String getObsah() {
-        return obsah;
+    public void setVyrazTyp(Enums.VyrazTyp vyrazTyp) {
+        this.vyrazTyp = vyrazTyp;
     }
+
+    public void visit(IVisitor iVisitor) {
+        iVisitor.visit(this);
+    }
+
 }
-
-

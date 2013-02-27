@@ -15,11 +15,11 @@
 
 package sk.wlio.sx2.beans.reservedwords;
 
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Word;
 
-public class DataValue extends Slovo{
+public class DataValue extends Word {
 
-    public DataValue(Slovo slovo) {
-        super(slovo);
+    public DataValue(Word word) {
+        super(word);
     }
 }

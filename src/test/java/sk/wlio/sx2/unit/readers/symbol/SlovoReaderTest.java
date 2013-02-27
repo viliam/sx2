@@ -17,8 +17,8 @@ package sk.wlio.sx2.unit.readers.symbol;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.symbol.SlovoReader;
@@ -36,12 +36,12 @@ public class SlovoReaderTest {
     public void testCitajSlovo()  {
         TextContext tc = new TextContext("  sl34ovo  ");
         SlovoReader sReader = new SlovoReader();
-        Slovo slovo = sReader.citaj(tc);
+        Word word = sReader.citaj(tc);
 
-        assertNotNull( slovo);
-        assertEquals( "sl34ovo", slovo.toString());
-        assertEquals( new Pozicia(2,0), slovo.getPozicia());
-        assertEquals( new Pozicia(9,0), tc.getPozicia());
+        assertNotNull(word);
+        assertEquals( "sl34ovo", word.toString());
+        assertEquals( new Position(2,0), word.getPosition());
+        assertEquals( new Position(9,0), tc.getPozicia());
     }
 
     @Test

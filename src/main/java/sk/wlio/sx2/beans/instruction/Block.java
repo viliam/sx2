@@ -15,19 +15,19 @@
 
 package sk.wlio.sx2.beans.instruction;
 
-import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Block extends SlovoAbstract implements Instrukcia {
+public class Block extends WordAbstract implements Instrukcia {
 
     private Instrukcia[] instrukcie;
     private Parenthesis z1;
     private Parenthesis z2;
 
     public Block(Instrukcia[] instrukcie, Parenthesis z1, Parenthesis z2) {
-        super(z1.getPozicia());
+        super(z1.getPosition());
         this.z1 = z1;
         this.z2 = z2;
         this.instrukcie = instrukcie;

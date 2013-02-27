@@ -16,7 +16,7 @@
 package sk.wlio.sx2.readers.instrukcia;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.Return;
 import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.exception.SxExTyp;
@@ -29,10 +29,10 @@ public class VratReader implements TextReader<Return> {
 
 
     public Return citaj(TextContext tC)  {
-        Slovo zakazSlovo= Readers.slovo().citaj( tC);
-        if ( !ReservedWordEnum.RETURN.je( zakazSlovo.toString())  )
+        Word zakazWord = Readers.slovo().citaj( tC);
+        if ( !ReservedWordEnum.RETURN.je( zakazWord.toString())  )
             throw SxException.create( SxExTyp.CAKAL_VRAT, tC);
 
-        return new Return( zakazSlovo, Readers.vyraz().citaj(tC), tC.nacitajAkJeBodkoCiarka());
+        return new Return(zakazWord, Readers.vyraz().citaj(tC), tC.nacitajAkJeBodkoCiarka());
     }
 }

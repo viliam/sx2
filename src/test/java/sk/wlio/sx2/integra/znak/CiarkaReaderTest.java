@@ -17,7 +17,7 @@ package sk.wlio.sx2.integra.znak;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -35,9 +35,9 @@ public class CiarkaReaderTest {
         TextContext tC= new TextContext("  ;");
         Comma comma = Readers.ciarka().citaj(tC);
 
-        assertEquals( "Pozicia kontrola ", new Pozicia(2,0), comma.getPozicia() );
+        assertEquals( "Pozicia kontrola ", new Position(2,0), comma.getPosition() );
         assertEquals( "Cislo kontrola ", ";", comma.getSymbol() );
-        assertEquals( "Posunuty inx", new Pozicia(3,0), tC.getPozicia() );
+        assertEquals( "Posunuty inx", new Position(3,0), tC.getPozicia() );
     }
 
     @Test

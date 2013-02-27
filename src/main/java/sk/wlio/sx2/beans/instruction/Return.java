@@ -15,23 +15,23 @@
 
 package sk.wlio.sx2.beans.instruction;
 
-import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.Word;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Return extends SlovoAbstract implements Instrukcia{
+public class Return extends WordAbstract implements Instrukcia{
 
-    private Slovo zakazaneSlovo;
+    private Word zakazaneWord;
     private IVyraz hodnota;
     private Comma comma;
 
-    public Return(Slovo zakazaneSlovo, IVyraz hodnota, Comma comma) {
-        super(zakazaneSlovo.getPozicia());
+    public Return(Word zakazaneWord, IVyraz hodnota, Comma comma) {
+        super(zakazaneWord.getPosition());
         this.hodnota = hodnota;
-        this.zakazaneSlovo = zakazaneSlovo;
+        this.zakazaneWord = zakazaneWord;
         this.comma = comma;
     }
 
@@ -39,8 +39,8 @@ public class Return extends SlovoAbstract implements Instrukcia{
         return hodnota;
     }
 
-    public Slovo getZakazaneSlovo() {
-        return zakazaneSlovo;
+    public Word getZakazaneWord() {
+        return zakazaneWord;
     }
 
     public void visit(IVisitor visitor) {

@@ -16,19 +16,19 @@
 package sk.wlio.sx2.exception;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 
 public class SxException extends RuntimeException {
 
     private final SxExTyp typ;
-    private final Pozicia pozicia;
+    private final Position position;
 
     public static SxException create( SxExTyp typ, TextContext tC)  {
         return create(typ, null,  tC);
     }
 
     public static SxException create( SxExTyp typ,  String message, TextContext tC) {
-        Pozicia inx = tC.getPozicia();
+        Position inx = tC.getPozicia();
 
         if (message == null) {
             if (tC.jeKoniec())
@@ -40,9 +40,9 @@ public class SxException extends RuntimeException {
         return new SxException( typ, message, inx);
     }
 
-    private static String urobMessage(SxExTyp typ, Pozicia pozicia, TextContext tC) {
-        int riadok = pozicia.getY();
-        int stlpec = pozicia.getX();
+    private static String urobMessage(SxExTyp typ, Position position, TextContext tC) {
+        int riadok = position.getY();
+        int stlpec = position.getX();
 
         String aktualnyRiadok = tC.getRiadok(riadok);
         char znak = ( aktualnyRiadok.length() < stlpec) ?
@@ -52,24 +52,24 @@ public class SxException extends RuntimeException {
 
     }
 
-    public static SxException create( SxExTyp typ, Pozicia pozicia)   {
-        return new SxException(typ, pozicia);
+    public static SxException create( SxExTyp typ, Position position)   {
+        return new SxException(typ, position);
     }
 
-    private SxException(SxExTyp typ, Pozicia pozicia) {
-        this( typ, typ.toString(), pozicia);
+    private SxException(SxExTyp typ, Position position) {
+        this( typ, typ.toString(), position);
     }
 
-    private  SxException( SxExTyp typ, String message, Pozicia pozicia )  {
+    private  SxException( SxExTyp typ, String message, Position position)  {
         super(message);
         this.typ = typ;
-        this.pozicia = pozicia;
+        this.position = position;
     }
 
     @Override
     public String getMessage() {
         return super.getMessage() + "  \n" 
-                + " riadok = " + pozicia.getY() + " ,   stlpec = " + pozicia.getX();
+                + " riadok = " + position.getY() + " ,   stlpec = " + position.getX();
     }
 
     public SxExTyp getTyp() {

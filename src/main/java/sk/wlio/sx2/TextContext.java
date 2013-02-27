@@ -15,8 +15,8 @@
 
 package sk.wlio.sx2;
 
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.beans.symbol.Comma;
@@ -30,7 +30,7 @@ import sk.wlio.sx2.readers.symbol.SlovoReader;
 public class TextContext {
 
     private final String[] riadky;
-    private volatile Pozicia inx = new Pozicia(0,0);
+    private volatile Position inx = new Position(0,0);
 
     public TextContext( String slovo)   {
         this( slovo.split("\r\n"));
@@ -52,7 +52,7 @@ public class TextContext {
      * @ - v pripade, ze
      */
     public char getNasledujuciZnak()  {
-        Pozicia zaciatok = new Pozicia( inx);
+        Position zaciatok = new Position( inx);
         najdiNasledujuciZnak();
         skontrolujKoniec();
 
@@ -69,7 +69,7 @@ public class TextContext {
      *
      * @return Suradnice nasledujuceho neprazdneho znaku
      */
-    public Pozicia najdiNasledujuciZnak() {
+    public Position najdiNasledujuciZnak() {
         int x = inx.getX(), y = inx.getY();
 
         while ( y < riadky.length
@@ -80,7 +80,7 @@ public class TextContext {
         if (!presahujeHranice(x, y))  {
             return null;
         }
-        return (inx = new Pozicia(x, y ));
+        return (inx = new Position(x, y ));
     }
 
     private int najdiNasledujuciZnakVriadku(int x, int y) {
@@ -89,16 +89,16 @@ public class TextContext {
         return x;
     }
 
-    public Pozicia getPozicia() {
-        return new Pozicia( inx);
+    public Position getPozicia() {
+        return new Position( inx);
     }
 
     public void pripocitajXPoziciu(int by) {
         this.inx = this.inx.addX(by);
     }
 
-    public void setPozicia(Pozicia inx) {
-        this.inx = new Pozicia(inx);
+    public void setPozicia(Position inx) {
+        this.inx = new Position(inx);
     }
 
     public String vratKoniecRiadka()   {
@@ -189,27 +189,27 @@ public class TextContext {
 
     abstract class JePrefixTemplateMetod {
         public boolean jePrefix()  {
-            Pozicia zac = getPozicia();
+            Position zac = getPozicia();
             try {
                 if (!jePrefixPismeno() ) {
                    return false;
                 }
 
-                Slovo slovo = Readers.slovo().citaj( TextContext.this);
-                return  jePrefix(slovo);
+                Word word = Readers.slovo().citaj( TextContext.this);
+                return  jePrefix(word);
             } finally {
                 setPozicia( zac);
             }
         }
 
-        protected abstract boolean jePrefix(Slovo slovo);
+        protected abstract boolean jePrefix(Word word);
     }
 
     public boolean jePrefixDatovyTyp()  {
         return new JePrefixTemplateMetod() {
             @Override
-            protected boolean jePrefix(Slovo slovo) {
-                return RezervedWordsEnum.DATA_TYPE.is(slovo.getObsah());
+            protected boolean jePrefix(Word word) {
+                return RezervedWordsEnum.DATA_TYPE.is(word.getObsah());
             }
         }.jePrefix();
     }
@@ -217,8 +217,8 @@ public class TextContext {
     public boolean jePrefixInstrukcia()  {
         return new JePrefixTemplateMetod() {
             @Override
-            protected boolean jePrefix(Slovo slovo) {
-                return RezervedWordsEnum.INSTRUCTION_WORD.is(slovo.getObsah());
+            protected boolean jePrefix(Word word) {
+                return RezervedWordsEnum.INSTRUCTION_WORD.is(word.getObsah());
             }
         }.jePrefix();
     }
@@ -226,9 +226,9 @@ public class TextContext {
     public boolean jePrefixPremenna()  {
         return new JePrefixTemplateMetod() {
             @Override
-            protected boolean jePrefix(Slovo slovo) {
+            protected boolean jePrefix(Word word) {
 
-                return !RezervedWordsEnum.jeSlovo(slovo)
+                return !RezervedWordsEnum.jeSlovo(word)
                         && (!presahujeHranice(inx.getX(), inx.getY()) || !jePrefixZatvorkaOtovorena());
 
             }
@@ -238,8 +238,8 @@ public class TextContext {
     public boolean jePrefixPrikaz()  {
         return new JePrefixTemplateMetod() {
             @Override
-            protected boolean jePrefix(Slovo slovo) {
-                return !RezervedWordsEnum.jeSlovo(slovo)
+            protected boolean jePrefix(Word word) {
+                return !RezervedWordsEnum.jeSlovo(word)
                         && presahujeHranice(inx.getX(), inx.getY())
                         && jePrefixZatvorkaOtovorena();
 
@@ -249,16 +249,16 @@ public class TextContext {
 
     abstract class JePrefixDeklaraciaTemplateMetod {
         public boolean jePrefix()  {
-            Pozicia pozicia = getPozicia();
+            Position position = getPozicia();
 
             try {
                 if (jeKoniec() || !jePrefixPismeno() )
                    return false;
 
-                Slovo slovo = Readers.slovo().citaj(TextContext.this );
-                return RezervedWordsEnum.DATA_TYPE.is(slovo.getObsah()) && jePrefixNazov();
+                Word word = Readers.slovo().citaj(TextContext.this );
+                return RezervedWordsEnum.DATA_TYPE.is(word.getObsah()) && jePrefixNazov();
             } finally {
-                setPozicia(pozicia);
+                setPozicia(position);
             }
         }
 

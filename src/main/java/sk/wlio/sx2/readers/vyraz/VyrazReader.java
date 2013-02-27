@@ -15,9 +15,7 @@
 
 package sk.wlio.sx2.readers.vyraz;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.vyraz.VyrazAritm;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;

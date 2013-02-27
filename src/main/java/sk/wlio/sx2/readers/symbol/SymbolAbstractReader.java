@@ -16,7 +16,7 @@
 package sk.wlio.sx2.readers.symbol;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -28,7 +28,7 @@ public abstract class SymbolAbstractReader<E extends ISlovo> implements TextRead
 
     public E citaj(TextContext tC)  {
         try {
-            Pozicia poz = tC.najdiNasledujuciZnak();
+            Position poz = tC.najdiNasledujuciZnak();
             String sSymbol = odkusniSymbol(tC);
             SymbolEnum eSymbol = SymbolEnum.makeSymbol(sSymbol);
             return create( poz, eSymbol);
@@ -40,7 +40,7 @@ public abstract class SymbolAbstractReader<E extends ISlovo> implements TextRead
 
     protected abstract String[] getSymbols();
     //protected abstract E makeSymbol(String s, Bod pozicia);
-    protected abstract E create(Pozicia pozicia, SymbolEnum oEnum) ;
+    protected abstract E create(Position position, SymbolEnum oEnum) ;
     protected abstract SxExTyp getExceptionTyp();
 
 

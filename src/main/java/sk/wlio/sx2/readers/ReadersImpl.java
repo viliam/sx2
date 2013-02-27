@@ -16,15 +16,15 @@
 package sk.wlio.sx2.readers;
 
 import sk.wlio.sx2.beans.Program;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.readers.instrukcia.*;
 import sk.wlio.sx2.readers.symbol.*;
 import sk.wlio.sx2.readers.vyraz.*;
@@ -38,8 +38,8 @@ import sk.wlio.sx2.rozhrania.IVyraz;
 
 public class ReadersImpl implements  IReaders {
     
-    public TextReader<Slovo> slovo() {  return  new SlovoReader(); }
-    public TextReader<Cislo> cislo() {  return   new CisloReader(); }
+    public TextReader<Word> slovo() {  return  new SlovoReader(); }
+    public TextReader<Int> cislo() {  return   new CisloReader(); }
     public TextReader<Operator> opAritm() {  return   new OperatorAritmReader(); }
     public TextReader<Operator> opBool() {  return   new OperatorBoolReader(); }
     public TextReader<Operator> opPorovnanie() {  return   new OperatorPorovnanieReader(); }
@@ -59,7 +59,7 @@ public class ReadersImpl implements  IReaders {
     public TextReader<Instrukcia> instrukcia() {  return   new InstrukciaReader(); }
     public TextReader<Assignment> priradenie() {  return   new PriradenieReader(); }
     public TextReader<Block> blok() {  return   new BlokReader(); }
-    public TextReader<Premenna> premenna() {  return   new PremennaReader(); }
+    public TextReader<Variable> premenna() {  return   new PremennaReader(); }
     public TextReader<DeclarationVariable> dekPremennej() {  return   new DeklaraciaPremennejReader(); }
     public TextReader<Command> prikaz() {  return   new PrikazReader(); }
     public TextReader<DeclarationCommand> dekPrikaz () {  return   new DeklaraciaPrikazReader(); }

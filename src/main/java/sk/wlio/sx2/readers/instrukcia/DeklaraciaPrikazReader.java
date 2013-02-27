@@ -16,8 +16,8 @@
 package sk.wlio.sx2.readers.instrukcia;
 
 import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
@@ -36,7 +36,7 @@ public class DeklaraciaPrikazReader implements TextReader<DeclarationCommand>  {
        if ( !tC.jePrefixPrikaz())
           throw SxException.create(SxExTyp.ZLY_NAZOV_PRIKAZU, tC);
 
-       Slovo nazov = Readers.slovo().citaj( tC);
+       Word nazov = Readers.slovo().citaj( tC);
        //odkusnem parametre
        DeclarationParameter dekParam = Readers.dekParameter().citaj(tC);
        Block block = Readers.blok().citaj( tC);

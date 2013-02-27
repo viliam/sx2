@@ -16,7 +16,7 @@
 package sk.wlio.sx2.visitors;
 
 import sk.wlio.sx2.beans.Program;
-import sk.wlio.sx2.beans.Premenna;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -69,13 +69,13 @@ public class DeklaracieVisitor extends VisitorAbstract {
     public void visit(Program dekTrieda) {
         for (DeclarationVariable dekPremennej : dekTrieda.getMapPremenna().values() ) {
             if ( mapDekPremennej.containsKey( dekPremennej.getNazov().toString()))
-                throw SxException.create(SxExTyp.PREMENNA_UZ_EXISTUJE, dekPremennej.getPozicia());
+                throw SxException.create(SxExTyp.PREMENNA_UZ_EXISTUJE, dekPremennej.getPosition());
             pridajPremennu( dekPremennej);
         }
 
         for (DeclarationCommand dekPrikaz : dekTrieda.getMapPrikaz().values() )  {
             if ( mapDekPrikaz.containsKey( dekPrikaz.getNazov().toString() ))
-                throw SxException.create(SxExTyp.PRIKAZ_UZ_EXISTUJE, dekPrikaz.getPozicia());
+                throw SxException.create(SxExTyp.PRIKAZ_UZ_EXISTUJE, dekPrikaz.getPosition());
             pridajPrikaz( dekPrikaz);
         }
 
@@ -117,7 +117,7 @@ public class DeklaracieVisitor extends VisitorAbstract {
         //pridaj ho do mnoziny znamych prikazov
         DeclarationCommand dekPrikaz = mapDekPrikaz.get( command.getNazov().getObsah());
         if (dekPrikaz == null)
-            throw SxException.create(SxExTyp.NEZNAMY_PRIKAZ, command.getPozicia());
+            throw SxException.create(SxExTyp.NEZNAMY_PRIKAZ, command.getPosition());
         //nastav typ prikazu na zaklade deklaracie
         command.setVyrazTyp( dekPrikaz.getDatovyTyp().getVyrazTyp());
 
@@ -125,12 +125,12 @@ public class DeklaracieVisitor extends VisitorAbstract {
         List<DeclarationVariable> liDekPremennej = dekPrikaz.getDekParam().getLiDekPremennej();
         List<IVyraz> liParemetre = command.getParameters().getParametre();
         if ( liDekPremennej.size() != liParemetre.size())
-            throw SxException.create(SxExTyp.NESPRAVNY_POCET_PARAMETROV, command.getPozicia());
+            throw SxException.create(SxExTyp.NESPRAVNY_POCET_PARAMETROV, command.getPosition());
 
         //skontroluj typ parametrov
         for (int i=0; i<liDekPremennej.size(); i++)
             if ( liDekPremennej.get(i).getDatovyTyp().getVyrazTyp() != liParemetre.get(i).getVyrazTyp())
-                throw SxException.create( SxExTyp.ZLY_DATOVY_TYP, liParemetre.get(i).getPozicia());
+                throw SxException.create( SxExTyp.ZLY_DATOVY_TYP, liParemetre.get(i).getPosition());
 
         command.getParameters().visit(this);
     }
@@ -138,14 +138,14 @@ public class DeklaracieVisitor extends VisitorAbstract {
 
 
     @Override
-    public void visit(Premenna premenna) {
+    public void visit(Variable variable) {
         //skontroluj ci prikaz existuje
         //pridaj ho do mnoziny znamych prikazov
-        DeclarationVariable dekPremennej = mapDekPremennej.get( premenna.getNazov().getObsah());
+        DeclarationVariable dekPremennej = mapDekPremennej.get( variable.getNazov().getObsah());
         if (dekPremennej == null)
-            throw SxException.create(SxExTyp.NEZNAMA_PREMENNA, premenna.getPozicia());
+            throw SxException.create(SxExTyp.NEZNAMA_PREMENNA, variable.getPosition());
         //nastav typ prikazu na zaklade deklaracie
-        premenna.setVyrazTyp( dekPremennej.getDatovyTyp().getVyrazTyp());
+        variable.setVyrazTyp( dekPremennej.getDatovyTyp().getVyrazTyp());
     }
 
 }

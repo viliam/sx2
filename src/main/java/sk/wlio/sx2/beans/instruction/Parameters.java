@@ -16,7 +16,7 @@
 package sk.wlio.sx2.beans.instruction;
 // Date: 3.1.2011      Time: 23:57:35
 
-import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.IVyraz;
@@ -25,7 +25,7 @@ import sk.wlio.sx2.visitors.IVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parameters extends SlovoAbstract {
+public class Parameters extends WordAbstract {
 
     private Parenthesis z1;
     private Parenthesis z2;
@@ -34,13 +34,13 @@ public class Parameters extends SlovoAbstract {
     private List<IVyraz> parametre = new ArrayList<IVyraz>();
 
     public Parameters(Parenthesis z1, Parenthesis z2) {
-        super(z1.getPozicia());
+        super(z1.getPosition());
         this.z1 = z1;
         this.z2 = z2;
     }
 
     public Parameters(Parenthesis z1, Parenthesis z2, List<IVyraz> parametre, List<Comma> ciarky) {
-        super(z1.getPozicia());
+        super(z1.getPosition());
         this.z1 = z1;
         this.z2 = z2;
         this.parametre = parametre;

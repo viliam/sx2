@@ -16,7 +16,7 @@
 package sk.wlio.sx2.unit.readers.mock;
 
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
 
@@ -33,7 +33,7 @@ public class TestVyraz implements IVyraz {
         return vyrazTyp;
     }
 
-    public Pozicia getPozicia() {
+    public Position getPosition() {
         return null;
     }
 

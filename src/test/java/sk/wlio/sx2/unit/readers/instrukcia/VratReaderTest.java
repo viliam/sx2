@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.Return;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -36,7 +36,7 @@ public class VratReaderTest extends AbstractReaderTest {
             @Override
             public void nastavReader() {
                 mr.slovo().setPosun( 4,0) ;
-                mr.slovo().setVystup( new Slovo(null, "vrat"));
+                mr.slovo().setVystup( new Word(null, "vrat"));
                 mr.vyraz().setPosun(1, 0);
                 mr.vyraz().setVystup(new TestVyraz());
             }
@@ -46,7 +46,7 @@ public class VratReaderTest extends AbstractReaderTest {
     @Test
     public void testNeznameSlovo() {
         mr.slovo().setPosun( 4,0 );
-        mr.slovo().setVystup( new Slovo(null, "trat"));
+        mr.slovo().setVystup( new Word(null, "trat"));
 
         TextContext tC = new TextContext("trat 4;  ");
         try {

@@ -16,7 +16,7 @@
 package sk.wlio.sx2.unit.readers.mock;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.rozhrania.ISlovo;
 import sk.wlio.sx2.rozhrania.TextReader;
 
@@ -27,7 +27,7 @@ public class MockReader<E extends ISlovo> implements TextReader<E> {
     private String readerName;
     private StringBuffer postupVolania;
 
-    private Queue<Pozicia> posun;
+    private Queue<Position> posun;
     private Queue<E> vystup = null;
 
     public MockReader(String readerName, StringBuffer postupVolania) {
@@ -42,7 +42,7 @@ public class MockReader<E extends ISlovo> implements TextReader<E> {
         return getVystup();
     }
 
-    private Pozicia makePosun( Pozicia inx) {
+    private Position makePosun( Position inx) {
         if (posun == null || posun.isEmpty()) {
             throw new IllegalStateException("Neocakavam dalsi posun. " +
                                             "Reader name  = " + this.readerName);
@@ -59,9 +59,9 @@ public class MockReader<E extends ISlovo> implements TextReader<E> {
         if (posun.length % 2 != 0 )
             throw new IllegalArgumentException("Posun musi mat parny pocet prvkov");
         if (this.posun == null)
-            this.posun =new LinkedList<Pozicia>();
+            this.posun =new LinkedList<Position>();
         for ( int i =0; i<posun.length; i+=2)
-            this.posun.addAll( Arrays.asList(new Pozicia(posun[i], posun[i+1])) );
+            this.posun.addAll( Arrays.asList(new Position(posun[i], posun[i+1])) );
     }
 
 

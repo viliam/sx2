@@ -15,12 +15,12 @@
 
 package sk.wlio.sx2.beans.symbol;
 
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 
 public class Parenthesis extends SymbolAbstract {
 
-    public Parenthesis(Pozicia pozicia, SymbolEnum symbol) {
-        super(pozicia, symbol);
+    public Parenthesis(Position position, SymbolEnum symbol) {
+        super(position, symbol);
     }
 }

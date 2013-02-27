@@ -16,13 +16,13 @@
 package sk.wlio.sx2.beans.symbol;
 
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 
 public final class Operator extends SymbolAbstract {
 
-    public Operator(Pozicia pozicia, SymbolEnum symbol) {
-        super(pozicia, symbol);
+    public Operator(Position position, SymbolEnum symbol) {
+        super(position, symbol);
     }
 
     public Enums.VyrazTyp getVyrazTyp() {

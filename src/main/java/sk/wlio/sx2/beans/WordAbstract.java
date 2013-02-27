@@ -17,15 +17,15 @@ package sk.wlio.sx2.beans;
 
 import sk.wlio.sx2.rozhrania.ISlovo;
 
-public abstract class SlovoAbstract implements ISlovo {
+public abstract class WordAbstract implements ISlovo {
 
-    private final Pozicia pozicia;
+    private final Position position;
 
-    public SlovoAbstract(Pozicia pozicia) {
-        this.pozicia = pozicia;
+    public WordAbstract(Position position) {
+        this.position = position;
     }
 
-    public Pozicia getPozicia() {
-        return pozicia;
+    public Position getPosition() {
+        return position;
     }
 }

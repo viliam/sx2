@@ -16,23 +16,23 @@
 package sk.wlio.sx2.readers;
 
 import sk.wlio.sx2.beans.Program;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
 public interface IReaders {
     
-    public TextReader<Slovo> slovo();
-    public TextReader<Cislo> cislo();
+    public TextReader<Word> slovo();
+    public TextReader<Int> cislo();
     public TextReader<Operator> opAritm();
     public TextReader<Operator> opBool();
     public TextReader<Operator> opPorovnanie();
@@ -51,7 +51,7 @@ public interface IReaders {
     public TextReader<Instrukcia> instrukcia();
     public TextReader<Assignment> priradenie();
     public TextReader<Block> blok();
-    public TextReader<Premenna> premenna();
+    public TextReader<Variable> premenna();
     public TextReader<DeclarationVariable> dekPremennej();
     public TextReader<Command> prikaz();
     public TextReader<DeclarationCommand> dekPrikaz();

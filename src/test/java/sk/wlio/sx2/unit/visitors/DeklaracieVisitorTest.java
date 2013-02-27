@@ -17,9 +17,9 @@ package sk.wlio.sx2.unit.visitors;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Variable;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
@@ -43,7 +43,7 @@ public class DeklaracieVisitorTest {
     public void testDekPremenna() {
         DeclarationVariable dekPremennej = new DeclarationVariable(
                 new DataType( null, "bool"),
-                new Slovo(null, "ahoj"), new Comma(null, null)
+                new Word(null, "ahoj"), new Comma(null, null)
         );
 
 
@@ -57,9 +57,9 @@ public class DeklaracieVisitorTest {
 
     @Test
     public void testVisitDekPrikazu() {
-        DataType datovyTyp = new DataType(new Slovo(null, "cislo"));
+        DataType datovyTyp = new DataType(new Word(null, "cislo"));
         datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
-        Slovo nazov = new Slovo(null, "prikaz");
+        Word nazov = new Word(null, "prikaz");
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
         Block telo = new Block(new Instrukcia[0], new Parenthesis(null, null), null);
         DeclarationCommand dekPrikaz =
@@ -76,9 +76,9 @@ public class DeklaracieVisitorTest {
 
     @Test
     public void testDeklaraciaParameter() {
-        DataType datovyTyp = new DataType( new Slovo(null, "bool"));
+        DataType datovyTyp = new DataType( new Word(null, "bool"));
         datovyTyp.setTyp( Enums.VyrazTyp.BOOL);
-        Slovo nazov = new Slovo(null, "ahoj");
+        Word nazov = new Word(null, "ahoj");
         DeclarationVariable d1 = new DeclarationVariable(datovyTyp, nazov, new Comma(null, null) );
 
         List<DeclarationVariable> liDekPremennaj = new ArrayList<DeclarationVariable>();
@@ -96,7 +96,7 @@ public class DeklaracieVisitorTest {
 
     @Test
     public void testVisitPrikaz() {
-        Slovo nazov = new Slovo(null, "prikaz");
+        Word nazov = new Word(null, "prikaz");
         Parameters parameters = new Parameters(new Parenthesis(null, null), null);
         Command command = new Command(nazov, parameters);
 
@@ -108,10 +108,10 @@ public class DeklaracieVisitorTest {
             assertEquals(SxExTyp.NEZNAMY_PRIKAZ, ex.getTyp());
         }
 
-        DataType datovyTyp = new DataType(new Slovo(null, "cislo"));
+        DataType datovyTyp = new DataType(new Word(null, "cislo"));
         datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
-        Block telo = new Block(new Instrukcia[] { new Return(new InstructionWord( new Pozicia(0,0), null), null, null) }
+        Block telo = new Block(new Instrukcia[] { new Return(new InstructionWord( new Position(0,0), null), null, null) }
                              , new Parenthesis(null, null), null);
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
@@ -124,26 +124,26 @@ public class DeklaracieVisitorTest {
 
     @Test
     public void testVisitPremenna() {
-        Slovo nazov = new Slovo(null, "ahoj");
-        Premenna premenna = new Premenna( nazov);
+        Word nazov = new Word(null, "ahoj");
+        Variable variable = new Variable( nazov);
 
         DeklaracieVisitor visitor = new DeklaracieVisitor( );
         try {
-            visitor.visit( premenna);
+            visitor.visit(variable);
             fail();
         } catch (SxException ex) {
             assertEquals(SxExTyp.NEZNAMA_PREMENNA, ex.getTyp());
         }
 
-        DataType datovyTyp = new DataType(new Slovo(null, "cislo"));
+        DataType datovyTyp = new DataType(new Word(null, "cislo"));
         datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
         DeclarationVariable dekPremennej =
                 new DeclarationVariable(datovyTyp, nazov, new Comma(null, null));
 
         visitor.pridajPremennu( dekPremennej);
 
-        visitor.visit( premenna);
-        assertEquals( premenna.getVyrazTyp(), dekPremennej.getDatovyTyp().getVyrazTyp());
+        visitor.visit(variable);
+        assertEquals( variable.getVyrazTyp(), dekPremennej.getDatovyTyp().getVyrazTyp());
     }
 
 

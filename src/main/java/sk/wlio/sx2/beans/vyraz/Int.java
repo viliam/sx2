@@ -16,18 +16,18 @@
 package sk.wlio.sx2.beans.vyraz;
 
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Cislo implements IVyraz {
+public class Int implements IVyraz {
 
     final private Integer cislo;
-    final private Pozicia pozicia;
+    final private Position position;
 
 
-    public Cislo(Integer cislo, Pozicia pozicia) {
-        this.pozicia = pozicia;
+    public Int(Integer cislo, Position position) {
+        this.position = position;
         this.cislo = cislo;
     }
 
@@ -44,8 +44,8 @@ public class Cislo implements IVyraz {
         return cislo;
     }
 
-    public Pozicia getPozicia() {
-        return pozicia;
+    public Position getPosition() {
+        return position;
     }
 
     public void visit(IVisitor iVisitor) {

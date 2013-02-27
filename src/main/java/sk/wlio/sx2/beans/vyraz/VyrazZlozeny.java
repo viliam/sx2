@@ -16,20 +16,19 @@
 package sk.wlio.sx2.beans.vyraz;
 
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class VyrazZlozeny extends SlovoAbstract implements IVyraz {
+public class VyrazZlozeny extends WordAbstract implements IVyraz {
 
     protected IVyraz v1;
     protected Operator op;
     protected IVyraz v2;
 
     public VyrazZlozeny(IVyraz v1, Operator op, IVyraz v2) {
-        super(v1.getPozicia());
+        super(v1.getPosition());
         this.v1 = v1;
         this.op = op;
         this.v2 = v2;

@@ -15,29 +15,29 @@
 
 package sk.wlio.sx2.beans.instruction;
 
+import sk.wlio.sx2.beans.Word;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class DeclarationVariable extends SlovoAbstract implements Instrukcia {
+public class DeclarationVariable extends WordAbstract implements Instrukcia {
 
     private DataType datovyTyp;
-    private Slovo nazov;
+    private Word nazov;
     private Assignment assignment;
     private Comma comma;
 
-    public DeclarationVariable(DataType datovyTyp, Slovo nazov, Comma comma) {
-        super(datovyTyp.getPozicia());
+    public DeclarationVariable(DataType datovyTyp, Word nazov, Comma comma) {
+        super(datovyTyp.getPosition());
         this.nazov = nazov;
         this.datovyTyp = datovyTyp;
         this.comma = comma;
     }
 
-    public DeclarationVariable(DataType datovyTyp, Slovo nazov, Assignment assignment) {
-        super(datovyTyp.getPozicia());
+    public DeclarationVariable(DataType datovyTyp, Word nazov, Assignment assignment) {
+        super(datovyTyp.getPosition());
         this.nazov = nazov;
         this.assignment = assignment;
         this.datovyTyp = datovyTyp;
@@ -51,7 +51,7 @@ public class DeclarationVariable extends SlovoAbstract implements Instrukcia {
         visitor.visit(this);
     }
 
-    public Slovo getNazov() {
+    public Word getNazov() {
         return nazov;
     }
 

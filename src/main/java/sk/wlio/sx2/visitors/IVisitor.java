@@ -16,12 +16,12 @@
 package sk.wlio.sx2.visitors;
 
 import sk.wlio.sx2.beans.Program;
-import sk.wlio.sx2.beans.Premenna;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.DataValue;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.rozhrania.ISlovo;
@@ -30,7 +30,7 @@ public interface IVisitor {
     void visit(VyrazZlozeny vyrazZlozeny);
     void visit(VyrazVzatvorke vyrazVzatvorke);
 
-    void visit(Premenna premenna);
+    void visit(Variable variable);
     void visit(Command command);
     void visit(Parameters parameters);
 
@@ -38,7 +38,7 @@ public interface IVisitor {
     void visit(DataType datovyTyp);
 
     void visit(DataValue dataValue);
-    void visit(Cislo cislo);
+    void visit(Int anInt);
 
     void visit(Assignment assignment);
     void visit(Block block);

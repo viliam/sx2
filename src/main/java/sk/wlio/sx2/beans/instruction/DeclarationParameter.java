@@ -15,7 +15,7 @@
 
 package sk.wlio.sx2.beans.instruction;
 
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.ISlovo;
@@ -63,8 +63,8 @@ public class DeclarationParameter implements ISlovo {
         return z2;
     }
 
-    public Pozicia getPozicia() {
-        return z1.getPozicia();
+    public Position getPosition() {
+        return z1.getPosition();
     }
 
 }

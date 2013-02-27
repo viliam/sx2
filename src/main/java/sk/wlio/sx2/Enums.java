@@ -36,7 +36,7 @@ public class Enums {
                 case IF    : case VOID: return Enums.VyrazTyp.NIC;
                 case BOOL  : case TRUE: case FALSE:  return Enums.VyrazTyp.BOOL;
             }
-            throw SxException.create(SxExTyp.CAKAL_DATOVY_TYP, dt.getPozicia());
+            throw SxException.create(SxExTyp.CAKAL_DATOVY_TYP, dt.getPosition());
         }
     }
 

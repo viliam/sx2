@@ -16,24 +16,24 @@
 package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.Word;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Command extends SlovoAbstract implements IVyraz{
+public class Command extends WordAbstract implements IVyraz{
 
-    Slovo nazov;
+    Word nazov;
     Parameters parameters;
     Enums.VyrazTyp vyrazTyp = Enums.VyrazTyp.NEURCENY;
 
-    public Command(Slovo nazov, Parameters parameters) {
-        super(nazov.getPozicia());
+    public Command(Word nazov, Parameters parameters) {
+        super(nazov.getPosition());
         this.nazov = nazov;
         this.parameters = parameters;
     }
 
-    public Slovo getNazov() {
+    public Word getNazov() {
         return nazov;
     }
 

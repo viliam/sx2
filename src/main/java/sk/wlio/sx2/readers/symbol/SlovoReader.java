@@ -17,17 +17,17 @@ package sk.wlio.sx2.readers.symbol;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.TextUtils;
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.rozhrania.TextReader;
 
-public class SlovoReader implements TextReader<Slovo> {
+public class SlovoReader implements TextReader<Word> {
 
-    public Slovo citaj(TextContext tC)  {
+    public Word citaj(TextContext tC)  {
         tC.najdiNasledujuciZnak();
-        Pozicia inx= tC.getPozicia();
+        Position inx= tC.getPozicia();
         int zacX =inx.getX();
 
         String riadok = tC.getRiadok();
@@ -36,8 +36,8 @@ public class SlovoReader implements TextReader<Slovo> {
             throw SxException.create(SxExTyp.PRAZDNE_SLOVO, tC);
 
         int konX = zacX + slovo.length();
-        tC.setPozicia(new Pozicia(konX, inx.getY()));
-        return new Slovo(inx, slovo);
+        tC.setPozicia(new Position(konX, inx.getY()));
+        return new Word(inx, slovo);
     }
 
     public static String predcitajSlovo(String riadok, int x) {

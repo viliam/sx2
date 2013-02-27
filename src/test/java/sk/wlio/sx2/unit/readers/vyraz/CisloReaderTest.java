@@ -17,8 +17,8 @@ package sk.wlio.sx2.unit.readers.vyraz;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
@@ -31,9 +31,9 @@ public class CisloReaderTest {
     public void testReadCislo()  {
         final int testCislo = 123;
         TextContext text = new TextContext("  " + testCislo);
-        Cislo cislo= Readers.cislo().citaj( text);
-        assertEquals( "Pozicia kontrola ", new Pozicia(2,0), cislo.getPozicia() );
-        assertEquals( "Cislo kontrola ", testCislo, cislo.getCislo().intValue() );
+        Int anInt = Readers.cislo().citaj( text);
+        assertEquals( "Pozicia kontrola ", new Position(2,0), anInt.getPosition() );
+        assertEquals( "Cislo kontrola ", testCislo, anInt.getCislo().intValue() );
     }
 
     @Test

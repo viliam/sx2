@@ -18,7 +18,7 @@ package sk.wlio.sx2.unit.readers.vyraz;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.vyraz.VyrazJednoduchyReader;
@@ -46,7 +46,7 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
         new TestTemplate<IVyraz>(sb, new VyrazJednoduchyReader()) {
             @Override public void nastavReader() {
                 mr.slovo().setPosun( 0,0 );
-                mr.slovo().setVystup( new Slovo(null, "asdfds"));
+                mr.slovo().setVystup( new Word(null, "asdfds"));
                 mr.premenna().setPosun(  6,0) ;
             }
         }.run( "asdfds", "slovo;premenna;");
@@ -58,8 +58,8 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
             @Override public void nastavReader() {
                 mr.slovo().setPosun( 6,0 ,  6,0 ,
                                      6,0 ,  0,0 );
-                Slovo slovo = new Slovo(null, "asdfds");
-                mr.slovo().setVystup( slovo, slovo, slovo);
+                Word word = new Word(null, "asdfds");
+                mr.slovo().setVystup(word, word, word);
                 mr.prikaz().setPosun(  6,0 );
             }
         }.run( "asdfds(aa", "slovo;slovo;slovo;prikaz;");

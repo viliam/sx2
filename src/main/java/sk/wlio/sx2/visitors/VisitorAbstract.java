@@ -16,12 +16,12 @@
 package sk.wlio.sx2.visitors;
 
 import sk.wlio.sx2.beans.Program;
-import sk.wlio.sx2.beans.Premenna;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.DataValue;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.rozhrania.ISlovo;
@@ -40,7 +40,7 @@ public class VisitorAbstract implements IVisitor {
         vyrazVzatvorke.getV().visit(this);
     }
 
-    public void visit(Premenna premenna) {}
+    public void visit(Variable variable) {}
 
     public void visit(Command command) {
         command.getParameters().visit(this);
@@ -56,7 +56,7 @@ public class VisitorAbstract implements IVisitor {
     public void visit(DataType datovyTyp) {}
     public void visit(DataValue dataValue) {}
 
-    public void visit(Cislo cislo) {}
+    public void visit(Int anInt) {}
 
     public void visit(Assignment assignment) {
         assignment.getVyraz().visit( this);

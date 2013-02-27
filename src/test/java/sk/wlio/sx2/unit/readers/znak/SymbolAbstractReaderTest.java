@@ -17,8 +17,8 @@ package sk.wlio.sx2.unit.readers.znak;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
 
 public class SymbolAbstractReaderTest {
 
-    class TestSymbolAbstractReader extends SymbolAbstractReader<Slovo> {
+    class TestSymbolAbstractReader extends SymbolAbstractReader<Word> {
 
         @Override
         protected String[] getSymbols() {
@@ -37,8 +37,8 @@ public class SymbolAbstractReaderTest {
         }
 
         @Override
-        protected Slovo create(Pozicia pozicia, SymbolEnum oEnum)  {
-            return new Slovo( new Pozicia(0,0), "test");
+        protected Word create(Position position, SymbolEnum oEnum)  {
+            return new Word( new Position(0,0), "test");
         }
 
         @Override
@@ -54,7 +54,7 @@ public class SymbolAbstractReaderTest {
         String ano = invokeOdkusniSymbol(symbolReader, tC);
         assertNotNull(ano);
         assertEquals("ano", ano);
-        assertEquals(new Pozicia(6,0), tC.getPozicia());
+        assertEquals(new Position(6,0), tC.getPozicia());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class SymbolAbstractReaderTest {
     public void testSymbolReader()  {
         TextContext tC = new TextContext("   ano ja som");
         TestSymbolAbstractReader symbolReader = new TestSymbolAbstractReader();
-        Slovo symbol = symbolReader.citaj(tC);
+        Word symbol = symbolReader.citaj(tC);
         assertNotNull(symbol);        
         assertEquals("test", symbol.toString());
     }

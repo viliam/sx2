@@ -18,7 +18,7 @@ package sk.wlio.sx2.integra;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.symbol.OperatorAritmReader;
@@ -43,7 +43,7 @@ public class SxExceptionTest {
     @Test
     public void testEndOfFile()  {
         TextContext tC = new TextContext(" 123");
-        TextReader<Cislo> cR = new CisloReader();
+        TextReader<Int> cR = new CisloReader();
         cR.citaj( tC);
         testException( tC, cR, SxExTyp.PRAZDNE_SLOVO);
     }

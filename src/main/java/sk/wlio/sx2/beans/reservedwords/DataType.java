@@ -16,22 +16,22 @@
 package sk.wlio.sx2.beans.reservedwords;
 
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class DataType extends Slovo implements IVyraz {
+public class DataType extends Word implements IVyraz {
 
     Enums.VyrazTyp typ = Enums.VyrazTyp.NIC;
 
-    public DataType(Slovo slovo) {
-        super(slovo);
+    public DataType(Word word) {
+        super(word);
     }
 
 
-    public DataType(Pozicia pozicia, String obsah) {
-        super(pozicia, obsah);
+    public DataType(Position position, String obsah) {
+        super(position, obsah);
     }
 
     public Enums.VyrazTyp getTyp() {

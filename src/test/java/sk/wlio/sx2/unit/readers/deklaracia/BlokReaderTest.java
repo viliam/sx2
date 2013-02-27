@@ -16,7 +16,7 @@
 package sk.wlio.sx2.unit.readers.deklaracia;
 
 import org.testng.annotations.Test;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.instruction.Block;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
@@ -33,7 +33,7 @@ public class BlokReaderTest extends AbstractReaderTest {
     public void testBlok()  {
         TestTemplate<Block> tt = new TestTemplate<Block>(sb, new BlokReader()) {
             @Override public void nastavReader() {
-                mr.zatvorka().setVystup( new Parenthesis(new Pozicia(0,0), SymbolEnum.PARENTHESIS_NORM_OPEN));
+                mr.zatvorka().setVystup( new Parenthesis(new Position(0,0), SymbolEnum.PARENTHESIS_NORM_OPEN));
                 mr.zatvorka().setPosun( 3,0 ,  2,0 );
                 mr.instrukcia().setPosun(  7,0 ,  9,0 );
             }

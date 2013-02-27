@@ -15,13 +15,13 @@
 
 package sk.wlio.sx2.beans.instruction;
 
-import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class Condition extends SlovoAbstract {
+public class Condition extends WordAbstract {
 
     private final InstructionWord ak;
     private final Parenthesis z1, z2;
@@ -29,7 +29,7 @@ public class Condition extends SlovoAbstract {
     private final Instrukcia instrukcia;
 
     public Condition(InstructionWord ak, IVyraz vrzBool, Instrukcia instrukcia, Parenthesis z1, Parenthesis z2) {
-        super(ak.getPozicia());
+        super(ak.getPosition());
         this.ak = ak;
         this.vrzBool = vrzBool;
         this.instrukcia = instrukcia;

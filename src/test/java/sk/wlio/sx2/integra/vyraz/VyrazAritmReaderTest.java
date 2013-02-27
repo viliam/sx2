@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.beans.vyraz.VyrazAritm;
 import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.exception.SxException;
@@ -39,36 +39,36 @@ public class VyrazAritmReaderTest {
     public void testZatvorkyVStrome()  {
         VyrazAritm vyraz = citajAritmVyraz(" 4 +( 5 -3) ");
         assertEquals( "4+(5-3)", vyraz.toString());
-        assertTrue( vyraz.getV1() instanceof Cislo);
+        assertTrue( vyraz.getV1() instanceof Int);
         assertTrue( vyraz.getV2() instanceof VyrazVzatvorke);
         VyrazVzatvorke vrzVzatvorke= (VyrazVzatvorke) vyraz.getV2();
         assertTrue( vrzVzatvorke.getV() instanceof VyrazAritm);
 
         VyrazAritm vyraz1 = citajAritmVyraz(" 4 +( 5 -3) + 3");
         assertEquals( "4+(5-3)+3", vyraz1.toString());
-        assertTrue( vyraz1.getV1() instanceof Cislo);
+        assertTrue( vyraz1.getV1() instanceof Int);
         assertTrue( vyraz1.getV2() instanceof VyrazAritm);
         VyrazAritm podVyraz = (VyrazAritm) vyraz1.getV2();
         assertTrue( podVyraz.getV1() instanceof VyrazVzatvorke);
-        assertTrue( podVyraz.getV2() instanceof Cislo);
+        assertTrue( podVyraz.getV2() instanceof Int);
 
         VyrazAritm vyraz2 = citajAritmVyraz(" (4 + 5) -3 ");
         assertEquals( "(4+5)-3", vyraz2.toString());
         assertTrue( vyraz2.getV1() instanceof VyrazVzatvorke);
-        assertTrue( vyraz2.getV2() instanceof Cislo);
+        assertTrue( vyraz2.getV2() instanceof Int);
         VyrazVzatvorke podVyraz2 = (VyrazVzatvorke) vyraz2.getV1();
-        assertTrue( ((VyrazAritm) podVyraz2.getV()).getV1() instanceof Cislo);
-        assertTrue( ((VyrazAritm) podVyraz2.getV()).getV2() instanceof Cislo);
+        assertTrue( ((VyrazAritm) podVyraz2.getV()).getV1() instanceof Int);
+        assertTrue( ((VyrazAritm) podVyraz2.getV()).getV2() instanceof Int);
 
     }
 
     @Test
     public void testVyrazAritm()  {
         VyrazAritm vyraz = citajAritmVyraz(" 4 + 5 ");
-        assertTrue( vyraz.getV1() instanceof Cislo);
-        assertTrue( vyraz.getV2() instanceof Cislo);
-        Cislo v1 = (Cislo) vyraz.getV1();
-        Cislo v2 = (Cislo) vyraz.getV2();
+        assertTrue( vyraz.getV1() instanceof Int);
+        assertTrue( vyraz.getV2() instanceof Int);
+        Int v1 = (Int) vyraz.getV1();
+        Int v2 = (Int) vyraz.getV2();
         assertEquals( v1.getCislo().intValue() , 4 );
         assertEquals( v2.getCislo().intValue() , 5 );
 

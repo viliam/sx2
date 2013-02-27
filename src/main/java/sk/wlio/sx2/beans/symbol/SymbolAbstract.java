@@ -15,16 +15,16 @@
 
 package sk.wlio.sx2.beans.symbol;
 
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 
-public abstract class SymbolAbstract extends SlovoAbstract {
+public abstract class SymbolAbstract extends WordAbstract {
 
     protected SymbolEnum symbol;
 
-    public SymbolAbstract(Pozicia pozicia, SymbolEnum symbol) {
-        super(pozicia);
+    public SymbolAbstract(Position position, SymbolEnum symbol) {
+        super(position);
         this.symbol = symbol;
     }
 

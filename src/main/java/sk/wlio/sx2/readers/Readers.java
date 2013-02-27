@@ -16,15 +16,15 @@
 package sk.wlio.sx2.readers;
 
 import sk.wlio.sx2.beans.Program;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
@@ -42,8 +42,8 @@ public class Readers {
         Readers.readers = readers;
     }
 
-    public static TextReader<Slovo> slovo() { return readers.slovo(); }
-    public static TextReader<Cislo> cislo() { return readers.cislo(); }
+    public static TextReader<Word> slovo() { return readers.slovo(); }
+    public static TextReader<Int> cislo() { return readers.cislo(); }
     public static TextReader<Operator> opAritm() { return readers.opAritm(); }
     public static TextReader<Operator> opBool() { return readers.opBool(); }
     public static TextReader<Operator> opPorovnanie() { return readers.opPorovnanie(); }
@@ -63,7 +63,7 @@ public class Readers {
     public static TextReader<Instrukcia> instrukcia() { return readers.instrukcia(); }
     public static TextReader<Assignment> priradenie() { return readers.priradenie(); }
     public static TextReader<Block> blok() { return readers.blok(); }
-    public static TextReader<Premenna> premena() { return readers.premenna(); }
+    public static TextReader<Variable> premena() { return readers.premenna(); }
     public static TextReader<DeclarationVariable> dekPremennej() { return readers.dekPremennej(); }
     public static TextReader<Command> prikaz() { return readers.prikaz(); }
     public static TextReader<DeclarationCommand> dekPrikaz() { return readers.dekPrikaz(); }

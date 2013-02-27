@@ -16,9 +16,9 @@
 package sk.wlio.sx2.unit.readers.deklaracia;
 
 import org.testng.annotations.Test;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.readers.instrukcia.DeklaraciaPremennejReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
@@ -35,7 +35,7 @@ public class DeklaraciaPremennejReaderTest extends AbstractReaderTest {
                 mr.datovyTyp().setVystup( new DataType(null, "cislo"));
                 mr.datovyTyp().setPosun( 5,0 );
                 mr.slovo().setPosun(  0,0 ,  1,0);
-                mr.slovo().setVystup( new Slovo(null, "a"));
+                mr.slovo().setVystup( new Word(null, "a"));
             }
         }.run("cislo a;", "datovyTyp;slovo;");
     }

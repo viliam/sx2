@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
@@ -30,11 +30,11 @@ public class TextContextTest {
     public void testPosunNaNasledujuciZnak() {
         //test nasledujuceho znaku v tom istom riadku
         TextContext tc = new TextContext("  ko \r\n df  ");
-        assertEquals( new Pozicia(2,0), tc.najdiNasledujuciZnak());
+        assertEquals( new Position(2,0), tc.najdiNasledujuciZnak());
         //nasledujuci znak na dalsom riadku
-        tc.setPozicia(new Pozicia(4, 0));
-        assertEquals(new Pozicia(1, 1), tc.najdiNasledujuciZnak());
-        tc.setPozicia(new Pozicia(4, 1));
+        tc.setPozicia(new Position(4, 0));
+        assertEquals(new Position(1, 1), tc.najdiNasledujuciZnak());
+        tc.setPozicia(new Position(4, 1));
         assertNull( tc.najdiNasledujuciZnak());
     }
 
@@ -43,10 +43,10 @@ public class TextContextTest {
         //test nasledujuceho znaku v tom istom riadku
         TextContext tc = new TextContext("  ko df  ");
         assertEquals( 'k', tc.getNasledujuciZnak());
-        assertEquals(new Pozicia(0, 0), tc.getPozicia());
+        assertEquals(new Position(0, 0), tc.getPozicia());
 
         //chybovy scenar
-        tc.setPozicia(new Pozicia(10, 0));
+        tc.setPozicia(new Position(10, 0));
         try {
             tc.getNasledujuciZnak();
             fail();
@@ -71,7 +71,7 @@ public class TextContextTest {
     public void testVratPrfSlova()  {
         TextContext tC = new TextContext("asdasd");
         assertTrue( tC.jePrefixPremenna());
-        assertEquals( new Pozicia(0,0), tC.getPozicia());
+        assertEquals( new Position(0,0), tC.getPozicia());
 
         tC = new TextContext("cislo");
         assertTrue( tC.jePrefixDatovyTyp());
@@ -98,7 +98,7 @@ public class TextContextTest {
 
         assertEquals( "asdf", Readers.slovo().citaj( tC).toString())
         ;
-        assertEquals( new Pozicia(4,0), tC.getPozicia());
+        assertEquals( new Position(4,0), tC.getPozicia());
 
     }
 
@@ -137,7 +137,7 @@ public class TextContextTest {
         assertEquals("adf 234 ", tc.vratKoniecRiadka());
 
         try {
-            tc.setPozicia(new Pozicia(0, 3));
+            tc.setPozicia(new Position(0, 3));
             tc.vratKoniecRiadka();
         } catch (SxException ex) {
             assertEquals( SxExTyp.END_OF_FILE, ex.getTyp());

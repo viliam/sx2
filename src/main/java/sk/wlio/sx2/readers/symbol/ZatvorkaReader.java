@@ -15,7 +15,7 @@
 
 package sk.wlio.sx2.readers.symbol;
 
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
@@ -30,10 +30,10 @@ public class ZatvorkaReader extends SymbolAbstractReader<Parenthesis> {
     }
 
     @Override
-    protected Parenthesis create(Pozicia pozicia, SymbolEnum oEnum)  {
+    protected Parenthesis create(Position position, SymbolEnum oEnum)  {
         if (oEnum == null)
-            throw SxException.create(SxExTyp.CAKAL_ZATVORKU, pozicia);
-        return new Parenthesis(pozicia, oEnum );
+            throw SxException.create(SxExTyp.CAKAL_ZATVORKU, position);
+        return new Parenthesis(position, oEnum );
     }
 
     @Override

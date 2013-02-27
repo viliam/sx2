@@ -15,7 +15,7 @@
 
 package sk.wlio.sx2.readers.symbol;
 
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
@@ -29,8 +29,8 @@ public class CiarkaReader extends SymbolAbstractReader<Comma> {
     }
 
     @Override
-    protected Comma create(Pozicia pozicia, SymbolEnum oEnum)  {
-        return new Comma( pozicia, oEnum);
+    protected Comma create(Position position, SymbolEnum oEnum)  {
+        return new Comma(position, oEnum);
     }
 
     @Override

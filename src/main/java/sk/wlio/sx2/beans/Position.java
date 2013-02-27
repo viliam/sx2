@@ -15,24 +15,24 @@
 
 package sk.wlio.sx2.beans;
 
-public class Pozicia {
+public class Position {
 
     private final int x, y;
 
-    public Pozicia(int x, int y) {
+    public Position(int x, int y) {
         this.x =x;
         this.y= y;
     }
 
-    public Pozicia(Pozicia b) {
+    public Position(Position b) {
         this( b.x, b.y);
     }
 
-    public Pozicia add(Pozicia pozicia) {
-        return new Pozicia( this.x + pozicia.x, this.y + pozicia.y);
+    public Position add(Position position) {
+        return new Position( this.x + position.x, this.y + position.y);
     }
-    public Pozicia addX( int x) {
-        return new Pozicia(this.x + x, this.y);
+    public Position addX( int x) {
+        return new Position(this.x + x, this.y);
     }
 
     @Override
@@ -40,9 +40,9 @@ public class Pozicia {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Pozicia pozicia = (Pozicia) o;
+        Position position = (Position) o;
 
-        return x == pozicia.x && y == pozicia.y;
+        return x == position.x && y == position.y;
 
     }
 
@@ -50,8 +50,8 @@ public class Pozicia {
         return x;
     }
 
-    public Pozicia setX(int x) {
-        return new Pozicia( x, this.y);
+    public Position setX(int x) {
+        return new Position( x, this.y);
     }
 
     public int getY() {

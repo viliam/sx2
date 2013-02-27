@@ -15,12 +15,12 @@
 
 package sk.wlio.sx2.rozhrania;
 
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 
 public interface ISlovo {
 
     //vrati poziciu slova v ramci kontext
-    public Pozicia getPozicia();
+    public Position getPosition();
 
     public String toString();
 }

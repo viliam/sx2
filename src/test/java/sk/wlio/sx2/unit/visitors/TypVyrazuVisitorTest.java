@@ -17,11 +17,11 @@ package sk.wlio.sx2.unit.visitors;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Premenna;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -36,33 +36,33 @@ public class TypVyrazuVisitorTest {
 
     @Test
     public void testVisitVyrazZlozeny() {
-        Cislo cislo = DummyFactory.createCislo(3);
+        Int anInt = DummyFactory.createCislo(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.TIMES);
-        Premenna premenna = DummyFactory.createPremenna("ahoj");
-        premenna.setVyrazTyp( Enums.VyrazTyp.CISLO);
-        VyrazZlozeny vyraz = new VyrazZlozeny(cislo, op, premenna);
+        Variable variable = DummyFactory.createPremenna("ahoj");
+        variable.setVyrazTyp( Enums.VyrazTyp.CISLO);
+        VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
 
         new TypVyrazuVisitor().visit(vyraz);
     }
 
     @Test
     public void testVisitVyrazZlozenyPorovnanie() {
-        Cislo cislo = DummyFactory.createCislo(3);
+        Int anInt = DummyFactory.createCislo(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.SMALLER_EQUAL);
-        Premenna premenna = DummyFactory.createPremenna( "ahoj");
-        premenna.setVyrazTyp( Enums.VyrazTyp.CISLO);
-        VyrazZlozeny vyraz = new VyrazZlozeny(cislo, op, premenna);
+        Variable variable = DummyFactory.createPremenna( "ahoj");
+        variable.setVyrazTyp( Enums.VyrazTyp.CISLO);
+        VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
 
         new TypVyrazuVisitor( ).visit(vyraz);
     }
 
     @Test
     public void testVisitVyrazZlozenyChybny() {
-        Cislo cislo = DummyFactory.createCislo(3 );
+        Int anInt = DummyFactory.createCislo(3 );
         Operator op = DummyFactory.createOperator(SymbolEnum.AND);
-        Premenna premenna = DummyFactory.createPremenna( "ahoj");
-        premenna.setVyrazTyp( Enums.VyrazTyp.BOOL);
-        VyrazZlozeny vyraz = new VyrazZlozeny(cislo, op, premenna);
+        Variable variable = DummyFactory.createPremenna( "ahoj");
+        variable.setVyrazTyp( Enums.VyrazTyp.BOOL);
+        VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
 
         try {
             new TypVyrazuVisitor( ).visit(vyraz);
@@ -71,8 +71,8 @@ public class TypVyrazuVisitorTest {
             assertEquals( ex.getTyp(), SxExTyp.ZLY_DATOVY_TYP);
         }
 
-        premenna.setVyrazTyp( Enums.VyrazTyp.BOOL);
-        vyraz = new VyrazZlozeny(cislo, op, premenna);
+        variable.setVyrazTyp( Enums.VyrazTyp.BOOL);
+        vyraz = new VyrazZlozeny(anInt, op, variable);
 
         try {
             new TypVyrazuVisitor( ).visit(vyraz);
@@ -84,20 +84,20 @@ public class TypVyrazuVisitorTest {
 
     @Test
     public void testPriradenie() {
-        Premenna premenna = DummyFactory.createPremenna( "ahoj");
-        premenna.setVyrazTyp( Enums.VyrazTyp.CISLO);
-        Cislo cislo = DummyFactory.createCislo(3);
-        Assignment assignment = DummyFactory.createPriradenie(premenna, cislo);
+        Variable variable = DummyFactory.createPremenna( "ahoj");
+        variable.setVyrazTyp( Enums.VyrazTyp.CISLO);
+        Int anInt = DummyFactory.createCislo(3);
+        Assignment assignment = DummyFactory.createPriradenie(variable, anInt);
 
         new TypVyrazuVisitor( ).visit(assignment);
     }
 
     @Test
     public void testPriradenieZle() {
-        Premenna premenna = DummyFactory.createPremenna( "ahoj");
-        premenna.setVyrazTyp( Enums.VyrazTyp.BOOL);
-        Cislo cislo = DummyFactory.createCislo(3);
-        Assignment assignment = DummyFactory.createPriradenie(premenna, cislo);
+        Variable variable = DummyFactory.createPremenna( "ahoj");
+        variable.setVyrazTyp( Enums.VyrazTyp.BOOL);
+        Int anInt = DummyFactory.createCislo(3);
+        Assignment assignment = DummyFactory.createPriradenie(variable, anInt);
 
         try {
             new TypVyrazuVisitor( ).visit(assignment);

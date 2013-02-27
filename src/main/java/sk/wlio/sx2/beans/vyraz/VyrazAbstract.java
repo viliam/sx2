@@ -15,19 +15,19 @@
 
 package sk.wlio.sx2.beans.vyraz;
 
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.SlovoAbstract;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public abstract class VyrazAbstract extends SlovoAbstract implements IVyraz {
+public abstract class VyrazAbstract extends WordAbstract implements IVyraz {
 
     protected IVyraz v1;
     protected Operator op;
     protected IVyraz v2;
 
-    protected VyrazAbstract(Pozicia pozicia, IVyraz v1, Operator op, IVyraz v2) {
-        super(pozicia);
+    protected VyrazAbstract(Position position, IVyraz v1, Operator op, IVyraz v2) {
+        super(position);
         this.v1 = v1;
         this.op = op;
         this.v2 = v2;

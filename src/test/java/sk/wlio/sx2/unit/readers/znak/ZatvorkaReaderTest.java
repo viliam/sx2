@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit.readers.znak;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -33,9 +33,9 @@ public class ZatvorkaReaderTest {
         TextContext tC= new TextContext("  ( ");
         Parenthesis parenthesis = Readers.zatvorka().citaj(tC);
 
-        assertEquals( "Pozicia kontrola ", new Pozicia(2,0), parenthesis.getPozicia() );
+        assertEquals( "Pozicia kontrola ", new Position(2,0), parenthesis.getPosition() );
         assertEquals( "Cislo kontrola ", "(", parenthesis.getSymbol() );
-        assertEquals( "Posunuty inx", new Pozicia(3,0), tC.getPozicia() );
+        assertEquals( "Posunuty inx", new Position(3,0), tC.getPozicia() );
     }
 
     @Test

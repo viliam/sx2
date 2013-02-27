@@ -15,7 +15,7 @@
 
 package sk.wlio.sx2.beans.reservedwords.enums;
 
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Word;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public enum RezervedWordsEnum {
         return is(zakazSlova, s);
     }
 
-    public static boolean jeSlovo(Slovo s) {
+    public static boolean jeSlovo(Word s) {
         for (RezervedWordsEnum za : RezervedWordsEnum.values()) {
             if (za.is(s.getObsah())) return true;
         }

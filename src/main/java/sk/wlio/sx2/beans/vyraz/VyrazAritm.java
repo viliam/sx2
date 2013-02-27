@@ -24,7 +24,7 @@ import sk.wlio.sx2.visitors.IVisitor;
 public class VyrazAritm extends VyrazAbstract {
 
     public VyrazAritm(IVyraz v1, Operator op, IVyraz v2) {
-        super(v1.getPozicia(), v1, op, v2);
+        super(v1.getPosition(), v1, op, v2);
     }
 
     public Enums.VyrazTyp getVyrazTyp() {

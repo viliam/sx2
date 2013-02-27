@@ -17,8 +17,8 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Program;
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.DeclarationCommand;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
@@ -42,14 +42,14 @@ public class DeklaraciaTriedaReaderTest extends AbstractReaderTest {
                     mr.slovo().setPosun(5,0, 4,0,
                                         5,0, 4,0,
                                         6,0, 5,0);
-                    mr.slovo().setVystup(new Slovo(null, "bool"), new Slovo(null, "ahoj"),
-                            new Slovo(null, "bool"), new Slovo(null, "ahoj"),
-                            new Slovo(null, "cislo"), new Slovo(null, "ahoj"));
-                    mr.dekPrikaz().setVystup(new DeclarationCommand(new DataType(new Slovo( new Pozicia(3,3))),
-                                                                  new Slovo(null, "ahoj"), null, null));
+                    mr.slovo().setVystup(new Word(null, "bool"), new Word(null, "ahoj"),
+                            new Word(null, "bool"), new Word(null, "ahoj"),
+                            new Word(null, "cislo"), new Word(null, "ahoj"));
+                    mr.dekPrikaz().setVystup(new DeclarationCommand(new DataType(new Word( new Position(3,3))),
+                                                                  new Word(null, "ahoj"), null, null));
                     mr.dekPrikaz().setPosun( 25, 0 );
                     mr.dekPremennej().setVystup(new DeclarationVariable(
-                            new DataType(new Slovo( new Pozicia(3,3))), new Slovo(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)) );
+                            new DataType(new Word( new Position(3,3))), new Word(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)) );
                     mr.dekPremennej().setPosun( 12, 0 );
                 }
             };

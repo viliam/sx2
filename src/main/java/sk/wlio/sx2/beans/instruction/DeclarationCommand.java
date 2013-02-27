@@ -15,27 +15,27 @@
 
 package sk.wlio.sx2.beans.instruction;
 
+import sk.wlio.sx2.beans.Word;
+import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.Slovo;
-import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class DeclarationCommand extends SlovoAbstract {
+public class DeclarationCommand extends WordAbstract {
 
     private DataType datovyTyp;
-    private Slovo nazov;
+    private Word nazov;
     private DeclarationParameter dekParam;
     private Block telo;
 
-    public DeclarationCommand(DataType datovyTyp, Slovo nazov, DeclarationParameter dekParam, Block telo) {
-        super(datovyTyp.getPozicia());
+    public DeclarationCommand(DataType datovyTyp, Word nazov, DeclarationParameter dekParam, Block telo) {
+        super(datovyTyp.getPosition());
         this.nazov = nazov;
         this.dekParam = dekParam;
         this.telo = telo;
         this.datovyTyp = datovyTyp;
     }
 
-    public Slovo getNazov() {
+    public Word getNazov() {
         return nazov;
     }
 
@@ -43,7 +43,7 @@ public class DeclarationCommand extends SlovoAbstract {
         visitor.visit(this);
     }
 
-    public void setNazov(Slovo nazov) {
+    public void setNazov(Word nazov) {
         this.nazov = nazov;
     }
 

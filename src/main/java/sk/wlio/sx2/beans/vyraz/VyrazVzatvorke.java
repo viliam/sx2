@@ -16,7 +16,7 @@
 package sk.wlio.sx2.beans.vyraz;
 
 import sk.wlio.sx2.Enums;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
@@ -37,8 +37,8 @@ public class VyrazVzatvorke implements IVyraz {
         return v.getVyrazTyp();
     }
 
-    public Pozicia getPozicia() {
-        return z1.getPozicia();
+    public Position getPosition() {
+        return z1.getPosition();
     }
 
     @Override

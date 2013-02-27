@@ -21,13 +21,13 @@ import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Program extends SlovoAbstract {
+public class Program extends WordAbstract {
 
     final Map<String, DeclarationVariable> mapPremenna = new HashMap<String, DeclarationVariable>();
     final Map<String, DeclarationCommand> mapPrikaz = new HashMap<String, DeclarationCommand>();
 
-    public Program(Pozicia pozicia) {
-        super(pozicia);
+    public Program(Position position) {
+        super(position);
     }
 
     public void pridajPremennu( DeclarationVariable declarationVariable) {

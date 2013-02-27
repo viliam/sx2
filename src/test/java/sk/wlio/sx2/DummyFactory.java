@@ -15,40 +15,40 @@
 
 package sk.wlio.sx2;
 
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Variable;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
 public class DummyFactory {
 
-    public static Cislo createCislo(int cislo) {
-        return new Cislo(cislo, null);
+    public static Int createCislo(int cislo) {
+        return new Int(cislo, null);
     }
 
     public static Operator createOperator(SymbolEnum sEnum) {
         return new Operator(null, sEnum);
     }
 
-    public static Premenna createPremenna(String nazov) {
-        return new Premenna( new Slovo(new Pozicia(0,0), nazov));
+    public static Variable createPremenna(String nazov) {
+        return new Variable( new Word(new Position(0,0), nazov));
     }
 
-    public static Assignment createPriradenie(Premenna premenna, IVyraz vyraz) {
-        return new Assignment(premenna, createOperator(SymbolEnum.ASSIGN), vyraz, null);
+    public static Assignment createPriradenie(Variable variable, IVyraz vyraz) {
+        return new Assignment(variable, createOperator(SymbolEnum.ASSIGN), vyraz, null);
     }
 
     public static DeclarationVariable createDeklaraciaPremennej(String typ, String nazov) {
         return new DeclarationVariable(
                 new DataType( null, typ),
-                new Slovo(null, nazov), new Comma(null, null)
+                new Word(null, nazov), new Comma(null, null)
         );
     }
 

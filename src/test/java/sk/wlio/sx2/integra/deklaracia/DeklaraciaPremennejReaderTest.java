@@ -18,7 +18,7 @@ package sk.wlio.sx2.integra.deklaracia;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Pozicia;
+import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.exception.SxException;
@@ -36,7 +36,7 @@ public class DeklaraciaPremennejReaderTest {
         assertNotNull( dekPremena);
         assertEquals( "a" , dekPremena.getNazov().toString());
         assertEquals(Enums.VyrazTyp.CISLO , dekPremena.getDatovyTyp().getTyp() );
-        assertEquals(new Pozicia(2,0) , dekPremena.getPozicia());
+        assertEquals(new Position(2,0) , dekPremena.getPosition());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class DeklaraciaPremennejReaderTest {
         assertNotNull( dekPremena);
         assertEquals( "a" , dekPremena.getNazov().toString());
         assertEquals(Enums.VyrazTyp.BOOL , dekPremena.getDatovyTyp().getTyp() );
-        assertEquals(new Pozicia(2,0) , dekPremena.getPozicia());
+        assertEquals(new Position(2,0) , dekPremena.getPosition());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class DeklaraciaPremennejReaderTest {
         assertNotNull( dekPremena);
         assertEquals( "v" , dekPremena.getNazov().toString());
         assertEquals(Enums.VyrazTyp.CISLO, dekPremena.getDatovyTyp().getTyp() );
-        assertEquals(new Pozicia(1,0) , dekPremena.getPozicia());
+        assertEquals(new Position(1,0) , dekPremena.getPosition());
 
         Assignment p = dekPremena.getAssignment();
         assertNotNull( p);

@@ -15,16 +15,16 @@
 
 package sk.wlio.sx2.beans.reservedwords;
 
-import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.Word;
 
-public class InstructionWord extends Slovo {
+public class InstructionWord extends Word {
 
-    public InstructionWord(Slovo slovo) {
-        super(slovo);
+    public InstructionWord(Word word) {
+        super(word);
     }
 
-    public InstructionWord(Pozicia pozicia, String obsah) {
-        super(pozicia, obsah);
+    public InstructionWord(Position position, String obsah) {
+        super(position, obsah);
     }
 }

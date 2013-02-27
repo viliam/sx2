@@ -16,15 +16,15 @@
 package sk.wlio.sx2.unit.readers.mock;
 
 import sk.wlio.sx2.beans.Program;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
-import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.Slovo;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.*;
-import sk.wlio.sx2.beans.vyraz.Cislo;
+import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.readers.IReaders;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.IVyraz;
@@ -34,8 +34,8 @@ public class MockReaders implements IReaders {
 
     StringBuffer postupVolania;
 
-    protected MockReader<Cislo> mCislo;
-    protected MockReader<Slovo> mSlovo;
+    protected MockReader<Int> mCislo;
+    protected MockReader<Word> mSlovo;
 
     protected MockReader<Operator> mOpAritm;
     protected MockReader<Operator> mOpBool;
@@ -59,7 +59,7 @@ public class MockReaders implements IReaders {
     protected MockReader<Instrukcia> mInstrukcia;
     protected MockReader<Assignment> mPriradenie;
     protected MockReader<Block> mBlok;
-    protected MockReader<Premenna> mPremenna;
+    protected MockReader<Variable> mPremenna;
     protected MockReader<DeclarationVariable> mDekPremennej;
     protected MockReader<Command> mPrikaz;
     protected MockReader<DeclarationCommand> mDekPrikaz;
@@ -72,8 +72,8 @@ public class MockReaders implements IReaders {
     public MockReaders(StringBuffer postupVolania) {
         this.postupVolania = postupVolania;
 
-        mCislo = new MockReader<Cislo>("cislo", postupVolania);
-        mSlovo= new MockReader<Slovo>("slovo", postupVolania);
+        mCislo = new MockReader<Int>("cislo", postupVolania);
+        mSlovo= new MockReader<Word>("slovo", postupVolania);
 
         mOpAritm = new MockReader<Operator>("opAritm", postupVolania);
         mOpBool= new MockReader<Operator>("opBool", postupVolania);
@@ -97,7 +97,7 @@ public class MockReaders implements IReaders {
         mInstrukcia= new MockReader<Instrukcia>("instruction", postupVolania);
         mPriradenie= new MockReader<Assignment>("priradenie", postupVolania);
         mBlok= new MockReader<Block>("blok", postupVolania);
-        mPremenna =new MockReader<Premenna>("premenna", postupVolania);
+        mPremenna =new MockReader<Variable>("premenna", postupVolania);
         mDekPremennej = new MockReader<DeclarationVariable>("dekPremennej", postupVolania);
         mPrikaz= new MockReader<Command>("prikaz", postupVolania);
         mDekPrikaz= new MockReader<DeclarationCommand>("dekPrikaz", postupVolania);
@@ -107,8 +107,8 @@ public class MockReaders implements IReaders {
 
     }
 
-    public MockReader<Slovo> slovo() {  return  mSlovo; }
-    public MockReader<Cislo> cislo() {  return   mCislo; }
+    public MockReader<Word> slovo() {  return  mSlovo; }
+    public MockReader<Int> cislo() {  return   mCislo; }
 
     public MockReader<Operator> opAritm() {  return mOpAritm; }
     public MockReader<Operator> opBool() {  return  mOpBool; }
@@ -132,7 +132,7 @@ public class MockReaders implements IReaders {
     public MockReader<Instrukcia> instrukcia() {  return mInstrukcia; }
     public MockReader<Assignment> priradenie() {  return mPriradenie; }
     public MockReader<Block> blok() {  return mBlok; }
-    public MockReader<Premenna> premenna() {  return mPremenna; }
+    public MockReader<Variable> premenna() {  return mPremenna; }
     public MockReader<DeclarationVariable> dekPremennej() {  return mDekPremennej; }
     public MockReader<Command> prikaz() {  return mPrikaz; }
     public MockReader<DeclarationCommand> dekPrikaz () {  return mDekPrikaz; }
