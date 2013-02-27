@@ -18,9 +18,9 @@ package sk.wlio.sx2.unit.readers.mock;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.instruction.*;
@@ -50,8 +50,8 @@ public class MockReaders implements IReaders {
     protected MockReader<IVyraz> mVrzAritmVzatvorke;
     protected MockReader<IVyraz> mVrzBoolVzatvorke;
 
-    protected MockReader<Zatvorka> mZatvorka;
-    protected MockReader<Ciarka> mCiarka;
+    protected MockReader<Parenthesis> mZatvorka;
+    protected MockReader<Comma> mCiarka;
 
     protected MockReader<DataType> mDatovyTyp;
     protected MockReader<InstructionWord> mInstrukciaSlovo;
@@ -88,8 +88,8 @@ public class MockReaders implements IReaders {
         mVrzAritmVzatvorke= new MockReader<IVyraz>("vrzAritmVzatvorke", postupVolania);
         mVrzBoolVzatvorke= new MockReader<IVyraz>("vrzBoolVzatvorke", postupVolania);
 
-        mZatvorka = new MockReader<Zatvorka>("zatvorka", postupVolania);
-        mCiarka= new MockReader<Ciarka>("ciarka", postupVolania);
+        mZatvorka = new MockReader<Parenthesis>("zatvorka", postupVolania);
+        mCiarka= new MockReader<Comma>("ciarka", postupVolania);
 
         mInstrukciaSlovo= new MockReader<InstructionWord>("instrukciaSlovo", postupVolania);
         mDatovyTyp= new MockReader<DataType>("datovyTyp", postupVolania);
@@ -123,8 +123,8 @@ public class MockReaders implements IReaders {
     public MockReader<IVyraz> vrzAritmVzatvorke() {  return mVrzAritmVzatvorke; }
     public MockReader<IVyraz> vrzBoolVzatvorke() {  return mVrzBoolVzatvorke; }
 
-    public MockReader<Zatvorka> zatvorka() {  return mZatvorka; }
-    public MockReader<Ciarka> ciarka  () {  return mCiarka; }
+    public MockReader<Parenthesis> zatvorka() {  return mZatvorka; }
+    public MockReader<Comma> ciarka  () {  return mCiarka; }
 
     public MockReader<InstructionWord> instrukciaSlovo() {  return mInstrukciaSlovo; }
     public MockReader<DataType> datovyTyp() {  return mDatovyTyp; }

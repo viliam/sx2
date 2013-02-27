@@ -21,9 +21,9 @@ import sk.wlio.sx2.beans.Premenna;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.beans.vyraz.Cislo;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.TextReader;
@@ -54,8 +54,8 @@ public class Readers {
     public static TextReader<IVyraz> vrzJednduchy() { return readers.vrzJednduchy(); }
     public static TextReader<IVyraz> vrzVzatvorke() { return readers.vrzVzatvorke(); }
     public static TextReader<IVyraz> vrzAritmVzatvorke() { return readers.vrzAritmVzatvorke(); }
-    public static TextReader<Zatvorka> zatvorka() { return readers.zatvorka(); }
-    public static TextReader<Ciarka> ciarka() { return readers.ciarka(); }
+    public static TextReader<Parenthesis> zatvorka() { return readers.zatvorka(); }
+    public static TextReader<Comma> ciarka() { return readers.ciarka(); }
 
     public static TextReader<DataType> datovyTyp() { return readers.datovyTyp(); }
     public static TextReader<InstructionWord> instrukciaSlovo() { return readers.instrukciaSlovo();}

@@ -19,8 +19,8 @@ package sk.wlio.sx2.readers.instrukcia;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.DeclarationParameter;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
-import sk.wlio.sx2.beans.symbol.Ciarka;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Comma;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
@@ -32,15 +32,15 @@ import java.util.List;
 public class DeklaraciaParameterReader implements TextReader<DeclarationParameter> {
 
     public DeclarationParameter citaj(TextContext tC)  {
-        TextReader<Zatvorka> zR = Readers.zatvorka();
-        Zatvorka z1 = zR.citaj( tC);
+        TextReader<Parenthesis> zR = Readers.zatvorka();
+        Parenthesis z1 = zR.citaj( tC);
         if ( tC.jePrefixZatvorkaZatvorena() ) {
-            Zatvorka z2 = zR.citaj( tC);
+            Parenthesis z2 = zR.citaj( tC);
             return new DeclarationParameter(z1,z2);
         }
 
         List<DeclarationVariable> deklaracie = new ArrayList<DeclarationVariable>();
-        List<Ciarka> ciarky = new ArrayList<Ciarka>();
+        List<Comma> ciarky = new ArrayList<Comma>();
         do {
             //citam obsah zatvorky , parametre
             deklaracie.add( Readers.dekPremennej().citaj( tC) );
@@ -50,7 +50,7 @@ public class DeklaraciaParameterReader implements TextReader<DeclarationParamete
                 continue;
             }
             if ( tC.jePrefixZatvorkaZatvorena() ) {
-                Zatvorka z2 = zR.citaj( tC);
+                Parenthesis z2 = zR.citaj( tC);
                 return new DeclarationParameter( z1, z2, ciarky, deklaracie );
             }
 

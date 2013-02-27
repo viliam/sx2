@@ -17,23 +17,23 @@ package sk.wlio.sx2.beans.symbol.enums;
 
 public enum SymbolEnum {
     //ARITM
-    PLUS("+"), MINUS("-"), KRAT ("*"),
-    MODULO("%") ,ZVYSOK("/"),
+    PLUS("+"), MINUS("-"), TIMES("*"),
+    MODULO("%") , REST("/"),
     //BOOL
     AND("&"), OR("|"), AND_STRONG("&&"), OR_STRONG("||"),
     //POROVNANIE
-    MENSI("<"), VACSI(">"), MENSI_ROVNY ("<="),
-    VACSI_ROVNY(">=") ,ROVNY("=="), NEROVNY("!="),
-    PRIRAD("="),
+    SMALLER("<"), GREATER(">"), SMALLER_EQUAL("<="),
+    GRATER_EQUAL(">=") , EQUAL("=="), UNEQUAL("!="),
+    ASSIGN("="),
 
-    ZATVORKA_NORM_OTOVRENA("("),
-    ZATVORKA_NORM_ZATVORENA(")"),
-    ZATVORKA_BLOK_OTVORENA("{"),
-    ZATVORKA_BLOK_ZATVORENA("}"),
+    PARENTHESIS_NORM_OPEN("("),
+    PARENTHESIS_NORM_CLOSE(")"),
+    PARENTHESIS_BLOCK_OPEN("{"),
+    PARENTHESIS_BLOCK_CLOSE("}"),
 
-    CIARKA(","),
-    BODKO_CIARKA(";"),
-    BODKA(",");
+    COMMA(","),
+    SEMICOLON(";"),
+    DOT(",");
 
 
     private final String symbol;

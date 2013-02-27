@@ -49,7 +49,7 @@ public class Enums {
 //    public static enum Znak {
 //        PISMENO{
 //            public boolean is(char a) {
-//                return !Znak.CIARKA.is(a)
+//                return !Znak.COMMA.is(a)
 //                    && !Znak.CISLO.is(a)
 //                    && !Znak.OPERATOR.is(a)
 //                    && !Znak.ZATVORKA.is(a) ;  //vsetko ostatne
@@ -70,7 +70,7 @@ public class Enums {
 //                return is("(){}[]", a);
 //            }
 //        },
-//        CIARKA {
+//        COMMA {
 //            public boolean is(char a) {
 //                return is(";,", a);
 //            }

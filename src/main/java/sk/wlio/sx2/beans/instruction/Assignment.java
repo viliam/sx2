@@ -17,7 +17,7 @@ package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.beans.Premenna;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.IVyraz;
@@ -28,14 +28,14 @@ public class Assignment extends SlovoAbstract implements Instrukcia {
     private Premenna premenna;
     private IVyraz vyraz;
     private Operator op;
-    private Ciarka ciarka;
+    private Comma comma;
 
-    public Assignment(Premenna premenna, Operator op, IVyraz vyraz, Ciarka ciarka) {
+    public Assignment(Premenna premenna, Operator op, IVyraz vyraz, Comma comma) {
         super(premenna.getPozicia());
         this.premenna = premenna;
         this.op =op;
         this.vyraz = vyraz;
-        this.ciarka = ciarka;
+        this.comma = comma;
     }
 
     public void visit(IVisitor visitor) {

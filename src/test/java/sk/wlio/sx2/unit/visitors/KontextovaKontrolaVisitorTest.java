@@ -23,9 +23,9 @@ import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.vyraz.Cislo;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
@@ -47,7 +47,7 @@ public class KontextovaKontrolaVisitorTest {
     public void testDekPremenna() {
         DeclarationVariable dekPremennej = new DeclarationVariable(
                 new DataType( null, "bool"),
-                new Slovo(null, "ahoj"), new Ciarka(null, null)
+                new Slovo(null, "ahoj"), new Comma(null, null)
         );
 
 
@@ -65,7 +65,7 @@ public class KontextovaKontrolaVisitorTest {
         datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
         Slovo nazov = new Slovo(null, "prikaz");
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
-        Block telo = new Block(new Instrukcia[0], new Zatvorka(null, null), null);
+        Block telo = new Block(new Instrukcia[0], new Parenthesis(null, null), null);
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
 
@@ -83,7 +83,7 @@ public class KontextovaKontrolaVisitorTest {
         DataType datovyTyp = new DataType( new Slovo(null, "bool"));
         datovyTyp.setTyp( Enums.VyrazTyp.BOOL);
         Slovo nazov = new Slovo(null, "ahoj");
-        DeclarationVariable d1 = new DeclarationVariable(datovyTyp, nazov, new Ciarka(null, null) );
+        DeclarationVariable d1 = new DeclarationVariable(datovyTyp, nazov, new Comma(null, null) );
 
         List<DeclarationVariable> liDekPremennaj = new ArrayList<DeclarationVariable>();
         liDekPremennaj.add( d1);
@@ -101,7 +101,7 @@ public class KontextovaKontrolaVisitorTest {
     @Test
     public void testVisitPrikaz() {
         Slovo nazov = new Slovo(null, "prikaz");
-        Parameters parameters = new Parameters(new Zatvorka(null, null), null);
+        Parameters parameters = new Parameters(new Parenthesis(null, null), null);
         Command command = new Command(nazov, parameters);
 
         KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
@@ -116,7 +116,7 @@ public class KontextovaKontrolaVisitorTest {
         datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
         Block telo = new Block(new Instrukcia[] { new Return(new InstructionWord( new Pozicia(0,0), null), null, null) }
-                             , new Zatvorka(null, null), null);
+                             , new Parenthesis(null, null), null);
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
 
@@ -142,7 +142,7 @@ public class KontextovaKontrolaVisitorTest {
         DataType datovyTyp = new DataType(new Slovo(null, "cislo"));
         datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
         DeclarationVariable dekPremennej =
-                new DeclarationVariable(datovyTyp, nazov, new Ciarka(null, null));
+                new DeclarationVariable(datovyTyp, nazov, new Comma(null, null));
 
         visitor.pridajPremennu( dekPremennej);
 
@@ -153,7 +153,7 @@ public class KontextovaKontrolaVisitorTest {
    @Test
     public void testVisitVyrazZlozeny() {
         Cislo cislo = DummyFactory.createCislo(3);
-        Operator op = DummyFactory.createOperator(SymbolEnum.KRAT);
+        Operator op = DummyFactory.createOperator(SymbolEnum.TIMES);
         Premenna premenna = DummyFactory.createPremenna("ahoj");
         premenna.setVyrazTyp( Enums.VyrazTyp.CISLO);
         VyrazZlozeny vyraz = new VyrazZlozeny(cislo, op, premenna);
@@ -166,7 +166,7 @@ public class KontextovaKontrolaVisitorTest {
     @Test
     public void testVisitVyrazZlozenyPorovnanie() {
         Cislo cislo = DummyFactory.createCislo(3);
-        Operator op = DummyFactory.createOperator(SymbolEnum.MENSI_ROVNY);
+        Operator op = DummyFactory.createOperator(SymbolEnum.SMALLER_EQUAL);
         Premenna premenna = DummyFactory.createPremenna( "ahoj");
         premenna.setVyrazTyp( Enums.VyrazTyp.CISLO);
         VyrazZlozeny vyraz = new VyrazZlozeny(cislo, op, premenna);

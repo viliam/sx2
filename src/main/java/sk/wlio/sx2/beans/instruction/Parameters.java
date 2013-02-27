@@ -17,8 +17,8 @@ package sk.wlio.sx2.beans.instruction;
 // Date: 3.1.2011      Time: 23:57:35
 
 import sk.wlio.sx2.beans.SlovoAbstract;
-import sk.wlio.sx2.beans.symbol.Ciarka;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Comma;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
 
@@ -27,19 +27,19 @@ import java.util.List;
 
 public class Parameters extends SlovoAbstract {
 
-    private Zatvorka z1;
-    private Zatvorka z2;
-    private List<Ciarka> ciarky = new ArrayList<Ciarka>();
+    private Parenthesis z1;
+    private Parenthesis z2;
+    private List<Comma> ciarky = new ArrayList<Comma>();
 
     private List<IVyraz> parametre = new ArrayList<IVyraz>();
 
-    public Parameters(Zatvorka z1, Zatvorka z2) {
+    public Parameters(Parenthesis z1, Parenthesis z2) {
         super(z1.getPozicia());
         this.z1 = z1;
         this.z2 = z2;
     }
 
-    public Parameters(Zatvorka z1, Zatvorka z2, List<IVyraz> parametre, List<Ciarka> ciarky) {
+    public Parameters(Parenthesis z1, Parenthesis z2, List<IVyraz> parametre, List<Comma> ciarky) {
         super(z1.getPozicia());
         this.z1 = z1;
         this.z2 = z2;
@@ -47,7 +47,7 @@ public class Parameters extends SlovoAbstract {
         this.ciarky = ciarky;
     }
 
-    public List<Ciarka> getCiarky() {
+    public List<Comma> getCiarky() {
         return ciarky;
     }
 
@@ -55,11 +55,11 @@ public class Parameters extends SlovoAbstract {
         return parametre;
     }
 
-    public Zatvorka getZ1() {
+    public Parenthesis getZ1() {
         return z1;
     }
 
-    public Zatvorka getZ2() {
+    public Parenthesis getZ2() {
         return z2;
     }
 

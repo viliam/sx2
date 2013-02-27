@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.instruction.DeclarationCommand;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.readers.ProgramReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
@@ -49,7 +49,7 @@ public class DeklaraciaTriedaReaderTest extends AbstractReaderTest {
                                                                   new Slovo(null, "ahoj"), null, null));
                     mr.dekPrikaz().setPosun( 25, 0 );
                     mr.dekPremennej().setVystup(new DeclarationVariable(
-                            new DataType(new Slovo( new Pozicia(3,3))), new Slovo(null, "ahoj"), new Ciarka(null, SymbolEnum.BODKO_CIARKA)) );
+                            new DataType(new Slovo( new Pozicia(3,3))), new Slovo(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)) );
                     mr.dekPremennej().setPosun( 12, 0 );
                 }
             };

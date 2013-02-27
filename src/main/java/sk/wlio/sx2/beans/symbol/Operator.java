@@ -27,8 +27,8 @@ public final class Operator extends SymbolAbstract {
 
     public Enums.VyrazTyp getVyrazTyp() {
         switch ( symbol) {
-            case  PLUS : case MINUS: case KRAT:
-            case MODULO : case ZVYSOK :
+            case  PLUS : case MINUS: case TIMES:
+            case MODULO : case REST:
                 return Enums.VyrazTyp.CISLO;
 
 //    //BOOL
@@ -36,11 +36,11 @@ public final class Operator extends SymbolAbstract {
                 return Enums.VyrazTyp.BOOL;
 
 //    //POROVNANIE
-            case MENSI : case VACSI : case MENSI_ROVNY :
-            case VACSI_ROVNY : case ROVNY : case NEROVNY :
+            case SMALLER: case GREATER: case SMALLER_EQUAL:
+            case GRATER_EQUAL: case EQUAL: case UNEQUAL:
                 return Enums.VyrazTyp.POROVNANIE;
-//    PRIRAD("=")
-            case PRIRAD :
+//    ASSIGN("=")
+            case ASSIGN:
                 return Enums.VyrazTyp.NEURCENY;
         }
         return null;

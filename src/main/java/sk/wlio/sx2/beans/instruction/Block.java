@@ -16,17 +16,17 @@
 package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.SlovoAbstract;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.visitors.IVisitor;
 
 public class Block extends SlovoAbstract implements Instrukcia {
 
     private Instrukcia[] instrukcie;
-    private Zatvorka z1;
-    private Zatvorka z2;
+    private Parenthesis z1;
+    private Parenthesis z2;
 
-    public Block(Instrukcia[] instrukcie, Zatvorka z1, Zatvorka z2) {
+    public Block(Instrukcia[] instrukcie, Parenthesis z1, Parenthesis z2) {
         super(z1.getPozicia());
         this.z1 = z1;
         this.z2 = z2;
@@ -41,11 +41,11 @@ public class Block extends SlovoAbstract implements Instrukcia {
         return instrukcie;
     }
 
-    public Zatvorka getZ1() {
+    public Parenthesis getZ1() {
         return z1;
     }
 
-    public Zatvorka getZ2() {
+    public Parenthesis getZ2() {
         return z2;
     }
 

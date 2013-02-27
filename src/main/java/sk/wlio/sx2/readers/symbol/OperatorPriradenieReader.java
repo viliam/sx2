@@ -25,7 +25,7 @@ public class OperatorPriradenieReader extends SymbolAbstractReader<Operator> {
 
     @Override
     protected String[] getSymbols() {
-        return SymbolsEnum.OP_PRIRADENIE.getSymbols();
+        return SymbolsEnum.OP_ASSIGNMENT.getSymbols();
     }
 
     @Override

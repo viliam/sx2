@@ -17,7 +17,7 @@ package sk.wlio.sx2.integra;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.beans.vyraz.Cislo;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -66,7 +66,7 @@ public class SxExceptionTest {
     @Test
     public void testCakalZatvorku() {
         TextContext tC = new TextContext(" c3");
-        TextReader<Zatvorka> zR = new ZatvorkaReader();
+        TextReader<Parenthesis> zR = new ZatvorkaReader();
         testException(tC, zR , SxExTyp.CAKAL_ZATVORKU);
     }
 

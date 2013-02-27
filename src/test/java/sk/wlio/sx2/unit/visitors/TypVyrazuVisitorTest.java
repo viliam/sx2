@@ -37,7 +37,7 @@ public class TypVyrazuVisitorTest {
     @Test
     public void testVisitVyrazZlozeny() {
         Cislo cislo = DummyFactory.createCislo(3);
-        Operator op = DummyFactory.createOperator(SymbolEnum.KRAT);
+        Operator op = DummyFactory.createOperator(SymbolEnum.TIMES);
         Premenna premenna = DummyFactory.createPremenna("ahoj");
         premenna.setVyrazTyp( Enums.VyrazTyp.CISLO);
         VyrazZlozeny vyraz = new VyrazZlozeny(cislo, op, premenna);
@@ -48,7 +48,7 @@ public class TypVyrazuVisitorTest {
     @Test
     public void testVisitVyrazZlozenyPorovnanie() {
         Cislo cislo = DummyFactory.createCislo(3);
-        Operator op = DummyFactory.createOperator(SymbolEnum.MENSI_ROVNY);
+        Operator op = DummyFactory.createOperator(SymbolEnum.SMALLER_EQUAL);
         Premenna premenna = DummyFactory.createPremenna( "ahoj");
         premenna.setVyrazTyp( Enums.VyrazTyp.CISLO);
         VyrazZlozeny vyraz = new VyrazZlozeny(cislo, op, premenna);

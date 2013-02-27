@@ -16,7 +16,7 @@
 package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.SlovoAbstract;
 import sk.wlio.sx2.rozhrania.Instrukcia;
@@ -27,13 +27,13 @@ public class DeclarationVariable extends SlovoAbstract implements Instrukcia {
     private DataType datovyTyp;
     private Slovo nazov;
     private Assignment assignment;
-    private Ciarka ciarka;
+    private Comma comma;
 
-    public DeclarationVariable(DataType datovyTyp, Slovo nazov, Ciarka ciarka) {
+    public DeclarationVariable(DataType datovyTyp, Slovo nazov, Comma comma) {
         super(datovyTyp.getPozicia());
         this.nazov = nazov;
         this.datovyTyp = datovyTyp;
-        this.ciarka = ciarka;
+        this.comma = comma;
     }
 
     public DeclarationVariable(DataType datovyTyp, Slovo nazov, Assignment assignment) {

@@ -25,7 +25,7 @@ public class OperatorPorovnanieReader extends SymbolAbstractReader<Operator> { /
 
     @Override
     protected String[] getSymbols() {
-        return SymbolsEnum.OP_POROVNANIE.getSymbols();
+        return SymbolsEnum.OP_COMPARATION.getSymbols();
     }
 
     @Override

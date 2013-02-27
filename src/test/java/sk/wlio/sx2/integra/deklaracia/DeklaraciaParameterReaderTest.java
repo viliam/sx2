@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.DeclarationParameter;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
@@ -35,7 +35,7 @@ public class DeklaraciaParameterReaderTest {
     @Test
     public void testEmpty()  {
         DeclarationParameter dp = citajDekParameter("()");
-        List<Ciarka> ciarky = dp.getLiCiarka();
+        List<Comma> ciarky = dp.getLiComma();
         assertEquals("pocet ciarok",0 , ciarky.size());
         List<DeclarationVariable> dekPremenne = dp.getLiDekPremennej();
         assertEquals("pocet dekPremennej", 0, dekPremenne.size() );
@@ -46,7 +46,7 @@ public class DeklaraciaParameterReaderTest {
     @Test
     public void testBasic()  {
         DeclarationParameter dp = citajDekParameter("( bool v, cislo d)");
-        List<Ciarka> ciarky = dp.getLiCiarka();
+        List<Comma> ciarky = dp.getLiComma();
         assertEquals("pocet ciarok",1 , ciarky.size());
         assertNotNull("nenulova ciarka", ciarky.get(0));
         List<DeclarationVariable> dekPremenne = dp.getLiDekPremennej();

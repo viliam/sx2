@@ -19,7 +19,7 @@ import sk.wlio.sx2.beans.Pozicia;
 import sk.wlio.sx2.beans.Slovo;
 import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
-import sk.wlio.sx2.beans.symbol.Ciarka;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
@@ -134,13 +134,13 @@ public class TextContext {
 
     public boolean jePrefixOperator()  {
         char a = getNasledujuciZnak();
-        return SymbolsEnum.OP_POROVNANIE.jePrefix(a) || SymbolsEnum.OP_ARITM.jePrefix(a) ||
-               SymbolsEnum.OP_PRIRADENIE.jePrefix(a) || SymbolsEnum.OP_BOOL.jePrefix(a);
+        return SymbolsEnum.OP_COMPARATION.jePrefix(a) || SymbolsEnum.OP_ARITM.jePrefix(a) ||
+               SymbolsEnum.OP_ASSIGNMENT.jePrefix(a) || SymbolsEnum.OP_BOOL.jePrefix(a);
     }
 
     public boolean jePrefixCiarka()  {
         char a = getNasledujuciZnak();
-        return SymbolsEnum.CIARKY.jePrefix(a);
+        return SymbolsEnum.COMMAS.jePrefix(a);
     }
 
 
@@ -156,31 +156,31 @@ public class TextContext {
 
     public boolean jePrefixOperatorPorovnania() {
         char a = getNasledujuciZnak();
-        return SymbolsEnum.OP_POROVNANIE.jePrefix(a);
+        return SymbolsEnum.OP_COMPARATION.jePrefix(a);
     }
 
     public boolean jePrefixOperatorPriradenia() {
         char a = getNasledujuciZnak();
-        return SymbolsEnum.OP_PRIRADENIE.jePrefix(a);
+        return SymbolsEnum.OP_ASSIGNMENT.jePrefix(a);
     }
 
     public boolean jePrefixZatvorkaOtovorena() {
         char a = getNasledujuciZnak();
-        return SymbolEnum.ZATVORKA_NORM_OTOVRENA.jePrefix(a);
+        return SymbolEnum.PARENTHESIS_NORM_OPEN.jePrefix(a);
     }
 
     public boolean jePrefixZatvorkaZatvorena() {
         char a = getNasledujuciZnak();
-        return SymbolEnum.ZATVORKA_NORM_ZATVORENA.jePrefix(a);
+        return SymbolEnum.PARENTHESIS_NORM_CLOSE.jePrefix(a);
     }
 
     public boolean jePrefixBodkoCiarka() {
         char a = getNasledujuciZnak();
-        return SymbolEnum.BODKO_CIARKA.jePrefix(a);
+        return SymbolEnum.SEMICOLON.jePrefix(a);
     }
 
-    public Ciarka nacitajAkJeBodkoCiarka() {
-        Ciarka bodkoCiarka = null;
+    public Comma nacitajAkJeBodkoCiarka() {
+        Comma bodkoCiarka = null;
         if (jePrefixBodkoCiarka() )
             bodkoCiarka = Readers.ciarka().citaj( this);
         return bodkoCiarka;

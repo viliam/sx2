@@ -16,8 +16,8 @@
 package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.Pozicia;
-import sk.wlio.sx2.beans.symbol.Ciarka;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Comma;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.ISlovo;
 import sk.wlio.sx2.visitors.IVisitor;
 
@@ -26,18 +26,18 @@ import java.util.List;
 
 public class DeclarationParameter implements ISlovo {
 
-    Zatvorka z1, z2;
+    Parenthesis z1, z2;
 
     List<DeclarationVariable> liDekPremennej = new ArrayList<DeclarationVariable>();
-    List<Ciarka> liCiarka = new ArrayList<Ciarka>();
+    List<Comma> liComma = new ArrayList<Comma>();
 
-    public DeclarationParameter(Zatvorka z1, Zatvorka z2) {
+    public DeclarationParameter(Parenthesis z1, Parenthesis z2) {
         this.z1 = z1;
         this.z2 = z2;
     }
 
-    public DeclarationParameter(Zatvorka z1, Zatvorka z2, List<Ciarka> liCiarka, List<DeclarationVariable> liDekPremennej) {
-        this.liCiarka = liCiarka;
+    public DeclarationParameter(Parenthesis z1, Parenthesis z2, List<Comma> liComma, List<DeclarationVariable> liDekPremennej) {
+        this.liComma = liComma;
         this.liDekPremennej = liDekPremennej;
         this.z1 = z1;
         this.z2 = z2;
@@ -47,19 +47,19 @@ public class DeclarationParameter implements ISlovo {
         visitor.visit(this);
     }
 
-    public List<Ciarka> getLiCiarka() {
-        return liCiarka;
+    public List<Comma> getLiComma() {
+        return liComma;
     }
 
     public List<DeclarationVariable> getLiDekPremennej() {
         return liDekPremennej;
     }
 
-    public Zatvorka getZ1() {
+    public Parenthesis getZ1() {
         return z1;
     }
 
-    public Zatvorka getZ2() {
+    public Parenthesis getZ2() {
         return z2;
     }
 

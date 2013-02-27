@@ -17,8 +17,8 @@ package sk.wlio.sx2.readers.instrukcia;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Parameters;
-import sk.wlio.sx2.beans.symbol.Ciarka;
-import sk.wlio.sx2.beans.symbol.Zatvorka;
+import sk.wlio.sx2.beans.symbol.Comma;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
@@ -29,23 +29,23 @@ import java.util.List;
 public class ParametreReader implements TextReader<Parameters> {
 
     public Parameters citaj(TextContext tC)  {
-        Zatvorka z1 = Readers.zatvorka().citaj( tC);
+        Parenthesis z1 = Readers.zatvorka().citaj( tC);
         if ( tC.jePrefixZatvorkaZatvorena() ) {
-            Zatvorka z2 = Readers.zatvorka().citaj( tC);
+            Parenthesis z2 = Readers.zatvorka().citaj( tC);
             return new Parameters(z1,z2);
         }
 
         List<IVyraz> parametre = new LinkedList<IVyraz>();
-        List<Ciarka> ciarky = new LinkedList<Ciarka>();
+        List<Comma> ciarky = new LinkedList<Comma>();
         do {   //citam obsah zatvorky , parametre
              parametre.add( Readers.vyraz().citaj( tC) );
 //najskuor skusim naciatat ciarku
              if ( tC.jePrefixCiarka() ) {
-                 Ciarka c = Readers.ciarka().citaj( tC);
+                 Comma c = Readers.ciarka().citaj( tC);
                  ciarky.add(c);
              }  else{
                  //este skusim nacitat koniec zatvorky 
-                 Zatvorka z2 = Readers.zatvorka().citaj(tC);
+                 Parenthesis z2 = Readers.zatvorka().citaj(tC);
 //TEST: je postacujuca ochhrana na koniec zatvorky?
                  return new Parameters( z1, z2, parametre , ciarky );
              }
