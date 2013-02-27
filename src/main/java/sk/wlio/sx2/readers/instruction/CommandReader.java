@@ -13,10 +13,20 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.gui.akcie;
+package sk.wlio.sx2.readers.instruction;
 
-public interface Akcia {
+import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.Word;
+import sk.wlio.sx2.beans.instruction.Parameters;
+import sk.wlio.sx2.beans.instruction.Command;
+import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.rozhrania.TextReader;
 
-    public void vykonaj();
+public class CommandReader implements TextReader<Command> {
     
+    public Command citaj(TextContext tC)  {
+        Word name = Readers.slovo().citaj( tC);
+        Parameters parameters = Readers.parametre().citaj(tC);
+        return new Command(name, parameters);
+    }
 }

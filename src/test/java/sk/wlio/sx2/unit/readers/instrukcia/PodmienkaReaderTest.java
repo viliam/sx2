@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.instruction.Condition;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instrukcia.PodmienkaReader;
+import sk.wlio.sx2.readers.instruction.ConditionReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -32,7 +32,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
 
     @Test
     public void testAk()  {
-        new TestTemplate<Condition>(sb, new PodmienkaReader()) {
+        new TestTemplate<Condition>(sb, new ConditionReader()) {
             @Override
             public void nastavReader() {
                 mr.instrukciaSlovo().setPosun(  3,0 );
@@ -51,7 +51,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
 
         TextContext tC = new TextContext("trat 4;  ");
         try {
-            new PodmienkaReader().citaj(tC);
+            new ConditionReader().citaj(tC);
             fail();
         } catch (SxException e) {
             assertEquals(SxExTyp.CAKAL_AK, e.getTyp());

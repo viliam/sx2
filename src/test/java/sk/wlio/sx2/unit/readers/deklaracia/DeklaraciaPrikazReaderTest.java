@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.instruction.DeclarationCommand;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instrukcia.DeklaraciaPrikazReader;
+import sk.wlio.sx2.readers.instruction.DeclarationCommandReader;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
@@ -34,7 +34,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
     @Test
     public void testBasic()  {
         TestTemplate<DeclarationCommand> tt =
-            new TestTemplate<DeclarationCommand>(sb, new DeklaraciaPrikazReader()) {
+            new TestTemplate<DeclarationCommand>(sb, new DeclarationCommandReader()) {
                 @Override
                 public void nastavReader() {
                     mr.dekParameter().setPosun( 2,0);
@@ -82,7 +82,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
 
     private DeclarationCommand citajDekPrikaz(String ts)  {
         TextContext text = new TextContext(ts);
-        TextReader<DeclarationCommand> dpReader = new DeklaraciaPrikazReader();
+        TextReader<DeclarationCommand> dpReader = new DeclarationCommandReader();
         DeclarationCommand dekPrikaz= dpReader.citaj( text);
         assertNotNull("nenulovy prikaz", dekPrikaz);
         return dekPrikaz;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instrukcia;
+package sk.wlio.sx2.readers.instruction;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Parameters;
@@ -26,7 +26,7 @@ import sk.wlio.sx2.rozhrania.IVyraz;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ParametreReader implements TextReader<Parameters> {
+public class ParameterReader implements TextReader<Parameters> {
 
     public Parameters citaj(TextContext tC)  {
         Parenthesis z1 = Readers.zatvorka().citaj( tC);
@@ -35,20 +35,18 @@ public class ParametreReader implements TextReader<Parameters> {
             return new Parameters(z1,z2);
         }
 
-        List<IVyraz> parametre = new LinkedList<IVyraz>();
-        List<Comma> ciarky = new LinkedList<Comma>();
-        do {   //citam obsah zatvorky , parametre
-             parametre.add( Readers.vyraz().citaj( tC) );
-//najskuor skusim naciatat ciarku
+        List<IVyraz> listParameter = new LinkedList<IVyraz>();
+        List<Comma> listComman = new LinkedList<Comma>();
+        do {
+             listParameter.add(Readers.vyraz().citaj(tC));
+
              if ( tC.jePrefixCiarka() ) {
                  Comma c = Readers.ciarka().citaj( tC);
-                 ciarky.add(c);
+                 listComman.add(c);
              }  else{
-                 //este skusim nacitat koniec zatvorky 
                  Parenthesis z2 = Readers.zatvorka().citaj(tC);
-//TEST: je postacujuca ochhrana na koniec zatvorky?
-                 return new Parameters( z1, z2, parametre , ciarky );
+                 return new Parameters( z1, z2, listParameter , listComman );
              }
-        }  while ( true);     //bud docita parametre (t.j. koniec zatvorky), alebo hodi exception
+        }  while ( true);
     }
 }

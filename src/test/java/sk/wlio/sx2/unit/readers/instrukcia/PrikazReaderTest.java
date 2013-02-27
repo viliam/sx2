@@ -18,7 +18,7 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.*;
-import sk.wlio.sx2.readers.instrukcia.PrikazReader;
+import sk.wlio.sx2.readers.instruction.CommandReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -29,7 +29,7 @@ public class PrikazReaderTest extends AbstractReaderTest {
 
     @Test
     public void testPrikaz()  {
-        TestTemplate<Command> tt =new TestTemplate<Command>( sb, new PrikazReader()) {
+        TestTemplate<Command> tt =new TestTemplate<Command>( sb, new CommandReader()) {
             @Override public void nastavReader() {
                 mr.slovo().setPosun( 4,0);
                 mr.slovo().setVystup( new Word( null, "ahoj"));

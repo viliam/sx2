@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instrukcia;
+package sk.wlio.sx2.readers.instruction;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Block;
@@ -25,23 +25,23 @@ import sk.wlio.sx2.rozhrania.TextReader;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BlokReader implements TextReader<Block> {
+public class BlockReader implements TextReader<Block> {
 
     public Block citaj(TextContext tC)  {
         TextReader<Parenthesis> zR = Readers.zatvorka();
         Parenthesis z1 = zR.citaj(tC);
 
-        //pre kazdy riadok
-        List<Instrukcia> riadkyList = new LinkedList<Instrukcia>();
+        //for each lines
+        List<Instrukcia> linesList = new LinkedList<Instrukcia>();
         TextReader<Instrukcia> iR = Readers.instrukcia();
 
         while ( tC.getNasledujuciZnak()!='}') {
-            riadkyList.add( iR.citaj( tC));
+            linesList.add(iR.citaj(tC));
         }
 
         Parenthesis z2 = zR.citaj(tC);
         //prehodim LinkedList na pole
-        Instrukcia[] inf= riadkyList.toArray(new Instrukcia[riadkyList.size()]);
+        Instrukcia[] inf= linesList.toArray(new Instrukcia[linesList.size()]);
 
         return new Block( inf,  z1,z2);
     }

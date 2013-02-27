@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instrukcia.DeklaraciaPremennejReader;
+import sk.wlio.sx2.readers.instruction.DeclarationVariableReader;
 import sk.wlio.sx2.rozhrania.TextReader;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -63,7 +63,7 @@ public class DeklaraciaPremennejReaderTest {
     @Test
     public void testZlyDatovyTyp() {
         TextContext text = new TextContext("  nic a; ");
-        TextReader<DeclarationVariable> dpReader = new DeklaraciaPremennejReader();
+        TextReader<DeclarationVariable> dpReader = new DeclarationVariableReader();
         try {
             dpReader.citaj( text);
             fail();
@@ -86,7 +86,7 @@ public class DeklaraciaPremennejReaderTest {
 
     private DeclarationVariable citajDekPremennej(String ts)  {
         TextContext text = new TextContext(ts);
-        TextReader<DeclarationVariable> dpReader = new DeklaraciaPremennejReader();
+        TextReader<DeclarationVariable> dpReader = new DeclarationVariableReader();
         DeclarationVariable dekPremena= dpReader.citaj( text);
         return dekPremena;
     }

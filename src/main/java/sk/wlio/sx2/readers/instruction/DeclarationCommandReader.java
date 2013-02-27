@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instrukcia;
+package sk.wlio.sx2.readers.instruction;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Word;
@@ -25,22 +25,22 @@ import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 
-public class DeklaraciaPrikazReader implements TextReader<DeclarationCommand>  {
+public class DeclarationCommandReader implements TextReader<DeclarationCommand>  {
 
     public DeclarationCommand citaj(TextContext tC)  {
        DataType dataType = Readers.datovyTyp().citaj( tC);
-       String sDatovyTyp = dataType.toString();
-       if (!RezervedWordsEnum.DATA_TYPE.is(sDatovyTyp))
+       String sDataType = dataType.toString();
+       if (!RezervedWordsEnum.DATA_TYPE.is(sDataType))
            throw SxException.create(SxExTyp.CAKAL_DEKLARACIU_PRIKAZU, tC);
 
        if ( !tC.jePrefixPrikaz())
           throw SxException.create(SxExTyp.ZLY_NAZOV_PRIKAZU, tC);
 
-       Word nazov = Readers.slovo().citaj( tC);
+       Word name = Readers.slovo().citaj( tC);
        //odkusnem parametre
-       DeclarationParameter dekParam = Readers.dekParameter().citaj(tC);
+       DeclarationParameter decParam = Readers.dekParameter().citaj(tC);
        Block block = Readers.blok().citaj( tC);
 
-       return new DeclarationCommand(dataType, nazov, dekParam, block);
+       return new DeclarationCommand(dataType, name, decParam, block);
     }
 }

@@ -13,26 +13,32 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instrukcia;
+package sk.wlio.sx2.readers.instruction;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.Return;
+import sk.wlio.sx2.beans.instruction.Condition;
+import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
+import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class VratReader implements TextReader<Return> {
+public class ConditionReader implements TextReader<Condition> {
+
+    public Condition citaj(TextContext tC)        {
+        InstructionWord ifWord = Readers.instrukciaSlovo().citaj(tC);
+        if ( !ReservedWordEnum.IF.is(ifWord.toString())  )
+            throw SxException.create( SxExTyp.CAKAL_AK, tC);
 
 
-
-    public Return citaj(TextContext tC)  {
-        Word zakazWord = Readers.slovo().citaj( tC);
-        if ( !ReservedWordEnum.RETURN.je( zakazWord.toString())  )
-            throw SxException.create( SxExTyp.CAKAL_VRAT, tC);
-
-        return new Return(zakazWord, Readers.vyraz().citaj(tC), tC.nacitajAkJeBodkoCiarka());
+        Parenthesis z1 = Readers.zatvorka().citaj(tC);
+        IVyraz vrzBool = Readers.vrzBool().citaj(tC);
+        Parenthesis z2 = Readers.zatvorka().citaj(tC);
+        Instrukcia instrukcia = Readers.instrukcia().citaj(tC);
+        return new Condition( ifWord, vrzBool, instrukcia, z1, z2 );
     }
 }

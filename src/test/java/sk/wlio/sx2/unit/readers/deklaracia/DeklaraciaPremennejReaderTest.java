@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.readers.instrukcia.DeklaraciaPremennejReader;
+import sk.wlio.sx2.readers.instruction.DeclarationVariableReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -29,7 +29,7 @@ public class DeklaraciaPremennejReaderTest extends AbstractReaderTest {
 
     @Test
     public void test()  {
-        new TestTemplate<DeclarationVariable>(sb, new DeklaraciaPremennejReader()) {
+        new TestTemplate<DeclarationVariable>(sb, new DeclarationVariableReader()) {
             @Override public void nastavReader() {
 
                 mr.datovyTyp().setVystup( new DataType(null, "cislo"));

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instrukcia;
+package sk.wlio.sx2.readers.instruction;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxExTyp;
@@ -21,7 +21,7 @@ import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.*;
 
-public class InstrukciaReader implements TextReader<Instrukcia> {
+public class InstructionReader implements TextReader<Instrukcia> {
 
     public Instrukcia citaj(TextContext tC)  {
 
@@ -42,7 +42,7 @@ public class InstrukciaReader implements TextReader<Instrukcia> {
 //                        return pod;
 //                    }
                }
-//                //3. treba dorobit (case, while, for,..)
+//                //3. todo (case, while, for,..)
             }
 
 //            case Prefix.SLOVO_PRIKAZ: {

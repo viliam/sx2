@@ -20,7 +20,7 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.DeclarationParameter;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instrukcia.DeklaraciaParameterReader;
+import sk.wlio.sx2.readers.instruction.DeclarationParameterReader;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
@@ -33,7 +33,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
     @Test
     public void testBasic()  {
         TestTemplate<DeclarationParameter> tt =
-            new TestTemplate<DeclarationParameter>(sb, new DeklaraciaParameterReader()) {
+            new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterReader()) {
                 @Override
                 public void nastavReader() {
                     mr.zatvorka().setPosun(  1,0 ,  1,0 );
@@ -47,7 +47,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
     @Test
     public void testEmpty()  {
         TestTemplate<DeclarationParameter> tt =
-            new TestTemplate<DeclarationParameter>(sb, new DeklaraciaParameterReader()) {
+            new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterReader()) {
                 @Override
                 public void nastavReader() {
                     mr.zatvorka().setPosun(  1,0 ,  1,0 );
@@ -72,7 +72,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
 
     private DeclarationParameter citajDekParameter(String ts)  {
         TextContext text = new TextContext(ts);
-        TextReader<DeclarationParameter> dpReader = new DeklaraciaParameterReader();
+        TextReader<DeclarationParameter> dpReader = new DeclarationParameterReader();
         DeclarationParameter dekParameter= dpReader.citaj( text);
         return dekParameter;
     }

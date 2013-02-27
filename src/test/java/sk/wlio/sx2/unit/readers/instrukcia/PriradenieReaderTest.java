@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instrukcia.PriradenieReader;
+import sk.wlio.sx2.readers.instruction.AssignmentReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -32,7 +32,7 @@ public class PriradenieReaderTest extends AbstractReaderTest {
 
     @Test
     public void testPriradenie()  {
-        new TestTemplate<Assignment>(sb, new PriradenieReader()) {
+        new TestTemplate<Assignment>(sb, new AssignmentReader()) {
             @Override
             public void nastavReader() {
                 mr.premenna().setPosun( 1, 0 );
@@ -50,7 +50,7 @@ public class PriradenieReaderTest extends AbstractReaderTest {
             mr.premenna().setPosun( 1, 0 );
             mr.premenna().setVystup( new Variable( new Word( new Position(1,1)) ) );
 
-            new PriradenieReader().citaj( new TextContext("c + 4;"));
+            new AssignmentReader().citaj( new TextContext("c + 4;"));
 
             fail();
         } catch (SxException ex) {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instrukcia;
+package sk.wlio.sx2.readers.instruction;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Assignment;
@@ -25,10 +25,10 @@ import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class PriradenieReader implements TextReader<Assignment> {
+public class AssignmentReader implements TextReader<Assignment> {
 
     public Assignment citaj(TextContext tC)  {
-        Variable prem = Readers.premena().citaj( tC);
+        Variable variable = Readers.premena().citaj( tC);
 
         if ( !tC.jePrefixOperatorPriradenia() )
             throw SxException.create( SxExTyp.CAKAL_OPERATOR , tC);
@@ -36,7 +36,7 @@ public class PriradenieReader implements TextReader<Assignment> {
         Operator op = Readers.opPriradenia().citaj(tC);
 
         IVyraz v = Readers.vyraz().citaj(tC);
-        return new Assignment( prem, op, v, tC.nacitajAkJeBodkoCiarka());
+        return new Assignment( variable, op, v, tC.nacitajAkJeBodkoCiarka());
     }
 
 }

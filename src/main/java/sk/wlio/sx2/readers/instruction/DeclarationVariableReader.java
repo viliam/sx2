@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instrukcia;
+package sk.wlio.sx2.readers.instruction;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Word;
@@ -26,23 +26,23 @@ import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class DeklaraciaPremennejReader implements TextReader<DeclarationVariable> {
+public class DeclarationVariableReader implements TextReader<DeclarationVariable> {
 
     public DeclarationVariable citaj(TextContext tC)  {
-        DataType datovyTyp = Readers.datovyTyp().citaj(tC);
-        Word nazov = Readers.slovo().citaj( tC);
+        DataType dataType = Readers.datovyTyp().citaj(tC);
+        Word name = Readers.slovo().citaj( tC);
 
         if ( tC.jePrefixOperatorPriradenia() ) {
             Operator op = Readers.opPriradenia().citaj(tC);
             IVyraz v = Readers.vyraz().citaj(tC);
 
-            Variable pre = new Variable(nazov);
-            pre.setVyrazTyp( datovyTyp.getVyrazTyp());
-            Assignment pri = new Assignment( pre,op,v , tC.nacitajAkJeBodkoCiarka());
-            return new DeclarationVariable( datovyTyp, nazov , pri);
+            Variable pre = new Variable(name);
+            pre.setVyrazTyp(dataType.getVyrazTyp());
+            Assignment assignment = new Assignment( pre,op,v , tC.nacitajAkJeBodkoCiarka());
+            return new DeclarationVariable( dataType, name , assignment);
         }
 
-        return new DeclarationVariable( datovyTyp, nazov,tC.nacitajAkJeBodkoCiarka());
+        return new DeclarationVariable( dataType, name,tC.nacitajAkJeBodkoCiarka());
     }
 
 }

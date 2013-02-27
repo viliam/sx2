@@ -31,7 +31,7 @@ public enum ReservedWordEnum {
         this.symbol = symbol;
     }
 
-    public boolean je(String s) {
+    public boolean is(String s) {
         return symbol.equals(s);
     }
 

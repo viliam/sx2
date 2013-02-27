@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.Return;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instrukcia.VratReader;
+import sk.wlio.sx2.readers.instruction.ReturnReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 import sk.wlio.sx2.unit.readers.mock.TestVyraz;
@@ -32,7 +32,7 @@ public class VratReaderTest extends AbstractReaderTest {
 
     @Test
     public void testVrat()  {
-        new TestTemplate<Return>(sb, new VratReader()) {
+        new TestTemplate<Return>(sb, new ReturnReader()) {
             @Override
             public void nastavReader() {
                 mr.slovo().setPosun( 4,0) ;
@@ -50,7 +50,7 @@ public class VratReaderTest extends AbstractReaderTest {
 
         TextContext tC = new TextContext("trat 4;  ");
         try {
-            new VratReader().citaj(tC);
+            new ReturnReader().citaj(tC);
             fail();
         } catch (SxException e) {
             assertEquals(SxExTyp.CAKAL_VRAT, e.getTyp());

@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.instruction.Parameters;
 import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.readers.instrukcia.ParametreReader;
+import sk.wlio.sx2.readers.instruction.ParameterReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -27,7 +27,7 @@ public class ParametreReaderTest extends AbstractReaderTest {
 
     @Test
     public void testPrazdny()  {
-        new TestTemplate<Parameters>(sb, new ParametreReader()) {
+        new TestTemplate<Parameters>(sb, new ParameterReader()) {
             @Override public void nastavReader() {
                 mr.zatvorka().setPosun( 2, 0, 1, 0);
                 mr.zatvorka().setVystup(new Parenthesis(null, SymbolEnum.PARENTHESIS_NORM_OPEN));
@@ -37,7 +37,7 @@ public class ParametreReaderTest extends AbstractReaderTest {
 
     @Test
     public void testJedenParameter()  {
-        new TestTemplate<Parameters>(sb, new ParametreReader()) {
+        new TestTemplate<Parameters>(sb, new ParameterReader()) {
             @Override public void nastavReader() {
                 mr.zatvorka().setPosun( 2, 0, 1, 0);
                 mr.zatvorka().setVystup(new Parenthesis(null, null));
@@ -48,7 +48,7 @@ public class ParametreReaderTest extends AbstractReaderTest {
 
     @Test
     public void testViacParametrov()  {
-        new TestTemplate<Parameters>(sb, new ParametreReader()) {
+        new TestTemplate<Parameters>(sb, new ParameterReader()) {
             @Override public void nastavReader() {
                 mr.zatvorka().setPosun( 2, 0,  1, 0);
                 mr.zatvorka().setVystup( new Parenthesis(null, null));
