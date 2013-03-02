@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.instruction.DeclarationCommand;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instruction.DeclarationCommandReader;
+import sk.wlio.sx2.readers.statement.DeclarationCommandReader;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;

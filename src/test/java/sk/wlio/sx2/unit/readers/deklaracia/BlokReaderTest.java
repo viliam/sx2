@@ -18,9 +18,9 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.instruction.Block;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.readers.instruction.BlockReader;
+import sk.wlio.sx2.readers.statement.BlockReader;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
@@ -33,13 +33,13 @@ public class BlokReaderTest extends AbstractReaderTest {
     public void testBlok()  {
         TestTemplate<Block> tt = new TestTemplate<Block>(sb, new BlockReader()) {
             @Override public void nastavReader() {
-                mr.zatvorka().setVystup( new Parenthesis(new Position(0,0), SymbolEnum.PARENTHESIS_NORM_OPEN));
+                mr.zatvorka().setVystup( new Bracket(new Position(0,0), SymbolEnum.PARENTHESIS_NORM_OPEN));
                 mr.zatvorka().setPosun( 3,0 ,  2,0 );
                 mr.instrukcia().setPosun(  7,0 ,  9,0 );
             }
         };
         tt.run( "  { a = 4; cislo b; } ",
-                "zatvorka;instruction;instruction;zatvorka;");
+                "bracket;statement;statement;bracket;");
 
         Block block = tt.getVysledok();
         Instrukcia[] inst = block.getInstrukcie();

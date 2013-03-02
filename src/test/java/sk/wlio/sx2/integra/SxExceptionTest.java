@@ -17,13 +17,13 @@ package sk.wlio.sx2.integra;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.symbol.OperatorAritmReader;
 import sk.wlio.sx2.readers.symbol.ZatvorkaReader;
-import sk.wlio.sx2.readers.vyraz.*;
+import sk.wlio.sx2.readers.expression.*;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
@@ -43,7 +43,7 @@ public class SxExceptionTest {
     @Test
     public void testEndOfFile()  {
         TextContext tC = new TextContext(" 123");
-        TextReader<Int> cR = new CisloReader();
+        TextReader<Int> cR = new IntReader();
         cR.citaj( tC);
         testException( tC, cR, SxExTyp.PRAZDNE_SLOVO);
     }
@@ -51,7 +51,7 @@ public class SxExceptionTest {
     @Test
     public void testUnExpectedPrefix() {
         TextContext tC = new TextContext(" +123");
-        TextReader<IVyraz> vJr = new VyrazJednoduchyReader();
+        TextReader<IVyraz> vJr = new SimpleExprReader();
         testException(tC, vJr, SxExTyp.UNEXPECTED_PREFIX );
     }
 
@@ -66,7 +66,7 @@ public class SxExceptionTest {
     @Test
     public void testCakalZatvorku() {
         TextContext tC = new TextContext(" c3");
-        TextReader<Parenthesis> zR = new ZatvorkaReader();
+        TextReader<Bracket> zR = new ZatvorkaReader();
         testException(tC, zR , SxExTyp.CAKAL_ZATVORKU);
     }
 

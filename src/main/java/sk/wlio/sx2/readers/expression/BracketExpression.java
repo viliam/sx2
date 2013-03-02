@@ -13,25 +13,22 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.vyraz.zatvorka;
+package sk.wlio.sx2.readers.expression;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.readers.symbol.ZatvorkaReader;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public abstract class VyrazVzatvorkeAbstractReader implements TextReader<IVyraz> {
-
-    protected abstract TextReader<IVyraz> getVyrazReader();
+public class BracketExpression implements TextReader<IVyraz> {
 
     public IVyraz citaj(TextContext tC)  {
-        TextReader<Parenthesis> zReader = new ZatvorkaReader();
-        Parenthesis z1 = Readers.zatvorka().citaj(tC);
-        IVyraz vyraz= getVyrazReader().citaj(tC);
-        Parenthesis z2 = Readers.zatvorka().citaj(tC);
+        Bracket z1 = Readers.zatvorka().citaj(tC);
+        IVyraz vyraz= Readers.vyraz().citaj(tC);
+        Bracket z2 = Readers.zatvorka().citaj(tC);
         return new VyrazVzatvorke(z1, vyraz, z2);
     }
+
 }

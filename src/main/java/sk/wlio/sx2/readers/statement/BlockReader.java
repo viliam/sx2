@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instruction;
+package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Block;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.TextReader;
@@ -28,8 +28,8 @@ import java.util.List;
 public class BlockReader implements TextReader<Block> {
 
     public Block citaj(TextContext tC)  {
-        TextReader<Parenthesis> zR = Readers.zatvorka();
-        Parenthesis z1 = zR.citaj(tC);
+        TextReader<Bracket> zR = Readers.zatvorka();
+        Bracket z1 = zR.citaj(tC);
 
         //for each lines
         List<Instrukcia> linesList = new LinkedList<Instrukcia>();
@@ -39,7 +39,7 @@ public class BlockReader implements TextReader<Block> {
             linesList.add(iR.citaj(tC));
         }
 
-        Parenthesis z2 = zR.citaj(tC);
+        Bracket z2 = zR.citaj(tC);
         //prehodim LinkedList na pole
         Instrukcia[] inf= linesList.toArray(new Instrukcia[linesList.size()]);
 

@@ -19,9 +19,9 @@ import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.vyraz.Int;
@@ -50,7 +50,7 @@ public class MockReaders implements IReaders {
     protected MockReader<IVyraz> mVrzAritmVzatvorke;
     protected MockReader<IVyraz> mVrzBoolVzatvorke;
 
-    protected MockReader<Parenthesis> mZatvorka;
+    protected MockReader<Bracket> mZatvorka;
     protected MockReader<Comma> mCiarka;
 
     protected MockReader<DataType> mDatovyTyp;
@@ -80,7 +80,7 @@ public class MockReaders implements IReaders {
         mOpPorovnania= new MockReader<Operator>("opPorovnania", postupVolania);
         mOpPriradenia= new MockReader<Operator>("opPriradenia", postupVolania);
 
-        mVyraz= new MockReader<IVyraz>("vyraz", postupVolania);
+        mVyraz= new MockReader<IVyraz>("expression", postupVolania);
         mVrzArtim= new MockReader<IVyraz>("vrzAritm", postupVolania);
         mVrzBool= new MockReader<IVyraz>("vrzBool", postupVolania);
         mVrzJednoduchy = new MockReader<IVyraz>("vrzJednoduchy", postupVolania);
@@ -88,13 +88,13 @@ public class MockReaders implements IReaders {
         mVrzAritmVzatvorke= new MockReader<IVyraz>("vrzAritmVzatvorke", postupVolania);
         mVrzBoolVzatvorke= new MockReader<IVyraz>("vrzBoolVzatvorke", postupVolania);
 
-        mZatvorka = new MockReader<Parenthesis>("zatvorka", postupVolania);
+        mZatvorka = new MockReader<Bracket>("bracket", postupVolania);
         mCiarka= new MockReader<Comma>("ciarka", postupVolania);
 
         mInstrukciaSlovo= new MockReader<InstructionWord>("instrukciaSlovo", postupVolania);
         mDatovyTyp= new MockReader<DataType>("datovyTyp", postupVolania);
 
-        mInstrukcia= new MockReader<Instrukcia>("instruction", postupVolania);
+        mInstrukcia= new MockReader<Instrukcia>("statement", postupVolania);
         mPriradenie= new MockReader<Assignment>("priradenie", postupVolania);
         mBlok= new MockReader<Block>("blok", postupVolania);
         mPremenna =new MockReader<Variable>("premenna", postupVolania);
@@ -123,7 +123,7 @@ public class MockReaders implements IReaders {
     public MockReader<IVyraz> vrzAritmVzatvorke() {  return mVrzAritmVzatvorke; }
     public MockReader<IVyraz> vrzBoolVzatvorke() {  return mVrzBoolVzatvorke; }
 
-    public MockReader<Parenthesis> zatvorka() {  return mZatvorka; }
+    public MockReader<Bracket> zatvorka() {  return mZatvorka; }
     public MockReader<Comma> ciarka  () {  return mCiarka; }
 
     public MockReader<InstructionWord> instrukciaSlovo() {  return mInstrukciaSlovo; }

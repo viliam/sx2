@@ -23,8 +23,8 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.*;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.rozhrania.Instrukcia;
@@ -61,7 +61,7 @@ public class DeklaracieVisitorTest {
         datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
         Word nazov = new Word(null, "prikaz");
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
-        Block telo = new Block(new Instrukcia[0], new Parenthesis(null, null), null);
+        Block telo = new Block(new Instrukcia[0], new Bracket(null, null), null);
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
 
@@ -97,7 +97,7 @@ public class DeklaracieVisitorTest {
     @Test
     public void testVisitPrikaz() {
         Word nazov = new Word(null, "prikaz");
-        Parameters parameters = new Parameters(new Parenthesis(null, null), null);
+        Parameters parameters = new Parameters(new Bracket(null, null), null);
         Command command = new Command(nazov, parameters);
 
         DeklaracieVisitor visitor = new DeklaracieVisitor( );
@@ -112,7 +112,7 @@ public class DeklaracieVisitorTest {
         datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
         Block telo = new Block(new Instrukcia[] { new Return(new InstructionWord( new Position(0,0), null), null, null) }
-                             , new Parenthesis(null, null), null);
+                             , new Bracket(null, null), null);
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
 

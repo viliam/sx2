@@ -20,7 +20,7 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.DeclarationParameter;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instruction.DeclarationParameterReader;
+import sk.wlio.sx2.readers.statement.DeclarationParameterReader;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
@@ -41,7 +41,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
                     mr.ciarka().setPosun( 1,0 );
                 }
             };
-        tt.run("( aa,bb)", "zatvorka;dekPremennej;ciarka;dekPremennej;zatvorka;");
+        tt.run("( aa,bb)", "bracket;dekPremennej;ciarka;dekPremennej;bracket;");
     }
 
     @Test
@@ -53,7 +53,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
                     mr.zatvorka().setPosun(  1,0 ,  1,0 );
                 }
             };
-        tt.run("()", "zatvorka;zatvorka;");
+        tt.run("()", "bracket;bracket;");
     }
 
 
@@ -63,7 +63,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
             mr.dekPremennej().setPosun( 2, 0 );
             mr.zatvorka().setPosun( 1,0 ,   1,0 );
             citajDekParameter("( aa,)");
-            fail("Cakal chybu, ocakavany znak zatvorka alebo ciarka");
+            fail("Cakal chybu, ocakavany znak bracket alebo ciarka");
         } catch (SxException e) {
             assertEquals( "Typ chyby", SxExTyp.CAKAL_ZATVORKU_ALEBO_CIARKU,  e.getTyp());
         }

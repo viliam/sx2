@@ -16,8 +16,8 @@
 package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.rozhrania.ISlovo;
 import sk.wlio.sx2.visitors.IVisitor;
 
@@ -26,17 +26,17 @@ import java.util.List;
 
 public class DeclarationParameter implements ISlovo {
 
-    Parenthesis z1, z2;
+    Bracket z1, z2;
 
     List<DeclarationVariable> liDekPremennej = new ArrayList<DeclarationVariable>();
     List<Comma> liComma = new ArrayList<Comma>();
 
-    public DeclarationParameter(Parenthesis z1, Parenthesis z2) {
+    public DeclarationParameter(Bracket z1, Bracket z2) {
         this.z1 = z1;
         this.z2 = z2;
     }
 
-    public DeclarationParameter(Parenthesis z1, Parenthesis z2, List<Comma> liComma, List<DeclarationVariable> liDekPremennej) {
+    public DeclarationParameter(Bracket z1, Bracket z2, List<Comma> liComma, List<DeclarationVariable> liDekPremennej) {
         this.liComma = liComma;
         this.liDekPremennej = liDekPremennej;
         this.z1 = z1;
@@ -55,11 +55,11 @@ public class DeclarationParameter implements ISlovo {
         return liDekPremennej;
     }
 
-    public Parenthesis getZ1() {
+    public Bracket getZ1() {
         return z1;
     }
 
-    public Parenthesis getZ2() {
+    public Bracket getZ2() {
         return z2;
     }
 

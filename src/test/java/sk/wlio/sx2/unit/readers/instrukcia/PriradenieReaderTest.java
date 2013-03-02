@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instruction.AssignmentReader;
+import sk.wlio.sx2.readers.statement.AssignmentReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -41,7 +41,7 @@ public class PriradenieReaderTest extends AbstractReaderTest {
                 mr.vyraz().setPosun( 1, 0 );
                 mr.ciarka().setPosun(1,0);
             }
-        }.run("c=4;", "premenna;opPriradenia;vyraz;ciarka;");
+        }.run("c=4;", "premenna;opPriradenia;expression;ciarka;");
     }
 
     @Test

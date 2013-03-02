@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instruction;
+package sk.wlio.sx2.readers.statement;
 
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.DeclarationParameter;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
@@ -32,10 +32,10 @@ import java.util.List;
 public class DeclarationParameterReader implements TextReader<DeclarationParameter> {
 
     public DeclarationParameter citaj(TextContext tC)  {
-        TextReader<Parenthesis> zR = Readers.zatvorka();
-        Parenthesis z1 = zR.citaj( tC);
+        TextReader<Bracket> zR = Readers.zatvorka();
+        Bracket z1 = zR.citaj( tC);
         if ( tC.jePrefixZatvorkaZatvorena() ) {
-            Parenthesis z2 = zR.citaj( tC);
+            Bracket z2 = zR.citaj( tC);
             return new DeclarationParameter(z1,z2);
         }
 
@@ -50,7 +50,7 @@ public class DeclarationParameterReader implements TextReader<DeclarationParamet
                 continue;
             }
             if ( tC.jePrefixZatvorkaZatvorena() ) {
-                Parenthesis z2 = zR.citaj( tC);
+                Bracket z2 = zR.citaj( tC);
                 return new DeclarationParameter( z1, z2, commas, declarations );
             }
 

@@ -20,7 +20,7 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.readers.ProgramReader;
-import sk.wlio.sx2.readers.vyraz.VyrazReader;
+import sk.wlio.sx2.readers.expression.ExprReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.KontextovaKontrolaVisitor;
 import sk.wlio.sx2.integra.TestAbstract;
@@ -87,7 +87,7 @@ public class KontextovaKontrolaVisitorTest {
         }
 
         public TypZlozenehoVyrazuTest() {
-            super(new VyrazReader(),
+            super(new ExprReader(),
                 new TestVisitor<IVyraz>() {
                     public void visit(TextContext tC, IVyraz slovo) {
                         KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();

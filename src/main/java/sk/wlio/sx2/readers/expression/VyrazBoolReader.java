@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.vyraz;
+package sk.wlio.sx2.readers.expression;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.vyraz.VyrazAritm;
 import sk.wlio.sx2.beans.vyraz.VyrazBool;
 import sk.wlio.sx2.beans.vyraz.VyrazPorovnanie;
@@ -28,7 +27,8 @@ import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class VyrazBoolReader extends VyrazAbstractReader implements TextReader<IVyraz> {
+@Deprecated
+public class VyrazBoolReader extends ExprAbstractReader implements TextReader<IVyraz> {
 
 
     @Override
@@ -54,7 +54,7 @@ public class VyrazBoolReader extends VyrazAbstractReader implements TextReader<I
             return Readers.vrzVzatvorke().citaj(tC);
         }
 
-        //nacitam jednoduchy vyraz
+        //nacitam jednoduchy expression
         IVyraz v = Readers.vrzJednduchy().citaj(tC);
 
         //nasledujuci operator rozhodne
@@ -86,7 +86,7 @@ public class VyrazBoolReader extends VyrazAbstractReader implements TextReader<I
 //            //FIXME: moze sa zacinat aj artimetickym vyrazom
 //            v1 = Readers.vrzBoolVzatvorke().citaj(tC);
 //        }  else {
-//            //nacitam aritmeticky vyraz  //fixme: moze byt aj premenna alebo prikaz
+//            //nacitam aritmeticky expression  //fixme: moze byt aj premenna alebo prikaz
 //            IVyraz v = Readers.vrzAritm().citaj(tC);
 //            //ak je typ cislo, musi ist o porovnanie
 //            SymbolReader<Operator> oPorovnanieReader = Readers.opPorovnanie();

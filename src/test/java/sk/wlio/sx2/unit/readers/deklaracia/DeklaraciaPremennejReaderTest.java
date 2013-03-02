@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.readers.instruction.DeclarationVariableReader;
+import sk.wlio.sx2.readers.statement.DeclarationVariableReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 

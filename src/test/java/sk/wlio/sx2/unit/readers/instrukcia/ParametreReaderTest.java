@@ -17,9 +17,9 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.instruction.Parameters;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.readers.instruction.ParameterReader;
+import sk.wlio.sx2.readers.statement.ParameterReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -30,9 +30,9 @@ public class ParametreReaderTest extends AbstractReaderTest {
         new TestTemplate<Parameters>(sb, new ParameterReader()) {
             @Override public void nastavReader() {
                 mr.zatvorka().setPosun( 2, 0, 1, 0);
-                mr.zatvorka().setVystup(new Parenthesis(null, SymbolEnum.PARENTHESIS_NORM_OPEN));
+                mr.zatvorka().setVystup(new Bracket(null, SymbolEnum.PARENTHESIS_NORM_OPEN));
             }
-        }.run(" ()", "zatvorka;zatvorka;");
+        }.run(" ()", "bracket;bracket;");
     }
 
     @Test
@@ -40,10 +40,10 @@ public class ParametreReaderTest extends AbstractReaderTest {
         new TestTemplate<Parameters>(sb, new ParameterReader()) {
             @Override public void nastavReader() {
                 mr.zatvorka().setPosun( 2, 0, 1, 0);
-                mr.zatvorka().setVystup(new Parenthesis(null, null));
+                mr.zatvorka().setVystup(new Bracket(null, null));
                 mr.vyraz().setPosun(2, 0);
             }
-        }.run(" (ff)", "zatvorka;vyraz;zatvorka;");
+        }.run(" (ff)", "bracket;expression;bracket;");
     }
 
     @Test
@@ -51,11 +51,11 @@ public class ParametreReaderTest extends AbstractReaderTest {
         new TestTemplate<Parameters>(sb, new ParameterReader()) {
             @Override public void nastavReader() {
                 mr.zatvorka().setPosun( 2, 0,  1, 0);
-                mr.zatvorka().setVystup( new Parenthesis(null, null));
+                mr.zatvorka().setVystup( new Bracket(null, null));
                 mr.vyraz().setPosun( 2, 0, 3, 0);
                 mr.ciarka().setPosun( 1, 0);
             }
-        }.run(" (ff,1+3) ", "zatvorka;vyraz;ciarka;vyraz;zatvorka;");
+        }.run(" (ff,1+3) ", "bracket;expression;ciarka;expression;bracket;");
     }
 
 }

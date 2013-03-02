@@ -22,16 +22,16 @@ public class VyrazBoolReaderTest {
 //
 //    @Test
 //    public void testVyrazBoolProvnanie()  {
-//        IVyraz vyraz = citajBoolVyraz("  ahoj & 5<4 ");
-//        assertEquals( "pozicia" , new Pozicia(2,0), vyraz.getPozicia());
+//        IVyraz expression = citajBoolVyraz("  ahoj & 5<4 ");
+//        assertEquals( "pozicia" , new Pozicia(2,0), expression.getPozicia());
 //    }
 //
 //    @Test
 //    public void testVyrazBoolAndOr()  {
-//        IVyraz vyraz = citajBoolVyraz("  5<4 & 4>3 | 6!=4");
-//        assertEquals( "pozicia" , new Pozicia(2,0), vyraz.getPozicia());
-//        assertTrue( vyraz instanceof VyrazBool);
-//        VyrazBool vBool = (VyrazBool) vyraz;
+//        IVyraz expression = citajBoolVyraz("  5<4 & 4>3 | 6!=4");
+//        assertEquals( "pozicia" , new Pozicia(2,0), expression.getPozicia());
+//        assertTrue( expression instanceof VyrazBool);
+//        VyrazBool vBool = (VyrazBool) expression;
 //        assertTrue( vBool.getV1() instanceof VyrazPorovnanie);
 //        assertTrue( vBool.getV2() instanceof VyrazBool);
 //        assertTrue( vBool.getOp() instanceof Operator);
@@ -46,10 +46,10 @@ public class VyrazBoolReaderTest {
 //
 //    @Test
 //    public void testVyrazBoolZatvorky()  {
-//        IVyraz vyraz = citajBoolVyraz("  5<4 & (4>3 || 6!=4)");
-//        assertEquals( "pozicia" , new Pozicia(2,0), vyraz.getPozicia());
-//        assertTrue( vyraz instanceof VyrazBool);
-//        VyrazBool vBool = (VyrazBool) vyraz;
+//        IVyraz expression = citajBoolVyraz("  5<4 & (4>3 || 6!=4)");
+//        assertEquals( "pozicia" , new Pozicia(2,0), expression.getPozicia());
+//        assertTrue( expression instanceof VyrazBool);
+//        VyrazBool vBool = (VyrazBool) expression;
 //        assertTrue( vBool.getV1() instanceof VyrazPorovnanie);
 //        assertTrue( vBool.getV2() instanceof VyrazVzatvorke);
 //        assertTrue( vBool.getOp() instanceof Operator );
@@ -68,11 +68,11 @@ public class VyrazBoolReaderTest {
 //    private IVyraz citajBoolVyraz(String tento)  {
 //        TextContext tC = new TextContext(tento);
 //        VyrazBoolReader vBoolReader = new VyrazBoolReader();
-//        IVyraz vyraz = vBoolReader.citaj(tC);
+//        IVyraz expression = vBoolReader.citaj(tC);
 //
-//        assertNotNull(vyraz);
+//        assertNotNull(expression);
 //
-//        return vyraz;
+//        return expression;
 //    }
 
 }

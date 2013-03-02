@@ -16,17 +16,17 @@
 package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.WordAbstract;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.visitors.IVisitor;
 
 public class Block extends WordAbstract implements Instrukcia {
 
     private Instrukcia[] instrukcie;
-    private Parenthesis z1;
-    private Parenthesis z2;
+    private Bracket z1;
+    private Bracket z2;
 
-    public Block(Instrukcia[] instrukcie, Parenthesis z1, Parenthesis z2) {
+    public Block(Instrukcia[] instrukcie, Bracket z1, Bracket z2) {
         super(z1.getPosition());
         this.z1 = z1;
         this.z2 = z2;
@@ -41,11 +41,11 @@ public class Block extends WordAbstract implements Instrukcia {
         return instrukcie;
     }
 
-    public Parenthesis getZ1() {
+    public Bracket getZ1() {
         return z1;
     }
 
-    public Parenthesis getZ2() {
+    public Bracket getZ2() {
         return z2;
     }
 

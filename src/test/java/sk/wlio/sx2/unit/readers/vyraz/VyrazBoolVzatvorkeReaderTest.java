@@ -16,7 +16,7 @@
 package sk.wlio.sx2.unit.readers.vyraz;
 
 import org.testng.annotations.Test;
-import sk.wlio.sx2.readers.vyraz.zatvorka.VyrazBoolVzatvorkeReader;
+import sk.wlio.sx2.readers.expression.bracket.VyrazBoolVzatvorkeReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
@@ -33,6 +33,6 @@ public class VyrazBoolVzatvorkeReaderTest extends AbstractReaderTest {
                 mr.zatvorka().setPosun( 1, 0 ,  1, 0 );
                  mr.vrzBool().setPosun( 4, 0 );
             }
-        }.run("(ahoj)", "zatvorka;vrzBool;zatvorka;");
+        }.run("(ahoj)", "bracket;vrzBool;bracket;");
     }
 }

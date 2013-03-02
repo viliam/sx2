@@ -16,13 +16,13 @@
 package sk.wlio.sx2.readers.symbol;
 
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 
-public class ZatvorkaReader extends SymbolAbstractReader<Parenthesis> {
+public class ZatvorkaReader extends SymbolAbstractReader<Bracket> {
 
     @Override
     protected String[] getSymbols() {
@@ -30,10 +30,10 @@ public class ZatvorkaReader extends SymbolAbstractReader<Parenthesis> {
     }
 
     @Override
-    protected Parenthesis create(Position position, SymbolEnum oEnum)  {
+    protected Bracket create(Position position, SymbolEnum oEnum)  {
         if (oEnum == null)
             throw SxException.create(SxExTyp.CAKAL_ZATVORKU, position);
-        return new Parenthesis(position, oEnum );
+        return new Bracket(position, oEnum );
     }
 
     @Override

@@ -20,7 +20,7 @@ import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.vyraz.VyrazAritmReader;
+import sk.wlio.sx2.readers.expression.VyrazAritmReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;

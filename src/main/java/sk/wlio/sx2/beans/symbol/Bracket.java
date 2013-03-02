@@ -13,20 +13,14 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instruction;
+package sk.wlio.sx2.beans.symbol;
 
-import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.Parameters;
-import sk.wlio.sx2.beans.instruction.Command;
-import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 
-public class CommandReader implements TextReader<Command> {
-    
-    public Command citaj(TextContext tC)  {
-        Word name = Readers.slovo().citaj( tC);
-        Parameters parameters = Readers.parametre().citaj(tC);
-        return new Command(name, parameters);
+public class Bracket extends SymbolAbstract {
+
+    public Bracket(Position position, SymbolEnum symbol) {
+        super(position, symbol);
     }
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instruction;
+package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Word;

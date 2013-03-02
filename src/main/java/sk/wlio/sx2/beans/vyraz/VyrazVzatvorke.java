@@ -17,17 +17,17 @@ package sk.wlio.sx2.beans.vyraz;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.IVisitor;
 
 public class VyrazVzatvorke implements IVyraz {
 
-    private Parenthesis z1;
+    private Bracket z1;
     private IVyraz v;
-    private Parenthesis z2;
+    private Bracket z2;
 
-    public VyrazVzatvorke(Parenthesis z1, IVyraz v, Parenthesis z2) {
+    public VyrazVzatvorke(Bracket z1, IVyraz v, Bracket z2) {
         this.z1 = z1;
         this.v = v;
         this.z2 = z2;
@@ -46,7 +46,7 @@ public class VyrazVzatvorke implements IVyraz {
         return z1.toString() + v.toString() + z2.toString();
     }
 
-    public Parenthesis getZ1() {
+    public Bracket getZ1() {
         return z1;
     }
 
@@ -54,7 +54,7 @@ public class VyrazVzatvorke implements IVyraz {
         return v;
     }
 
-    public Parenthesis getZ2() {
+    public Bracket getZ2() {
         return z2;
     }
 

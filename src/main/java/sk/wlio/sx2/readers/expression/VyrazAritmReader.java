@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.vyraz;
+package sk.wlio.sx2.readers.expression;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.vyraz.VyrazAritm;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -26,7 +25,8 @@ import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class VyrazAritmReader extends VyrazAbstractReader implements TextReader<IVyraz> {
+@Deprecated
+public class VyrazAritmReader extends ExprAbstractReader implements TextReader<IVyraz> {
 
     @Override
     protected IVyraz citajPrvyVyraz(TextContext tC) {

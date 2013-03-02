@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.vyraz;
+package sk.wlio.sx2.readers.expression;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
@@ -23,19 +23,17 @@ import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class VyrazReader implements TextReader<IVyraz> {
+public class ExprReader implements TextReader<IVyraz> {
 
     public IVyraz citaj(TextContext tC)  {
-        IVyraz v;
-
-        //ak vyraz je v zatvorke, nacitam ozatvorkovany prvy vyraz o1,. samozrejme rekurzivne
+        IVyraz expr;
         if ( tC.jePrefixZatvorkaOtovorena() )  {
-            v = Readers.vrzVzatvorke().citaj(tC);
-        } else   { //nie je zatvorka, odkusnem jedno slovo (prikaz, premenne, cislo, bool)
-            v = Readers.vrzJednduchy().citaj(tC);
+            expr = Readers.vrzVzatvorke().citaj(tC);
+        } else   {
+            expr = Readers.vrzJednduchy().citaj(tC);
         }
 
-        if (tC.jeKoniec())  return v;
+        if (tC.jeKoniec())  return expr;
 
         TextReader<Operator> opReader = null;
         if (tC.jePrefixOperatorAritm() )
@@ -46,36 +44,19 @@ public class VyrazReader implements TextReader<IVyraz> {
             opReader = Readers.opPorovnanie();
 
         if (opReader != null)
-            v = new VyrazZlozeny(v, opReader.citaj(tC), Readers.vyraz().citaj(tC));
+            expr = new VyrazZlozeny(expr, opReader.citaj(tC), Readers.vyraz().citaj(tC));
 
         if (!tC.jeKoniec() )
-            skontrolujKorektnyKoniecVyrazu(tC);
+            checkEndOfExpression(tC);
 
-        return v;
+        return expr;
     }
 
-    private void skontrolujKorektnyKoniecVyrazu(  TextContext tC) {
+    private void checkEndOfExpression(TextContext tC) {
         if    ( !tC.jePrefixOperator()
              && !tC.jePrefixCiarka()
              && !tC.jePrefixZatvorkaZatvorena() )
             throw SxException.create(SxExTyp.CAKAL_OPERATOR, tC);
     }
-//        //operator - bool
-//        if ( tC.jePrefixOperatorPorovnania() || tC.jePrefixOperatorBool() ) {
-//            tC.setPozicia(inx);
-//            return Readers.vrzBool().citaj(tC);
-//
-//        //operator - artim
-//        } else if ( tC.jePrefixOperatorAritm()) {
-//            Operator op = Readers.opAritm().citaj( tC);
-//            IVyraz v = Readers.vrzAritm().citaj(tC);
-//
-//            if (  tC.jePrefixOperatorPorovnania() )  {
-//                tC.setPozicia(inx);
-//                return Readers.vrzBool().citaj(tC);
-//            }
-//            return new VyrazAritm( o1,op,v);
-//        }
-//        return o1;
 
 }

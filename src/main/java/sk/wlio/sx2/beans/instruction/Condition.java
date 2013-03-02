@@ -17,18 +17,18 @@ package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
 public class Condition extends WordAbstract {
 
     private final InstructionWord ak;
-    private final Parenthesis z1, z2;
+    private final Bracket z1, z2;
     private final IVyraz vrzBool;
     private final Instrukcia instrukcia;
 
-    public Condition(InstructionWord ak, IVyraz vrzBool, Instrukcia instrukcia, Parenthesis z1, Parenthesis z2) {
+    public Condition(InstructionWord ak, IVyraz vrzBool, Instrukcia instrukcia, Bracket z1, Bracket z2) {
         super(ak.getPosition());
         this.ak = ak;
         this.vrzBool = vrzBool;
@@ -45,11 +45,11 @@ public class Condition extends WordAbstract {
         return instrukcia;
     }
 
-    public Parenthesis getZ1() {
+    public Bracket getZ1() {
         return z1;
     }
 
-    public Parenthesis getZ2() {
+    public Bracket getZ2() {
         return z2;
     }
     public IVyraz getVrzBool() {

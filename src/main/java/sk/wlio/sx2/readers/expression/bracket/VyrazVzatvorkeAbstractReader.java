@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.vyraz;
+package sk.wlio.sx2.readers.expression.bracket;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.vyraz.Int;
-import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.readers.symbol.ZatvorkaReader;
 import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class CisloReader implements TextReader<Int> {
+@Deprecated
+public abstract class VyrazVzatvorkeAbstractReader implements TextReader<IVyraz> {
 
-    public Int citaj(TextContext tC)  {
-        Position position = tC.najdiNasledujuciZnak();
-        String cislo = Readers.slovo().citaj( tC).toString();
+    protected abstract TextReader<IVyraz> getVyrazReader();
 
-        try {
-            return new Int( Integer.valueOf(cislo ), position);
-        } catch (NumberFormatException e) {
-            throw SxException.create( SxExTyp.CAKAL_CISLO, tC);
-        }
+    public IVyraz citaj(TextContext tC)  {
+        TextReader<Bracket> zReader = new ZatvorkaReader();
+        Bracket z1 = Readers.zatvorka().citaj(tC);
+        IVyraz vyraz= getVyrazReader().citaj(tC);
+        Bracket z2 = Readers.zatvorka().citaj(tC);
+        return new VyrazVzatvorke(z1, vyraz, z2);
     }
 }

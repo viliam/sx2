@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.instruction.Condition;
 import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instruction.ConditionReader;
+import sk.wlio.sx2.readers.statement.ConditionReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -41,7 +41,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
                 mr.vrzBool().setPosun(5, 0);
                 mr.instrukcia().setPosun(9,0);
             }
-        }.run("ak ( b>32) nieco();", "instrukciaSlovo;zatvorka;vrzBool;zatvorka;instruction;");
+        }.run("ak ( b>32) nieco();", "instrukciaSlovo;bracket;vrzBool;bracket;statement;");
     }
 
     @Test

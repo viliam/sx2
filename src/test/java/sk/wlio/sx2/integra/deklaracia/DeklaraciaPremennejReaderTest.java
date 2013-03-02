@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instruction.DeclarationVariableReader;
+import sk.wlio.sx2.readers.statement.DeclarationVariableReader;
 import sk.wlio.sx2.rozhrania.TextReader;
 
 import static org.testng.AssertJUnit.assertEquals;

@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.vyraz;
+package sk.wlio.sx2.readers.expression;
 
-import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -23,7 +22,7 @@ import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class VyrazJednoduchyReader implements TextReader<IVyraz> {
+public class SimpleExprReader implements TextReader<IVyraz> {
 
     public IVyraz citaj(TextContext tC)  {
         if ( tC.jePrefixCislo())

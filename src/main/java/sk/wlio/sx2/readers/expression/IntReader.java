@@ -13,17 +13,26 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.vyraz.zatvorka;
+package sk.wlio.sx2.readers.expression;
 
+import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.vyraz.Int;
+import sk.wlio.sx2.exception.SxExTyp;
+import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class VyrazAritmVzatvorkeReader extends VyrazVzatvorkeAbstractReader {
+public class IntReader implements TextReader<Int> {
 
-    @Override
-    protected TextReader<IVyraz> getVyrazReader() {
-        return Readers.vrzAritm();
+    public Int citaj(TextContext tC)  {
+        Position position = tC.najdiNasledujuciZnak();
+        String aInt = Readers.slovo().citaj( tC).toString();
+
+        try {
+            return new Int( Integer.valueOf(aInt ), position);
+        } catch (NumberFormatException e) {
+            throw SxException.create( SxExTyp.CAKAL_CISLO, tC);
+        }
     }
-
 }

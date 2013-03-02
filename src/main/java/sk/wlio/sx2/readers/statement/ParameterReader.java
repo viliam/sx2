@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instruction;
+package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Parameters;
+import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.beans.symbol.Parenthesis;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
@@ -29,9 +29,9 @@ import java.util.List;
 public class ParameterReader implements TextReader<Parameters> {
 
     public Parameters citaj(TextContext tC)  {
-        Parenthesis z1 = Readers.zatvorka().citaj( tC);
+        Bracket z1 = Readers.zatvorka().citaj( tC);
         if ( tC.jePrefixZatvorkaZatvorena() ) {
-            Parenthesis z2 = Readers.zatvorka().citaj( tC);
+            Bracket z2 = Readers.zatvorka().citaj( tC);
             return new Parameters(z1,z2);
         }
 
@@ -44,7 +44,7 @@ public class ParameterReader implements TextReader<Parameters> {
                  Comma c = Readers.ciarka().citaj( tC);
                  listComman.add(c);
              }  else{
-                 Parenthesis z2 = Readers.zatvorka().citaj(tC);
+                 Bracket z2 = Readers.zatvorka().citaj(tC);
                  return new Parameters( z1, z2, listParameter , listComman );
              }
         }  while ( true);

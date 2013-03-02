@@ -13,24 +13,18 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.instruction;
+package sk.wlio.sx2.readers.expression.bracket;
 
-import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.Return;
-import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
-import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.rozhrania.IVyraz;
 
-public class ReturnReader implements TextReader<Return> {
+@Deprecated
+public class VyrazAritmVzatvorkeReader extends VyrazVzatvorkeAbstractReader {
 
-    public Return citaj(TextContext tC)  {
-        Word reserWord = Readers.slovo().citaj( tC);
-        if ( !ReservedWordEnum.RETURN.is(reserWord.toString())  )
-            throw SxException.create( SxExTyp.CAKAL_VRAT, tC);
-
-        return new Return(reserWord, Readers.vyraz().citaj(tC), tC.nacitajAkJeBodkoCiarka());
+    @Override
+    protected TextReader<IVyraz> getVyrazReader() {
+        return Readers.vrzAritm();
     }
+
 }

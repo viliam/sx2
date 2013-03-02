@@ -25,7 +25,7 @@ import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.beans.vyraz.VyrazAritm;
 import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.vyraz.VyrazAritmReader;
+import sk.wlio.sx2.readers.expression.VyrazAritmReader;
 import sk.wlio.sx2.rozhrania.ISlovo;
 
 public class VyrazAritmReaderTest {
@@ -34,7 +34,7 @@ public class VyrazAritmReaderTest {
     @Test
     /*
     Tento test je urceny na testovanie stromovej struktury, ktora vznika rozlicne
-    na zaklade toho ako je vyraz zatvorkami prioritizovany.
+    na zaklade toho ako je expression zatvorkami prioritizovany.
      */
     public void testZatvorkyVStrome()  {
         VyrazAritm vyraz = citajAritmVyraz(" 4 +( 5 -3) ");

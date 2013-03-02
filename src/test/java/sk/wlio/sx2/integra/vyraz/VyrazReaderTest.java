@@ -18,7 +18,7 @@ package sk.wlio.sx2.integra.vyraz;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.vyraz.VyrazReader;
+import sk.wlio.sx2.readers.expression.ExprReader;
 import sk.wlio.sx2.rozhrania.IVyraz;
 
 import static org.testng.AssertJUnit.*;
@@ -58,7 +58,7 @@ public class  VyrazReaderTest {
     }
 
     private IVyraz citajVyraz(TextContext tC, boolean checkKoniec)  {
-        IVyraz vyraz = new VyrazReader().citaj(tC);
+        IVyraz vyraz = new ExprReader().citaj(tC);
         assertNotNull(vyraz);
 
         if (checkKoniec) assertTrue( tC.jeKoniec());

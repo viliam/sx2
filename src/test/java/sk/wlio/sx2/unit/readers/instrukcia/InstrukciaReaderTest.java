@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.readers.instruction.InstructionReader;
+import sk.wlio.sx2.readers.statement.StatementReader;
 import sk.wlio.sx2.rozhrania.Instrukcia;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
@@ -26,7 +26,7 @@ public class InstrukciaReaderTest extends AbstractReaderTest {
 
     @Test
     public void testPriradenie()  {
-        new TestTemplate<Instrukcia>(sb, new InstructionReader()) {
+        new TestTemplate<Instrukcia>(sb, new StatementReader()) {
             @Override
             public void nastavReader() {
                 mr.slovo().setPosun( 0,0,  0,0, 2,0);
@@ -38,7 +38,7 @@ public class InstrukciaReaderTest extends AbstractReaderTest {
 
     @Test
     public void testDekPremennej()  {
-        new TestTemplate<Instrukcia>(sb, new InstructionReader()) {
+        new TestTemplate<Instrukcia>(sb, new StatementReader()) {
             @Override public void nastavReader() {
                 mr.slovo().setPosun(  5,0);
                 mr.slovo().setVystup( new Word(null, "cislo"));

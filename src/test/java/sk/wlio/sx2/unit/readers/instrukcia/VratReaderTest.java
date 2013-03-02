@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.Return;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.instruction.ReturnReader;
+import sk.wlio.sx2.readers.statement.ReturnReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 import sk.wlio.sx2.unit.readers.mock.TestVyraz;
@@ -40,7 +40,7 @@ public class VratReaderTest extends AbstractReaderTest {
                 mr.vyraz().setPosun(1, 0);
                 mr.vyraz().setVystup(new TestVyraz());
             }
-        }.run("vrat 4;", "slovo;vyraz;");
+        }.run("vrat 4;", "slovo;expression;");
     }
 
     @Test
