@@ -33,9 +33,7 @@ public interface IReaders {
     
     public TextReader<Word> slovo();
     public TextReader<Int> cislo();
-    public TextReader<Operator> opAritm();
-    public TextReader<Operator> opBool();
-    public TextReader<Operator> opPorovnanie();
+    public TextReader<Operator> opVyraz();
     public TextReader<Operator> opPriradenia();
     public TextReader<IExpression> vyraz();
     public TextReader<IExpression> vrzJednduchy();

@@ -35,16 +35,10 @@ public class ExprReader implements TextReader<IExpression> {
 
         if (tC.isEndOfFile())  return expr;
 
-        TextReader<Operator> opReader = null;
-        if (tC.isPrefixOperatorAritm() )
-            opReader = Readers.opAritm();
-        if (tC.isPrefixOperatorBool())
-            opReader = Readers.opBool();
-        if (tC.isPrefixOperatorComparison())
-            opReader = Readers.opPorovnanie();
-
-        if (opReader != null)
+        if (tC.isPrefixOperatorExp() ) {
+            TextReader<Operator>  opReader = Readers.opVyraz();
             expr = new VyrazZlozeny(expr, opReader.read(tC), Readers.vyraz().read(tC));
+        }
 
         if (!tC.isEndOfFile() )
             checkEndOfExpression(tC);

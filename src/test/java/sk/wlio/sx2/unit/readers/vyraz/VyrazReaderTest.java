@@ -52,11 +52,11 @@ public class VyrazReaderTest extends AbstractReaderTest {
             @Override public void nastavReader() {
                 mr.vrzJednduchy().setPosun( 3,0);
                 mr.vrzJednduchy().setVystup(new TestVyraz());
-                mr.opPorovnanie().setPosun(2,0);
+                mr.opVyraz().setPosun(2,0);
                 mr.vyraz().setPosun(4,0);
             }
 
-        }.run("ano > nie", "expSimple;opComparation;expression;");
+        }.run("ano > nie", "expSimple;opExp;expression;");
     }
 
 

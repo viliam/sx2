@@ -21,12 +21,11 @@ import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 
-
-public class OperatorBoolReader extends SymbolAbstractReader<Operator> { //OperatorAbstractReader {
+public class OperatorExpressionReader extends SymbolAbstractReader<Operator> {
 
     @Override
     protected String[] getSymbols() {
-        return SymbolsEnum.OP_BOOL.getSymbols();
+        return SymbolsEnum.OP_EXP.getSymbols();
     }
 
     @Override

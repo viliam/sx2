@@ -39,9 +39,7 @@ public class ReadersImpl implements  IReaders {
     
     public TextReader<Word> slovo() {  return  new SlovoReader(); }
     public TextReader<Int> cislo() {  return   new IntReader(); }
-    public TextReader<Operator> opAritm() {  return   new OperatorAritmReader(); }
-    public TextReader<Operator> opBool() {  return   new OperatorBoolReader(); }
-    public TextReader<Operator> opPorovnanie() {  return   new OperatorPorovnanieReader(); }
+    public TextReader<Operator> opVyraz() {  return   new OperatorExpressionReader(); }
     public TextReader<Operator> opPriradenia() {  return   new OperatorPriradenieReader(); }
     public TextReader<IExpression> vyraz() {  return   new ExprReader(); }
     public TextReader<IExpression> vrzJednduchy() {  return   new SimpleExprReader(); }

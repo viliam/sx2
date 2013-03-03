@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
-import sk.wlio.sx2.readers.symbol.OperatorAritmReader;
+import sk.wlio.sx2.readers.symbol.OperatorExpressionReader;
 import sk.wlio.sx2.readers.symbol.ZatvorkaReader;
 import sk.wlio.sx2.readers.expression.*;
 import sk.wlio.sx2.interfaces.TextReader;
@@ -59,7 +59,7 @@ public class SxExceptionTest {
     @Test
     public void testUnknowOperator() {
         TextContext tC = new TextContext(" c3");
-        TextReader oAr = new OperatorAritmReader();
+        TextReader oAr = new OperatorExpressionReader();
         testException(tC, oAr , SxExTyp.CAKAL_OPERATOR );
     }
 

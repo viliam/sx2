@@ -44,9 +44,7 @@ public class Readers {
 
     public static TextReader<Word> slovo() { return readers.slovo(); }
     public static TextReader<Int> cislo() { return readers.cislo(); }
-    public static TextReader<Operator> opAritm() { return readers.opAritm(); }
-    public static TextReader<Operator> opBool() { return readers.opBool(); }
-    public static TextReader<Operator> opPorovnanie() { return readers.opPorovnanie(); }
+    public static TextReader<Operator> opVyraz() { return readers.opVyraz(); }
     public static TextReader<Operator> opPriradenia() { return readers.opPriradenia(); }
     public static TextReader<IExpression> vyraz() { return readers.vyraz(); }
     public static TextReader<IExpression> vrzJednduchy() { return readers.vrzJednduchy(); }

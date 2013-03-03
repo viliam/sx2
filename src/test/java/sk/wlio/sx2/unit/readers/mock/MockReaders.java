@@ -37,9 +37,7 @@ public class MockReaders implements IReaders {
     protected MockReader<Int> mCislo;
     protected MockReader<Word> mSlovo;
 
-    protected MockReader<Operator> mOpAritm;
-    protected MockReader<Operator> mOpBool;
-    protected MockReader<Operator> mOpPorovnania;
+    protected MockReader<Operator> mOpVyraz;
     protected MockReader<Operator> mOpPriradenia;
 
     protected MockReader<IExpression> mVyraz;
@@ -76,9 +74,7 @@ public class MockReaders implements IReaders {
         mCislo = new MockReader<Int>("int", postupVolania);
         mSlovo= new MockReader<Word>("word", postupVolania);
 
-        mOpAritm = new MockReader<Operator>("opAritm", postupVolania);
-        mOpBool= new MockReader<Operator>("opBool", postupVolania);
-        mOpPorovnania= new MockReader<Operator>("opComparation", postupVolania);
+        mOpVyraz = new MockReader<Operator>("opExp", postupVolania);
         mOpPriradenia= new MockReader<Operator>("opAssigment", postupVolania);
 
         mVyraz= new MockReader<IExpression>("expression", postupVolania);
@@ -111,9 +107,7 @@ public class MockReaders implements IReaders {
     public MockReader<Word> slovo() {  return  mSlovo; }
     public MockReader<Int> cislo() {  return   mCislo; }
 
-    public MockReader<Operator> opAritm() {  return mOpAritm; }
-    public MockReader<Operator> opBool() {  return  mOpBool; }
-    public MockReader<Operator> opPorovnanie() {  return mOpPorovnania; }
+    public MockReader<Operator> opVyraz() {  return mOpVyraz; }
     public MockReader<Operator> opPriradenia() {  return mOpPriradenia; }
 
     public MockReader<IExpression> vyraz() {  return   mVyraz; }
@@ -121,8 +115,6 @@ public class MockReaders implements IReaders {
     public MockReader<IExpression> vrzBool() {  return mVrzBool; }
     public MockReader<IExpression> vrzJednduchy() {  return mVrzJednoduchy; }
     public MockReader<IExpression> vrzVzatvorke() {  return mVrzZatvorka; }
-    public MockReader<IExpression> vrzAritmVzatvorke() {  return mVrzAritmVzatvorke; }
-    public MockReader<IExpression> vrzBoolVzatvorke() {  return mVrzBoolVzatvorke; }
 
     public MockReader<Bracket> zatvorka() {  return mZatvorka; }
     public MockReader<Comma> ciarka  () {  return mCiarka; }

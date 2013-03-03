@@ -20,7 +20,7 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.readers.symbol.OperatorPorovnanieReader;
+import sk.wlio.sx2.readers.symbol.OperatorExpressionReader;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -29,7 +29,7 @@ public class OperatorReaderTest {
     @Test
     public void testOperatorAritm()  {
         TextContext tC= new TextContext("  + ");
-        Operator operator = Readers.opAritm().read(tC);
+        Operator operator = Readers.opVyraz().read(tC);
 
         assertEquals( "Pozicia kontrola ", new Position(2,0), operator.getPosition() );
         assertEquals( "Cislo kontrola ", "+", operator.getSymbol() );
@@ -39,7 +39,7 @@ public class OperatorReaderTest {
     @Test
     public void testOperatorBoolPorovnanie()  {
         TextContext tC= new TextContext("  <= ");
-        Operator operator = new OperatorPorovnanieReader().read(tC);
+        Operator operator = new OperatorExpressionReader().read(tC);
 
         assertEquals( "Pozicia kontrola ", new Position(2,0), operator.getPosition() );
         assertEquals( "Cislo kontrola ", "<=", operator.getSymbol() );

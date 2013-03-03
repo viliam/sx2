@@ -144,19 +144,9 @@ public class TextContext {
     }
 
 
-    public boolean isPrefixOperatorAritm() {
+    public boolean isPrefixOperatorExp() {
         char a = nextCharacter();
-        return SymbolsEnum.OP_ARITM.jePrefix(a);
-    }
-
-    public boolean isPrefixOperatorBool() {
-        char a = nextCharacter();
-        return SymbolsEnum.OP_BOOL.jePrefix(a);
-    }
-
-    public boolean isPrefixOperatorComparison() {
-        char a = nextCharacter();
-        return SymbolsEnum.OP_COMPARISON.jePrefix(a);
+        return SymbolsEnum.OP_EXP.jePrefix(a);
     }
 
     public boolean isPrefixOperatorAssigment() {
