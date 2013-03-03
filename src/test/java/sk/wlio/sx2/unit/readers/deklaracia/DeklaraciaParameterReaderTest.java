@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.instruction.DeclarationParameter;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.statement.DeclarationParameterReader;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -41,7 +41,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
                     mr.ciarka().setPosun( 1,0 );
                 }
             };
-        tt.run("( aa,bb)", "bracket;dekPremennej;ciarka;dekPremennej;bracket;");
+        tt.run("( aa,bb)", "bracket;decVariable;comma;decVariable;bracket;");
     }
 
     @Test
@@ -73,7 +73,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
     private DeclarationParameter citajDekParameter(String ts)  {
         TextContext text = new TextContext(ts);
         TextReader<DeclarationParameter> dpReader = new DeclarationParameterReader();
-        DeclarationParameter dekParameter= dpReader.citaj( text);
+        DeclarationParameter dekParameter= dpReader.read(text);
         return dekParameter;
     }
 

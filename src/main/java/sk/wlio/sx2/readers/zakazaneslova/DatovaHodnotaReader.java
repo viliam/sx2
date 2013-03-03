@@ -23,8 +23,8 @@ import sk.wlio.sx2.readers.RezervovaneSlovaAbstractReader;
 
 public class DatovaHodnotaReader extends RezervovaneSlovaAbstractReader<DataValue> {
 
-    public DataValue citaj(TextContext tC)  {
-        return new DataValue( super.citaj(tC) );
+    public DataValue read(TextContext tC)  {
+        return new DataValue( super.read(tC) );
     }
 
     @Override

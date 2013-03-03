@@ -21,22 +21,22 @@ import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class AssignmentReader implements TextReader<Assignment> {
 
-    public Assignment citaj(TextContext tC)  {
-        Variable variable = Readers.premena().citaj( tC);
+    public Assignment read(TextContext tC)  {
+        Variable variable = Readers.premena().read(tC);
 
-        if ( !tC.jePrefixOperatorPriradenia() )
+        if ( !tC.isPrefixOperatorAssigment() )
             throw SxException.create( SxExTyp.CAKAL_OPERATOR , tC);
 
-        Operator op = Readers.opPriradenia().citaj(tC);
+        Operator op = Readers.opPriradenia().read(tC);
 
-        IVyraz v = Readers.vyraz().citaj(tC);
-        return new Assignment( variable, op, v, tC.nacitajAkJeBodkoCiarka());
+        IExpression v = Readers.vyraz().read(tC);
+        return new Assignment( variable, op, v, tC.readIfIsSemicolon());
     }
 
 }

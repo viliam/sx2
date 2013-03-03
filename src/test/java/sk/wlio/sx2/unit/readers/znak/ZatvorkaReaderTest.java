@@ -31,18 +31,18 @@ public class ZatvorkaReaderTest {
     @Test
     public void testZatvorka()  {
         TextContext tC= new TextContext("  ( ");
-        Bracket bracket = Readers.zatvorka().citaj(tC);
+        Bracket bracket = Readers.zatvorka().read(tC);
 
         assertEquals( "Pozicia kontrola ", new Position(2,0), bracket.getPosition() );
         assertEquals( "Cislo kontrola ", "(", bracket.getSymbol() );
-        assertEquals( "Posunuty inx", new Position(3,0), tC.getPozicia() );
+        assertEquals( "Posunuty inx", new Position(3,0), tC.getPosition() );
     }
 
     @Test
     public void testNecakalZatvorku() {
         TextContext tC = new TextContext(" k");
         try {
-            Readers.zatvorka().citaj( tC);
+            Readers.zatvorka().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals( SxExTyp.CAKAL_ZATVORKU, e.getTyp() );

@@ -18,14 +18,14 @@ package sk.wlio.sx2.beans.instruction;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.WordAbstract;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Command extends WordAbstract implements IVyraz{
+public class Command extends WordAbstract implements IExpression {
 
     Word nazov;
     Parameters parameters;
-    Enums.VyrazTyp vyrazTyp = Enums.VyrazTyp.NEURCENY;
+    Enums.ExpType expType = Enums.ExpType.UNKNOWN;
 
     public Command(Word nazov, Parameters parameters) {
         super(nazov.getPosition());
@@ -41,12 +41,12 @@ public class Command extends WordAbstract implements IVyraz{
         return parameters;
     }
 
-    public Enums.VyrazTyp getVyrazTyp() {
-        return vyrazTyp;
+    public Enums.ExpType getExpType() {
+        return expType;
     }
 
-    public void setVyrazTyp(Enums.VyrazTyp vyrazTyp) {
-        this.vyrazTyp = vyrazTyp;
+    public void setExpType(Enums.ExpType expType) {
+        this.expType = expType;
     }
     public void visit(IVisitor iVisitor) {
         iVisitor.visit(this);

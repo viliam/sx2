@@ -44,17 +44,17 @@ public class DeklaraciaTriedaReaderTest extends AbstractReaderTest {
                                         6,0, 5,0);
                     mr.slovo().setVystup(new Word(null, "bool"), new Word(null, "ahoj"),
                             new Word(null, "bool"), new Word(null, "ahoj"),
-                            new Word(null, "cislo"), new Word(null, "ahoj"));
+                            new Word(null, "int"), new Word(null, "ahoj"));
                     mr.dekPrikaz().setVystup(new DeclarationCommand(new DataType(new Word( new Position(3,3))),
                                                                   new Word(null, "ahoj"), null, null));
                     mr.dekPrikaz().setPosun( 25, 0 );
                     mr.dekPremennej().setVystup(new DeclarationVariable(
-                            new DataType(new Word( new Position(3,3))), new Word(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)) );
+                            new DataType(new Word( new Position(3,3), "int")), new Word(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)) );
                     mr.dekPremennej().setPosun( 12, 0 );
                 }
             };
-        tt.run(" bool ahoj() { vrat 3; } " +
-               " cislo ahoj;", "slovo;slovo;slovo;slovo;dekPrikaz;slovo;slovo;dekPremennej;");
+        tt.run(" bool ahoj() { return 3; } " +
+               " int ahoj;", "word;word;word;word;decCommand;word;word;decVariable;");
     }
 
 }

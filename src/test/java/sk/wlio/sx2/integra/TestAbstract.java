@@ -18,13 +18,13 @@ package sk.wlio.sx2.integra;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.rozhrania.ISlovo;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.IWord;
+import sk.wlio.sx2.interfaces.TextReader;
 
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
 
-public abstract class TestAbstract<T extends ISlovo> {
+public abstract class TestAbstract<T extends IWord> {
 
     protected static interface TestVisitor<T> {
         void visit(TextContext tC, T slovo);
@@ -70,7 +70,7 @@ public abstract class TestAbstract<T extends ISlovo> {
                 testVisitor.visit(tC, slovo);
 
                 fail(v);
-                //if (tC.jeKoniec() ) fail("");
+                //if (tC.isEndOfFile() ) fail("");
             } catch (SxException ex) {
                 ex.printStackTrace();
             }
@@ -78,7 +78,7 @@ public abstract class TestAbstract<T extends ISlovo> {
     }
 
     private T spracuj( TextContext tC)  {
-        T slovo = reader.citaj(tC);
+        T slovo = reader.read(tC);
         assertNotNull(slovo);
         return slovo;
     }

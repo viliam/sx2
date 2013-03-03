@@ -29,21 +29,21 @@ public class OperatorReaderTest {
     @Test
     public void testOperatorAritm()  {
         TextContext tC= new TextContext("  + ");
-        Operator operator = Readers.opAritm().citaj(tC);
+        Operator operator = Readers.opAritm().read(tC);
 
         assertEquals( "Pozicia kontrola ", new Position(2,0), operator.getPosition() );
         assertEquals( "Cislo kontrola ", "+", operator.getSymbol() );
-        assertEquals( "Posunuty inx", new Position(3,0), tC.getPozicia() );
+        assertEquals( "Posunuty inx", new Position(3,0), tC.getPosition() );
     }
 
     @Test
     public void testOperatorBoolPorovnanie()  {
         TextContext tC= new TextContext("  <= ");
-        Operator operator = new OperatorPorovnanieReader().citaj(tC);
+        Operator operator = new OperatorPorovnanieReader().read(tC);
 
         assertEquals( "Pozicia kontrola ", new Position(2,0), operator.getPosition() );
         assertEquals( "Cislo kontrola ", "<=", operator.getSymbol() );
-        assertEquals( "Posunuty inx", new Position(4,0), tC.getPozicia() );
+        assertEquals( "Posunuty inx", new Position(4,0), tC.getPosition() );
     }
 
 }

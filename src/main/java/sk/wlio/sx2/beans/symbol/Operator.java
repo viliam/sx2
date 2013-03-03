@@ -25,23 +25,23 @@ public final class Operator extends SymbolAbstract {
         super(position, symbol);
     }
 
-    public Enums.VyrazTyp getVyrazTyp() {
+    public Enums.ExpType getVyrazTyp() {
         switch ( symbol) {
             case  PLUS : case MINUS: case TIMES:
             case MODULO : case REST:
-                return Enums.VyrazTyp.CISLO;
+                return Enums.ExpType.INT;
 
 //    //BOOL
             case AND : case OR : case AND_STRONG: case OR_STRONG:
-                return Enums.VyrazTyp.BOOL;
+                return Enums.ExpType.BOOL;
 
-//    //POROVNANIE
+//    //COMPARISON
             case SMALLER: case GREATER: case SMALLER_EQUAL:
             case GRATER_EQUAL: case EQUAL: case UNEQUAL:
-                return Enums.VyrazTyp.POROVNANIE;
+                return Enums.ExpType.COMPARISON;
 //    ASSIGN("=")
             case ASSIGN:
-                return Enums.VyrazTyp.NEURCENY;
+                return Enums.ExpType.UNKNOWN;
         }
         return null;
     }

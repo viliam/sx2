@@ -33,18 +33,18 @@ public class CiarkaReaderTest {
       */
      public void testZakladneCiarka()  {
         TextContext tC= new TextContext("  ;");
-        Comma comma = Readers.ciarka().citaj(tC);
+        Comma comma = Readers.ciarka().read(tC);
 
         assertEquals( "Pozicia kontrola ", new Position(2,0), comma.getPosition() );
         assertEquals( "Cislo kontrola ", ";", comma.getSymbol() );
-        assertEquals( "Posunuty inx", new Position(3,0), tC.getPozicia() );
+        assertEquals( "Posunuty inx", new Position(3,0), tC.getPosition() );
     }
 
     @Test
     public void testNecakalCiarku() {
         TextContext tC = new TextContext(" k");
         try {
-            Readers.ciarka().citaj( tC);
+            Readers.ciarka().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals( e.getTyp(), SxExTyp.CAKAL_CIARKU);

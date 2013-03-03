@@ -18,13 +18,13 @@ package sk.wlio.sx2.beans.instruction;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.rozhrania.ISlovo;
+import sk.wlio.sx2.interfaces.IWord;
 import sk.wlio.sx2.visitors.IVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeclarationParameter implements ISlovo {
+public class DeclarationParameter implements IWord {
 
     Bracket z1, z2;
 

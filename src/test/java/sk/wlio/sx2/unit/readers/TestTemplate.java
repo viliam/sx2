@@ -16,12 +16,12 @@
 package sk.wlio.sx2.unit.readers;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.rozhrania.ISlovo;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.IWord;
+import sk.wlio.sx2.interfaces.TextReader;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public abstract class TestTemplate<T extends ISlovo> {
+public abstract class TestTemplate<T extends IWord> {
 
     final StringBuffer sb;
     private T result;
@@ -35,7 +35,7 @@ public abstract class TestTemplate<T extends ISlovo> {
     public TextContext run(String vyraz, String postupnost )  {
         TextContext tC = new TextContext( vyraz);
         nastavReader();
-        result = textReader.citaj(tC);
+        result = textReader.read(tC);
         assertEquals(postupnost, sb.toString() );
         return tC;
     }

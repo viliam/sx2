@@ -19,32 +19,32 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Parameters;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class ParameterReader implements TextReader<Parameters> {
 
-    public Parameters citaj(TextContext tC)  {
-        Bracket z1 = Readers.zatvorka().citaj( tC);
-        if ( tC.jePrefixZatvorkaZatvorena() ) {
-            Bracket z2 = Readers.zatvorka().citaj( tC);
+    public Parameters read(TextContext tC)  {
+        Bracket z1 = Readers.zatvorka().read(tC);
+        if ( tC.isPrefixBracketClosed() ) {
+            Bracket z2 = Readers.zatvorka().read(tC);
             return new Parameters(z1,z2);
         }
 
-        List<IVyraz> listParameter = new LinkedList<IVyraz>();
+        List<IExpression> listParameter = new LinkedList<IExpression>();
         List<Comma> listComman = new LinkedList<Comma>();
         do {
-             listParameter.add(Readers.vyraz().citaj(tC));
+             listParameter.add(Readers.vyraz().read(tC));
 
-             if ( tC.jePrefixCiarka() ) {
-                 Comma c = Readers.ciarka().citaj( tC);
+             if ( tC.isPrefixComma() ) {
+                 Comma c = Readers.ciarka().read(tC);
                  listComman.add(c);
              }  else{
-                 Bracket z2 = Readers.zatvorka().citaj(tC);
+                 Bracket z2 = Readers.zatvorka().read(tC);
                  return new Parameters( z1, z2, listParameter , listComman );
              }
         }  while ( true);

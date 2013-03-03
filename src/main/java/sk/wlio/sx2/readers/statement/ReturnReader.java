@@ -22,15 +22,15 @@ import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class ReturnReader implements TextReader<Return> {
 
-    public Return citaj(TextContext tC)  {
-        Word reserWord = Readers.slovo().citaj( tC);
+    public Return read(TextContext tC)  {
+        Word reserWord = Readers.slovo().read(tC);
         if ( !ReservedWordEnum.RETURN.is(reserWord.toString())  )
             throw SxException.create( SxExTyp.CAKAL_VRAT, tC);
 
-        return new Return(reserWord, Readers.vyraz().citaj(tC), tC.nacitajAkJeBodkoCiarka());
+        return new Return(reserWord, Readers.vyraz().read(tC), tC.readIfIsSemicolon());
     }
 }

@@ -19,7 +19,7 @@ package sk.wlio.sx2.beans.instruction;
 import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class Parameters extends WordAbstract {
     private Bracket z2;
     private List<Comma> ciarky = new ArrayList<Comma>();
 
-    private List<IVyraz> parametre = new ArrayList<IVyraz>();
+    private List<IExpression> parametre = new ArrayList<IExpression>();
 
     public Parameters(Bracket z1, Bracket z2) {
         super(z1.getPosition());
@@ -39,7 +39,7 @@ public class Parameters extends WordAbstract {
         this.z2 = z2;
     }
 
-    public Parameters(Bracket z1, Bracket z2, List<IVyraz> parametre, List<Comma> ciarky) {
+    public Parameters(Bracket z1, Bracket z2, List<IExpression> parametre, List<Comma> ciarky) {
         super(z1.getPosition());
         this.z1 = z1;
         this.z2 = z2;
@@ -51,7 +51,7 @@ public class Parameters extends WordAbstract {
         return ciarky;
     }
 
-    public List<IVyraz> getParametre() {
+    public List<IExpression> getParametre() {
         return parametre;
     }
 

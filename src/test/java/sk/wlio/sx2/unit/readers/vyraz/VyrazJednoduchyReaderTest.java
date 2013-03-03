@@ -21,8 +21,8 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.expression.SimpleExprReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -33,28 +33,28 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
 
     @Test
     public void testCislo()  {
-        new TestTemplate<IVyraz>(sb, new SimpleExprReader()) {
+        new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override
             public void nastavReader() {
                 mr.cislo().setPosun( 1,0 );
             }
-        }.run("4", "cislo;");
+        }.run("4", "int;");
     }
 
     @Test
     public void testPremenna()  {
-        new TestTemplate<IVyraz>(sb, new SimpleExprReader()) {
+        new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override public void nastavReader() {
                 mr.slovo().setPosun( 0,0 );
                 mr.slovo().setVystup( new Word(null, "asdfds"));
                 mr.premenna().setPosun(  6,0) ;
             }
-        }.run( "asdfds", "slovo;premenna;");
+        }.run( "asdfds", "word;variable;");
     }
 
     @Test
     public void testPrikaz()  {
-        new TestTemplate<IVyraz>(sb, new SimpleExprReader()) {
+        new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override public void nastavReader() {
                 mr.slovo().setPosun( 6,0 ,  6,0 ,
                                      6,0 ,  0,0 );
@@ -62,14 +62,14 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
                 mr.slovo().setVystup(word, word, word);
                 mr.prikaz().setPosun(  6,0 );
             }
-        }.run( "asdfds(aa", "slovo;slovo;slovo;prikaz;");
+        }.run( "asdfds(aa", "word;word;word;command;");
     }
 
     @Test
     public void testUnknowExpresion() {
         TextContext tC = new TextContext( "+asdfds");
         try {
-            new SimpleExprReader().citaj( tC);
+            new SimpleExprReader().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals( SxExTyp.UNEXPECTED_PREFIX, e.getTyp());

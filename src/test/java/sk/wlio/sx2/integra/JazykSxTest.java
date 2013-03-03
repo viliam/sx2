@@ -27,7 +27,7 @@ import java.util.*;
 
 public class JazykSxTest extends TestAbstract<Program> {
 
-    final String DIR = "/C:/jIdea/sx2/test/test/integra/";
+    final String DIR = JazykSxTest.class.getResource(".").getFile();
 
     public JazykSxTest() {
         super(new ProgramReader(), new TestVisitor<Program>() {

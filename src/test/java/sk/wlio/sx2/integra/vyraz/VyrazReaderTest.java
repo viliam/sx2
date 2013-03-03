@@ -18,8 +18,8 @@ package sk.wlio.sx2.integra.vyraz;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.expression.ExprReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
 
 import static org.testng.AssertJUnit.*;
 
@@ -41,8 +41,8 @@ public class  VyrazReaderTest {
     @Test
     public void testZloziteVyrazy()  {
         for (String v: zloziteVyrazy) {
-            IVyraz vyraz = citajVyraz(v);
-            assertNotNull( vyraz);
+            IExpression expression = citajVyraz(v);
+            assertNotNull(expression);
         }
     }
 
@@ -53,19 +53,19 @@ public class  VyrazReaderTest {
             try {
                 TextContext tC = new TextContext(v);
                 citajVyraz( tC, false);
-                if (tC.jeKoniec() ) fail(v);
+                if (tC.isEndOfFile() ) fail(v);
             } catch (SxException ex) {}
     }
 
-    private IVyraz citajVyraz(TextContext tC, boolean checkKoniec)  {
-        IVyraz vyraz = new ExprReader().citaj(tC);
-        assertNotNull(vyraz);
+    private IExpression citajVyraz(TextContext tC, boolean checkKoniec)  {
+        IExpression expression = new ExprReader().read(tC);
+        assertNotNull(expression);
 
-        if (checkKoniec) assertTrue( tC.jeKoniec());
-        return vyraz;
+        if (checkKoniec) assertTrue( tC.isEndOfFile());
+        return expression;
     }
 
-    private IVyraz citajVyraz(String tento)  {
+    private IExpression citajVyraz(String tento)  {
         TextContext tC = new TextContext(tento);
         return citajVyraz(tC, true);
     }

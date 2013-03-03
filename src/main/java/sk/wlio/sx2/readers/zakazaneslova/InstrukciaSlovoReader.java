@@ -23,8 +23,8 @@ import sk.wlio.sx2.readers.RezervovaneSlovaAbstractReader;
 
 public class InstrukciaSlovoReader extends RezervovaneSlovaAbstractReader<InstructionWord> {
 
-    public InstructionWord citaj(TextContext tC)  {
-        return new InstructionWord( super.citaj(tC) );
+    public InstructionWord read(TextContext tC)  {
+        return new InstructionWord( super.read(tC) );
     }
 
     @Override

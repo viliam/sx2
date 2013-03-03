@@ -24,9 +24,9 @@ import sk.wlio.sx2.readers.RezervovaneSlovaAbstractReader;
 
 public class DatovyTypReader extends RezervovaneSlovaAbstractReader<DataType> {
 
-    public DataType citaj(TextContext tC)  {
-        DataType dt = new DataType( super.citaj(tC) );
-        dt.setTyp( Enums.VyrazTyp.getDatovyTyp( dt));
+    public DataType read(TextContext tC)  {
+        DataType dt = new DataType( super.read(tC) );
+        dt.setTyp( Enums.ExpType.getDatovyTyp(dt));
 
         return dt;
     }

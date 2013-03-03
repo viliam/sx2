@@ -18,16 +18,16 @@ package sk.wlio.sx2.beans.vyraz;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class VyrazZlozeny extends WordAbstract implements IVyraz {
+public class VyrazZlozeny extends WordAbstract implements IExpression {
 
-    protected IVyraz v1;
+    protected IExpression v1;
     protected Operator op;
-    protected IVyraz v2;
+    protected IExpression v2;
 
-    public VyrazZlozeny(IVyraz v1, Operator op, IVyraz v2) {
+    public VyrazZlozeny(IExpression v1, Operator op, IExpression v2) {
         super(v1.getPosition());
         this.v1 = v1;
         this.op = op;
@@ -39,15 +39,15 @@ public class VyrazZlozeny extends WordAbstract implements IVyraz {
         return v1.toString() + op.toString() + v2.toString();
     }
 
-    public Enums.VyrazTyp getVyrazTyp() {
+    public Enums.ExpType getExpType() {
         return op.getVyrazTyp();
     }
 
-    public IVyraz getV1() {
+    public IExpression getV1() {
         return v1;
     }
 
-    public IVyraz getV2() {
+    public IExpression getV2() {
         return v2;
     }
 

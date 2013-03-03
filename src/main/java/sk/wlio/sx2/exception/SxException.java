@@ -28,10 +28,10 @@ public class SxException extends RuntimeException {
     }
 
     public static SxException create( SxExTyp typ,  String message, TextContext tC) {
-        Position inx = tC.getPozicia();
+        Position inx = tC.getPosition();
 
         if (message == null) {
-            if (tC.jeKoniec())
+            if (tC.isEndOfFile())
                 return new SxException(typ, inx);
 
             message= urobMessage(typ, inx, tC);
@@ -44,7 +44,7 @@ public class SxException extends RuntimeException {
         int riadok = position.getY();
         int stlpec = position.getX();
 
-        String aktualnyRiadok = tC.getRiadok(riadok);
+        String aktualnyRiadok = tC.getLine(riadok);
         char znak = ( aktualnyRiadok.length() < stlpec) ?
                 aktualnyRiadok.charAt(stlpec) : ' ';
 

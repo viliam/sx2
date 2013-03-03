@@ -19,22 +19,22 @@ import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.rozhrania.Instrukcia;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Assignment extends WordAbstract implements Instrukcia {
+public class Assignment extends WordAbstract implements Statement {
 
     private Variable variable;
-    private IVyraz vyraz;
+    private IExpression expression;
     private Operator op;
     private Comma comma;
 
-    public Assignment(Variable variable, Operator op, IVyraz vyraz, Comma comma) {
+    public Assignment(Variable variable, Operator op, IExpression expression, Comma comma) {
         super(variable.getPosition());
         this.variable = variable;
         this.op =op;
-        this.vyraz = vyraz;
+        this.expression = expression;
         this.comma = comma;
     }
 
@@ -42,8 +42,8 @@ public class Assignment extends WordAbstract implements Instrukcia {
         visitor.visit(this);
     }
 
-    public IVyraz getVyraz() {
-        return vyraz;
+    public IExpression getExpression() {
+        return expression;
     }
 
     public Variable getVariable() {

@@ -24,18 +24,18 @@ import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeclarationParameterReader implements TextReader<DeclarationParameter> {
 
-    public DeclarationParameter citaj(TextContext tC)  {
+    public DeclarationParameter read(TextContext tC)  {
         TextReader<Bracket> zR = Readers.zatvorka();
-        Bracket z1 = zR.citaj( tC);
-        if ( tC.jePrefixZatvorkaZatvorena() ) {
-            Bracket z2 = zR.citaj( tC);
+        Bracket z1 = zR.read(tC);
+        if ( tC.isPrefixBracketClosed() ) {
+            Bracket z2 = zR.read(tC);
             return new DeclarationParameter(z1,z2);
         }
 
@@ -43,14 +43,14 @@ public class DeclarationParameterReader implements TextReader<DeclarationParamet
         List<Comma> commas = new ArrayList<Comma>();
         do {
             //parameters are reading
-            declarations.add(Readers.dekPremennej().citaj(tC));
+            declarations.add(Readers.dekPremennej().read(tC));
             //at first, I try to read comma
-            if ( tC.getNasledujuciZnak()==',') {
-                commas.add(Readers.ciarka().citaj(tC));
+            if ( tC.nextCharacter()==',') {
+                commas.add(Readers.ciarka().read(tC));
                 continue;
             }
-            if ( tC.jePrefixZatvorkaZatvorena() ) {
-                Bracket z2 = zR.citaj( tC);
+            if ( tC.isPrefixBracketClosed() ) {
+                Bracket z2 = zR.read(tC);
                 return new DeclarationParameter( z1, z2, commas, declarations );
             }
 

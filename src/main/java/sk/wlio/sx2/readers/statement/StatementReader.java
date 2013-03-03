@@ -16,31 +16,29 @@
 package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.*;
+import sk.wlio.sx2.interfaces.*;
 
-public class StatementReader implements TextReader<Instrukcia> {
+public class StatementReader implements TextReader<Statement> {
 
-    public Instrukcia citaj(TextContext tC)  {
+    public Statement read(TextContext tC)  {
 
-        if (tC.jePrefixDatovyTyp())
-            return Readers.dekPremennej().citaj(tC);
+        if (tC.isPrefixDataType())
+            return Readers.dekPremennej().read(tC);
 
-        if (tC.jePrefixPremenna())
-            return Readers.priradenie().citaj(tC);
+        if (tC.isPrefixVariable())
+            return Readers.priradenie().read(tC);
 
-        if (tC.jePrefixInstrukcia() ) {
+        if (tC.isPrefixStatement() ) {
             switch ( tC.vratPrefixZakazaneSlovo()) {
                 case RETURN:
-                    return Readers.vrat().citaj(tC);
-//                    case ZakazaneSlova.AK : {
-//                        Podmienka pod = odkusniPodmienku();
-//                        //pod.pridajBodkoCiarku(odkusniCiarku(';'));
-//                        //kedze podmienka je viazana na blok
-//                        return pod;
-//                    }
+                    return Readers.vrat().read(tC);
+                case IF : {
+                    return Readers.podmienka().read(tC);
+                }
                }
 //                //3. todo (case, while, for,..)
             }

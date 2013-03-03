@@ -18,23 +18,23 @@ package sk.wlio.sx2.beans.vyraz;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Bracket;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class VyrazVzatvorke implements IVyraz {
+public class VyrazVzatvorke implements IExpression {
 
     private Bracket z1;
-    private IVyraz v;
+    private IExpression v;
     private Bracket z2;
 
-    public VyrazVzatvorke(Bracket z1, IVyraz v, Bracket z2) {
+    public VyrazVzatvorke(Bracket z1, IExpression v, Bracket z2) {
         this.z1 = z1;
         this.v = v;
         this.z2 = z2;
     }
 
-    public Enums.VyrazTyp getVyrazTyp() {
-        return v.getVyrazTyp();
+    public Enums.ExpType getExpType() {
+        return v.getExpType();
     }
 
     public Position getPosition() {
@@ -50,7 +50,7 @@ public class VyrazVzatvorke implements IVyraz {
         return z1;
     }
 
-    public IVyraz getV() {
+    public IExpression getV() {
         return v;
     }
 

@@ -30,25 +30,25 @@ public class TextContextTest {
     public void testPosunNaNasledujuciZnak() {
         //test nasledujuceho znaku v tom istom riadku
         TextContext tc = new TextContext("  ko \r\n df  ");
-        assertEquals( new Position(2,0), tc.najdiNasledujuciZnak());
+        assertEquals( new Position(2,0), tc.findNextCharacter());
         //nasledujuci znak na dalsom riadku
-        tc.setPozicia(new Position(4, 0));
-        assertEquals(new Position(1, 1), tc.najdiNasledujuciZnak());
-        tc.setPozicia(new Position(4, 1));
-        assertNull( tc.najdiNasledujuciZnak());
+        tc.setPosition(new Position(4, 0));
+        assertEquals(new Position(1, 1), tc.findNextCharacter());
+        tc.setPosition(new Position(4, 1));
+        assertNull( tc.findNextCharacter());
     }
 
     @Test
     public void testGetNasledujuciZnak()  {
         //test nasledujuceho znaku v tom istom riadku
         TextContext tc = new TextContext("  ko df  ");
-        assertEquals( 'k', tc.getNasledujuciZnak());
-        assertEquals(new Position(0, 0), tc.getPozicia());
+        assertEquals( 'k', tc.nextCharacter());
+        assertEquals(new Position(0, 0), tc.getPosition());
 
         //chybovy scenar
-        tc.setPozicia(new Position(10, 0));
+        tc.setPosition(new Position(10, 0));
         try {
-            tc.getNasledujuciZnak();
+            tc.nextCharacter();
             fail();
         }   catch (SxException sx)  {
             assertEquals( SxExTyp.END_OF_FILE, sx.getTyp());
@@ -58,56 +58,56 @@ public class TextContextTest {
     @Test
     public void testVratPrfxZnak()  {
         TextContext tC = new TextContext("asdasd");
-        assertTrue( tC.jePrefixPismeno());
+        assertTrue( tC.isPrefixLetter());
         tC = new TextContext(",");
-        assertTrue( tC.jePrefixCiarka());
+        assertTrue( tC.isPrefixComma());
         tC = new TextContext("32");
-        assertTrue( tC.jePrefixCislo());
+        assertTrue( tC.isPrefixInt());
         tC = new TextContext("=");
-        assertTrue( tC.jePrefixOperator());
+        assertTrue( tC.isPrefixOperator());
     }
 
     @Test
     public void testVratPrfSlova()  {
         TextContext tC = new TextContext("asdasd");
-        assertTrue( tC.jePrefixPremenna());
-        assertEquals( new Position(0,0), tC.getPozicia());
+        assertTrue( tC.isPrefixVariable());
+        assertEquals( new Position(0,0), tC.getPosition());
 
-        tC = new TextContext("cislo");
-        assertTrue( tC.jePrefixDatovyTyp());
+        tC = new TextContext("int");
+        assertTrue( tC.isPrefixDataType());
 
         tC = new TextContext("34");
-        assertTrue( tC.jePrefixCislo());
+        assertTrue( tC.isPrefixInt());
 
         tC = new TextContext("asdf()");
-        assertTrue( tC.jePrefixPrikaz());
+        assertTrue( tC.isPrefixCommand());
 
-        tC = new TextContext("vrat ");
-        assertTrue( tC.jePrefixInstrukcia());
+        tC = new TextContext("return ");
+        assertTrue( tC.isPrefixStatement());
 
-        tC = new TextContext("cislo p( ");
-        assertTrue( tC.jePrefixDeklaraciaPrikaz());
+        tC = new TextContext("int p( ");
+        assertTrue( tC.isPrefixDeclarationCommand());
 
         tC = new TextContext("bool er = ");
-        assertTrue( tC.jePrefixDeklaraciaPremennej());
+        assertTrue( tC.isPrefixDeclarationVariable());
     }
 
     @Test
     public void testPredcitajSlovo() {
         TextContext tC = new TextContext("asdf+");
 
-        assertEquals( "asdf", Readers.slovo().citaj( tC).toString())
+        assertEquals( "asdf", Readers.slovo().read(tC).toString())
         ;
-        assertEquals( new Position(4,0), tC.getPozicia());
+        assertEquals( new Position(4,0), tC.getPosition());
 
     }
 
     @Test
     public void testEndOfFile()  {
         TextContext tC = new TextContext(" a");
-        tC.pripocitajXPoziciu(5);
+        tC.addXpostion(5);
         try {
-            Readers.slovo().citaj( tC).toString();;
+            Readers.slovo().read(tC).toString();;
             fail();
         } catch (SxException ex) {
             assertEquals( SxExTyp.PRAZDNE_SLOVO, ex.getTyp());
@@ -118,7 +118,7 @@ public class TextContextTest {
     public void testCakalPrazdneSlovo() {
         TextContext tC = new TextContext("  +a");
         try {
-            Readers.slovo().citaj( tC).toString();;
+            Readers.slovo().read(tC).toString();;
             fail();
         } catch (SxException ex) {
             assertEquals( SxExTyp.PRAZDNE_SLOVO, ex.getTyp());
@@ -128,17 +128,17 @@ public class TextContextTest {
     @Test
     public void testOdkusniBug()   {
         TextContext tC = new TextContext("   asdf+");
-        Readers.slovo().citaj( tC).toString();;
+        Readers.slovo().read(tC).toString();;
     }
 
     @Test
     public void testVratKoniecRiadka()  {
         TextContext tc = new TextContext(" adf 234 \r\n sdf");
-        assertEquals("adf 234 ", tc.vratKoniecRiadka());
+        assertEquals("adf 234 ", tc.endOfLine());
 
         try {
-            tc.setPozicia(new Position(0, 3));
-            tc.vratKoniecRiadka();
+            tc.setPosition(new Position(0, 3));
+            tc.endOfLine();
         } catch (SxException ex) {
             assertEquals( SxExTyp.END_OF_FILE, ex.getTyp());
         }

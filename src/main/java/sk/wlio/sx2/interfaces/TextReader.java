@@ -13,18 +13,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.expression.bracket;
+package sk.wlio.sx2.interfaces;
 
-import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.TextContext;
 
-@Deprecated
-public class VyrazAritmVzatvorkeReader extends VyrazVzatvorkeAbstractReader {
-
-    @Override
-    protected TextReader<IVyraz> getVyrazReader() {
-        return Readers.vrzAritm();
-    }
+public interface TextReader<E extends IWord> {
+                 
+    public E read(TextContext tC) ;
 
 }

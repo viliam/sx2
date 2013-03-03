@@ -36,7 +36,7 @@ public class PrikazReaderTest extends AbstractReaderTest {
                 mr.parametre().setPosun( 8,0);
             }
         };
-        tt.run("   ahoj(3 , p);  ","slovo;parametre;");
+        tt.run("   ahoj(3 , p);  ","word;parameters;");
         Command command = tt.getVysledok();
         assertNotNull(command);
         assertEquals( "ahoj", command.getNazov().toString() );

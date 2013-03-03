@@ -22,27 +22,27 @@ import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.symbol.Operator;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class DeclarationVariableReader implements TextReader<DeclarationVariable> {
 
-    public DeclarationVariable citaj(TextContext tC)  {
-        DataType dataType = Readers.datovyTyp().citaj(tC);
-        Word name = Readers.slovo().citaj( tC);
+    public DeclarationVariable read(TextContext tC)  {
+        DataType dataType = Readers.datovyTyp().read(tC);
+        Word name = Readers.slovo().read(tC);
 
-        if ( tC.jePrefixOperatorPriradenia() ) {
-            Operator op = Readers.opPriradenia().citaj(tC);
-            IVyraz v = Readers.vyraz().citaj(tC);
+        if ( tC.isPrefixOperatorAssigment() ) {
+            Operator op = Readers.opPriradenia().read(tC);
+            IExpression v = Readers.vyraz().read(tC);
 
             Variable pre = new Variable(name);
-            pre.setVyrazTyp(dataType.getVyrazTyp());
-            Assignment assignment = new Assignment( pre,op,v , tC.nacitajAkJeBodkoCiarka());
+            pre.setExpType(dataType.getExpType());
+            Assignment assignment = new Assignment( pre,op,v , tC.readIfIsSemicolon());
             return new DeclarationVariable( dataType, name , assignment);
         }
 
-        return new DeclarationVariable( dataType, name,tC.nacitajAkJeBodkoCiarka());
+        return new DeclarationVariable( dataType, name,tC.readIfIsSemicolon());
     }
 
 }

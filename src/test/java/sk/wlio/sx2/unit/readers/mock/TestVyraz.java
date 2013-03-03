@@ -17,20 +17,20 @@ package sk.wlio.sx2.unit.readers.mock;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class TestVyraz implements IVyraz {
+public class TestVyraz implements IExpression {
 
-    Enums.VyrazTyp vyrazTyp = Enums.VyrazTyp.CISLO;
+    Enums.ExpType expType = Enums.ExpType.INT;
 
     public TestVyraz() {}
-    public TestVyraz(Enums.VyrazTyp vyrazTyp) {
-        this.vyrazTyp = vyrazTyp;
+    public TestVyraz(Enums.ExpType expType) {
+        this.expType = expType;
     }
 
-    public Enums.VyrazTyp getVyrazTyp() {
-        return vyrazTyp;
+    public Enums.ExpType getExpType() {
+        return expType;
     }
 
     public Position getPosition() {

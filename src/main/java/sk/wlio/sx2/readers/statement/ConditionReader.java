@@ -22,23 +22,23 @@ import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.Instrukcia;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class ConditionReader implements TextReader<Condition> {
 
-    public Condition citaj(TextContext tC)        {
-        InstructionWord ifWord = Readers.instrukciaSlovo().citaj(tC);
+    public Condition read(TextContext tC)        {
+        InstructionWord ifWord = Readers.instrukciaSlovo().read(tC);
         if ( !ReservedWordEnum.IF.is(ifWord.toString())  )
             throw SxException.create( SxExTyp.CAKAL_AK, tC);
 
 
-        Bracket z1 = Readers.zatvorka().citaj(tC);
-        IVyraz vrzBool = Readers.vrzBool().citaj(tC);
-        Bracket z2 = Readers.zatvorka().citaj(tC);
-        Instrukcia instrukcia = Readers.instrukcia().citaj(tC);
-        return new Condition( ifWord, vrzBool, instrukcia, z1, z2 );
+        Bracket z1 = Readers.zatvorka().read(tC);
+        IExpression vrzBool = Readers.vyraz().read(tC);
+        Bracket z2 = Readers.zatvorka().read(tC);
+        Statement statement = Readers.instrukcia().read(tC);
+        return new Condition( ifWord, vrzBool, statement, z1, z2 );
     }
 }

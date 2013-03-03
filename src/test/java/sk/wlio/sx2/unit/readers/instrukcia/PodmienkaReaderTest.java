@@ -36,12 +36,12 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
             @Override
             public void nastavReader() {
                 mr.instrukciaSlovo().setPosun(  3,0 );
-                mr.instrukciaSlovo().setVystup(new InstructionWord( null, "ak"));
+                mr.instrukciaSlovo().setVystup(new InstructionWord( null, "if"));
                 mr.zatvorka().setPosun(  1,0 ,  1,0 );
-                mr.vrzBool().setPosun(5, 0);
+                mr.vyraz().setPosun(5, 0);
                 mr.instrukcia().setPosun(9,0);
             }
-        }.run("ak ( b>32) nieco();", "instrukciaSlovo;bracket;vrzBool;bracket;statement;");
+        }.run("if ( b>32) nieco();", "statmentWord;bracket;expression;bracket;statement;");
     }
 
     @Test
@@ -51,7 +51,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
 
         TextContext tC = new TextContext("trat 4;  ");
         try {
-            new ConditionReader().citaj(tC);
+            new ConditionReader().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals(SxExTyp.CAKAL_AK, e.getTyp());

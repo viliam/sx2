@@ -17,10 +17,10 @@ package sk.wlio.sx2.beans.vyraz;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Int implements IVyraz {
+public class Int implements IExpression {
 
     final private Integer cislo;
     final private Position position;
@@ -36,8 +36,8 @@ public class Int implements IVyraz {
         return cislo.toString();
     }
 
-    public Enums.VyrazTyp getVyrazTyp() {
-        return Enums.VyrazTyp.CISLO;
+    public Enums.ExpType getExpType() {
+        return Enums.ExpType.INT;
     }
 
     public Integer getCislo() {

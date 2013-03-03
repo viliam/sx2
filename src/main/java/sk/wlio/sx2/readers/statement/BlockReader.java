@@ -18,30 +18,30 @@ package sk.wlio.sx2.readers.statement;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Block;
 import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.Instrukcia;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class BlockReader implements TextReader<Block> {
 
-    public Block citaj(TextContext tC)  {
+    public Block read(TextContext tC)  {
         TextReader<Bracket> zR = Readers.zatvorka();
-        Bracket z1 = zR.citaj(tC);
+        Bracket z1 = zR.read(tC);
 
         //for each lines
-        List<Instrukcia> linesList = new LinkedList<Instrukcia>();
-        TextReader<Instrukcia> iR = Readers.instrukcia();
+        List<Statement> linesList = new LinkedList<Statement>();
+        TextReader<Statement> iR = Readers.instrukcia();
 
-        while ( tC.getNasledujuciZnak()!='}') {
-            linesList.add(iR.citaj(tC));
+        while ( tC.nextCharacter()!='}') {
+            linesList.add(iR.read(tC));
         }
 
-        Bracket z2 = zR.citaj(tC);
+        Bracket z2 = zR.read(tC);
         //prehodim LinkedList na pole
-        Instrukcia[] inf= linesList.toArray(new Instrukcia[linesList.size()]);
+        Statement[] inf= linesList.toArray(new Statement[linesList.size()]);
 
         return new Block( inf,  z1,z2);
     }

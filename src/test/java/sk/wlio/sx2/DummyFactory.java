@@ -25,7 +25,7 @@ import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.vyraz.Int;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 
 public class DummyFactory {
 
@@ -41,8 +41,8 @@ public class DummyFactory {
         return new Variable( new Word(new Position(0,0), nazov));
     }
 
-    public static Assignment createPriradenie(Variable variable, IVyraz vyraz) {
-        return new Assignment(variable, createOperator(SymbolEnum.ASSIGN), vyraz, null);
+    public static Assignment createPriradenie(Variable variable, IExpression expression) {
+        return new Assignment(variable, createOperator(SymbolEnum.ASSIGN), expression, null);
     }
 
     public static DeclarationVariable createDeklaraciaPremennej(String typ, String nazov) {

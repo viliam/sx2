@@ -36,12 +36,12 @@ public class SlovoReaderTest {
     public void testCitajSlovo()  {
         TextContext tc = new TextContext("  sl34ovo  ");
         SlovoReader sReader = new SlovoReader();
-        Word word = sReader.citaj(tc);
+        Word word = sReader.read(tc);
 
         assertNotNull(word);
         assertEquals( "sl34ovo", word.toString());
         assertEquals( new Position(2,0), word.getPosition());
-        assertEquals( new Position(9,0), tc.getPozicia());
+        assertEquals( new Position(9,0), tc.getPosition());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class SlovoReaderTest {
         TextContext tc = new TextContext("  //sl34ovo  ");
         SlovoReader sReader = new SlovoReader();
         try {
-            sReader.citaj(tc);
+            sReader.read(tc);
             fail();
         } catch (SxException e) {
             assertEquals( SxExTyp.PRAZDNE_SLOVO, e.getTyp());

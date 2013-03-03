@@ -17,16 +17,16 @@ package sk.wlio.sx2.beans.instruction;
 
 import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Bracket;
-import sk.wlio.sx2.rozhrania.Instrukcia;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Block extends WordAbstract implements Instrukcia {
+public class Block extends WordAbstract implements Statement {
 
-    private Instrukcia[] instrukcie;
+    private Statement[] instrukcie;
     private Bracket z1;
     private Bracket z2;
 
-    public Block(Instrukcia[] instrukcie, Bracket z1, Bracket z2) {
+    public Block(Statement[] instrukcie, Bracket z1, Bracket z2) {
         super(z1.getPosition());
         this.z1 = z1;
         this.z2 = z2;
@@ -37,7 +37,7 @@ public class Block extends WordAbstract implements Instrukcia {
         visitor.visit(this);
     }
 
-    public Instrukcia[] getInstrukcie() {
+    public Statement[] getInstrukcie() {
         return instrukcie;
     }
 

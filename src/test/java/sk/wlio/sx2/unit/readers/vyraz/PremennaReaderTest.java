@@ -18,8 +18,8 @@ package sk.wlio.sx2.unit.readers.vyraz;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Variable;
+import sk.wlio.sx2.interfaces.IWord;
 import sk.wlio.sx2.readers.PremennaReader;
-import sk.wlio.sx2.rozhrania.ISlovo;
 
 import static org.testng.AssertJUnit.*;
 
@@ -37,13 +37,13 @@ public class PremennaReaderTest {
     private Variable citajPremenna(String tento)  {
         TextContext tC = new TextContext(tento);
         PremennaReader vPremennaReader = new PremennaReader();
-        ISlovo slovo = vPremennaReader.citaj(tC);
+        IWord word = vPremennaReader.read(tC);
 
-        assertNotNull(slovo);
-        assertTrue( "Slovo nie je instancia VyrazArtim. Slovo.class = " + slovo.getClass().getName()
-                , slovo instanceof Variable);
+        assertNotNull(word);
+        assertTrue( "Slovo nie je instancia VyrazArtim. Slovo.class = " + word.getClass().getName()
+                , word instanceof Variable);
         
-        return (Variable) slovo;
+        return (Variable) word;
     }
     
 }

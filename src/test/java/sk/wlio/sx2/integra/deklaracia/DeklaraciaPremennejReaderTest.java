@@ -23,7 +23,7 @@ import sk.wlio.sx2.beans.instruction.Assignment;
 import sk.wlio.sx2.beans.instruction.DeclarationVariable;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.statement.DeclarationVariableReader;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
@@ -32,10 +32,10 @@ import static org.testng.AssertJUnit.fail;
 public class DeklaraciaPremennejReaderTest {
     @Test
     public void testCislo()  {
-        DeclarationVariable dekPremena = citajDekPremennej("  cislo a; ");
+        DeclarationVariable dekPremena = citajDekPremennej("  int a; ");
         assertNotNull( dekPremena);
         assertEquals( "a" , dekPremena.getNazov().toString());
-        assertEquals(Enums.VyrazTyp.CISLO , dekPremena.getDatovyTyp().getTyp() );
+        assertEquals(Enums.ExpType.INT, dekPremena.getDatovyTyp().getTyp() );
         assertEquals(new Position(2,0) , dekPremena.getPosition());
     }
 
@@ -44,16 +44,16 @@ public class DeklaraciaPremennejReaderTest {
         DeclarationVariable dekPremena = citajDekPremennej("  bool a; ");
         assertNotNull( dekPremena);
         assertEquals( "a" , dekPremena.getNazov().toString());
-        assertEquals(Enums.VyrazTyp.BOOL , dekPremena.getDatovyTyp().getTyp() );
+        assertEquals(Enums.ExpType.BOOL , dekPremena.getDatovyTyp().getTyp() );
         assertEquals(new Position(2,0) , dekPremena.getPosition());
     }
 
     @Test
     public void testPriradenie()  {
-        DeclarationVariable dekPremena = citajDekPremennej(" cislo v = 3;");
+        DeclarationVariable dekPremena = citajDekPremennej(" int v = 3;");
         assertNotNull( dekPremena);
         assertEquals( "v" , dekPremena.getNazov().toString());
-        assertEquals(Enums.VyrazTyp.CISLO, dekPremena.getDatovyTyp().getTyp() );
+        assertEquals(Enums.ExpType.INT, dekPremena.getDatovyTyp().getTyp() );
         assertEquals(new Position(1,0) , dekPremena.getPosition());
 
         Assignment p = dekPremena.getAssignment();
@@ -62,32 +62,20 @@ public class DeklaraciaPremennejReaderTest {
 
     @Test
     public void testZlyDatovyTyp() {
-        TextContext text = new TextContext("  nic a; ");
+        TextContext text = new TextContext("  void a; ");
         TextReader<DeclarationVariable> dpReader = new DeclarationVariableReader();
         try {
-            dpReader.citaj( text);
+            dpReader.read(text);
             fail();
         } catch (SxException e) {
 
         }
     }
 
-//    @Test
-//    public void testZlyNazovPremenej() {
-//        TextContext text = new TextContext("  bool ahoj(); ");
-//        TextReader<DeklaraciaPremennej> dpReader = new DeklaraciaPremennejReader();
-//        try {
-//            dpReader.citaj( text);
-//            fail();
-//        } catch (SxException e) {
-//
-//        }
-//    }
-
     private DeclarationVariable citajDekPremennej(String ts)  {
         TextContext text = new TextContext(ts);
         TextReader<DeclarationVariable> dpReader = new DeclarationVariableReader();
-        DeclarationVariable dekPremena= dpReader.citaj( text);
+        DeclarationVariable dekPremena= dpReader.read(text);
         return dekPremena;
     }
 

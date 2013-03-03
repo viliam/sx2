@@ -23,7 +23,7 @@ import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.statement.DeclarationCommandReader;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;
 
@@ -45,7 +45,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
                     mr.blok().setPosun( 11, 0 );
                 }
             };
-        tt.run("  bool ahoj() { vrat 3; } ", "datovyTyp;slovo;slovo;dekParameter;blok;");
+        tt.run("  bool ahoj() { return 3; } ", "dataType;word;word;decParameter;block;");
 
         DeclarationCommand dp = tt.getVysledok();
         assertEquals("nazov prikazu", "ahoj", dp.getNazov().toString() );
@@ -57,7 +57,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
             mr.datovyTyp().setPosun( 5,0 );
             mr.datovyTyp().setVystup( new DataType(null, "boool"));
 
-            citajDekPrikaz("  boool ahoj() { vrat 3; } ");
+            citajDekPrikaz("  boool ahoj() { return 3; } ");
             fail("Cakal chybu, zla deklaracia prikazu");
         } catch (SxException e) {
             assertEquals( "Typ chyby", SxExTyp.CAKAL_DEKLARACIU_PRIKAZU,  e.getTyp());
@@ -83,7 +83,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
     private DeclarationCommand citajDekPrikaz(String ts)  {
         TextContext text = new TextContext(ts);
         TextReader<DeclarationCommand> dpReader = new DeclarationCommandReader();
-        DeclarationCommand dekPrikaz= dpReader.citaj( text);
+        DeclarationCommand dekPrikaz= dpReader.read(text);
         assertNotNull("nenulovy prikaz", dekPrikaz);
         return dekPrikaz;
     }

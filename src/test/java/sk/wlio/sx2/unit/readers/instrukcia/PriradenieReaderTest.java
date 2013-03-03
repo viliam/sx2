@@ -41,7 +41,7 @@ public class PriradenieReaderTest extends AbstractReaderTest {
                 mr.vyraz().setPosun( 1, 0 );
                 mr.ciarka().setPosun(1,0);
             }
-        }.run("c=4;", "premenna;opPriradenia;expression;ciarka;");
+        }.run("c=4;", "variable;opAssigment;expression;comma;");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class PriradenieReaderTest extends AbstractReaderTest {
             mr.premenna().setPosun( 1, 0 );
             mr.premenna().setVystup( new Variable( new Word( new Position(1,1)) ) );
 
-            new AssignmentReader().citaj( new TextContext("c + 4;"));
+            new AssignmentReader().read(new TextContext("c + 4;"));
 
             fail();
         } catch (SxException ex) {

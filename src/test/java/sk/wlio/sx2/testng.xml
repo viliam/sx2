@@ -38,12 +38,7 @@
         <class name="sk.wlio.sx2.unit.readers.OperatorReaderTest" />
         <class name="sk.wlio.sx2.unit.TextContextTest" />
         <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazReaderTest" />
-        <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazAritmReaderTest" />
-        <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazAritmVzatvorkeReaderTest" />
-        <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazBoolReaderTest" />
         <class name="sk.wlio.sx2.unit.readers.znak.ZatvorkaReaderTest" />
-        <class name="sk.wlio.sx2.unit.visitors.TypVyrazuVisitorTest" />
-        <class name="sk.wlio.sx2.unit.visitors.DeklaracieVisitorTest" />
         <class name="sk.wlio.sx2.unit.visitors.KontextovaKontrolaVisitorTest" />
         <class name="sk.wlio.sx2.integra.SxExceptionTest" />
         <class name="sk.wlio.sx2.integra.JazykSxTest" />
@@ -52,10 +47,6 @@
         <class name="sk.wlio.sx2.integra.deklaracia.DeklaraciaPremennejReaderTest"/>
         <class name="sk.wlio.sx2.integra.deklaracia.BlokReaderTest"/>
         <class name="sk.wlio.sx2.integra.vyraz.VyrazReaderTest" />
-        <class name="sk.wlio.sx2.integra.vyraz.VyrazAritmReaderTest"/>
-        <class name="sk.wlio.sx2.integra.vyraz.VyrazBoolReaderTest"/>
-        <class name="sk.wlio.sx2.integra.visitors.TypVyrazuVisitorTest"/>
-        <class name="sk.wlio.sx2.integra.visitors.DeklaracieVisitorTest"/>
         <class name="sk.wlio.sx2.integra.visitors.KontextovaKontrolaVisitorTest"/>
     </classes>
   </test>

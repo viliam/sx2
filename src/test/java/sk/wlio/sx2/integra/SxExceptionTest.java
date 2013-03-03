@@ -21,11 +21,11 @@ import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.symbol.OperatorAritmReader;
 import sk.wlio.sx2.readers.symbol.ZatvorkaReader;
 import sk.wlio.sx2.readers.expression.*;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
 import static org.testng.AssertJUnit.*;
 
@@ -33,7 +33,7 @@ public class SxExceptionTest {
 
     private void testException(TextContext tC, TextReader tR, SxExTyp typOcakavany) {
         try {
-            tR.citaj(tC);
+            tR.read(tC);
             fail();
         } catch (SxException e) {
             assertEquals(typOcakavany, e.getTyp());
@@ -44,14 +44,14 @@ public class SxExceptionTest {
     public void testEndOfFile()  {
         TextContext tC = new TextContext(" 123");
         TextReader<Int> cR = new IntReader();
-        cR.citaj( tC);
+        cR.read(tC);
         testException( tC, cR, SxExTyp.PRAZDNE_SLOVO);
     }
 
     @Test
     public void testUnExpectedPrefix() {
         TextContext tC = new TextContext(" +123");
-        TextReader<IVyraz> vJr = new SimpleExprReader();
+        TextReader<IExpression> vJr = new SimpleExprReader();
         testException(tC, vJr, SxExTyp.UNEXPECTED_PREFIX );
     }
 
@@ -68,36 +68,6 @@ public class SxExceptionTest {
         TextContext tC = new TextContext(" c3");
         TextReader<Bracket> zR = new ZatvorkaReader();
         testException(tC, zR , SxExTyp.CAKAL_ZATVORKU);
-    }
-
-    @Test
-    public void testCakalAritmOperator() {
-        TextContext tC = new TextContext(" 3 e");
-        TextReader<IVyraz> zR = new VyrazAritmReader();
-        testException(tC, zR , SxExTyp.CAKAL_OPERATOR);
-    }
-
-    @Test
-    public void testCakalBoolOperator() {
-        TextContext tC = new TextContext(" 3 e");
-        TextReader<IVyraz> zR = new VyrazBoolReader();
-        testException(tC, zR , SxExTyp.CAKAL_OPERATOR_POROVNANIA);
-    }
-
-
-    @Test
-    public void testCakalCislo() {
-        TextContext tC = new TextContext(" 3d");
-        TextReader<IVyraz> zR = new VyrazAritmReader();
-        testException(tC, zR , SxExTyp.CAKAL_CISLO);
-    }
-
-
-    @Test
-    public void testCakalAritmetickyVyraz() {
-        TextContext tC = new TextContext("39(");
-        VyrazAritmReader zR = new VyrazAritmReader();
-        testException(tC, zR , SxExTyp.CAKAL_OPERATOR);
     }
 
 }

@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.rozhrania;
+package sk.wlio.sx2.interfaces;
 
 import sk.wlio.sx2.beans.Position;
 
-public interface ISlovo {
+public interface IWord {
 
     //vrati poziciu slova v ramci kontext
     public Position getPosition();

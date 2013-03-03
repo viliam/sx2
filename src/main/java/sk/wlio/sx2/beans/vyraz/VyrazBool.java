@@ -17,18 +17,18 @@ package sk.wlio.sx2.beans.vyraz;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
 @Deprecated
 public class VyrazBool extends VyrazAbstract {
 
-    public VyrazBool(IVyraz v1, Operator op, IVyraz v2) {
+    public VyrazBool(IExpression v1, Operator op, IExpression v2) {
         super(v1.getPosition(), v1, op, v2);
     }
 
-    public Enums.VyrazTyp getVyrazTyp() {
-        return Enums.VyrazTyp.BOOL;
+    public Enums.ExpType getExpType() {
+        return Enums.ExpType.BOOL;
     }
 
     public void visit(IVisitor iVisitor) {

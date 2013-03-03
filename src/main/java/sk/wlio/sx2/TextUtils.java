@@ -32,7 +32,7 @@ public class TextUtils {
         if (i>=slovo.length() ) return i;
          //kym sa nerovnas zakazanym znakom ani operatorom, ani koncu riadka, tak v pohode
         char p = slovo.charAt(i);
-        while ( i<slovo.length() && p != ' ' && (jePismeno(p)|| jeCislo(p))) {
+        while ( i<slovo.length() && p != ' ' && (jePismeno(p)|| isInt(p))) {
             i++;
             if ( i < slovo.length() ) p = slovo.charAt(i);
         }
@@ -45,7 +45,7 @@ public class TextUtils {
         return matcher.matches();
     }
 
-    public static boolean jeCislo(char a) {
+    public static boolean isInt(char a) {
         Pattern pattern = Pattern.compile( "[0-9]" );
         Matcher matcher = pattern.matcher(String.valueOf(a ));
         return matcher.matches();

@@ -18,24 +18,24 @@ package sk.wlio.sx2.beans.instruction;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.rozhrania.IVyraz;
-import sk.wlio.sx2.rozhrania.Instrukcia;
+import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Return extends WordAbstract implements Instrukcia{
+public class Return extends WordAbstract implements Statement {
 
     private Word zakazaneWord;
-    private IVyraz hodnota;
+    private IExpression hodnota;
     private Comma comma;
 
-    public Return(Word zakazaneWord, IVyraz hodnota, Comma comma) {
+    public Return(Word zakazaneWord, IExpression hodnota, Comma comma) {
         super(zakazaneWord.getPosition());
         this.hodnota = hodnota;
         this.zakazaneWord = zakazaneWord;
         this.comma = comma;
     }
 
-    public IVyraz getVyraz() {
+    public IExpression getVyraz() {
         return hodnota;
     }
 

@@ -19,28 +19,28 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class ProgramReader implements TextReader<Program> {
 
-    public Program citaj(TextContext tC)  {
-        Program program = new Program( tC.getPozicia());
+    public Program read(TextContext tC)  {
+        Program program = new Program( tC.getPosition());
 
         boolean nasiel;
         do {
            nasiel = false;
-           if ( tC.jePrefixDeklaraciaPremennej()) {
-               program.pridajPremennu( Readers.dekPremennej().citaj( tC));
+           if ( tC.isPrefixDeclarationVariable()) {
+               program.pridajPremennu( Readers.dekPremennej().read(tC));
                nasiel = true;
            }
 
-           if ( tC.jePrefixDeklaraciaPrikaz() ) {
-               program.pridajPrikaz( Readers.dekPrikaz().citaj( tC));
+           if ( tC.isPrefixDeclarationCommand() ) {
+               program.pridajPrikaz( Readers.dekPrikaz().read(tC));
                nasiel = true;
            }
         }  while ( nasiel);
 
-        if (!tC.jeKoniec())
+        if (!tC.isEndOfFile())
             throw SxException.create(SxExTyp.CAKAL_DEKLARACIU_PRIKAZU_ALEBO_PREMENNEJ, tC);
 
         return program;

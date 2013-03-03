@@ -36,11 +36,11 @@ public class VratReaderTest extends AbstractReaderTest {
             @Override
             public void nastavReader() {
                 mr.slovo().setPosun( 4,0) ;
-                mr.slovo().setVystup( new Word(null, "vrat"));
+                mr.slovo().setVystup( new Word(null, "return"));
                 mr.vyraz().setPosun(1, 0);
                 mr.vyraz().setVystup(new TestVyraz());
             }
-        }.run("vrat 4;", "slovo;expression;");
+        }.run("return 4;", "word;expression;");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class VratReaderTest extends AbstractReaderTest {
 
         TextContext tC = new TextContext("trat 4;  ");
         try {
-            new ReturnReader().citaj(tC);
+            new ReturnReader().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals(SxExTyp.CAKAL_VRAT, e.getTyp());

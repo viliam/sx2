@@ -18,12 +18,12 @@ package sk.wlio.sx2.readers;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class PremennaReader implements TextReader<Variable> {
 
-    public Variable citaj(TextContext tC)  {
-        Word obsah = Readers.slovo().citaj(tC);
+    public Variable read(TextContext tC)  {
+        Word obsah = Readers.slovo().read(tC);
         return new Variable( obsah);
     }
 

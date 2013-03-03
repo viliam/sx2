@@ -29,19 +29,19 @@ import sk.wlio.sx2.readers.symbol.SlovoReader;
 
 public class TextContext {
 
-    private final String[] riadky;
+    private final String[] lines;
     private volatile Position inx = new Position(0,0);
 
-    public TextContext( String slovo)   {
-        this( slovo.split("\r\n"));
+    public TextContext( String word)   {
+        this( word.split("\r\n"));
     }
 
-    private TextContext( String[] riadky) {
-        this.riadky = riadky;
+    private TextContext( String[] lines) {
+        this.lines = lines;
     }
 
     public String getRiadok() {
-        return riadky[inx.getY()];
+        return lines[inx.getY()];
     }
 
     /**
@@ -51,16 +51,16 @@ public class TextContext {
      * @return vrati nasledovny znak
      * @ - v pripade, ze
      */
-    public char getNasledujuciZnak()  {
-        Position zaciatok = new Position( inx);
-        najdiNasledujuciZnak();
-        skontrolujKoniec();
+    public char nextCharacter()  {
+        Position actual = new Position( inx);
+        findNextCharacter();
+        checkEndOfFile();
 
         int x = inx.getX(),
             y = inx.getY();
 
-        char p=  riadky[y].charAt(x);
-        inx = zaciatok;
+        char p =  lines[y].charAt(x);
+        inx = actual;
         return p;
     }
 
@@ -69,235 +69,235 @@ public class TextContext {
      *
      * @return Suradnice nasledujuceho neprazdneho znaku
      */
-    public Position najdiNasledujuciZnak() {
+    public Position findNextCharacter() {
         int x = inx.getX(), y = inx.getY();
 
-        while ( y < riadky.length
-            && ( x = najdiNasledujuciZnakVriadku(x, y)) >= riadky[y].length() ) {
+        while ( y < lines.length
+            && ( x = findNextCharacterInLine(x, y)) >= lines[y].length() ) {
             y++; x=0;
         }
 
-        if (!presahujeHranice(x, y))  {
+        if (!isOut(x, y))  {
             return null;
         }
         return (inx = new Position(x, y ));
     }
 
-    private int najdiNasledujuciZnakVriadku(int x, int y) {
-        String riadok = riadky[y];
-        while (x<riadok.length() && (riadok.charAt(x)==' ' || riadok.charAt(x)=='\n' ) ) x++;
+    private int findNextCharacterInLine(int x, int y) {
+        String line = lines[y];
+        while (x<line.length() && (line.charAt(x)==' ' || line.charAt(x)=='\n' ) ) x++;
         return x;
     }
 
-    public Position getPozicia() {
+    public Position getPosition() {
         return new Position( inx);
     }
 
-    public void pripocitajXPoziciu(int by) {
+    public void addXpostion(int by) {
         this.inx = this.inx.addX(by);
     }
 
-    public void setPozicia(Position inx) {
+    public void setPosition(Position inx) {
         this.inx = new Position(inx);
     }
 
-    public String vratKoniecRiadka()   {
-        skontrolujKoniec();
+    public String endOfLine()   {
+        checkEndOfFile();
 
         int x = inx.getX(), y = inx.getY();
-        return riadky[y].substring(x);
+        return lines[y].substring(x);
     }
 
-    public boolean skontrolujKoniec()  {
-        if (jeKoniec())
+    public boolean checkEndOfFile()  {
+        if (isEndOfFile())
             throw SxException.create(SxExTyp.END_OF_FILE, this);
         return true;
     }
 
-    private boolean presahujeHranice(int x, int y) {
-        return !( y>=riadky.length || (y==riadky.length-1 && x>=riadky[ y].length() ) );
+    private boolean isOut(int x, int y) {
+        return !( y>= lines.length || (y== lines.length-1 && x>= lines[ y].length() ) );
     }
 
-    public boolean jeKoniec() {
-        return (najdiNasledujuciZnak() == null);
+    public boolean isEndOfFile() {
+        return (findNextCharacter() == null);
     }
 
-    public boolean jePrefixPismeno()  {
-        char a = getNasledujuciZnak();
+    public boolean isPrefixLetter()  {
+        char a = nextCharacter();
         return TextUtils.jePismeno(a);
     }
 
-    public boolean jePrefixCislo()  {
-        char a = getNasledujuciZnak();
-        return TextUtils.jeCislo(a);
+    public boolean isPrefixInt()  {
+        char a = nextCharacter();
+        return TextUtils.isInt(a);
     }
 
-    public boolean jePrefixOperator()  {
-        char a = getNasledujuciZnak();
-        return SymbolsEnum.OP_COMPARATION.jePrefix(a) || SymbolsEnum.OP_ARITM.jePrefix(a) ||
+    public boolean isPrefixOperator()  {
+        char a = nextCharacter();
+        return SymbolsEnum.OP_COMPARISON.jePrefix(a) || SymbolsEnum.OP_ARITM.jePrefix(a) ||
                SymbolsEnum.OP_ASSIGNMENT.jePrefix(a) || SymbolsEnum.OP_BOOL.jePrefix(a);
     }
 
-    public boolean jePrefixCiarka()  {
-        char a = getNasledujuciZnak();
+    public boolean isPrefixComma()  {
+        char a = nextCharacter();
         return SymbolsEnum.COMMAS.jePrefix(a);
     }
 
 
-    public boolean jePrefixOperatorAritm() {
-        char a = getNasledujuciZnak();
+    public boolean isPrefixOperatorAritm() {
+        char a = nextCharacter();
         return SymbolsEnum.OP_ARITM.jePrefix(a);
     }
 
-    public boolean jePrefixOperatorBool() {
-        char a = getNasledujuciZnak();
+    public boolean isPrefixOperatorBool() {
+        char a = nextCharacter();
         return SymbolsEnum.OP_BOOL.jePrefix(a);
     }
 
-    public boolean jePrefixOperatorPorovnania() {
-        char a = getNasledujuciZnak();
-        return SymbolsEnum.OP_COMPARATION.jePrefix(a);
+    public boolean isPrefixOperatorComparison() {
+        char a = nextCharacter();
+        return SymbolsEnum.OP_COMPARISON.jePrefix(a);
     }
 
-    public boolean jePrefixOperatorPriradenia() {
-        char a = getNasledujuciZnak();
+    public boolean isPrefixOperatorAssigment() {
+        char a = nextCharacter();
         return SymbolsEnum.OP_ASSIGNMENT.jePrefix(a);
     }
 
-    public boolean jePrefixZatvorkaOtovorena() {
-        char a = getNasledujuciZnak();
-        return SymbolEnum.PARENTHESIS_NORM_OPEN.jePrefix(a);
+    public boolean isPrefixBracketOpen() {
+        char a = nextCharacter();
+        return SymbolEnum.BRACKET_NORM_OPEN.jePrefix(a);
     }
 
-    public boolean jePrefixZatvorkaZatvorena() {
-        char a = getNasledujuciZnak();
-        return SymbolEnum.PARENTHESIS_NORM_CLOSE.jePrefix(a);
+    public boolean isPrefixBracketClosed() {
+        char a = nextCharacter();
+        return SymbolEnum.BRACKET_NORM_CLOSE.jePrefix(a);
     }
 
-    public boolean jePrefixBodkoCiarka() {
-        char a = getNasledujuciZnak();
+    public boolean isPrefixSemicolon() {
+        char a = nextCharacter();
         return SymbolEnum.SEMICOLON.jePrefix(a);
     }
 
-    public Comma nacitajAkJeBodkoCiarka() {
-        Comma bodkoCiarka = null;
-        if (jePrefixBodkoCiarka() )
-            bodkoCiarka = Readers.ciarka().citaj( this);
-        return bodkoCiarka;
+    public Comma readIfIsSemicolon() {
+        Comma semicolon = null;
+        if (isPrefixSemicolon() )
+            semicolon = Readers.ciarka().read(this);
+        return semicolon;
     }
 
 
-    abstract class JePrefixTemplateMetod {
-        public boolean jePrefix()  {
-            Position zac = getPozicia();
+    abstract class IsPrefixTemplateMetod {
+        public boolean isPrefix()  {
+            Position pos = getPosition();
             try {
-                if (!jePrefixPismeno() ) {
+                if (!isPrefixLetter() ) {
                    return false;
                 }
 
-                Word word = Readers.slovo().citaj( TextContext.this);
-                return  jePrefix(word);
+                Word word = Readers.slovo().read(TextContext.this);
+                return  isPrefix(word);
             } finally {
-                setPozicia( zac);
+                setPosition(pos);
             }
         }
 
-        protected abstract boolean jePrefix(Word word);
+        protected abstract boolean isPrefix(Word word);
     }
 
-    public boolean jePrefixDatovyTyp()  {
-        return new JePrefixTemplateMetod() {
+    public boolean isPrefixDataType()  {
+        return new IsPrefixTemplateMetod() {
             @Override
-            protected boolean jePrefix(Word word) {
+            protected boolean isPrefix(Word word) {
                 return RezervedWordsEnum.DATA_TYPE.is(word.getObsah());
             }
-        }.jePrefix();
+        }.isPrefix();
     }
 
-    public boolean jePrefixInstrukcia()  {
-        return new JePrefixTemplateMetod() {
+    public boolean isPrefixStatement()  {
+        return new IsPrefixTemplateMetod() {
             @Override
-            protected boolean jePrefix(Word word) {
+            protected boolean isPrefix(Word word) {
                 return RezervedWordsEnum.INSTRUCTION_WORD.is(word.getObsah());
             }
-        }.jePrefix();
+        }.isPrefix();
     }
 
-    public boolean jePrefixPremenna()  {
-        return new JePrefixTemplateMetod() {
+    public boolean isPrefixVariable()  {
+        return new IsPrefixTemplateMetod() {
             @Override
-            protected boolean jePrefix(Word word) {
+            protected boolean isPrefix(Word word) {
 
-                return !RezervedWordsEnum.jeSlovo(word)
-                        && (!presahujeHranice(inx.getX(), inx.getY()) || !jePrefixZatvorkaOtovorena());
+                return !RezervedWordsEnum.isWord(word)
+                        && (!isOut(inx.getX(), inx.getY()) || !isPrefixBracketOpen());
 
             }
-        }.jePrefix();
+        }.isPrefix();
     }
 
-    public boolean jePrefixPrikaz()  {
-        return new JePrefixTemplateMetod() {
+    public boolean isPrefixCommand()  {
+        return new IsPrefixTemplateMetod() {
             @Override
-            protected boolean jePrefix(Word word) {
-                return !RezervedWordsEnum.jeSlovo(word)
-                        && presahujeHranice(inx.getX(), inx.getY())
-                        && jePrefixZatvorkaOtovorena();
+            protected boolean isPrefix(Word word) {
+                return !RezervedWordsEnum.isWord(word)
+                        && isOut(inx.getX(), inx.getY())
+                        && isPrefixBracketOpen();
 
             }
-        }.jePrefix();
+        }.isPrefix();
     }
 
-    abstract class JePrefixDeklaraciaTemplateMetod {
+    abstract class IsPrefixDeclarationTemplateMetod {
         public boolean jePrefix()  {
-            Position position = getPozicia();
+            Position position = getPosition();
 
             try {
-                if (jeKoniec() || !jePrefixPismeno() )
+                if (isEndOfFile() || !isPrefixLetter() )
                    return false;
 
-                Word word = Readers.slovo().citaj(TextContext.this );
-                return RezervedWordsEnum.DATA_TYPE.is(word.getObsah()) && jePrefixNazov();
+                Word word = Readers.slovo().read(TextContext.this);
+                return RezervedWordsEnum.DATA_TYPE.is(word.getObsah()) && isPrefixName();
             } finally {
-                setPozicia(position);
+                setPosition(position);
             }
         }
 
-        protected abstract boolean jePrefixNazov();
+        protected abstract boolean isPrefixName();
     }
 
-    public boolean jePrefixDeklaraciaPrikaz() {
-        return new JePrefixDeklaraciaTemplateMetod() {
+    public boolean isPrefixDeclarationCommand() {
+        return new IsPrefixDeclarationTemplateMetod() {
             @Override
-            protected boolean jePrefixNazov() {
-                return jePrefixPrikaz();
+            protected boolean isPrefixName() {
+                return isPrefixCommand();
             }
         }.jePrefix();
     }
 
-    public boolean jePrefixDeklaraciaPremennej() {
-        return new JePrefixDeklaraciaTemplateMetod() {
+    public boolean isPrefixDeclarationVariable() {
+        return new IsPrefixDeclarationTemplateMetod() {
             @Override
-            protected boolean jePrefixNazov() {
-                return jePrefixPremenna();
+            protected boolean isPrefixName() {
+                return isPrefixVariable();
             }
         }.jePrefix();
     }
 
     public ReservedWordEnum vratPrefixZakazaneSlovo()  {
-        najdiNasledujuciZnak();
-        String s = SlovoReader.predcitajSlovo( vratKoniecRiadka(), 0);
+        findNextCharacter();
+        String s = SlovoReader.predcitajSlovo( endOfLine(), 0);
         return ReservedWordEnum.makeSymbol(s);
     }
 
-    public String getRiadok(int riadok) {
-        return riadky[riadok];
+    public String getLine(int line) {
+        return lines[line];
     }
 
     @Override
     public String toString() {
-        if (jeKoniec()) return "koniec";
-        if (inx != null && riadky != null && inx.getY() < riadky.length)
-            return inx.toString() + "  : " + riadky[inx.getY()].toString();
+        if (isEndOfFile()) return "eof";
+        if (inx != null && lines != null && inx.getY() < lines.length)
+            return inx.toString() + "  : " + lines[inx.getY()].toString();
         return super.toString();
     }
 }

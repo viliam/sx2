@@ -32,12 +32,13 @@ public class DeklaraciaPremennejReaderTest extends AbstractReaderTest {
         new TestTemplate<DeclarationVariable>(sb, new DeclarationVariableReader()) {
             @Override public void nastavReader() {
 
-                mr.datovyTyp().setVystup( new DataType(null, "cislo"));
+                mr.datovyTyp().setVystup( new DataType(null, "int"));
                 mr.datovyTyp().setPosun( 5,0 );
                 mr.slovo().setPosun(  0,0 ,  1,0);
                 mr.slovo().setVystup( new Word(null, "a"));
+                mr.ciarka().setPosun(  0,0 ,  1,0);
             }
-        }.run("cislo a;", "datovyTyp;slovo;");
+        }.run("int a;", "dataType;word;comma;");
     }
 
 }

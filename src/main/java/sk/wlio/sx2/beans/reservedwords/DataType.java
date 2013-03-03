@@ -18,12 +18,12 @@ package sk.wlio.sx2.beans.reservedwords;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class DataType extends Word implements IVyraz {
+public class DataType extends Word implements IExpression {
 
-    Enums.VyrazTyp typ = Enums.VyrazTyp.NIC;
+    Enums.ExpType typ = Enums.ExpType.VOID;
 
     public DataType(Word word) {
         super(word);
@@ -34,15 +34,15 @@ public class DataType extends Word implements IVyraz {
         super(position, obsah);
     }
 
-    public Enums.VyrazTyp getTyp() {
+    public Enums.ExpType getTyp() {
         return typ;
     }
 
-    public void setTyp(Enums.VyrazTyp typ) {
+    public void setTyp(Enums.ExpType typ) {
         this.typ = typ;
     }
 
-    public Enums.VyrazTyp getVyrazTyp() {
+    public Enums.ExpType getExpType() {
         return typ;
     }
 

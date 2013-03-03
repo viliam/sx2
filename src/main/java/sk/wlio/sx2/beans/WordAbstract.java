@@ -15,9 +15,9 @@
 
 package sk.wlio.sx2.beans;
 
-import sk.wlio.sx2.rozhrania.ISlovo;
+import sk.wlio.sx2.interfaces.IWord;
 
-public abstract class WordAbstract implements ISlovo {
+public abstract class WordAbstract implements IWord {
 
     private final Position position;
 

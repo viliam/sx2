@@ -23,23 +23,23 @@ import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class DeclarationCommandReader implements TextReader<DeclarationCommand>  {
 
-    public DeclarationCommand citaj(TextContext tC)  {
-       DataType dataType = Readers.datovyTyp().citaj( tC);
+    public DeclarationCommand read(TextContext tC)  {
+       DataType dataType = Readers.datovyTyp().read(tC);
        String sDataType = dataType.toString();
        if (!RezervedWordsEnum.DATA_TYPE.is(sDataType))
            throw SxException.create(SxExTyp.CAKAL_DEKLARACIU_PRIKAZU, tC);
 
-       if ( !tC.jePrefixPrikaz())
+       if ( !tC.isPrefixCommand())
           throw SxException.create(SxExTyp.ZLY_NAZOV_PRIKAZU, tC);
 
-       Word name = Readers.slovo().citaj( tC);
+       Word name = Readers.slovo().read(tC);
        //odkusnem parametre
-       DeclarationParameter decParam = Readers.dekParameter().citaj(tC);
-       Block block = Readers.blok().citaj( tC);
+       DeclarationParameter decParam = Readers.dekParameter().read(tC);
+       Block block = Readers.blok().read(tC);
 
        return new DeclarationCommand(dataType, name, decParam, block);
     }

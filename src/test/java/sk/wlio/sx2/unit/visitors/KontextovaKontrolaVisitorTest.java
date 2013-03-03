@@ -31,7 +31,7 @@ import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.rozhrania.Instrukcia;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.visitors.KontextovaKontrolaVisitor;
 import sk.wlio.sx2.DummyFactory;
 
@@ -62,10 +62,10 @@ public class KontextovaKontrolaVisitorTest {
     @Test
     public void testVisitDekPrikazu() {
         DataType datovyTyp = new DataType(new Word(null, "cislo"));
-        datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
+        datovyTyp.setTyp( Enums.ExpType.INT);
         Word nazov = new Word(null, "prikaz");
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
-        Block telo = new Block(new Instrukcia[0], new Bracket(null, null), null);
+        Block telo = new Block(new Statement[0], new Bracket(null, null), null);
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
 
@@ -74,14 +74,14 @@ public class KontextovaKontrolaVisitorTest {
 
         DeclarationCommand dekPrikazPamet = visitor.getPrikaz("prikaz");
         assertNotNull( dekPrikazPamet);
-        assertEquals( Enums.VyrazTyp.CISLO, dekPrikazPamet.getDatovyTyp().getVyrazTyp() );
+        assertEquals( Enums.ExpType.INT, dekPrikazPamet.getDatovyTyp().getExpType() );
         assertEquals( dekPrikaz.getNazov().getObsah(), dekPrikazPamet.getNazov().getObsah());
     }
 
     @Test
     public void testDeklaraciaParameter() {
         DataType datovyTyp = new DataType( new Word(null, "bool"));
-        datovyTyp.setTyp( Enums.VyrazTyp.BOOL);
+        datovyTyp.setTyp( Enums.ExpType.BOOL);
         Word nazov = new Word(null, "ahoj");
         DeclarationVariable d1 = new DeclarationVariable(datovyTyp, nazov, new Comma(null, null) );
 
@@ -94,7 +94,7 @@ public class KontextovaKontrolaVisitorTest {
 
         DeclarationVariable dekPremennejPamet = visitor.getPremenna("ahoj");
         assertNotNull( dekPremennejPamet);
-        assertEquals( Enums.VyrazTyp.BOOL, dekPremennejPamet.getDatovyTyp().getVyrazTyp() );
+        assertEquals( Enums.ExpType.BOOL, dekPremennejPamet.getDatovyTyp().getExpType() );
         assertEquals( d1.getNazov().getObsah(), dekPremennejPamet.getNazov().getObsah());
     }
 
@@ -113,9 +113,9 @@ public class KontextovaKontrolaVisitorTest {
         }
 
         DataType datovyTyp = new DataType(new Word(null, "cislo"));
-        datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
+        datovyTyp.setTyp( Enums.ExpType.INT);
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
-        Block telo = new Block(new Instrukcia[] { new Return(new InstructionWord( new Position(0,0), null), null, null) }
+        Block telo = new Block(new Statement[] { new Return(new InstructionWord( new Position(0,0), null), null, null) }
                              , new Bracket(null, null), null);
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
@@ -123,7 +123,7 @@ public class KontextovaKontrolaVisitorTest {
         visitor.pridajPrikaz(dekPrikaz);
 
         visitor.visit(command);
-        assertEquals( command.getVyrazTyp(), dekPrikaz.getDatovyTyp().getVyrazTyp());
+        assertEquals( command.getExpType(), dekPrikaz.getDatovyTyp().getExpType());
     }
 
     @Test
@@ -140,14 +140,14 @@ public class KontextovaKontrolaVisitorTest {
         }
 
         DataType datovyTyp = new DataType(new Word(null, "cislo"));
-        datovyTyp.setTyp( Enums.VyrazTyp.CISLO);
+        datovyTyp.setTyp( Enums.ExpType.INT);
         DeclarationVariable dekPremennej =
                 new DeclarationVariable(datovyTyp, nazov, new Comma(null, null));
 
         visitor.pridajPremennu( dekPremennej);
 
         visitor.visit(variable);
-        assertEquals( variable.getVyrazTyp(), dekPremennej.getDatovyTyp().getVyrazTyp());
+        assertEquals( variable.getExpType(), dekPremennej.getDatovyTyp().getExpType());
     }
 
    @Test
@@ -155,7 +155,7 @@ public class KontextovaKontrolaVisitorTest {
         Int anInt = DummyFactory.createCislo(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.TIMES);
         Variable variable = DummyFactory.createPremenna("ahoj");
-        variable.setVyrazTyp( Enums.VyrazTyp.CISLO);
+        variable.setExpType(Enums.ExpType.INT);
         VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
 
         KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
@@ -168,7 +168,7 @@ public class KontextovaKontrolaVisitorTest {
         Int anInt = DummyFactory.createCislo(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.SMALLER_EQUAL);
         Variable variable = DummyFactory.createPremenna( "ahoj");
-        variable.setVyrazTyp( Enums.VyrazTyp.CISLO);
+        variable.setExpType(Enums.ExpType.INT);
         VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
 
         KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
@@ -181,7 +181,7 @@ public class KontextovaKontrolaVisitorTest {
         Int anInt = DummyFactory.createCislo(3 );
         Operator op = DummyFactory.createOperator(SymbolEnum.AND);
         Variable variable = DummyFactory.createPremenna( "ahoj");
-        variable.setVyrazTyp( Enums.VyrazTyp.BOOL);
+        variable.setExpType(Enums.ExpType.BOOL);
         VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
 
         try {
@@ -191,7 +191,7 @@ public class KontextovaKontrolaVisitorTest {
             assertEquals( ex.getTyp(), SxExTyp.ZLY_DATOVY_TYP);
         }
 
-        variable.setVyrazTyp( Enums.VyrazTyp.BOOL);
+        variable.setExpType(Enums.ExpType.BOOL);
         vyraz = new VyrazZlozeny(anInt, op, variable);
 
         try {
@@ -205,7 +205,7 @@ public class KontextovaKontrolaVisitorTest {
     @Test
     public void testPriradenie() {
         Variable variable = DummyFactory.createPremenna( "ahoj");
-        variable.setVyrazTyp( Enums.VyrazTyp.CISLO);
+        variable.setExpType(Enums.ExpType.INT);
         Int anInt = DummyFactory.createCislo(3);
         Assignment assignment = DummyFactory.createPriradenie(variable, anInt);
 
@@ -215,7 +215,7 @@ public class KontextovaKontrolaVisitorTest {
     @Test
     public void testPriradenieZle() {
         Variable variable = DummyFactory.createPremenna( "ahoj");
-        variable.setVyrazTyp( Enums.VyrazTyp.BOOL);
+        variable.setExpType(Enums.ExpType.BOOL);
         Int anInt = DummyFactory.createCislo(3);
         Assignment assignment = DummyFactory.createPriradenie(variable, anInt);
 

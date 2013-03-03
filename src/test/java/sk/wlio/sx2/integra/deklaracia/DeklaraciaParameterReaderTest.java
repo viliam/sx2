@@ -45,14 +45,14 @@ public class DeklaraciaParameterReaderTest {
 
     @Test
     public void testBasic()  {
-        DeclarationParameter dp = citajDekParameter("( bool v, cislo d)");
+        DeclarationParameter dp = citajDekParameter("( bool v, int d)");
         List<Comma> ciarky = dp.getLiComma();
-        assertEquals("pocet ciarok",1 , ciarky.size());
-        assertNotNull("nenulova ciarka", ciarky.get(0));
+        assertEquals("count of comma",1 , ciarky.size());
+        assertNotNull("not null comma", ciarky.get(0));
         List<DeclarationVariable> dekPremenne = dp.getLiDekPremennej();
-        assertEquals("pocet dekPremennej", 2, dekPremenne.size() );
-        assertNotNull("nenulova zatvorka1",  dp.getZ1());
-        assertNotNull("nenulova zatvorka2", dp.getZ2());
+        assertEquals("count of variable declaration", 2, dekPremenne.size() );
+        assertNotNull("first not null comma",  dp.getZ1());
+        assertNotNull("second not null comma", dp.getZ2());
     }
 
     @Test
@@ -61,14 +61,14 @@ public class DeklaraciaParameterReaderTest {
             citajDekParameter("( aa,)");
             fail();
         } catch (SxException e) {
-            assertEquals( "Typ chyby", SxExTyp.CAKAL_DATOVY_TYP,  e.getTyp());
+            assertEquals( "Exception type", SxExTyp.CAKAL_DATOVY_TYP,  e.getTyp());
         }
 
     }
 
     private DeclarationParameter citajDekParameter(String ts)  {
         TextContext text = new TextContext(ts);
-        DeclarationParameter dekParameter= Readers.dekParameter().citaj( text);
+        DeclarationParameter dekParameter= Readers.dekParameter().read(text);
         return dekParameter;
     }
 

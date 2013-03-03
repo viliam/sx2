@@ -19,10 +19,10 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.rozhrania.Instrukcia;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class DeclarationVariable extends WordAbstract implements Instrukcia {
+public class DeclarationVariable extends WordAbstract implements Statement {
 
     private DataType datovyTyp;
     private Word nazov;

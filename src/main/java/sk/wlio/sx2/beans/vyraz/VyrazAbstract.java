@@ -18,15 +18,15 @@ package sk.wlio.sx2.beans.vyraz;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.IExpression;
 
-public abstract class VyrazAbstract extends WordAbstract implements IVyraz {
+public abstract class VyrazAbstract extends WordAbstract implements IExpression {
 
-    protected IVyraz v1;
+    protected IExpression v1;
     protected Operator op;
-    protected IVyraz v2;
+    protected IExpression v2;
 
-    protected VyrazAbstract(Position position, IVyraz v1, Operator op, IVyraz v2) {
+    protected VyrazAbstract(Position position, IExpression v1, Operator op, IExpression v2) {
         super(position);
         this.v1 = v1;
         this.op = op;
@@ -38,7 +38,7 @@ public abstract class VyrazAbstract extends WordAbstract implements IVyraz {
         return v1.toString() + op.toString() + v2.toString();
     }
 
-    public IVyraz getV1() {
+    public IExpression getV1() {
         return v1;
     }
 
@@ -46,7 +46,7 @@ public abstract class VyrazAbstract extends WordAbstract implements IVyraz {
         return op;
     }
 
-    public IVyraz getV2() {
+    public IExpression getV2() {
         return v2;
     }
 }

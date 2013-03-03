@@ -18,24 +18,24 @@ package sk.wlio.sx2.readers.expression;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
-public class SimpleExprReader implements TextReader<IVyraz> {
+public class SimpleExprReader implements TextReader<IExpression> {
 
-    public IVyraz citaj(TextContext tC)  {
-        if ( tC.jePrefixCislo())
-            return Readers.cislo().citaj(tC);
+    public IExpression read(TextContext tC)  {
+        if ( tC.isPrefixInt())
+            return Readers.cislo().read(tC);
 
-        if ( tC.jePrefixPremenna())
-            return Readers.premena().citaj(tC);
+        if ( tC.isPrefixVariable())
+            return Readers.premena().read(tC);
 
-        if (tC.jePrefixDatovyTyp())
-            return Readers.datovyTyp().citaj(tC);
+        if (tC.isPrefixDataType())
+            return Readers.datovyTyp().read(tC);
 
-        if (tC.jePrefixPrikaz() )
-                return Readers.prikaz().citaj(tC);
+        if (tC.isPrefixCommand() )
+                return Readers.prikaz().read(tC);
 
 
         throw SxException.create( SxExTyp.UNEXPECTED_PREFIX, tC );

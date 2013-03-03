@@ -21,13 +21,13 @@ import sk.wlio.sx2.beans.vyraz.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class IntReader implements TextReader<Int> {
 
-    public Int citaj(TextContext tC)  {
-        Position position = tC.najdiNasledujuciZnak();
-        String aInt = Readers.slovo().citaj( tC).toString();
+    public Int read(TextContext tC)  {
+        Position position = tC.findNextCharacter();
+        String aInt = Readers.slovo().read(tC).toString();
 
         try {
             return new Int( Integer.valueOf(aInt ), position);

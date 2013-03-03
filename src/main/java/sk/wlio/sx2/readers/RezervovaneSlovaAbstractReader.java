@@ -20,12 +20,12 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public abstract class RezervovaneSlovaAbstractReader<E extends Word> implements TextReader<E> {
 
-    public E citaj(TextContext tC)  {
-        Word word = Readers.slovo().citaj( tC);
+    public E read(TextContext tC)  {
+        Word word = Readers.slovo().read(tC);
         String s = word.toString();
 
         if (!getZakazaneSlova().is(s))

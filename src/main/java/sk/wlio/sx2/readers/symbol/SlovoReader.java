@@ -21,13 +21,13 @@ import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class SlovoReader implements TextReader<Word> {
 
-    public Word citaj(TextContext tC)  {
-        tC.najdiNasledujuciZnak();
-        Position inx= tC.getPozicia();
+    public Word read(TextContext tC)  {
+        tC.findNextCharacter();
+        Position inx= tC.getPosition();
         int zacX =inx.getX();
 
         String riadok = tC.getRiadok();
@@ -36,7 +36,7 @@ public class SlovoReader implements TextReader<Word> {
             throw SxException.create(SxExTyp.PRAZDNE_SLOVO, tC);
 
         int konX = zacX + slovo.length();
-        tC.setPozicia(new Position(konX, inx.getY()));
+        tC.setPosition(new Position(konX, inx.getY()));
         return new Word(inx, slovo);
     }
 
@@ -54,7 +54,7 @@ public class SlovoReader implements TextReader<Word> {
          //kym sa nerovnas zakazanym znakom ani operatorom, ani koncu riadka, tak v pohode
         do {
             char p = riadok.charAt( konX);
-            if (!TextUtils.jePismeno(p) && !TextUtils.jeCislo(p))
+            if (!TextUtils.jePismeno(p) && !TextUtils.isInt(p))
                 return konX;
 
             konX++;

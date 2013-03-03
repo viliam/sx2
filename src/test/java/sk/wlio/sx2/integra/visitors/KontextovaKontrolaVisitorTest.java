@@ -19,9 +19,9 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.ProgramReader;
 import sk.wlio.sx2.readers.expression.ExprReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
 import sk.wlio.sx2.visitors.KontextovaKontrolaVisitor;
 import sk.wlio.sx2.integra.TestAbstract;
 
@@ -41,18 +41,18 @@ public class KontextovaKontrolaVisitorTest {
         @Override
         protected String[] getDobreVety() {
             return new String[] {
-                "cislo a;  cislo b() { vrat a + 3; }",
-                "cislo s() { vrat 3+3; } cislo a = s();",
-                "cislo sum(cislo n) { vrat 3; } cislo a = sum(3);", " cislo v = 3;"
-                    ,"cislo sum(cislo n) { cislo a = ine(3); } cislo ine(cislo n) { cislo a = 3; }"
+                "int a;  int b() { return a + 3; }",
+                "int s() { return 3+3; } int a = s();",
+                "int sum(int n) { return 3; } int a = sum(3);", " int v = 3;"
+                    ,"int sum(int n) { int a = ine(3); } int ine(int n) { int a = 3; }"
             };
         }
 
         @Override
         protected String[] getChybneVety() {
             return new String[] {
-                "cislo a;  cislo b() { vrat c + 3; }",
-                " bool k = 3;", "cislo sum(cislo n) { vrat 3; } bool v; cislo a = sum(v);"
+                "int a;  int b() { return c + 3; }",
+                " bool k = 3;", "int sum(int n) { return 3; } bool v; int a = sum(v);"
 
             };
         }
@@ -68,7 +68,7 @@ public class KontextovaKontrolaVisitorTest {
         new DeklaracieVisitorTestImpl().testFail();
     }
 
-    class TypZlozenehoVyrazuTest extends TestAbstract<IVyraz>  {
+    class TypZlozenehoVyrazuTest extends TestAbstract<IExpression>  {
 
         @Override
         protected String[] getDobreVety() {
@@ -88,8 +88,8 @@ public class KontextovaKontrolaVisitorTest {
 
         public TypZlozenehoVyrazuTest() {
             super(new ExprReader(),
-                new TestVisitor<IVyraz>() {
-                    public void visit(TextContext tC, IVyraz slovo) {
+                new TestVisitor<IExpression>() {
+                    public void visit(TextContext tC, IExpression slovo) {
                         KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
                         visitor.visit( (VyrazZlozeny) slovo);
                     }

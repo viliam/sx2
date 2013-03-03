@@ -1,6 +1,6 @@
-cislo n = 3;
+int n = 3;
 
-cislo suma(cislo n) {
-   vrat 3;
-   vrat n +1;
+int suma(int n) {
+   return 3;
+   return n +1;
 }

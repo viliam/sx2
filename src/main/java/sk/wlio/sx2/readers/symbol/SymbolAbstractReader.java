@@ -20,15 +20,15 @@ import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.rozhrania.ISlovo;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.IWord;
+import sk.wlio.sx2.interfaces.TextReader;
 
 //Template metod
-public abstract class SymbolAbstractReader<E extends ISlovo> implements TextReader<E> {
+public abstract class SymbolAbstractReader<E extends IWord> implements TextReader<E> {
 
-    public E citaj(TextContext tC)  {
+    public E read(TextContext tC)  {
         try {
-            Position poz = tC.najdiNasledujuciZnak();
+            Position poz = tC.findNextCharacter();
             String sSymbol = odkusniSymbol(tC);
             SymbolEnum eSymbol = SymbolEnum.makeSymbol(sSymbol);
             return create( poz, eSymbol);
@@ -48,7 +48,7 @@ public abstract class SymbolAbstractReader<E extends ISlovo> implements TextRead
         String[] symbols = getSymbols();
 
         int najdeneInx = -1, dlzka =0;   //hladam najdlhsi zhodny prefix
-        String s = tC.vratKoniecRiadka();
+        String s = tC.endOfLine();
         for (int i=0 ; i<symbols.length; i++)
             if ( s.startsWith( symbols[i]) && dlzka < symbols[i].length()) {
                     dlzka = symbols[i].length() ;
@@ -56,7 +56,7 @@ public abstract class SymbolAbstractReader<E extends ISlovo> implements TextRead
                 }
 
         if (najdeneInx!= -1) {
-            tC.pripocitajXPoziciu(symbols[najdeneInx].length());
+            tC.addXpostion(symbols[najdeneInx].length());
             return symbols[najdeneInx];
         }
 

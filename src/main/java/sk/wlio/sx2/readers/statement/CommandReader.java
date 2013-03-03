@@ -20,13 +20,13 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.instruction.Parameters;
 import sk.wlio.sx2.beans.instruction.Command;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class CommandReader implements TextReader<Command> {
     
-    public Command citaj(TextContext tC)  {
-        Word name = Readers.slovo().citaj( tC);
-        Parameters parameters = Readers.parametre().citaj(tC);
+    public Command read(TextContext tC)  {
+        Word name = Readers.slovo().read(tC);
+        Parameters parameters = Readers.parametre().read(tC);
         return new Command(name, parameters);
     }
 }

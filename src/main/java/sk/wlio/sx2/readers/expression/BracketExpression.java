@@ -18,17 +18,17 @@ package sk.wlio.sx2.readers.expression;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
-public class BracketExpression implements TextReader<IVyraz> {
+public class BracketExpression implements TextReader<IExpression> {
 
-    public IVyraz citaj(TextContext tC)  {
-        Bracket z1 = Readers.zatvorka().citaj(tC);
-        IVyraz vyraz= Readers.vyraz().citaj(tC);
-        Bracket z2 = Readers.zatvorka().citaj(tC);
-        return new VyrazVzatvorke(z1, vyraz, z2);
+    public IExpression read(TextContext tC)  {
+        Bracket z1 = Readers.zatvorka().read(tC);
+        IExpression expression = Readers.vyraz().read(tC);
+        Bracket z2 = Readers.zatvorka().read(tC);
+        return new VyrazVzatvorke(z1, expression, z2);
     }
 
 }

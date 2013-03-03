@@ -21,13 +21,13 @@ public enum SymbolEnum {
     MODULO("%") , REST("/"),
     //BOOL
     AND("&"), OR("|"), AND_STRONG("&&"), OR_STRONG("||"),
-    //POROVNANIE
+    //COMPARISON
     SMALLER("<"), GREATER(">"), SMALLER_EQUAL("<="),
     GRATER_EQUAL(">=") , EQUAL("=="), UNEQUAL("!="),
     ASSIGN("="),
 
-    PARENTHESIS_NORM_OPEN("("),
-    PARENTHESIS_NORM_CLOSE(")"),
+    BRACKET_NORM_OPEN("("),
+    BRACKET_NORM_CLOSE(")"),
     PARENTHESIS_BLOCK_OPEN("{"),
     PARENTHESIS_BLOCK_CLOSE("}"),
 

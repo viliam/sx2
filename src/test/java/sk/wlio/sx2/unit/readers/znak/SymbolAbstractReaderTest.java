@@ -54,7 +54,7 @@ public class SymbolAbstractReaderTest {
         String ano = invokeOdkusniSymbol(symbolReader, tC);
         assertNotNull(ano);
         assertEquals("ano", ano);
-        assertEquals(new Position(6,0), tC.getPozicia());
+        assertEquals(new Position(6,0), tC.getPosition());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class SymbolAbstractReaderTest {
     public void testSymbolReader()  {
         TextContext tC = new TextContext("   ano ja som");
         TestSymbolAbstractReader symbolReader = new TestSymbolAbstractReader();
-        Word symbol = symbolReader.citaj(tC);
+        Word symbol = symbolReader.read(tC);
         assertNotNull(symbol);        
         assertEquals("test", symbol.toString());
     }

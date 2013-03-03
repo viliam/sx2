@@ -25,16 +25,15 @@ import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.vyraz.Int;
+import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.readers.statement.*;
 import sk.wlio.sx2.readers.symbol.*;
 import sk.wlio.sx2.readers.expression.*;
-import sk.wlio.sx2.readers.expression.bracket.VyrazAritmVzatvorkeReader;
 import sk.wlio.sx2.readers.expression.BracketExpression;
 import sk.wlio.sx2.readers.zakazaneslova.DatovyTypReader;
 import sk.wlio.sx2.readers.zakazaneslova.InstrukciaSlovoReader;
-import sk.wlio.sx2.rozhrania.Instrukcia;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
 public class ReadersImpl implements  IReaders {
     
@@ -44,20 +43,18 @@ public class ReadersImpl implements  IReaders {
     public TextReader<Operator> opBool() {  return   new OperatorBoolReader(); }
     public TextReader<Operator> opPorovnanie() {  return   new OperatorPorovnanieReader(); }
     public TextReader<Operator> opPriradenia() {  return   new OperatorPriradenieReader(); }
-    public TextReader<IVyraz> vyraz() {  return   new ExprReader(); }
-    public TextReader<IVyraz> vrzAritm() {  return   new VyrazAritmReader(); }
-    public TextReader<IVyraz> vrzBool() {  return   new VyrazBoolReader(); }
-    public TextReader<IVyraz> vrzJednduchy() {  return   new SimpleExprReader(); }
-    public TextReader<IVyraz> vrzVzatvorke() {  return   new BracketExpression(); }
-    public TextReader<IVyraz> vrzAritmVzatvorke() {  return   new VyrazAritmVzatvorkeReader(); }
+    public TextReader<IExpression> vyraz() {  return   new ExprReader(); }
+    public TextReader<IExpression> vrzJednduchy() {  return   new SimpleExprReader(); }
+    public TextReader<IExpression> vrzVzatvorke() {  return   new BracketExpression(); }
     public TextReader<Bracket> zatvorka() {  return   new ZatvorkaReader(); }
     public TextReader<Comma> ciarka  () {  return   new CiarkaReader(); }
 
     public TextReader<DataType> datovyTyp() {  return   new DatovyTypReader(); }
     public TextReader<InstructionWord> instrukciaSlovo() { return new InstrukciaSlovoReader(); }
 
-    public TextReader<Instrukcia> instrukcia() {  return   new StatementReader(); }
+    public TextReader<Statement> instrukcia() {  return   new StatementReader(); }
     public TextReader<Assignment> priradenie() {  return   new AssignmentReader(); }
+    public TextReader<Condition> podmienka() { return new ConditionReader(); }
     public TextReader<Block> blok() {  return   new BlockReader(); }
     public TextReader<Variable> premenna() {  return   new PremennaReader(); }
     public TextReader<DeclarationVariable> dekPremennej() {  return   new DeclarationVariableReader(); }

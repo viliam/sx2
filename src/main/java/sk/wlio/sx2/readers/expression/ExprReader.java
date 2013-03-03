@@ -19,43 +19,43 @@ import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.TextReader;
-import sk.wlio.sx2.rozhrania.IVyraz;
+import sk.wlio.sx2.interfaces.TextReader;
 
-public class ExprReader implements TextReader<IVyraz> {
+public class ExprReader implements TextReader<IExpression> {
 
-    public IVyraz citaj(TextContext tC)  {
-        IVyraz expr;
-        if ( tC.jePrefixZatvorkaOtovorena() )  {
-            expr = Readers.vrzVzatvorke().citaj(tC);
+    public IExpression read(TextContext tC)  {
+        IExpression expr;
+        if ( tC.isPrefixBracketOpen() )  {
+            expr = Readers.vrzVzatvorke().read(tC);
         } else   {
-            expr = Readers.vrzJednduchy().citaj(tC);
+            expr = Readers.vrzJednduchy().read(tC);
         }
 
-        if (tC.jeKoniec())  return expr;
+        if (tC.isEndOfFile())  return expr;
 
         TextReader<Operator> opReader = null;
-        if (tC.jePrefixOperatorAritm() )
+        if (tC.isPrefixOperatorAritm() )
             opReader = Readers.opAritm();
-        if (tC.jePrefixOperatorBool())
+        if (tC.isPrefixOperatorBool())
             opReader = Readers.opBool();
-        if (tC.jePrefixOperatorPorovnania())
+        if (tC.isPrefixOperatorComparison())
             opReader = Readers.opPorovnanie();
 
         if (opReader != null)
-            expr = new VyrazZlozeny(expr, opReader.citaj(tC), Readers.vyraz().citaj(tC));
+            expr = new VyrazZlozeny(expr, opReader.read(tC), Readers.vyraz().read(tC));
 
-        if (!tC.jeKoniec() )
+        if (!tC.isEndOfFile() )
             checkEndOfExpression(tC);
 
         return expr;
     }
 
     private void checkEndOfExpression(TextContext tC) {
-        if    ( !tC.jePrefixOperator()
-             && !tC.jePrefixCiarka()
-             && !tC.jePrefixZatvorkaZatvorena() )
+        if    ( !tC.isPrefixOperator()
+             && !tC.isPrefixComma()
+             && !tC.isPrefixBracketClosed() )
             throw SxException.create(SxExTyp.CAKAL_OPERATOR, tC);
     }
 

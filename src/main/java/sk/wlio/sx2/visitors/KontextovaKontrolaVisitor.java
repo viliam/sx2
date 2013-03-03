@@ -27,9 +27,9 @@ import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.rozhrania.ISlovo;
-import sk.wlio.sx2.rozhrania.IVyraz;
-import sk.wlio.sx2.rozhrania.Instrukcia;
+import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.IWord;
+import sk.wlio.sx2.interfaces.Statement;
 
 import java.util.HashMap;
 import java.util.List;
@@ -113,8 +113,8 @@ public class KontextovaKontrolaVisitor implements IVisitor {
     public void visit(Block block) {
         KontextovaKontrolaVisitor dekVisitor = new KontextovaKontrolaVisitor( mapDekPremennej, mapDekPrikaz);
 
-        for (Instrukcia instrukcia : block.getInstrukcie())
-            instrukcia.visit(dekVisitor);
+        for (Statement statement : block.getInstrukcie())
+            statement.visit(dekVisitor);
     }
 
     public void visit(Command command) {
@@ -124,25 +124,25 @@ public class KontextovaKontrolaVisitor implements IVisitor {
         if (dekPrikaz == null)
             throw SxException.create(SxExTyp.NEZNAMY_PRIKAZ, command.getPosition());
         //nastav typ prikazu na zaklade deklaracie
-        command.setVyrazTyp( dekPrikaz.getDatovyTyp().getVyrazTyp());
+        command.setExpType(dekPrikaz.getDatovyTyp().getExpType());
 
         //skontrolu pocet parametrov
         List<DeclarationVariable> liDekPremennej = dekPrikaz.getDekParam().getLiDekPremennej();
-        List<IVyraz> liParemetre = command.getParameters().getParametre();
+        List<IExpression> liParemetre = command.getParameters().getParametre();
         if ( liDekPremennej.size() != liParemetre.size())
             throw SxException.create(SxExTyp.NESPRAVNY_POCET_PARAMETROV, command.getPosition());
 
         //skontroluj typ parametrov
         for (int i=0; i<liDekPremennej.size(); i++)
-            if ( liDekPremennej.get(i).getDatovyTyp().getVyrazTyp() != liParemetre.get(i).getVyrazTyp())
+            if ( liDekPremennej.get(i).getDatovyTyp().getExpType() != liParemetre.get(i).getExpType())
                 throw SxException.create( SxExTyp.ZLY_DATOVY_TYP, liParemetre.get(i).getPosition());
 
         command.getParameters().visit(this);
     }
 
     public void visit(Parameters parameters) {
-        for (IVyraz vyraz : parameters.getParametre() )
-            vyraz.visit( this);
+        for (IExpression expression : parameters.getParametre() )
+            expression.visit( this);
     }
 
     public void visit(Variable variable) {
@@ -152,29 +152,29 @@ public class KontextovaKontrolaVisitor implements IVisitor {
         if (dekPremennej == null)
             throw SxException.create(SxExTyp.NEZNAMA_PREMENNA, variable.getPosition());
         //nastav typ prikazu na zaklade deklaracie
-        variable.setVyrazTyp( dekPremennej.getDatovyTyp().getVyrazTyp());
+        variable.setExpType(dekPremennej.getDatovyTyp().getExpType());
     }
 
     public void visit(Assignment assignment) {
-        IVyraz vyraz = assignment.getVyraz();
-        vyraz.visit(this);
+        IExpression expression = assignment.getExpression();
+        expression.visit(this);
 
         Variable variable = assignment.getVariable();
-        if (variable.getVyrazTyp() != vyraz.getVyrazTyp() )
-            throw SxException.create(SxExTyp.ZLY_DATOVY_TYP, vyraz.getPosition());
+        if (variable.getExpType() != expression.getExpType() )
+            throw SxException.create(SxExTyp.ZLY_DATOVY_TYP, expression.getPosition());
     }
 
     public void visit(VyrazZlozeny vyrazZlozeny) {
-        Enums.VyrazTyp ocakavanyTyp = vyrazZlozeny.getVyrazTyp();
-        if ( Enums.VyrazTyp.POROVNANIE.equals(ocakavanyTyp))
-            ocakavanyTyp = Enums.VyrazTyp.CISLO;
+        Enums.ExpType ocakavanyTyp = vyrazZlozeny.getExpType();
+        if ( Enums.ExpType.COMPARISON.equals(ocakavanyTyp))
+            ocakavanyTyp = Enums.ExpType.INT;
 
-        IVyraz v1 = vyrazZlozeny.getV1();
-        if ( !Enums.VyrazTyp.NEURCENY.equals(v1.getVyrazTyp()) && !v1.getVyrazTyp().equals( ocakavanyTyp))
+        IExpression v1 = vyrazZlozeny.getV1();
+        if ( !Enums.ExpType.UNKNOWN.equals(v1.getExpType()) && !v1.getExpType().equals( ocakavanyTyp))
             throw SxException.create(SxExTyp.ZLY_DATOVY_TYP, v1.getPosition());
 
-        IVyraz v2 = vyrazZlozeny.getV2();
-        if ( !Enums.VyrazTyp.NEURCENY.equals(v2.getVyrazTyp()) && !v2.getVyrazTyp().equals( ocakavanyTyp))
+        IExpression v2 = vyrazZlozeny.getV2();
+        if ( !Enums.ExpType.UNKNOWN.equals(v2.getExpType()) && !v2.getExpType().equals( ocakavanyTyp))
             throw SxException.create(SxExTyp.ZLY_DATOVY_TYP, v2.getPosition());
 
         v1.visit(this);
@@ -189,6 +189,10 @@ public class KontextovaKontrolaVisitor implements IVisitor {
         aReturn.getVyraz().visit( this);
     }
 
+    public void visit(Condition condition) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
     public void visit(Operator operator) {}
 
     public void visit(DataType datovyTyp) {}
@@ -196,8 +200,8 @@ public class KontextovaKontrolaVisitor implements IVisitor {
 
     public void visit(Int anInt) {}
 
-    public void visit(ISlovo slovo) {
-        throw new IllegalStateException("Nezadeklarovana visit metoda pre typ : " + slovo.getClass().getName());
+    public void visit(IWord word) {
+        throw new IllegalStateException("Nezadeklarovana visit metoda pre typ : " + word.getClass().getName());
     }
 
 }

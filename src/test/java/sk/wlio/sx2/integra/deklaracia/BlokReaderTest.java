@@ -19,8 +19,8 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.instruction.Block;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.IWord;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.rozhrania.ISlovo;
 
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
@@ -29,8 +29,8 @@ import static org.testng.AssertJUnit.fail;
 public class BlokReaderTest {
     
     public final static String[] zloziteBloky = new String[] {
-            " { cislo p = 33; }",
-            " { a = 3 + 4; vrat 43; }"
+            " { int p = 33; }",
+            " { a = 3 + 4; return 43; }"
     };
 
     public final static String[] chybneBloky = new String[] {
@@ -52,7 +52,7 @@ public class BlokReaderTest {
             try {
                 TextContext tC = new TextContext(v);
                 citajBlok( tC, false);
-                if (tC.jeKoniec() ) fail();
+                if (tC.isEndOfFile() ) fail();
             } catch (SxException ex) {}
     }
     
@@ -62,13 +62,13 @@ public class BlokReaderTest {
     }
     
     private Block citajBlok(TextContext tC, boolean checkKoniec)  {
-        ISlovo slovo = Readers.blok().citaj(tC);
+        IWord word = Readers.blok().read(tC);
 
-        assertNotNull(slovo);
-        assertTrue( "Slovo nie je instancia Blok. Slovo.class = " + slovo.getClass().getName()
-                , slovo instanceof Block);
+        assertNotNull(word);
+        assertTrue( "Slovo nie je instancia Blok. Slovo.class = " + word.getClass().getName()
+                , word instanceof Block);
 
-        if (checkKoniec) assertTrue( tC.jeKoniec());
-        return (Block) slovo;
+        if (checkKoniec) assertTrue( tC.isEndOfFile());
+        return (Block) word;
     }
 }

@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.rozhrania;
+package sk.wlio.sx2.interfaces;
 
-import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.Enums;
+import sk.wlio.sx2.visitors.IVisitor;
 
-public interface TextReader<E extends ISlovo> {
-                 
-    public E citaj(TextContext tC) ;
-
+public interface IExpression extends IWord {
+    public Enums.ExpType getExpType();
+    public void visit(IVisitor iVisitor);
 }

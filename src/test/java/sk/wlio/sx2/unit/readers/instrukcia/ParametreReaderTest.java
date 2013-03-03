@@ -30,7 +30,7 @@ public class ParametreReaderTest extends AbstractReaderTest {
         new TestTemplate<Parameters>(sb, new ParameterReader()) {
             @Override public void nastavReader() {
                 mr.zatvorka().setPosun( 2, 0, 1, 0);
-                mr.zatvorka().setVystup(new Bracket(null, SymbolEnum.PARENTHESIS_NORM_OPEN));
+                mr.zatvorka().setVystup(new Bracket(null, SymbolEnum.BRACKET_NORM_OPEN));
             }
         }.run(" ()", "bracket;bracket;");
     }
@@ -55,7 +55,7 @@ public class ParametreReaderTest extends AbstractReaderTest {
                 mr.vyraz().setPosun( 2, 0, 3, 0);
                 mr.ciarka().setPosun( 1, 0);
             }
-        }.run(" (ff,1+3) ", "bracket;expression;ciarka;expression;bracket;");
+        }.run(" (ff,1+3) ", "bracket;expression;comma;expression;bracket;");
     }
 
 }

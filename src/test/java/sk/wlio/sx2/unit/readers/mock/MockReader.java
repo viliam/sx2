@@ -17,12 +17,12 @@ package sk.wlio.sx2.unit.readers.mock;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.rozhrania.ISlovo;
-import sk.wlio.sx2.rozhrania.TextReader;
+import sk.wlio.sx2.interfaces.IWord;
+import sk.wlio.sx2.interfaces.TextReader;
 
 import java.util.*;
 
-public class MockReader<E extends ISlovo> implements TextReader<E> {
+public class MockReader<E extends IWord> implements TextReader<E> {
 
     private String readerName;
     private StringBuffer postupVolania;
@@ -35,8 +35,8 @@ public class MockReader<E extends ISlovo> implements TextReader<E> {
         this.postupVolania = postupVolania;
     }
 
-    public E citaj(TextContext tC)  {
-        tC.setPozicia(makePosun(tC.getPozicia()));
+    public E read(TextContext tC)  {
+        tC.setPosition(makePosun(tC.getPosition()));
         postupVolania.append( readerName);
         postupVolania.append(";");
         return getVystup();
