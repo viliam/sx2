@@ -20,13 +20,13 @@ import sk.wlio.sx2.beans.statement.Parameters;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.SxParser;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class ParameterReader implements TextReader<Parameters> {
+public class ParameterReader implements SxParser<Parameters> {
 
     public Parameters read(TextContext tC)  {
         Bracket z1 = Readers.bracket().read(tC);

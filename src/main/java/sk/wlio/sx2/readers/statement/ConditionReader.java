@@ -25,9 +25,9 @@ import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
-public class ConditionReader implements TextReader<Condition> {
+public class ConditionReader implements SxParser<Condition> {
 
     public Condition read(TextContext tC)        {
         StatementWord ifWord = Readers.statementWord().read(tC);

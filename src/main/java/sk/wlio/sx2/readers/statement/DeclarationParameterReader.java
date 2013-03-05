@@ -24,15 +24,15 @@ import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeclarationParameterReader implements TextReader<DeclarationParameter> {
+public class DeclarationParameterReader implements SxParser<DeclarationParameter> {
 
     public DeclarationParameter read(TextContext tC)  {
-        TextReader<Bracket> zR = Readers.bracket();
+        SxParser<Bracket> zR = Readers.bracket();
         Bracket z1 = zR.read(tC);
         if ( tC.isPrefixBracketClosed() ) {
             Bracket z2 = zR.read(tC);

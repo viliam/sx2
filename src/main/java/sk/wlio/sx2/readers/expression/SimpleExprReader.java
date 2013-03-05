@@ -19,10 +19,10 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.SxParser;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
 
-public class SimpleExprReader implements TextReader<IExpression> {
+public class SimpleExprReader implements SxParser<IExpression> {
 
     public IExpression read(TextContext tC)  {
         if ( tC.isPrefixInt())

@@ -19,9 +19,9 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
-public class ProgramReader implements TextReader<Program> {
+public class ProgramReader implements SxParser<Program> {
 
     public Program read(TextContext tC)  {
         Program program = new Program( tC.getPosition());

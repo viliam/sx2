@@ -20,9 +20,9 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
-public abstract class ReserverdWordAbstractReader<E extends Word> implements TextReader<E> {
+public abstract class ReserverdWordAbstractReader<E extends Word> implements SxParser<E> {
 
     public E read(TextContext tC)  {
         Word word = Readers.word().read(tC);

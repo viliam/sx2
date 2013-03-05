@@ -18,10 +18,10 @@ package sk.wlio.sx2.readers.expression;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.SxParser;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
 
-public class BracketExpression implements TextReader<IExpression> {
+public class BracketExpression implements SxParser<IExpression> {
 
     public IExpression read(TextContext tC)  {
         Bracket z1 = Readers.bracket().read(tC);

@@ -22,9 +22,9 @@ import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
-public class ReturnReader implements TextReader<Return> {
+public class ReturnReader implements SxParser<Return> {
 
     public Return read(TextContext tC)  {
         Word reserWord = Readers.word().read(tC);

@@ -22,10 +22,10 @@ import sk.wlio.sx2.beans.statement.*;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.SxParser;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
 
-public class DeclarationCommandReader implements TextReader<DeclarationCommand>  {
+public class DeclarationCommandReader implements SxParser<DeclarationCommand> {
 
     public DeclarationCommand read(TextContext tC)  {
        DataType dataType = Readers.dataType().read(tC);

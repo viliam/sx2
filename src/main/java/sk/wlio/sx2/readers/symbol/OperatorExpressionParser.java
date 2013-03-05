@@ -13,26 +13,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.expression;
+package sk.wlio.sx2.readers.symbol;
 
-import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.expression.Int;
+import sk.wlio.sx2.beans.symbol.Operator;
+import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
+import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.SxParser;
 
-public class IntReader implements SxParser<Int> {
+public class OperatorExpressionParser extends SymbolAbstractParser<Operator> {
 
-    public Int read(TextContext tC)  {
-        Position position = tC.findNextCharacter();
-        String aInt = Readers.word().read(tC).toString();
+    @Override
+    protected String[] getSymbols() {
+        return SymbolsEnum.OP_EXP.getSymbols();
+    }
 
-        try {
-            return new Int( Integer.valueOf(aInt ), position);
-        } catch (NumberFormatException e) {
-            throw SxException.create( SxExTyp.EXPECTED_INT, tC);
-        }
+    @Override
+    protected Operator create(Position position, SymbolEnum oEnum)  {
+        return new Operator(position, oEnum);
+    }
+
+    @Override
+    protected SxExTyp getExceptionType() {
+        return SxExTyp.EXPECTED_OPERATOR;
     }
 }

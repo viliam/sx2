@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IWord;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
@@ -30,16 +30,16 @@ public abstract class TestAbstract<T extends IWord> {
         void visit(TextContext tC, T slovo);
     }
 
-    final protected TextReader<T> reader;
+    final protected SxParser<T> reader;
     final protected TestVisitor<T> testVisitor;
 
-    protected TestAbstract(TextReader<T> reader) {
+    protected TestAbstract(SxParser<T> reader) {
         this(reader, new TestVisitor<T>() {
             public void visit(TextContext tC, T slovo) {}
         });
     }
 
-    protected TestAbstract(TextReader<T> reader, TestVisitor<T> testVisitor) {
+    protected TestAbstract(SxParser<T> reader, TestVisitor<T> testVisitor) {
         this.reader = reader;
         this.testVisitor = testVisitor;
     }

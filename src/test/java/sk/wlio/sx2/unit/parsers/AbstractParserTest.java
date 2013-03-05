@@ -13,20 +13,26 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.statement;
+package sk.wlio.sx2.unit.parsers;
 
-import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.statement.Parameters;
-import sk.wlio.sx2.beans.statement.Command;
-import sk.wlio.sx2.interfaces.SxParser;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.unit.parsers.mock.MockParsers;
 
-public class CommandReader implements SxParser<Command> {
-    
-    public Command read(TextContext tC)  {
-        Word name = Readers.word().read(tC);
-        Parameters parameters = Readers.parameters().read(tC);
-        return new Command(name, parameters);
+public abstract class AbstractParserTest {
+
+    protected StringBuffer sb;
+    protected MockParsers mr;
+
+    @BeforeMethod
+    public void before() {
+        sb = new StringBuffer();
+        Readers.recreateReaders( mr = new MockParsers(sb));
+    }
+
+    @AfterMethod
+    public void after() {
+        Readers.recreate();
     }
 }

@@ -25,7 +25,7 @@ import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.readers.symbol.WordReader;
+import sk.wlio.sx2.readers.symbol.WordParser;
 
 public class TextContext {
 
@@ -274,7 +274,7 @@ public class TextContext {
 
     public ReservedWordEnum vratPrefixZakazaneSlovo()  {
         findNextCharacter();
-        String s = WordReader.lookAhead(takeEndOfLine(), 0);
+        String s = WordParser.lookAhead(takeEndOfLine(), 0);
         return ReservedWordEnum.makeSymbol(s);
     }
 

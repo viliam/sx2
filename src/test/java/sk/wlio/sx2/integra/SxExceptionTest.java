@@ -22,16 +22,16 @@ import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
-import sk.wlio.sx2.readers.symbol.BracketReader;
-import sk.wlio.sx2.readers.symbol.OperatorExpressionReader;
+import sk.wlio.sx2.interfaces.SxParser;
+import sk.wlio.sx2.readers.symbol.BracketParser;
+import sk.wlio.sx2.readers.symbol.OperatorExpressionParser;
 import sk.wlio.sx2.readers.expression.*;
-import sk.wlio.sx2.interfaces.TextReader;
 
 import static org.testng.AssertJUnit.*;
 
 public class SxExceptionTest {
 
-    private void testException(TextContext tC, TextReader tR, SxExTyp typOcakavany) {
+    private void testException(TextContext tC, SxParser tR, SxExTyp typOcakavany) {
         try {
             tR.read(tC);
             fail();
@@ -43,7 +43,7 @@ public class SxExceptionTest {
     @Test
     public void testEndOfFile()  {
         TextContext tC = new TextContext(" 123");
-        TextReader<Int> cR = new IntReader();
+        SxParser<Int> cR = new IntReader();
         cR.read(tC);
         testException( tC, cR, SxExTyp.EMPTY_WORD);
     }
@@ -51,7 +51,7 @@ public class SxExceptionTest {
     @Test
     public void testUnExpectedPrefix() {
         TextContext tC = new TextContext(" +123");
-        TextReader<IExpression> vJr = new SimpleExprReader();
+        SxParser<IExpression> vJr = new SimpleExprReader();
         testException(tC, vJr, SxExTyp.UNEXPECTED_PREFIX );
     }
 
@@ -59,14 +59,14 @@ public class SxExceptionTest {
     @Test
     public void testUnknowOperator() {
         TextContext tC = new TextContext(" c3");
-        TextReader oAr = new OperatorExpressionReader();
+        SxParser oAr = new OperatorExpressionParser();
         testException(tC, oAr , SxExTyp.EXPECTED_OPERATOR);
     }
 
     @Test
     public void testCakalZatvorku() {
         TextContext tC = new TextContext(" c3");
-        TextReader<Bracket> zR = new BracketReader();
+        SxParser<Bracket> zR = new BracketParser();
         testException(tC, zR , SxExTyp.EXPECTED_BRACKET);
     }
 

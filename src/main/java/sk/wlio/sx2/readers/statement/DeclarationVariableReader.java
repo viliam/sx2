@@ -24,9 +24,9 @@ import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
-public class DeclarationVariableReader implements TextReader<DeclarationVariable> {
+public class DeclarationVariableReader implements SxParser<DeclarationVariable> {
 
     public DeclarationVariable read(TextContext tC)  {
         DataType dataType = Readers.dataType().read(tC);

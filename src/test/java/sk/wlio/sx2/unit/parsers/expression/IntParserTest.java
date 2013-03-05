@@ -13,26 +13,39 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.expression;
+package sk.wlio.sx2.unit.parsers.expression;
 
+import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.SxParser;
 
-public class IntReader implements SxParser<Int> {
+import static org.testng.AssertJUnit.*;
 
-    public Int read(TextContext tC)  {
-        Position position = tC.findNextCharacter();
-        String aInt = Readers.word().read(tC).toString();
+public class IntParserTest {
 
+    @Test
+    public void testBasic()  {
+        final int testNumber = 123;
+        TextContext text = new TextContext("  " + testNumber);
+        Int anInt = Readers.integer().read(text);
+        assertEquals( "Pozicia kontrola ", new Position(2,0), anInt.getPosition() );
+        assertEquals( "Cislo kontrola ", testNumber, anInt.getCislo().intValue() );
+    }
+
+    @Test
+    public void testFail()  {
+        final String testNumber = "123d3";
+        TextContext text = new TextContext("  " + testNumber);
         try {
-            return new Int( Integer.valueOf(aInt ), position);
-        } catch (NumberFormatException e) {
-            throw SxException.create( SxExTyp.EXPECTED_INT, tC);
+            Readers.integer().read(text);
+            fail();
+        } catch (SxException e) {
+             assertEquals( SxExTyp.EXPECTED_INT, e.getType());
         }
     }
+
 }

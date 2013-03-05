@@ -21,9 +21,9 @@ import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
-public class ExprReader implements TextReader<IExpression> {
+public class ExprReader implements SxParser<IExpression> {
 
     public IExpression read(TextContext tC)  {
         IExpression expr;
@@ -36,7 +36,7 @@ public class ExprReader implements TextReader<IExpression> {
         if (tC.isEndOfFile())  return expr;
 
         if (tC.isPrefixOperatorExp() ) {
-            TextReader<Operator>  opReader = Readers.opExpr();
+            SxParser<Operator> opReader = Readers.opExpr();
             expr = new Expression(expr, opReader.read(tC), Readers.expression().read(tC));
         }
 

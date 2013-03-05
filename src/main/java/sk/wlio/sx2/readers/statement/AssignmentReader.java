@@ -23,9 +23,9 @@ import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
-public class AssignmentReader implements TextReader<Assignment> {
+public class AssignmentReader implements SxParser<Assignment> {
 
     public Assignment read(TextContext tC)  {
         Variable variable = Readers.variable().read(tC);

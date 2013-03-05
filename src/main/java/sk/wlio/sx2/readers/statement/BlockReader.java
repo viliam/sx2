@@ -20,20 +20,20 @@ import sk.wlio.sx2.beans.statement.Block;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.interfaces.SxParser;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class BlockReader implements TextReader<Block> {
+public class BlockReader implements SxParser<Block> {
 
     public Block read(TextContext tC)  {
-        TextReader<Bracket> zR = Readers.bracket();
+        SxParser<Bracket> zR = Readers.bracket();
         Bracket z1 = zR.read(tC);
 
         //for each lines
         List<Statement> linesList = new LinkedList<Statement>();
-        TextReader<Statement> iR = Readers.statment();
+        SxParser<Statement> iR = Readers.statment();
 
         while ( tC.nextCharacter()!='}') {
             linesList.add(iR.read(tC));

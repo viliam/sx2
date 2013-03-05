@@ -13,20 +13,31 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.statement;
+package sk.wlio.sx2.unit.parsers.mock;
 
-import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.statement.Parameters;
-import sk.wlio.sx2.beans.statement.Command;
-import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.Enums;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.visitors.IVisitor;
 
-public class CommandReader implements SxParser<Command> {
-    
-    public Command read(TextContext tC)  {
-        Word name = Readers.word().read(tC);
-        Parameters parameters = Readers.parameters().read(tC);
-        return new Command(name, parameters);
+public class TestVyraz implements IExpression {
+
+    Enums.ExpType expType = Enums.ExpType.INT;
+
+    public TestVyraz() {}
+    public TestVyraz(Enums.ExpType expType) {
+        this.expType = expType;
+    }
+
+    public Enums.ExpType getExpType() {
+        return expType;
+    }
+
+    public Position getPosition() {
+        return null;
+    }
+
+    public void visit(IVisitor iVisitor) {
+     //   iVisitor.visit(this);
     }
 }

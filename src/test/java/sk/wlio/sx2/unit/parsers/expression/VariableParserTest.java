@@ -13,19 +13,32 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers;
+package sk.wlio.sx2.unit.parsers.expression;
 
+import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Variable;
-import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.interfaces.SxParser;
+import sk.wlio.sx2.interfaces.IWord;
+import sk.wlio.sx2.readers.VariableReader;
 
-public class VariableReader implements SxParser<Variable> {
+import static org.testng.AssertJUnit.*;
 
-    public Variable read(TextContext tC)  {
-        Word obsah = Readers.word().read(tC);
-        return new Variable( obsah);
+public class VariableParserTest {
+    
+    @Test
+     public void testBasic()  {
+        Variable variable = readVariable(" c= 4;");
+        assertEquals(  "c", variable.getName().toString());
     }
+    
+    private Variable readVariable(String that)  {
+        TextContext tC = new TextContext(that);
+        VariableReader vVariableReader = new VariableReader();
+        Variable word = vVariableReader.read(tC);
 
+        assertNotNull(word);
 
+        return word;
+    }
+    
 }

@@ -21,7 +21,7 @@ import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.interfaces.*;
 
-public class StatementReader implements TextReader<Statement> {
+public class StatementReader implements SxParser<Statement> {
 
     public Statement read(TextContext tC)  {
 
