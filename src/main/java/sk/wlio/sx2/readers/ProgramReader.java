@@ -26,22 +26,22 @@ public class ProgramReader implements TextReader<Program> {
     public Program read(TextContext tC)  {
         Program program = new Program( tC.getPosition());
 
-        boolean nasiel;
+        boolean foundIt;
         do {
-           nasiel = false;
+           foundIt = false;
            if ( tC.isPrefixDeclarationVariable()) {
                program.addVariable(Readers.dekPremennej().read(tC));
-               nasiel = true;
+               foundIt = true;
            }
 
            if ( tC.isPrefixDeclarationCommand() ) {
                program.addCommand(Readers.dekPrikaz().read(tC));
-               nasiel = true;
+               foundIt = true;
            }
-        }  while ( nasiel);
+        }  while ( foundIt);
 
         if (!tC.isEndOfFile())
-            throw SxException.create(SxExTyp.CAKAL_DEKLARACIU_PRIKAZU_ALEBO_PREMENNEJ, tC);
+            throw SxException.create(SxExTyp.EXPECTED_DECLARATION, tC);
 
         return program;
     }

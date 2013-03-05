@@ -61,9 +61,9 @@ public class KontextovaKontrolaVisitorTest {
 
     @Test
     public void testVisitDekPrikazu() {
-        DataType datovyTyp = new DataType(new Word(null, "cislo"));
+        DataType datovyTyp = new DataType(new Word(null, "integer"));
         datovyTyp.setTyp( Enums.ExpType.INT);
-        Word nazov = new Word(null, "prikaz");
+        Word nazov = new Word(null, "command");
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
         Block telo = new Block(new Statement[0], new Bracket(null, null), null);
         DeclarationCommand dekPrikaz =
@@ -72,7 +72,7 @@ public class KontextovaKontrolaVisitorTest {
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         visitor.visit(dekPrikaz);
 
-        DeclarationCommand dekPrikazPamet = visitor.getCommand("prikaz");
+        DeclarationCommand dekPrikazPamet = visitor.getCommand("command");
         assertNotNull( dekPrikazPamet);
         assertEquals( Enums.ExpType.INT, dekPrikazPamet.getDatovyTyp().getExpType() );
         assertEquals( dekPrikaz.getName().getContent(), dekPrikazPamet.getName().getContent());
@@ -100,7 +100,7 @@ public class KontextovaKontrolaVisitorTest {
 
     @Test
     public void testVisitPrikaz() {
-        Word nazov = new Word(null, "prikaz");
+        Word nazov = new Word(null, "command");
         Parameters parameters = new Parameters(new Bracket(null, null), null);
         Command command = new Command(nazov, parameters);
 
@@ -109,10 +109,10 @@ public class KontextovaKontrolaVisitorTest {
             visitor.visit(command);
             fail();
         } catch (SxException ex) {
-            assertEquals(SxExTyp.NEZNAMY_PRIKAZ, ex.getTyp());
+            assertEquals(SxExTyp.UNKNOWN_COMMAND, ex.getType());
         }
 
-        DataType datovyTyp = new DataType(new Word(null, "cislo"));
+        DataType datovyTyp = new DataType(new Word(null, "integer"));
         datovyTyp.setTyp( Enums.ExpType.INT);
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
         Block telo = new Block(new Statement[] { new Return(new StatementWord( new Position(0,0), null), null, null) }
@@ -136,10 +136,10 @@ public class KontextovaKontrolaVisitorTest {
             visitor.visit(variable);
             fail();
         } catch (SxException ex) {
-            assertEquals(SxExTyp.NEZNAMA_PREMENNA, ex.getTyp());
+            assertEquals(SxExTyp.UNKNOWN_VARIABLE, ex.getType());
         }
 
-        DataType datovyTyp = new DataType(new Word(null, "cislo"));
+        DataType datovyTyp = new DataType(new Word(null, "integer"));
         datovyTyp.setTyp( Enums.ExpType.INT);
         DeclarationVariable dekPremennej =
                 new DeclarationVariable(datovyTyp, nazov, new Comma(null, null));
@@ -159,7 +159,7 @@ public class KontextovaKontrolaVisitorTest {
         Expression vyraz = new Expression(anInt, op, variable);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
-        visitor.addVariable(DummyFactory.createDeklaraciaPremennej("cislo", "ahoj"));
+        visitor.addVariable(DummyFactory.createDeklaraciaPremennej("integer", "ahoj"));
         visitor.visit(vyraz);
     }
 
@@ -172,7 +172,7 @@ public class KontextovaKontrolaVisitorTest {
         Expression vyraz = new Expression(anInt, op, variable);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
-        visitor.addVariable(DummyFactory.createDeklaraciaPremennej("cislo", "ahoj"));
+        visitor.addVariable(DummyFactory.createDeklaraciaPremennej("integer", "ahoj"));
         visitor.visit(vyraz);
     }
 
@@ -188,7 +188,7 @@ public class KontextovaKontrolaVisitorTest {
             new ContextAnalysisVisitor( ).visit(vyraz);
             fail();
         } catch (SxException ex) {
-            assertEquals( ex.getTyp(), SxExTyp.ZLY_DATOVY_TYP);
+            assertEquals( ex.getType(), SxExTyp.WRONG_DATA_TYPE);
         }
 
         variable.setExpType(Enums.ExpType.BOOL);
@@ -198,7 +198,7 @@ public class KontextovaKontrolaVisitorTest {
             new ContextAnalysisVisitor( ).visit(vyraz);
             fail();
         } catch (SxException ex) {
-            assertEquals( ex.getTyp(), SxExTyp.ZLY_DATOVY_TYP);
+            assertEquals( ex.getType(), SxExTyp.WRONG_DATA_TYPE);
         }
     }
 
@@ -223,7 +223,7 @@ public class KontextovaKontrolaVisitorTest {
             new ContextAnalysisVisitor( ).visit(assignment);
             fail();
         } catch (SxException e) {
-            assertEquals(SxExTyp.ZLY_DATOVY_TYP, e.getTyp());
+            assertEquals(SxExTyp.WRONG_DATA_TYPE, e.getType());
         }
     }
 

@@ -32,12 +32,12 @@ public class BracketReader extends SymbolAbstractReader<Bracket> {
     @Override
     protected Bracket create(Position position, SymbolEnum oEnum)  {
         if (oEnum == null)
-            throw SxException.create(SxExTyp.CAKAL_ZATVORKU, position);
+            throw SxException.create(SxExTyp.EXPECTED_BRACKET, position);
         return new Bracket(position, oEnum );
     }
 
     @Override
-    protected SxExTyp getExceptionTyp() {
-        return SxExTyp.CAKAL_ZATVORKU;
+    protected SxExTyp getExceptionType() {
+        return SxExTyp.EXPECTED_BRACKET;
     }
 }

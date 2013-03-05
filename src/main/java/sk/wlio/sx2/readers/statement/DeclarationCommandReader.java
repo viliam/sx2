@@ -31,13 +31,13 @@ public class DeclarationCommandReader implements TextReader<DeclarationCommand> 
        DataType dataType = Readers.datovyTyp().read(tC);
        String sDataType = dataType.toString();
        if (!RezervedWordsEnum.DATA_TYPE.is(sDataType))
-           throw SxException.create(SxExTyp.CAKAL_DEKLARACIU_PRIKAZU, tC);
+           throw SxException.create(SxExTyp.EXPECTED_COMMAND_DECLARATION, tC);
 
        if ( !tC.isPrefixCommand())
-          throw SxException.create(SxExTyp.ZLY_NAZOV_PRIKAZU, tC);
+          throw SxException.create(SxExTyp.WRONG_COMMAND_NAME, tC);
 
        Word name = Readers.slovo().read(tC);
-       //odkusnem parametre
+       //odkusnem paramters
        DeclarationParameter decParam = Readers.dekParameter().read(tC);
        Block block = Readers.blok().read(tC);
 

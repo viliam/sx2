@@ -45,7 +45,7 @@ public class ZatvorkaReaderTest {
             Readers.zatvorka().read(tC);
             fail();
         } catch (SxException e) {
-            assertEquals( SxExTyp.CAKAL_ZATVORKU, e.getTyp() );
+            assertEquals( SxExTyp.EXPECTED_BRACKET, e.getType() );
         }
     }
 

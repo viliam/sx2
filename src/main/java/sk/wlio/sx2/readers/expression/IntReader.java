@@ -32,7 +32,7 @@ public class IntReader implements TextReader<Int> {
         try {
             return new Int( Integer.valueOf(aInt ), position);
         } catch (NumberFormatException e) {
-            throw SxException.create( SxExTyp.CAKAL_CISLO, tC);
+            throw SxException.create( SxExTyp.EXPECTED_INT, tC);
         }
     }
 }

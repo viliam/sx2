@@ -33,7 +33,7 @@ public class WordReader implements TextReader<Word> {
         String line = tC.getLine();
         String word = lookAhead(line, beginX);
         if ("".equals(word) )
-            throw SxException.create(SxExTyp.PRAZDNE_SLOVO, tC);
+            throw SxException.create(SxExTyp.EMPTY_WORD, tC);
 
         int endX = beginX + word.length();
         tC.setPosition(new Position(endX, inx.getY()));

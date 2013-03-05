@@ -29,7 +29,7 @@ public class StatementWordReader extends ReserverdWordAbstractReader<StatementWo
 
     @Override
     protected SxExTyp getSxExceptionTyp() {
-        return SxExTyp.CAKAL_INSTRUKCIA_SLOVO;
+        return SxExTyp.EXPECTED_STATEMENT_WORD;
     }
 
     @Override

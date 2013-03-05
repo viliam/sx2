@@ -29,7 +29,7 @@ public class DataValueReader extends ReserverdWordAbstractReader<DataValue> {
 
     @Override
     protected SxExTyp getSxExceptionTyp() {
-        return SxExTyp.CAKAL_DATOVU_HODNOTU;
+        return SxExTyp.EXPECTED_DATA_VALUE;
     }
 
     @Override

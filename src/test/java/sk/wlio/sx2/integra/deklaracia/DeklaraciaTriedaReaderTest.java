@@ -32,14 +32,14 @@ public class DeklaraciaTriedaReaderTest extends TestAbstract<Program> {
     @Override
     protected String[] getDobreVety() {
         return new String[] {
-             " bool ahoj() { vrat 3; } cislo ahoj;"
+             " bool ahoj() { aReturn 3; } integer ahoj;"
         };
     }
 
     @Override
     protected String[] getChybneVety() {
         return new String[] {
-            " bool ahoj() { vrat 3; } cislo ahoj { nie = 3 ;"
+            " bool ahoj() { aReturn 3; } integer ahoj { nie = 3 ;"
         };
     }
 }

@@ -36,7 +36,7 @@ public class Enums {
                 case IF    : case VOID: return ExpType.VOID;
                 case BOOL  : case TRUE: case FALSE:  return ExpType.BOOL;
             }
-            throw SxException.create(SxExTyp.CAKAL_DATOVY_TYP, dt.getPosition());
+            throw SxException.create(SxExTyp.EXPECTED_DATA_TYPE, dt.getPosition());
         }
     }
 

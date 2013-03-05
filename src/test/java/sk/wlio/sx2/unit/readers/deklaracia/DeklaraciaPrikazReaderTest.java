@@ -37,12 +37,12 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
             new TestTemplate<DeclarationCommand>(sb, new DeclarationCommandReader()) {
                 @Override
                 public void nastavReader() {
-                    mr.dekParameter().setPosun( 2,0);
-                    mr.datovyTyp().setPosun( 5,0);
-                    mr.datovyTyp().setVystup( new DataType( null, "bool"));
-                    mr.slovo().setPosun(6,0,  6,0 );
-                    mr.slovo().setVystup( new Word(null, "aa"), new Word(null, "ahoj"));
-                    mr.blok().setPosun( 11, 0 );
+                    mr.decParamters().setPosun( 2,0);
+                    mr.dataType().setPosun( 5,0);
+                    mr.dataType().setVystup( new DataType( null, "bool"));
+                    mr.word().setPosun(6,0,  6,0 );
+                    mr.word().setVystup( new Word(null, "aa"), new Word(null, "ahoj"));
+                    mr.block().setPosun( 11, 0 );
                 }
             };
         tt.run("  bool ahoj() { return 3; } ", "dataType;word;word;decParameter;block;");
@@ -54,29 +54,29 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
     @Test
     public void testNiejeDatovyTyp() {
         try {
-            mr.datovyTyp().setPosun( 5,0 );
-            mr.datovyTyp().setVystup( new DataType(null, "boool"));
+            mr.dataType().setPosun( 5,0 );
+            mr.dataType().setVystup( new DataType(null, "boool"));
 
             citajDekPrikaz("  boool ahoj() { return 3; } ");
             fail("Cakal chybu, zla deklaracia prikazu");
         } catch (SxException e) {
-            assertEquals( "Typ chyby", SxExTyp.CAKAL_DEKLARACIU_PRIKAZU,  e.getTyp());
+            assertEquals( "Typ chyby", SxExTyp.EXPECTED_COMMAND_DECLARATION,  e.getType());
         }
     }
 
     @Test
     public void testZlyNazovPrikazu() {
         try {
-            mr.datovyTyp().setPosun( 5,0 );
-            mr.datovyTyp().setVystup( new DataType(null, "bool"));
+            mr.dataType().setPosun( 5,0 );
+            mr.dataType().setVystup( new DataType(null, "bool"));
 
-            mr.slovo().setPosun( 4,0 ,  4,0 );
-            mr.slovo().setVystup( new Word(null, "3ahoj"));
+            mr.word().setPosun( 4,0 ,  4,0 );
+            mr.word().setVystup( new Word(null, "3ahoj"));
 
-            citajDekPrikaz("  bool 3ahoj() { vrat 3; } ");
+            citajDekPrikaz("  bool 3ahoj() { aReturn 3; } ");
             fail("Cakal chybu, zly nazov prikazu");
         } catch (SxException e) {
-            assertEquals( "Typ chyby", SxExTyp.ZLY_NAZOV_PRIKAZU,  e.getTyp());
+            assertEquals( "Typ chyby", SxExTyp.WRONG_COMMAND_NAME,  e.getType());
         }
     }
 
@@ -84,7 +84,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
         TextContext text = new TextContext(ts);
         TextReader<DeclarationCommand> dpReader = new DeclarationCommandReader();
         DeclarationCommand dekPrikaz= dpReader.read(text);
-        assertNotNull("nenulovy prikaz", dekPrikaz);
+        assertNotNull("nenulovy command", dekPrikaz);
         return dekPrikaz;
     }
 }

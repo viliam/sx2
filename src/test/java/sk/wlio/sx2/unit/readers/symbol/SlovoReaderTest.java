@@ -52,7 +52,7 @@ public class SlovoReaderTest {
             sReader.read(tc);
             fail();
         } catch (SxException e) {
-            assertEquals( SxExTyp.PRAZDNE_SLOVO, e.getTyp());
+            assertEquals( SxExTyp.EMPTY_WORD, e.getType());
         }
     }
 
@@ -69,7 +69,7 @@ public class SlovoReaderTest {
     private int invokeNajdiKoniecSlova(WordReader wordReader, String riadok, int x) {
         try {
             Class testClass = WordReader.class;
-            Method testMetoda = testClass.getDeclaredMethod("najdiKoniecSlova", String.class, int.class);
+            Method testMetoda = testClass.getDeclaredMethod("findEndOfWord", String.class, int.class);
             testMetoda.setAccessible( true);
             return (Integer) testMetoda.invoke(wordReader,riadok , x);
         } catch (Exception e) {

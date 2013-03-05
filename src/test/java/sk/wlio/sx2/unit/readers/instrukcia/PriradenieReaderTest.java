@@ -35,11 +35,11 @@ public class PriradenieReaderTest extends AbstractReaderTest {
         new TestTemplate<Assignment>(sb, new AssignmentReader()) {
             @Override
             public void nastavReader() {
-                mr.premenna().setPosun( 1, 0 );
-                mr.premenna().setVystup( new Variable( new Word( new Position(1,1)) ) );
-                mr.opPriradenia().setPosun( 1, 0 );
-                mr.vyraz().setPosun( 1, 0 );
-                mr.ciarka().setPosun(1,0);
+                mr.variable().setPosun( 1, 0 );
+                mr.variable().setVystup( new Variable( new Word( new Position(1,1)) ) );
+                mr.opAssignment().setPosun( 1, 0 );
+                mr.expression().setPosun( 1, 0 );
+                mr.comma().setPosun(1,0);
             }
         }.run("c=4;", "variable;opAssigment;expression;comma;");
     }
@@ -47,8 +47,8 @@ public class PriradenieReaderTest extends AbstractReaderTest {
     @Test
     public void testFail()  {
         try {
-            mr.premenna().setPosun( 1, 0 );
-            mr.premenna().setVystup( new Variable( new Word( new Position(1,1)) ) );
+            mr.variable().setPosun( 1, 0 );
+            mr.variable().setVystup( new Variable( new Word( new Position(1,1)) ) );
 
             new AssignmentReader().read(new TextContext("c + 4;"));
 

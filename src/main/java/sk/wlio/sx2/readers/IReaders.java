@@ -31,32 +31,32 @@ import sk.wlio.sx2.interfaces.TextReader;
 
 public interface IReaders {
     
-    public TextReader<Word> slovo();
-    public TextReader<Int> cislo();
-    public TextReader<Operator> opVyraz();
-    public TextReader<Operator> opPriradenia();
-    public TextReader<IExpression> vyraz();
-    public TextReader<IExpression> vrzJednduchy();
-    public TextReader<IExpression> vrzVzatvorke();
-    public TextReader<Bracket> zatvorka();
-    public TextReader<Comma> ciarka();
+    public TextReader<Word> word();
+    public TextReader<Int> integer();
+    public TextReader<Operator> opExpr();
+    public TextReader<Operator> opAssignment();
+    public TextReader<IExpression> expression();
+    public TextReader<IExpression> expSimple();
+    public TextReader<IExpression> expBracket();
+    public TextReader<Bracket> bracket();
+    public TextReader<Comma> comma();
 
-    public TextReader<DataType> datovyTyp();
+    public TextReader<DataType> dataType();
 
-    public TextReader<Statement> instrukcia();
-    public TextReader<Assignment> priradenie();
-    public TextReader<Block> blok();
-    public TextReader<Variable> premenna();
-    public TextReader<DeclarationVariable> dekPremennej();
-    public TextReader<Command> prikaz();
-    public TextReader<DeclarationCommand> dekPrikaz();
-    public TextReader<Program> dekTrieda();
-    public TextReader<Parameters> parametre();
-    public TextReader<DeclarationParameter> dekParameter();
-    public TextReader<Return> vrat();
-    public TextReader<Condition> podmienka();
+    public TextReader<Statement> statement();
+    public TextReader<Assignment> assignment();
+    public TextReader<Block> block();
+    public TextReader<Variable> variable();
+    public TextReader<DeclarationVariable> decVariable();
+    public TextReader<Command> command();
+    public TextReader<DeclarationCommand> decCommand();
+    public TextReader<Program> program();
+    public TextReader<Parameters> paramters();
+    public TextReader<DeclarationParameter> decParamters();
+    public TextReader<Return> aReturn();
+    public TextReader<Condition> condition();
 
-    public TextReader<StatementWord> instrukciaSlovo();
+    public TextReader<StatementWord> statementWord();
 
 
 }

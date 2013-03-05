@@ -67,13 +67,13 @@ public class ContextAnalysisVisitor implements IVisitor {
     public void visit(Program decProgram) {
         for (DeclarationVariable decVariable : decProgram.getMapVariable().values() ) {
             if ( mapDecVariable.containsKey(decVariable.getName().toString()))
-                throw SxException.create(SxExTyp.PREMENNA_UZ_EXISTUJE, decVariable.getPosition());
+                throw SxException.create(SxExTyp.DUPLICATED_VARIABLE, decVariable.getPosition());
             addVariable(decVariable);
         }
 
         for (DeclarationCommand decCommand : decProgram.getMapCommand().values() )  {
             if ( mapDecCommand.containsKey(decCommand.getName().toString()))
-                throw SxException.create(SxExTyp.PRIKAZ_UZ_EXISTUJE, decCommand.getPosition());
+                throw SxException.create(SxExTyp.DUPLICATED_COMMAND, decCommand.getPosition());
             addCommand(decCommand);
         }
 
@@ -94,9 +94,7 @@ public class ContextAnalysisVisitor implements IVisitor {
     }
 
     public void visit(DeclarationCommand decCommand) {
-        //todo: deklaracia parametrov rozsiri o nove premenne
-        //preto kopirujem do noveho visitora, aby povodny zostal
-        //zachovany
+        //create new visitor (like clone of the main visitor) for local variables
         addCommand(decCommand);
         ContextAnalysisVisitor dekVisitor = new ContextAnalysisVisitor(mapDecVariable, mapDecCommand);
 
@@ -118,24 +116,23 @@ public class ContextAnalysisVisitor implements IVisitor {
     }
 
     public void visit(Command command) {
-        //todo skontroluj ci prikaz existuje
-        //pridaj ho do mnoziny znamych prikazov
+        //check if commad exists and add it to map
         DeclarationCommand decCommand = mapDecCommand.get( command.getNazov().getContent());
         if (decCommand == null)
-            throw SxException.create(SxExTyp.NEZNAMY_PRIKAZ, command.getPosition());
-        //nastav typ prikazu na zaklade deklaracie
+            throw SxException.create(SxExTyp.UNKNOWN_COMMAND, command.getPosition());
+        //set command type on the basis of declaration
         command.setExpType(decCommand.getDatovyTyp().getExpType());
 
-        //skontrolu pocet parametrov
+        //check parameters count
         List<DeclarationVariable> liDecVariable = decCommand.getDekParam().getLiDekPremennej();
         List<IExpression> liParameter = command.getParameters().getParametre();
         if ( liDecVariable.size() != liParameter.size())
-            throw SxException.create(SxExTyp.NESPRAVNY_POCET_PARAMETROV, command.getPosition());
+            throw SxException.create(SxExTyp.WRONG_PARAMETER_COUNT, command.getPosition());
 
-        //skontroluj typ parametrov
+        //check parameters type
         for (int i=0; i<liDecVariable.size(); i++)
             if ( liDecVariable.get(i).getDatovyTyp().getExpType() != liParameter.get(i).getExpType())
-                throw SxException.create( SxExTyp.ZLY_DATOVY_TYP, liParameter.get(i).getPosition());
+                throw SxException.create( SxExTyp.WRONG_DATA_TYPE, liParameter.get(i).getPosition());
 
         command.getParameters().visit(this);
     }
@@ -146,12 +143,11 @@ public class ContextAnalysisVisitor implements IVisitor {
     }
 
     public void visit(Variable variable) {
-        //todo skontroluj ci prikaz existuje
-        //pridaj ho do mnoziny znamych prikazov
+        //check if commad exists and add it to map
         DeclarationVariable decVariable = mapDecVariable.get( variable.getName().getContent());
         if (decVariable == null)
-            throw SxException.create(SxExTyp.NEZNAMA_PREMENNA, variable.getPosition());
-        //nastav typ prikazu na zaklade deklaracie
+            throw SxException.create(SxExTyp.UNKNOWN_VARIABLE, variable.getPosition());
+        //set command type on the basis of declaration
         variable.setExpType(decVariable.getDatovyTyp().getExpType());
     }
 
@@ -161,7 +157,7 @@ public class ContextAnalysisVisitor implements IVisitor {
 
         Variable variable = assignment.getVariable();
         if (variable.getExpType() != expression.getExpType() )
-            throw SxException.create(SxExTyp.ZLY_DATOVY_TYP, expression.getPosition());
+            throw SxException.create(SxExTyp.WRONG_DATA_TYPE, expression.getPosition());
     }
 
     public void visit(Expression expression) {
@@ -171,11 +167,11 @@ public class ContextAnalysisVisitor implements IVisitor {
 
         IExpression v1 = expression.getV1();
         if ( !Enums.ExpType.UNKNOWN.equals(v1.getExpType()) && !v1.getExpType().equals( expectedType))
-            throw SxException.create(SxExTyp.ZLY_DATOVY_TYP, v1.getPosition());
+            throw SxException.create(SxExTyp.WRONG_DATA_TYPE, v1.getPosition());
 
         IExpression v2 = expression.getV2();
         if ( !Enums.ExpType.UNKNOWN.equals(v2.getExpType()) && !v2.getExpType().equals( expectedType))
-            throw SxException.create(SxExTyp.ZLY_DATOVY_TYP, v2.getPosition());
+            throw SxException.create(SxExTyp.WRONG_DATA_TYPE, v2.getPosition());
 
         v1.visit(this);
         v2.visit(this);

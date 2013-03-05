@@ -36,7 +36,7 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
         new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override
             public void nastavReader() {
-                mr.cislo().setPosun( 1,0 );
+                mr.integer().setPosun( 1,0 );
             }
         }.run("4", "int;");
     }
@@ -45,9 +45,9 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
     public void testPremenna()  {
         new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override public void nastavReader() {
-                mr.slovo().setPosun( 0,0 );
-                mr.slovo().setVystup( new Word(null, "asdfds"));
-                mr.premenna().setPosun(  6,0) ;
+                mr.word().setPosun( 0,0 );
+                mr.word().setVystup( new Word(null, "asdfds"));
+                mr.variable().setPosun(  6,0) ;
             }
         }.run( "asdfds", "word;variable;");
     }
@@ -56,11 +56,11 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
     public void testPrikaz()  {
         new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override public void nastavReader() {
-                mr.slovo().setPosun( 6,0 ,  6,0 ,
+                mr.word().setPosun( 6,0 ,  6,0 ,
                                      6,0 ,  0,0 );
                 Word word = new Word(null, "asdfds");
-                mr.slovo().setVystup(word, word, word);
-                mr.prikaz().setPosun(  6,0 );
+                mr.word().setVystup(word, word, word);
+                mr.command().setPosun(  6,0 );
             }
         }.run( "asdfds(aa", "word;word;word;command;");
     }
@@ -72,7 +72,7 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
             new SimpleExprReader().read(tC);
             fail();
         } catch (SxException e) {
-            assertEquals( SxExTyp.UNEXPECTED_PREFIX, e.getTyp());
+            assertEquals( SxExTyp.UNEXPECTED_PREFIX, e.getType());
         }
 
     }

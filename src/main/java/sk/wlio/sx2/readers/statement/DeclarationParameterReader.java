@@ -55,7 +55,7 @@ public class DeclarationParameterReader implements TextReader<DeclarationParamet
             }
 
             //doesn't work => error in parameters reading
-            throw  SxException.create(SxExTyp.CAKAL_ZATVORKU_ALEBO_CIARKU, tC) ;
+            throw  SxException.create(SxExTyp.EXPECTED_BRACKET_OR_COMMA, tC) ;
         }  while ( true);
 
     }

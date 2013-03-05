@@ -33,7 +33,7 @@ public class DataTypeReader extends ReserverdWordAbstractReader<DataType> {
 
     @Override
     protected SxExTyp getSxExceptionTyp() {
-        return SxExTyp.CAKAL_DATOVY_TYP;
+        return SxExTyp.EXPECTED_DATA_TYPE;
     }
 
     @Override

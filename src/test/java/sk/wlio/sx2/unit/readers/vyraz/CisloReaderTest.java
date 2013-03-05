@@ -44,7 +44,7 @@ public class CisloReaderTest {
             Readers.cislo().read(text);
             fail();
         } catch (SxException e) {
-             assertEquals( SxExTyp.CAKAL_CISLO, e.getTyp());
+             assertEquals( SxExTyp.EXPECTED_INT, e.getType());
         }
     }
 

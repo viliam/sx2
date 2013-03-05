@@ -36,9 +36,9 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
             new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterReader()) {
                 @Override
                 public void nastavReader() {
-                    mr.zatvorka().setPosun(  1,0 ,  1,0 );
-                    mr.dekPremennej().setPosun( 3,0 ,  2,0 );
-                    mr.ciarka().setPosun( 1,0 );
+                    mr.bracket().setPosun(  1,0 ,  1,0 );
+                    mr.decVariable().setPosun( 3,0 ,  2,0 );
+                    mr.comma().setPosun( 1,0 );
                 }
             };
         tt.run("( aa,bb)", "bracket;decVariable;comma;decVariable;bracket;");
@@ -50,7 +50,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
             new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterReader()) {
                 @Override
                 public void nastavReader() {
-                    mr.zatvorka().setPosun(  1,0 ,  1,0 );
+                    mr.bracket().setPosun(  1,0 ,  1,0 );
                 }
             };
         tt.run("()", "bracket;bracket;");
@@ -60,12 +60,12 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
     @Test
     public void testChyba() {
         try {
-            mr.dekPremennej().setPosun( 2, 0 );
-            mr.zatvorka().setPosun( 1,0 ,   1,0 );
+            mr.decVariable().setPosun( 2, 0 );
+            mr.bracket().setPosun( 1,0 ,   1,0 );
             citajDekParameter("( aa,)");
-            fail("Cakal chybu, ocakavany znak bracket alebo ciarka");
+            fail("Cakal chybu, ocakavany znak bracket alebo comma");
         } catch (SxException e) {
-            assertEquals( "Typ chyby", SxExTyp.CAKAL_ZATVORKU_ALEBO_CIARKU,  e.getTyp());
+            assertEquals( "Typ chyby", SxExTyp.EXPECTED_BRACKET_OR_COMMA,  e.getType());
         }
 
     }

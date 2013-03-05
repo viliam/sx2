@@ -32,7 +32,7 @@ public class ConditionReader implements TextReader<Condition> {
     public Condition read(TextContext tC)        {
         StatementWord ifWord = Readers.instrukciaSlovo().read(tC);
         if ( !ReservedWordEnum.IF.is(ifWord.toString())  )
-            throw SxException.create( SxExTyp.CAKAL_AK, tC);
+            throw SxException.create( SxExTyp.EXPECTED_IF, tC);
 
 
         Bracket z1 = Readers.zatvorka().read(tC);

@@ -31,7 +31,7 @@ public class AssignmentReader implements TextReader<Assignment> {
         Variable variable = Readers.premena().read(tC);
 
         if ( !tC.isPrefixOperatorAssigment() )
-            throw SxException.create( SxExTyp.CAKAL_OPERATOR , tC);
+            throw SxException.create( SxExTyp.EXPECTED_OPERATOR, tC);
 
         Operator op = Readers.opPriradenia().read(tC);
 

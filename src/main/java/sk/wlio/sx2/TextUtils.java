@@ -20,21 +20,19 @@ import java.util.regex.Pattern;
 
 public class TextUtils {
 
-    //najde nasledujuci znak v slove
-    public static int posunNasledujuciZnakVriadku(String riadok, int x) {
-        while (x<riadok.length() && (riadok.charAt(x)==' ' || riadok.charAt(x)=='\n' ) ) x++;
+    public static int findNextCharacterInLine(String line, int x) {
+        while (x<line.length() && (line.charAt(x)==' ' || line.charAt(x)=='\n' ) ) x++;
         return x;
     }
 
-    //odkusne slovo na poziciii i-tej
-    //pozor, nesmie zacinat medzerou
-    public static int najdiKoniecSlova(String slovo, int i)  {
-        if (i>=slovo.length() ) return i;
-         //kym sa nerovnas zakazanym znakom ani operatorom, ani koncu riadka, tak v pohode
-        char p = slovo.charAt(i);
-        while ( i<slovo.length() && p != ' ' && (isLetter(p)|| isInt(p))) {
+    //take a word on i-positions (!i can be on empty character)
+    public static int findEndOfWord(String line, int i)  {
+        if (i>=line.length() ) return i;
+
+        char p = line.charAt(i);
+        while ( i<line.length() && p != ' ' && (isLetter(p)|| isInt(p))) {
             i++;
-            if ( i < slovo.length() ) p = slovo.charAt(i);
+            if ( i < line.length() ) p = line.charAt(i);
         }
         return i;
     }

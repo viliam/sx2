@@ -42,8 +42,8 @@ public class SymbolAbstractReaderTest {
         }
 
         @Override
-        protected SxExTyp getExceptionTyp() {
-            return SxExTyp.CAKAL_AK;
+        protected SxExTyp getExceptionType() {
+            return SxExTyp.EXPECTED_IF;
         }
     }
     
@@ -65,7 +65,7 @@ public class SymbolAbstractReaderTest {
             invokeOdkusniSymbol(symbolReader, tC);
             fail();
         } catch (SxException e) {
-            assertEquals(SxExTyp.CAKAL_AK, e.getTyp());
+            assertEquals(SxExTyp.EXPECTED_IF, e.getType());
         }
 
     }

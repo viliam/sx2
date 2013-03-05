@@ -36,7 +36,7 @@ public class SxExceptionTest {
             tR.read(tC);
             fail();
         } catch (SxException e) {
-            assertEquals(typOcakavany, e.getTyp());
+            assertEquals(typOcakavany, e.getType());
         }
     }
 
@@ -45,7 +45,7 @@ public class SxExceptionTest {
         TextContext tC = new TextContext(" 123");
         TextReader<Int> cR = new IntReader();
         cR.read(tC);
-        testException( tC, cR, SxExTyp.PRAZDNE_SLOVO);
+        testException( tC, cR, SxExTyp.EMPTY_WORD);
     }
 
     @Test
@@ -60,14 +60,14 @@ public class SxExceptionTest {
     public void testUnknowOperator() {
         TextContext tC = new TextContext(" c3");
         TextReader oAr = new OperatorExpressionReader();
-        testException(tC, oAr , SxExTyp.CAKAL_OPERATOR );
+        testException(tC, oAr , SxExTyp.EXPECTED_OPERATOR);
     }
 
     @Test
     public void testCakalZatvorku() {
         TextContext tC = new TextContext(" c3");
         TextReader<Bracket> zR = new BracketReader();
-        testException(tC, zR , SxExTyp.CAKAL_ZATVORKU);
+        testException(tC, zR , SxExTyp.EXPECTED_BRACKET);
     }
 
 }

@@ -47,7 +47,7 @@ public class CiarkaReaderTest {
             Readers.ciarka().read(tC);
             fail();
         } catch (SxException e) {
-            assertEquals( e.getTyp(), SxExTyp.CAKAL_CIARKU);
+            assertEquals( e.getType(), SxExTyp.EXPECTED_COMMA);
         }
     }
 

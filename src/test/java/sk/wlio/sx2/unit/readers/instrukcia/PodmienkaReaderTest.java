@@ -35,26 +35,26 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
         new TestTemplate<Condition>(sb, new ConditionReader()) {
             @Override
             public void nastavReader() {
-                mr.instrukciaSlovo().setPosun(  3,0 );
-                mr.instrukciaSlovo().setVystup(new StatementWord( null, "if"));
-                mr.zatvorka().setPosun(  1,0 ,  1,0 );
-                mr.vyraz().setPosun(5, 0);
-                mr.instrukcia().setPosun(9,0);
+                mr.statementWord().setPosun(  3,0 );
+                mr.statementWord().setVystup(new StatementWord( null, "if"));
+                mr.bracket().setPosun(  1,0 ,  1,0 );
+                mr.expression().setPosun(5, 0);
+                mr.statement().setPosun(9,0);
             }
-        }.run("if ( b>32) nieco();", "statmentWord;bracket;expression;bracket;statement;");
+        }.run("if ( b>32) nieco();", "statementWord;bracket;expression;bracket;statement;");
     }
 
     @Test
     public void testNeznameSlovo() {
-        mr.instrukciaSlovo().setPosun(4,0);
-        mr.instrukciaSlovo().setVystup( new StatementWord(null, "trat"));
+        mr.statementWord().setPosun(4,0);
+        mr.statementWord().setVystup( new StatementWord(null, "trat"));
 
         TextContext tC = new TextContext("trat 4;  ");
         try {
             new ConditionReader().read(tC);
             fail();
         } catch (SxException e) {
-            assertEquals(SxExTyp.CAKAL_AK, e.getTyp());
+            assertEquals(SxExTyp.EXPECTED_IF, e.getType());
         }
     }
 }

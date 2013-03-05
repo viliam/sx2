@@ -38,7 +38,7 @@ public class DeklaraciaParameterReaderTest {
         List<Comma> ciarky = dp.getLiComma();
         assertEquals("pocet ciarok",0 , ciarky.size());
         List<DeclarationVariable> dekPremenne = dp.getLiDekPremennej();
-        assertEquals("pocet dekPremennej", 0, dekPremenne.size() );
+        assertEquals("pocet decVariable", 0, dekPremenne.size() );
         assertNotNull("nenulova zatvorka1",  dp.getZ1());
         assertNotNull("nenulova zatvorka2", dp.getZ2());
     }
@@ -61,7 +61,7 @@ public class DeklaraciaParameterReaderTest {
             citajDekParameter("( aa,)");
             fail();
         } catch (SxException e) {
-            assertEquals( "Exception type", SxExTyp.CAKAL_DATOVY_TYP,  e.getTyp());
+            assertEquals( "Exception type", SxExTyp.EXPECTED_DATA_TYPE,  e.getType());
         }
 
     }

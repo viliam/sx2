@@ -50,7 +50,7 @@ public abstract class TestAbstract<T extends IWord> {
     @Test
     public void testOk() {
         for (String v: getDobreVety()) {
-            System.out.println("testovane slovo OK : " + v);
+            System.out.println("testovane word OK : " + v);
             TextContext tC = new TextContext(v);
             T veta= spracuj(tC);
             assertNotNull( veta);
@@ -62,7 +62,7 @@ public abstract class TestAbstract<T extends IWord> {
     @Test
     public void testFail() {
         for (String v : getChybneVety()) {
-            System.out.println("testovane slovo Fail : " + v);
+            System.out.println("testovane word Fail : " + v);
             try  {
                 TextContext tC = new TextContext(v);
                 T slovo = spracuj(tC);

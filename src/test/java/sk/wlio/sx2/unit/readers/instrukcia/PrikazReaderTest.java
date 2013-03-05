@@ -31,9 +31,9 @@ public class PrikazReaderTest extends AbstractReaderTest {
     public void testPrikaz()  {
         TestTemplate<Command> tt =new TestTemplate<Command>( sb, new CommandReader()) {
             @Override public void nastavReader() {
-                mr.slovo().setPosun( 4,0);
-                mr.slovo().setVystup( new Word( null, "ahoj"));
-                mr.parametre().setPosun( 8,0);
+                mr.word().setPosun( 4,0);
+                mr.word().setVystup( new Word( null, "ahoj"));
+                mr.paramters().setPosun( 8,0);
             }
         };
         tt.run("   ahoj(3 , p);  ","word;parameters;");

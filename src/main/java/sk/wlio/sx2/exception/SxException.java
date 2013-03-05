@@ -34,21 +34,21 @@ public class SxException extends RuntimeException {
             if (tC.isEndOfFile())
                 return new SxException(typ, inx);
 
-            message= urobMessage(typ, inx, tC);
+            message= makeMessage(typ, inx, tC);
         }
 
         return new SxException( typ, message, inx);
     }
 
-    private static String urobMessage(SxExTyp typ, Position position, TextContext tC) {
-        int riadok = position.getY();
-        int stlpec = position.getX();
+    private static String makeMessage(SxExTyp typ, Position position, TextContext tC) {
+        int row = position.getY();
+        int column = position.getX();
 
-        String aktualnyRiadok = tC.getLine(riadok);
-        char znak = ( aktualnyRiadok.length() < stlpec) ?
-                aktualnyRiadok.charAt(stlpec) : ' ';
+        String line = tC.getLine(row);
+        char aChar = ( line.length() < column) ?
+                line.charAt(column) : ' ';
 
-        return typ + "  : " + aktualnyRiadok + "    \n znak = " + znak;
+        return typ + "  : " + line + "    \n char = " + aChar;
 
     }
 
@@ -69,10 +69,10 @@ public class SxException extends RuntimeException {
     @Override
     public String getMessage() {
         return super.getMessage() + "  \n" 
-                + " riadok = " + position.getY() + " ,   stlpec = " + position.getX();
+                + " row = " + position.getY() + " ,   column = " + position.getX();
     }
 
-    public SxExTyp getTyp() {
+    public SxExTyp getType() {
         return typ;
     }
 

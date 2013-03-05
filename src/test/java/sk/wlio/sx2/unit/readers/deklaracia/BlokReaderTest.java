@@ -33,12 +33,12 @@ public class BlokReaderTest extends AbstractReaderTest {
     public void testBlok()  {
         TestTemplate<Block> tt = new TestTemplate<Block>(sb, new BlockReader()) {
             @Override public void nastavReader() {
-                mr.zatvorka().setVystup( new Bracket(new Position(0,0), SymbolEnum.BRACKET_NORM_OPEN));
-                mr.zatvorka().setPosun( 3,0 ,  2,0 );
-                mr.instrukcia().setPosun(  7,0 ,  9,0 );
+                mr.bracket().setVystup( new Bracket(new Position(0,0), SymbolEnum.BRACKET_NORM_OPEN));
+                mr.bracket().setPosun( 3,0 ,  2,0 );
+                mr.statement().setPosun(  7,0 ,  9,0 );
             }
         };
-        tt.run( "  { a = 4; cislo b; } ",
+        tt.run( "  { a = 4; integer b; } ",
                 "bracket;statement;statement;bracket;");
 
         Block block = tt.getVysledok();

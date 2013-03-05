@@ -24,22 +24,22 @@ public class TextUtilsTest {
 
     @Test
     public void testNajdiNasledujuciZnakVriadku() {
-        int ns = TextUtils.posunNasledujuciZnakVriadku(" 1234 56", 3);
+        int ns = TextUtils.findNextCharacterInLine(" 1234 56", 3);
         assertEquals("nasledujuci znak", 3, ns);
-        ns = TextUtils.posunNasledujuciZnakVriadku(" 12   34 56", 3);
+        ns = TextUtils.findNextCharacterInLine(" 12   34 56", 3);
         assertEquals("nasledujuci znak", 6, ns);
-        ns = TextUtils.posunNasledujuciZnakVriadku(" 12   34 56", 3);
+        ns = TextUtils.findNextCharacterInLine(" 12   34 56", 3);
         assertEquals("nasledujuci znak", 6, ns);
     }
 
     @Test
     public void testNajdiKoniecSlova() {
         //prekrocenie
-        assertEquals(4 , TextUtils.najdiKoniecSlova("aa", 4));
+        assertEquals(4 , TextUtils.findEndOfWord("aa", 4));
         //konci pismenom
-        assertEquals(2 , TextUtils.najdiKoniecSlova("aa 2", 0));
+        assertEquals(2 , TextUtils.findEndOfWord("aa 2", 0));
         //konci cislom
-        assertEquals(2 , TextUtils.najdiKoniecSlova("a2 2", 0));
+        assertEquals(2 , TextUtils.findEndOfWord("a2 2", 0));
 
     }
 }

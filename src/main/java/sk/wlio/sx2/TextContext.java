@@ -45,11 +45,10 @@ public class TextContext {
     }
 
     /**
-     * Metoda sa presunie kruzor na nasledovny znak, precita znak a
-     * vrati kurzor na povodne miesto
+     * Move cursor to next character, read that character and return a cursor
+     * back
      *
-     * @return vrati nasledovny znak
-     * @ - v pripade, ze
+     * @return next character
      */
     public char nextCharacter()  {
         Position actual = new Position( inx);
@@ -65,9 +64,9 @@ public class TextContext {
     }
 
     /**
-     * Presunie kurzor na nasledujuci neprazdny znak
+     * Move cursor to a next not empty character
      *
-     * @return Suradnice nasledujuceho neprazdneho znaku
+     * @return Postion of next character
      */
     public Position findNextCharacter() {
         int x = inx.getX(), y = inx.getY();

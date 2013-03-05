@@ -51,7 +51,7 @@ public class TextContextTest {
             tc.nextCharacter();
             fail();
         }   catch (SxException sx)  {
-            assertEquals( SxExTyp.END_OF_FILE, sx.getTyp());
+            assertEquals( SxExTyp.END_OF_FILE, sx.getType());
         }
     }
 
@@ -110,7 +110,7 @@ public class TextContextTest {
             Readers.slovo().read(tC).toString();;
             fail();
         } catch (SxException ex) {
-            assertEquals( SxExTyp.PRAZDNE_SLOVO, ex.getTyp());
+            assertEquals( SxExTyp.EMPTY_WORD, ex.getType());
         }
     }
 
@@ -121,7 +121,7 @@ public class TextContextTest {
             Readers.slovo().read(tC).toString();;
             fail();
         } catch (SxException ex) {
-            assertEquals( SxExTyp.PRAZDNE_SLOVO, ex.getTyp());
+            assertEquals( SxExTyp.EMPTY_WORD, ex.getType());
         }
     }
 
@@ -140,7 +140,7 @@ public class TextContextTest {
             tc.setPosition(new Position(0, 3));
             tc.endOfLine();
         } catch (SxException ex) {
-            assertEquals( SxExTyp.END_OF_FILE, ex.getTyp());
+            assertEquals( SxExTyp.END_OF_FILE, ex.getType());
         }
     }
 }

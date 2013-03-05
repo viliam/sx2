@@ -29,11 +29,11 @@ public abstract class SymbolAbstractReader<E extends IWord> implements TextReade
     public E read(TextContext tC)  {
         try {
             Position poz = tC.findNextCharacter();
-            String sSymbol = odkusniSymbol(tC);
+            String sSymbol = takeSymbol(tC);
             SymbolEnum eSymbol = SymbolEnum.makeSymbol(sSymbol);
             return create( poz, eSymbol);
         } catch (SxException ex) {
-            throw SxException.create( ex.getTyp(), tC);
+            throw SxException.create( ex.getType(), tC);
         }
 
     }
@@ -41,33 +41,26 @@ public abstract class SymbolAbstractReader<E extends IWord> implements TextReade
     protected abstract String[] getSymbols();
     //protected abstract E makeSymbol(String s, Bod pozicia);
     protected abstract E create(Position position, SymbolEnum oEnum) ;
-    protected abstract SxExTyp getExceptionTyp();
+    protected abstract SxExTyp getExceptionType();
 
 
-    protected String odkusniSymbol(  TextContext tC)  {
+    protected String takeSymbol(TextContext tC)  {
         String[] symbols = getSymbols();
 
-        int najdeneInx = -1, dlzka =0;   //hladam najdlhsi zhodny prefix
+        int inx = -1, length =0;   //looking for longest prefix
         String s = tC.endOfLine();
         for (int i=0 ; i<symbols.length; i++)
-            if ( s.startsWith( symbols[i]) && dlzka < symbols[i].length()) {
-                    dlzka = symbols[i].length() ;
-                    najdeneInx = i;
+            if ( s.startsWith( symbols[i]) && length < symbols[i].length()) {
+                    length = symbols[i].length() ;
+                    inx = i;
                 }
 
-        if (najdeneInx!= -1) {
-            tC.addXpostion(symbols[najdeneInx].length());
-            return symbols[najdeneInx];
+        if (inx!= -1) {
+            tC.addXpostion(symbols[inx].length());
+            return symbols[inx];
         }
 
-        throw SxException.create( getExceptionTyp(), tC);
+        throw SxException.create( getExceptionType(), tC);
     }
-
-//    public boolean jePrfx( char a) {
-//        String[] symbols  = getSymbols();
-//        for (int i=0; i < symbols.length; i++)
-//                if ( symbols[i].charAt(0) == a  ) return true;
-//        return false;
-//    }
 
 }

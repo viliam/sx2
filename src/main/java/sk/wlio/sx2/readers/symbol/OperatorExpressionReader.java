@@ -34,7 +34,7 @@ public class OperatorExpressionReader extends SymbolAbstractReader<Operator> {
     }
 
     @Override
-    protected SxExTyp getExceptionTyp() {
-        return SxExTyp.CAKAL_OPERATOR;
+    protected SxExTyp getExceptionType() {
+        return SxExTyp.EXPECTED_OPERATOR;
     }
 }

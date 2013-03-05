@@ -39,18 +39,18 @@ public class DeklaraciaTriedaReaderTest extends AbstractReaderTest {
                 @Override
                 public void nastavReader() {
 
-                    mr.slovo().setPosun(5,0, 4,0,
+                    mr.word().setPosun(5,0, 4,0,
                                         5,0, 4,0,
                                         6,0, 5,0);
-                    mr.slovo().setVystup(new Word(null, "bool"), new Word(null, "ahoj"),
+                    mr.word().setVystup(new Word(null, "bool"), new Word(null, "ahoj"),
                             new Word(null, "bool"), new Word(null, "ahoj"),
                             new Word(null, "int"), new Word(null, "ahoj"));
-                    mr.dekPrikaz().setVystup(new DeclarationCommand(new DataType(new Word( new Position(3,3))),
+                    mr.decCommand().setVystup(new DeclarationCommand(new DataType(new Word( new Position(3,3))),
                                                                   new Word(null, "ahoj"), null, null));
-                    mr.dekPrikaz().setPosun( 25, 0 );
-                    mr.dekPremennej().setVystup(new DeclarationVariable(
+                    mr.decCommand().setPosun( 25, 0 );
+                    mr.decVariable().setVystup(new DeclarationVariable(
                             new DataType(new Word( new Position(3,3), "int")), new Word(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)) );
-                    mr.dekPremennej().setPosun( 12, 0 );
+                    mr.decVariable().setPosun( 12, 0 );
                 }
             };
         tt.run(" bool ahoj() { return 3; } " +

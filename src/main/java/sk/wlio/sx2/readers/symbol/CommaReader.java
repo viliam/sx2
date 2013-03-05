@@ -34,7 +34,7 @@ public class CommaReader extends SymbolAbstractReader<Comma> {
     }
 
     @Override
-    protected SxExTyp getExceptionTyp() {
-        return SxExTyp.CAKAL_CIARKU;
+    protected SxExTyp getExceptionType() {
+        return SxExTyp.EXPECTED_COMMA;
     }
 }

@@ -50,7 +50,7 @@ public class ExprReader implements TextReader<IExpression> {
         if    ( !tC.isPrefixOperator()
              && !tC.isPrefixComma()
              && !tC.isPrefixBracketClosed() )
-            throw SxException.create(SxExTyp.CAKAL_OPERATOR, tC);
+            throw SxException.create(SxExTyp.EXPECTED_OPERATOR, tC);
     }
 
 }

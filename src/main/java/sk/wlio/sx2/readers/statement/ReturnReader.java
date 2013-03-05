@@ -29,7 +29,7 @@ public class ReturnReader implements TextReader<Return> {
     public Return read(TextContext tC)  {
         Word reserWord = Readers.slovo().read(tC);
         if ( !ReservedWordEnum.RETURN.is(reserWord.toString())  )
-            throw SxException.create( SxExTyp.CAKAL_VRAT, tC);
+            throw SxException.create( SxExTyp.EXPECTED_RETURN, tC);
 
         return new Return(reserWord, Readers.vyraz().read(tC), tC.readIfIsSemicolon());
     }

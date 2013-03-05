@@ -37,30 +37,30 @@ import sk.wlio.sx2.interfaces.TextReader;
 
 public class ReadersImpl implements  IReaders {
     
-    public TextReader<Word> slovo() {  return  new WordReader(); }
-    public TextReader<Int> cislo() {  return   new IntReader(); }
-    public TextReader<Operator> opVyraz() {  return   new OperatorExpressionReader(); }
-    public TextReader<Operator> opPriradenia() {  return   new OperatorPriradenieReader(); }
-    public TextReader<IExpression> vyraz() {  return   new ExprReader(); }
-    public TextReader<IExpression> vrzJednduchy() {  return   new SimpleExprReader(); }
-    public TextReader<IExpression> vrzVzatvorke() {  return   new BracketExpression(); }
-    public TextReader<Bracket> zatvorka() {  return   new BracketReader(); }
-    public TextReader<Comma> ciarka  () {  return   new CommaReader(); }
+    public TextReader<Word> word() {  return  new WordReader(); }
+    public TextReader<Int> integer() {  return   new IntReader(); }
+    public TextReader<Operator> opExpr() {  return   new OperatorExpressionReader(); }
+    public TextReader<Operator> opAssignment() {  return   new OperatorPriradenieReader(); }
+    public TextReader<IExpression> expression() {  return   new ExprReader(); }
+    public TextReader<IExpression> expSimple() {  return   new SimpleExprReader(); }
+    public TextReader<IExpression> expBracket() {  return   new BracketExpression(); }
+    public TextReader<Bracket> bracket() {  return   new BracketReader(); }
+    public TextReader<Comma> comma() {  return   new CommaReader(); }
 
-    public TextReader<DataType> datovyTyp() {  return   new DataTypeReader(); }
-    public TextReader<StatementWord> instrukciaSlovo() { return new StatementWordReader(); }
+    public TextReader<DataType> dataType() {  return   new DataTypeReader(); }
+    public TextReader<StatementWord> statementWord() { return new StatementWordReader(); }
 
-    public TextReader<Statement> instrukcia() {  return   new StatementReader(); }
-    public TextReader<Assignment> priradenie() {  return   new AssignmentReader(); }
-    public TextReader<Condition> podmienka() { return new ConditionReader(); }
-    public TextReader<Block> blok() {  return   new BlockReader(); }
-    public TextReader<Variable> premenna() {  return   new VariableReader(); }
-    public TextReader<DeclarationVariable> dekPremennej() {  return   new DeclarationVariableReader(); }
-    public TextReader<Command> prikaz() {  return   new CommandReader(); }
-    public TextReader<DeclarationCommand> dekPrikaz () {  return   new DeclarationCommandReader(); }
-    public TextReader<Program> dekTrieda() {   return new ProgramReader();  }
+    public TextReader<Statement> statement() {  return   new StatementReader(); }
+    public TextReader<Assignment> assignment() {  return   new AssignmentReader(); }
+    public TextReader<Condition> condition() { return new ConditionReader(); }
+    public TextReader<Block> block() {  return   new BlockReader(); }
+    public TextReader<Variable> variable() {  return   new VariableReader(); }
+    public TextReader<DeclarationVariable> decVariable() {  return   new DeclarationVariableReader(); }
+    public TextReader<Command> command() {  return   new CommandReader(); }
+    public TextReader<DeclarationCommand> decCommand() {  return   new DeclarationCommandReader(); }
+    public TextReader<Program> program() {   return new ProgramReader();  }
 
-    public TextReader<Parameters> parametre() {  return   new ParameterReader(); }
-    public TextReader<DeclarationParameter> dekParameter() {  return   new DeclarationParameterReader(); }
-    public TextReader<Return> vrat() {  return   new ReturnReader(); }
+    public TextReader<Parameters> paramters() {  return   new ParameterReader(); }
+    public TextReader<DeclarationParameter> decParamters() {  return   new DeclarationParameterReader(); }
+    public TextReader<Return> aReturn() {  return   new ReturnReader(); }
 }
