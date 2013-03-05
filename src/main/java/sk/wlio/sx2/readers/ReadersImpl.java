@@ -42,8 +42,8 @@ public class ReadersImpl implements  IReaders {
     public TextReader<Operator> opExpr() {  return   new OperatorExpressionReader(); }
     public TextReader<Operator> opAssignment() {  return   new OperatorPriradenieReader(); }
     public TextReader<IExpression> expression() {  return   new ExprReader(); }
-    public TextReader<IExpression> expSimple() {  return   new SimpleExprReader(); }
-    public TextReader<IExpression> expBracket() {  return   new BracketExpression(); }
+    public TextReader<IExpression> exprSimple() {  return   new SimpleExprReader(); }
+    public TextReader<IExpression> exprBracket() {  return   new BracketExpression(); }
     public TextReader<Bracket> bracket() {  return   new BracketReader(); }
     public TextReader<Comma> comma() {  return   new CommaReader(); }
 

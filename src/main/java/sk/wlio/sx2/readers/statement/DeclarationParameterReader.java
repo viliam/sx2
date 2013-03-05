@@ -32,7 +32,7 @@ import java.util.List;
 public class DeclarationParameterReader implements TextReader<DeclarationParameter> {
 
     public DeclarationParameter read(TextContext tC)  {
-        TextReader<Bracket> zR = Readers.zatvorka();
+        TextReader<Bracket> zR = Readers.bracket();
         Bracket z1 = zR.read(tC);
         if ( tC.isPrefixBracketClosed() ) {
             Bracket z2 = zR.read(tC);
@@ -43,10 +43,10 @@ public class DeclarationParameterReader implements TextReader<DeclarationParamet
         List<Comma> commas = new ArrayList<Comma>();
         do {
             //parameters are reading
-            declarations.add(Readers.dekPremennej().read(tC));
+            declarations.add(Readers.decVariable().read(tC));
             //at first, I try to read comma
             if ( tC.nextCharacter()==',') {
-                commas.add(Readers.ciarka().read(tC));
+                commas.add(Readers.comma().read(tC));
                 continue;
             }
             if ( tC.isPrefixBracketClosed() ) {

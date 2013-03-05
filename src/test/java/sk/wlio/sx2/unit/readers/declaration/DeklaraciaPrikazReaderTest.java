@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.unit.readers.deklaracia;
+package sk.wlio.sx2.unit.readers.declaration;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
@@ -39,9 +39,9 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
                 public void nastavReader() {
                     mr.decParamters().setPosun( 2,0);
                     mr.dataType().setPosun( 5,0);
-                    mr.dataType().setVystup( new DataType( null, "bool"));
-                    mr.word().setPosun(6,0,  6,0 );
-                    mr.word().setVystup( new Word(null, "aa"), new Word(null, "ahoj"));
+                    mr.dataType().setOutput(new DataType(null, "bool"));
+                    mr.word().setShift(6, 0, 6, 0);
+                    mr.word().setOutput(new Word(null, "aa"), new Word(null, "ahoj"));
                     mr.block().setPosun( 11, 0 );
                 }
             };
@@ -55,10 +55,10 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
     public void testNiejeDatovyTyp() {
         try {
             mr.dataType().setPosun( 5,0 );
-            mr.dataType().setVystup( new DataType(null, "boool"));
+            mr.dataType().setOutput(new DataType(null, "boool"));
 
             citajDekPrikaz("  boool ahoj() { return 3; } ");
-            fail("Cakal chybu, zla deklaracia prikazu");
+            fail("Cakal chybu, zla declarations prikazu");
         } catch (SxException e) {
             assertEquals( "Typ chyby", SxExTyp.EXPECTED_COMMAND_DECLARATION,  e.getType());
         }
@@ -68,10 +68,10 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
     public void testZlyNazovPrikazu() {
         try {
             mr.dataType().setPosun( 5,0 );
-            mr.dataType().setVystup( new DataType(null, "bool"));
+            mr.dataType().setOutput(new DataType(null, "bool"));
 
-            mr.word().setPosun( 4,0 ,  4,0 );
-            mr.word().setVystup( new Word(null, "3ahoj"));
+            mr.word().setShift(4, 0, 4, 0);
+            mr.word().setOutput(new Word(null, "3ahoj"));
 
             citajDekPrikaz("  bool 3ahoj() { aReturn 3; } ");
             fail("Cakal chybu, zly nazov prikazu");

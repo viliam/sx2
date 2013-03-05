@@ -26,21 +26,21 @@ import java.util.List;
 
 public class DeclarationParameter implements IWord {
 
-    Bracket z1, z2;
+    Bracket b1, b2;
 
-    List<DeclarationVariable> liDekPremennej = new ArrayList<DeclarationVariable>();
+    List<DeclarationVariable> liDecVariable = new ArrayList<DeclarationVariable>();
     List<Comma> liComma = new ArrayList<Comma>();
 
-    public DeclarationParameter(Bracket z1, Bracket z2) {
-        this.z1 = z1;
-        this.z2 = z2;
+    public DeclarationParameter(Bracket b1, Bracket b2) {
+        this.b1 = b1;
+        this.b2 = b2;
     }
 
-    public DeclarationParameter(Bracket z1, Bracket z2, List<Comma> liComma, List<DeclarationVariable> liDekPremennej) {
+    public DeclarationParameter(Bracket b1, Bracket b2, List<Comma> liComma, List<DeclarationVariable> liDecVariable) {
         this.liComma = liComma;
-        this.liDekPremennej = liDekPremennej;
-        this.z1 = z1;
-        this.z2 = z2;
+        this.liDecVariable = liDecVariable;
+        this.b1 = b1;
+        this.b2 = b2;
     }
 
     public void visit(IVisitor visitor) {
@@ -51,20 +51,20 @@ public class DeclarationParameter implements IWord {
         return liComma;
     }
 
-    public List<DeclarationVariable> getLiDekPremennej() {
-        return liDekPremennej;
+    public List<DeclarationVariable> getLiDecVariable() {
+        return liDecVariable;
     }
 
-    public Bracket getZ1() {
-        return z1;
+    public Bracket getB1() {
+        return b1;
     }
 
-    public Bracket getZ2() {
-        return z2;
+    public Bracket getB2() {
+        return b2;
     }
 
     public Position getPosition() {
-        return z1.getPosition();
+        return b1.getPosition();
     }
 
 }

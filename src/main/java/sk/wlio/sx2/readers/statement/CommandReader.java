@@ -25,8 +25,8 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class CommandReader implements TextReader<Command> {
     
     public Command read(TextContext tC)  {
-        Word name = Readers.slovo().read(tC);
-        Parameters parameters = Readers.parametre().read(tC);
+        Word name = Readers.word().read(tC);
+        Parameters parameters = Readers.parameters().read(tC);
         return new Command(name, parameters);
     }
 }

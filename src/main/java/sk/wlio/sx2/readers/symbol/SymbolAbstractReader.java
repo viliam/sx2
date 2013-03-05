@@ -48,7 +48,7 @@ public abstract class SymbolAbstractReader<E extends IWord> implements TextReade
         String[] symbols = getSymbols();
 
         int inx = -1, length =0;   //looking for longest prefix
-        String s = tC.endOfLine();
+        String s = tC.takeEndOfLine();
         for (int i=0 ; i<symbols.length; i++)
             if ( s.startsWith( symbols[i]) && length < symbols[i].length()) {
                     length = symbols[i].length() ;

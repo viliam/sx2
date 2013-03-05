@@ -20,16 +20,16 @@
   <test name="Zakladna funkcionalita" >
     <classes>
         <class name="sk.wlio.sx2.unit.readers.symbol.SlovoReaderTest"/>
-        <class name="sk.wlio.sx2.unit.readers.znak.SymbolAbstractReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.symbol.SymbolAbstractReaderTest"/>
         <class name="sk.wlio.sx2.unit.readers.instrukcia.VratReaderTest"/>
         <class name="sk.wlio.sx2.unit.readers.instrukcia.PrikazReaderTest"/>
         <class name="sk.wlio.sx2.unit.readers.instrukcia.ParametreReaderTest"/>
         <class name="sk.wlio.sx2.unit.readers.instrukcia.InstrukciaReaderTest"/>
-        <class name="sk.wlio.sx2.unit.readers.deklaracia.DeklaraciaPremennejReaderTest"/>
-        <class name="sk.wlio.sx2.unit.readers.deklaracia.BlokReaderTest"/>
-        <class name="sk.wlio.sx2.unit.readers.deklaracia.DeklaraciaPrikazReaderTest"/>
-        <class name="sk.wlio.sx2.unit.readers.deklaracia.DeklaraciaParameterReaderTest"/>
-        <class name="sk.wlio.sx2.unit.readers.deklaracia.DeklaraciaTriedaReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.declaration.DeklaraciaPremennejReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.declaration.BlokReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.declaration.DeklaraciaPrikazReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.declaration.DeklaraciaParameterReaderTest"/>
+        <class name="sk.wlio.sx2.unit.readers.declaration.DeklaraciaTriedaReaderTest"/>
         <class name="sk.wlio.sx2.unit.readers.vyraz.PremennaReaderTest" />
         <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazJednoduchyReaderTest" />
         <class name="sk.wlio.sx2.unit.readers.instrukcia.PriradenieReaderTest" />
@@ -38,16 +38,16 @@
         <class name="sk.wlio.sx2.unit.readers.OperatorReaderTest" />
         <class name="sk.wlio.sx2.unit.TextContextTest" />
         <class name="sk.wlio.sx2.unit.readers.vyraz.VyrazReaderTest" />
-        <class name="sk.wlio.sx2.unit.readers.znak.ZatvorkaReaderTest" />
+        <class name="sk.wlio.sx2.unit.readers.symbol.ZatvorkaReaderTest" />
         <class name="sk.wlio.sx2.unit.visitors.KontextovaKontrolaVisitorTest" />
         <class name="sk.wlio.sx2.integra.SxExceptionTest" />
-        <class name="sk.wlio.sx2.integra.JazykSxTest" />
-        <class name="sk.wlio.sx2.integra.znak.CiarkaReaderTest" />
-        <class name="sk.wlio.sx2.integra.deklaracia.DeklaraciaParameterReaderTest"/>
-        <class name="sk.wlio.sx2.integra.deklaracia.DeklaraciaPremennejReaderTest"/>
-        <class name="sk.wlio.sx2.integra.deklaracia.BlokReaderTest"/>
-        <class name="sk.wlio.sx2.integra.vyraz.VyrazReaderTest" />
-        <class name="sk.wlio.sx2.integra.visitors.KontextovaKontrolaVisitorTest"/>
+        <class name="sk.wlio.sx2.integra.LangSxTest" />
+        <class name="sk.wlio.sx2.integra.symbol.CommaReaderTest" />
+        <class name="sk.wlio.sx2.integra.declarations.DeclarationParametersReaderTest"/>
+        <class name="sk.wlio.sx2.integra.declarations.DeclarationVariableReaderTest"/>
+        <class name="sk.wlio.sx2.integra.declarations.BlockReaderTest"/>
+        <class name="sk.wlio.sx2.integra.expression.ExpressionReaderTest" />
+        <class name="sk.wlio.sx2.integra.visitors.ContextAnalysisVisitorTest"/>
     </classes>
   </test>
 

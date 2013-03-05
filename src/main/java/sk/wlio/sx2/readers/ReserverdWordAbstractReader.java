@@ -25,7 +25,7 @@ import sk.wlio.sx2.interfaces.TextReader;
 public abstract class ReserverdWordAbstractReader<E extends Word> implements TextReader<E> {
 
     public E read(TextContext tC)  {
-        Word word = Readers.slovo().read(tC);
+        Word word = Readers.word().read(tC);
         String s = word.toString();
 
         if (!getZakazaneSlova().is(s))

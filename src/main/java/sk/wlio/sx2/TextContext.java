@@ -100,7 +100,7 @@ public class TextContext {
         this.inx = new Position(inx);
     }
 
-    public String endOfLine()   {
+    public String takeEndOfLine()   {
         checkEndOfFile();
 
         int x = inx.getX(), y = inx.getY();
@@ -171,7 +171,7 @@ public class TextContext {
     public Comma readIfIsSemicolon() {
         Comma semicolon = null;
         if (isPrefixSemicolon() )
-            semicolon = Readers.ciarka().read(this);
+            semicolon = Readers.comma().read(this);
         return semicolon;
     }
 
@@ -184,7 +184,7 @@ public class TextContext {
                    return false;
                 }
 
-                Word word = Readers.slovo().read(TextContext.this);
+                Word word = Readers.word().read(TextContext.this);
                 return  isPrefix(word);
             } finally {
                 setPosition(pos);
@@ -244,7 +244,7 @@ public class TextContext {
                 if (isEndOfFile() || !isPrefixLetter() )
                    return false;
 
-                Word word = Readers.slovo().read(TextContext.this);
+                Word word = Readers.word().read(TextContext.this);
                 return RezervedWordsEnum.DATA_TYPE.is(word.getContent()) && isPrefixName();
             } finally {
                 setPosition(position);
@@ -274,7 +274,7 @@ public class TextContext {
 
     public ReservedWordEnum vratPrefixZakazaneSlovo()  {
         findNextCharacter();
-        String s = WordReader.lookAhead(endOfLine(), 0);
+        String s = WordReader.lookAhead(takeEndOfLine(), 0);
         return ReservedWordEnum.makeSymbol(s);
     }
 

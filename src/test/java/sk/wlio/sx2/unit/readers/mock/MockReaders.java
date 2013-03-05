@@ -32,112 +32,102 @@ import sk.wlio.sx2.interfaces.TextReader;
 
 public class MockReaders implements IReaders {
 
-    StringBuffer postupVolania;
+    StringBuffer callingSequence;
 
-    protected MockReader<Int> mCislo;
-    protected MockReader<Word> mSlovo;
+    protected MockReader<Int> mInt;
+    protected MockReader<Word> mWord;
 
-    protected MockReader<Operator> mOpVyraz;
-    protected MockReader<Operator> mOpPriradenia;
+    protected MockReader<Operator> mOpExpr;
+    protected MockReader<Operator> mOpAssignment;
 
-    protected MockReader<IExpression> mVyraz;
-    protected MockReader<IExpression> mVrzArtim;
-    protected MockReader<IExpression> mVrzBool;
-    protected MockReader<IExpression> mVrzJednoduchy;
-    protected MockReader<IExpression> mVrzZatvorka;
-    protected MockReader<IExpression> mVrzAritmVzatvorke;
-    protected MockReader<IExpression> mVrzBoolVzatvorke;
+    protected MockReader<IExpression> mExpression;
+    protected MockReader<IExpression> mExprSimple;
+    protected MockReader<IExpression> mExprBracket;
 
-    protected MockReader<Bracket> mZatvorka;
-    protected MockReader<Comma> mCiarka;
+    protected MockReader<Bracket> mBracket;
+    protected MockReader<Comma> mComma;
 
-    protected MockReader<DataType> mDatovyTyp;
-    protected MockReader<StatementWord> mInstrukciaSlovo;
+    protected MockReader<DataType> mDataType;
+    protected MockReader<StatementWord> mStatementWord;
 
-    protected MockReader<Statement> mInstrukcia;
-    protected MockReader<Assignment> mPriradenie;
-    protected MockReader<Block> mBlok;
-    protected MockReader<Variable> mPremenna;
-    protected MockReader<DeclarationVariable> mDekPremennej;
-    protected MockReader<Command> mPrikaz;
-    protected MockReader<DeclarationCommand> mDekPrikaz;
-    protected MockReader<Program> mDekTrieda;
-    protected MockReader<Parameters> mParametre;
-    protected MockReader<DeclarationParameter> mDekParameter;
-    protected MockReader<Return> mVrat;
-    protected MockReader<Condition> mPodmienka;
+    protected MockReader<Statement> mStatement;
+    protected MockReader<Assignment> mAssigment;
+    protected MockReader<Block> mBlock;
+    protected MockReader<Variable> mVariable;
+    protected MockReader<DeclarationVariable> mDecVariable;
+    protected MockReader<Command> mCommand;
+    protected MockReader<DeclarationCommand> mDecCommand;
+    protected MockReader<Program> mProgram;
+    protected MockReader<Parameters> mParameters;
+    protected MockReader<DeclarationParameter> mDecParameter;
+    protected MockReader<Return> mReturn;
+    protected MockReader<Condition> mCondition;
 
 
-    public MockReaders(StringBuffer postupVolania) {
-        this.postupVolania = postupVolania;
+    public MockReaders(StringBuffer callingSequence) {
+        this.callingSequence = callingSequence;
 
-        mCislo = new MockReader<Int>("int", postupVolania);
-        mSlovo= new MockReader<Word>("word", postupVolania);
+        mInt = new MockReader<Int>("int", callingSequence);
+        mWord = new MockReader<Word>("word", callingSequence);
 
-        mOpVyraz = new MockReader<Operator>("opExp", postupVolania);
-        mOpPriradenia= new MockReader<Operator>("opAssigment", postupVolania);
+        mOpExpr = new MockReader<Operator>("opExp", callingSequence);
+        mOpAssignment = new MockReader<Operator>("opAssigment", callingSequence);
 
-        mVyraz= new MockReader<IExpression>("expression", postupVolania);
-        mVrzArtim= new MockReader<IExpression>("expAritm", postupVolania);
-        mVrzBool= new MockReader<IExpression>("expBool", postupVolania);
-        mVrzJednoduchy = new MockReader<IExpression>("expSimple", postupVolania);
-        mVrzZatvorka = new MockReader<IExpression>("expBracket", postupVolania);
-        mVrzAritmVzatvorke= new MockReader<IExpression>("expAritmVzatvorke", postupVolania);
-        mVrzBoolVzatvorke= new MockReader<IExpression>("vrzBoolVzatvorke", postupVolania);
+        mExpression = new MockReader<IExpression>("expression", callingSequence);
+        mExprSimple = new MockReader<IExpression>("exprSimple", callingSequence);
+        mExprBracket = new MockReader<IExpression>("exprBracket", callingSequence);
 
-        mZatvorka = new MockReader<Bracket>("bracket", postupVolania);
-        mCiarka= new MockReader<Comma>("comma", postupVolania);
+        mBracket = new MockReader<Bracket>("bracket", callingSequence);
+        mComma = new MockReader<Comma>("comma", callingSequence);
 
-        mInstrukciaSlovo= new MockReader<StatementWord>("statementWord", postupVolania);
-        mDatovyTyp= new MockReader<DataType>("dataType", postupVolania);
+        mStatementWord = new MockReader<StatementWord>("statementWord", callingSequence);
+        mDataType = new MockReader<DataType>("dataType", callingSequence);
 
-        mInstrukcia= new MockReader<Statement>("statement", postupVolania);
-        mPriradenie= new MockReader<Assignment>("assigment", postupVolania);
-        mBlok= new MockReader<Block>("block", postupVolania);
-        mPremenna =new MockReader<Variable>("variable", postupVolania);
-        mDekPremennej = new MockReader<DeclarationVariable>("decVariable", postupVolania);
-        mPrikaz= new MockReader<Command>("command", postupVolania);
-        mDekPrikaz= new MockReader<DeclarationCommand>("decCommand", postupVolania);
-        mParametre= new MockReader<Parameters>("parameters", postupVolania);
-        mDekParameter= new MockReader<DeclarationParameter>("decParameter", postupVolania);
-        mVrat=new MockReader<Return>("return", postupVolania);
-        mPodmienka = new MockReader<Condition>("if", postupVolania);
+        mStatement = new MockReader<Statement>("statement", callingSequence);
+        mAssigment = new MockReader<Assignment>("assigment", callingSequence);
+        mBlock = new MockReader<Block>("block", callingSequence);
+        mVariable =new MockReader<Variable>("variable", callingSequence);
+        mDecVariable = new MockReader<DeclarationVariable>("decVariable", callingSequence);
+        mCommand = new MockReader<Command>("command", callingSequence);
+        mDecCommand = new MockReader<DeclarationCommand>("decCommand", callingSequence);
+        mParameters = new MockReader<Parameters>("parameters", callingSequence);
+        mDecParameter = new MockReader<DeclarationParameter>("decParameter", callingSequence);
+        mReturn =new MockReader<Return>("return", callingSequence);
+        mCondition = new MockReader<Condition>("if", callingSequence);
     }
 
-    public MockReader<Word> word() {  return  mSlovo; }
-    public MockReader<Int> integer() {  return   mCislo; }
+    public MockReader<Word> word() {  return mWord; }
+    public MockReader<Int> integer() {  return mInt; }
 
-    public MockReader<Operator> opExpr() {  return mOpVyraz; }
-    public MockReader<Operator> opAssignment() {  return mOpPriradenia; }
+    public MockReader<Operator> opExpr() {  return mOpExpr; }
+    public MockReader<Operator> opAssignment() {  return mOpAssignment; }
 
-    public MockReader<IExpression> expression() {  return   mVyraz; }
-    public MockReader<IExpression> vrzAritm() {  return mVrzArtim; }
-    public MockReader<IExpression> vrzBool() {  return mVrzBool; }
-    public MockReader<IExpression> expSimple() {  return mVrzJednoduchy; }
-    public MockReader<IExpression> expBracket() {  return mVrzZatvorka; }
+    public MockReader<IExpression> expression() {  return mExpression; }
+    public MockReader<IExpression> exprSimple() {  return mExprSimple; }
+    public MockReader<IExpression> exprBracket() {  return mExprBracket; }
 
-    public MockReader<Bracket> bracket() {  return mZatvorka; }
-    public MockReader<Comma> comma() {  return mCiarka; }
+    public MockReader<Bracket> bracket() {  return mBracket; }
+    public MockReader<Comma> comma() {  return mComma; }
 
-    public MockReader<StatementWord> statementWord() {  return mInstrukciaSlovo; }
-    public MockReader<DataType> dataType() {  return mDatovyTyp; }
+    public MockReader<StatementWord> statementWord() {  return mStatementWord; }
+    public MockReader<DataType> dataType() {  return mDataType; }
 
-    public MockReader<Statement> statement() {  return mInstrukcia; }
-    public MockReader<Assignment> assignment() {  return mPriradenie; }
-    public MockReader<Block> block() {  return mBlok; }
-    public MockReader<Variable> variable() {  return mPremenna; }
-    public MockReader<DeclarationVariable> decVariable() {  return mDekPremennej; }
-    public MockReader<Command> command() {  return mPrikaz; }
-    public MockReader<DeclarationCommand> decCommand() {  return mDekPrikaz; }
+    public MockReader<Statement> statement() {  return mStatement; }
+    public MockReader<Assignment> assignment() {  return mAssigment; }
+    public MockReader<Block> block() {  return mBlock; }
+    public MockReader<Variable> variable() {  return mVariable; }
+    public MockReader<DeclarationVariable> decVariable() {  return mDecVariable; }
+    public MockReader<Command> command() {  return mCommand; }
+    public MockReader<DeclarationCommand> decCommand() {  return mDecCommand; }
 
     public TextReader<Program> program() {
-        return mDekTrieda;
+        return mProgram;
     }
 
-    public MockReader<Parameters> paramters() {  return mParametre;}
-    public MockReader<DeclarationParameter> decParamters() {  return mDekParameter; }
-    public MockReader<Return> aReturn() {  return mVrat; }
+    public MockReader<Parameters> paramters() {  return mParameters;}
+    public MockReader<DeclarationParameter> decParamters() {  return mDecParameter; }
+    public MockReader<Return> aReturn() {  return mReturn; }
 
-    public TextReader<Condition> condition() { return mPodmienka;    }
+    public TextReader<Condition> condition() { return mCondition;    }
 
 }

@@ -29,26 +29,26 @@ import sk.wlio.sx2.interfaces.IExpression;
 
 public class DummyFactory {
 
-    public static Int createCislo(int cislo) {
-        return new Int(cislo, null);
+    public static Int createInt(int aInt) {
+        return new Int(aInt, null);
     }
 
     public static Operator createOperator(SymbolEnum sEnum) {
         return new Operator(null, sEnum);
     }
 
-    public static Variable createPremenna(String nazov) {
-        return new Variable( new Word(new Position(0,0), nazov));
+    public static Variable createVariable(String name) {
+        return new Variable( new Word(new Position(0,0), name));
     }
 
-    public static Assignment createPriradenie(Variable variable, IExpression expression) {
+    public static Assignment createAssignment(Variable variable, IExpression expression) {
         return new Assignment(variable, createOperator(SymbolEnum.ASSIGN), expression, null);
     }
 
-    public static DeclarationVariable createDeklaraciaPremennej(String typ, String nazov) {
+    public static DeclarationVariable createDecVariable(String typ, String name) {
         return new DeclarationVariable(
                 new DataType( null, typ),
-                new Word(null, nazov), new Comma(null, null)
+                new Word(null, name), new Comma(null, null)
         );
     }
 

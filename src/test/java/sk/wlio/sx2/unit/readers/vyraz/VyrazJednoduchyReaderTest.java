@@ -46,7 +46,7 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
         new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override public void nastavReader() {
                 mr.word().setPosun( 0,0 );
-                mr.word().setVystup( new Word(null, "asdfds"));
+                mr.word().setOutput(new Word(null, "asdfds"));
                 mr.variable().setPosun(  6,0) ;
             }
         }.run( "asdfds", "word;variable;");
@@ -56,10 +56,10 @@ public class VyrazJednoduchyReaderTest extends AbstractReaderTest {
     public void testPrikaz()  {
         new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override public void nastavReader() {
-                mr.word().setPosun( 6,0 ,  6,0 ,
-                                     6,0 ,  0,0 );
+                mr.word().setShift(6, 0, 6, 0,
+                        6, 0, 0, 0);
                 Word word = new Word(null, "asdfds");
-                mr.word().setVystup(word, word, word);
+                mr.word().setOutput(word, word, word);
                 mr.command().setPosun(  6,0 );
             }
         }.run( "asdfds(aa", "word;word;word;command;");

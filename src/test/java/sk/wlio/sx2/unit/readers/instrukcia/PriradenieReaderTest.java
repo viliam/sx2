@@ -36,7 +36,7 @@ public class PriradenieReaderTest extends AbstractReaderTest {
             @Override
             public void nastavReader() {
                 mr.variable().setPosun( 1, 0 );
-                mr.variable().setVystup( new Variable( new Word( new Position(1,1)) ) );
+                mr.variable().setOutput(new Variable(new Word(new Position(1, 1))));
                 mr.opAssignment().setPosun( 1, 0 );
                 mr.expression().setPosun( 1, 0 );
                 mr.comma().setPosun(1,0);
@@ -48,7 +48,7 @@ public class PriradenieReaderTest extends AbstractReaderTest {
     public void testFail()  {
         try {
             mr.variable().setPosun( 1, 0 );
-            mr.variable().setVystup( new Variable( new Word( new Position(1,1)) ) );
+            mr.variable().setOutput(new Variable(new Word(new Position(1, 1))));
 
             new AssignmentReader().read(new TextContext("c + 4;"));
 

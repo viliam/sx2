@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.unit.readers.deklaracia;
+package sk.wlio.sx2.unit.readers.declaration;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Program;
@@ -39,17 +39,17 @@ public class DeklaraciaTriedaReaderTest extends AbstractReaderTest {
                 @Override
                 public void nastavReader() {
 
-                    mr.word().setPosun(5,0, 4,0,
-                                        5,0, 4,0,
-                                        6,0, 5,0);
-                    mr.word().setVystup(new Word(null, "bool"), new Word(null, "ahoj"),
+                    mr.word().setShift(5, 0, 4, 0,
+                            5, 0, 4, 0,
+                            6, 0, 5, 0);
+                    mr.word().setOutput(new Word(null, "bool"), new Word(null, "ahoj"),
                             new Word(null, "bool"), new Word(null, "ahoj"),
                             new Word(null, "int"), new Word(null, "ahoj"));
-                    mr.decCommand().setVystup(new DeclarationCommand(new DataType(new Word( new Position(3,3))),
-                                                                  new Word(null, "ahoj"), null, null));
+                    mr.decCommand().setOutput(new DeclarationCommand(new DataType(new Word(new Position(3, 3))),
+                            new Word(null, "ahoj"), null, null));
                     mr.decCommand().setPosun( 25, 0 );
-                    mr.decVariable().setVystup(new DeclarationVariable(
-                            new DataType(new Word( new Position(3,3), "int")), new Word(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)) );
+                    mr.decVariable().setOutput(new DeclarationVariable(
+                            new DataType(new Word(new Position(3, 3), "int")), new Word(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)));
                     mr.decVariable().setPosun( 12, 0 );
                 }
             };

@@ -30,15 +30,15 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class ConditionReader implements TextReader<Condition> {
 
     public Condition read(TextContext tC)        {
-        StatementWord ifWord = Readers.instrukciaSlovo().read(tC);
+        StatementWord ifWord = Readers.statementWord().read(tC);
         if ( !ReservedWordEnum.IF.is(ifWord.toString())  )
             throw SxException.create( SxExTyp.EXPECTED_IF, tC);
 
 
-        Bracket z1 = Readers.zatvorka().read(tC);
-        IExpression vrzBool = Readers.vyraz().read(tC);
-        Bracket z2 = Readers.zatvorka().read(tC);
-        Statement statement = Readers.instrukcia().read(tC);
+        Bracket z1 = Readers.bracket().read(tC);
+        IExpression vrzBool = Readers.expression().read(tC);
+        Bracket z2 = Readers.bracket().read(tC);
+        Statement statement = Readers.statment().read(tC);
         return new Condition( ifWord, vrzBool, statement, z1, z2 );
     }
 }

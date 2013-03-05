@@ -31,7 +31,7 @@ public class CisloReaderTest {
     public void testReadCislo()  {
         final int testCislo = 123;
         TextContext text = new TextContext("  " + testCislo);
-        Int anInt = Readers.cislo().read(text);
+        Int anInt = Readers.integer().read(text);
         assertEquals( "Pozicia kontrola ", new Position(2,0), anInt.getPosition() );
         assertEquals( "Cislo kontrola ", testCislo, anInt.getCislo().intValue() );
     }
@@ -41,7 +41,7 @@ public class CisloReaderTest {
         final String testCislo = "123d3";
         TextContext text = new TextContext("  " + testCislo);
         try {
-            Readers.cislo().read(text);
+            Readers.integer().read(text);
             fail();
         } catch (SxException e) {
              assertEquals( SxExTyp.EXPECTED_INT, e.getType());

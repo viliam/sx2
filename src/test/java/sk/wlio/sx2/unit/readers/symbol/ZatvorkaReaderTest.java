@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.unit.readers.znak;
+package sk.wlio.sx2.unit.readers.symbol;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
@@ -31,7 +31,7 @@ public class ZatvorkaReaderTest {
     @Test
     public void testZatvorka()  {
         TextContext tC= new TextContext("  ( ");
-        Bracket bracket = Readers.zatvorka().read(tC);
+        Bracket bracket = Readers.bracket().read(tC);
 
         assertEquals( "Pozicia kontrola ", new Position(2,0), bracket.getPosition() );
         assertEquals( "Cislo kontrola ", "(", bracket.getSymbol() );
@@ -42,7 +42,7 @@ public class ZatvorkaReaderTest {
     public void testNecakalZatvorku() {
         TextContext tC = new TextContext(" k");
         try {
-            Readers.zatvorka().read(tC);
+            Readers.bracket().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals( SxExTyp.EXPECTED_BRACKET, e.getType() );

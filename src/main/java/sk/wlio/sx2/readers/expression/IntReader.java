@@ -27,7 +27,7 @@ public class IntReader implements TextReader<Int> {
 
     public Int read(TextContext tC)  {
         Position position = tC.findNextCharacter();
-        String aInt = Readers.slovo().read(tC).toString();
+        String aInt = Readers.word().read(tC).toString();
 
         try {
             return new Int( Integer.valueOf(aInt ), position);

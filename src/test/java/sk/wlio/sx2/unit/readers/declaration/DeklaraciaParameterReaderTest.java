@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.unit.readers.deklaracia;
+package sk.wlio.sx2.unit.readers.declaration;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
@@ -36,8 +36,8 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
             new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterReader()) {
                 @Override
                 public void nastavReader() {
-                    mr.bracket().setPosun(  1,0 ,  1,0 );
-                    mr.decVariable().setPosun( 3,0 ,  2,0 );
+                    mr.bracket().setShift(1, 0, 1, 0);
+                    mr.decVariable().setShift(3, 0, 2, 0);
                     mr.comma().setPosun( 1,0 );
                 }
             };
@@ -50,7 +50,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
             new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterReader()) {
                 @Override
                 public void nastavReader() {
-                    mr.bracket().setPosun(  1,0 ,  1,0 );
+                    mr.bracket().setShift(1, 0, 1, 0);
                 }
             };
         tt.run("()", "bracket;bracket;");
@@ -61,7 +61,7 @@ public class DeklaraciaParameterReaderTest extends AbstractReaderTest {
     public void testChyba() {
         try {
             mr.decVariable().setPosun( 2, 0 );
-            mr.bracket().setPosun( 1,0 ,   1,0 );
+            mr.bracket().setShift(1, 0, 1, 0);
             citajDekParameter("( aa,)");
             fail("Cakal chybu, ocakavany znak bracket alebo comma");
         } catch (SxException e) {

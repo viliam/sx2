@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.unit.readers.znak;
+package sk.wlio.sx2.unit.readers.symbol;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
@@ -82,7 +82,7 @@ public class SymbolAbstractReaderTest {
     private String invokeOdkusniSymbol(TestSymbolAbstractReader symbolReader, TextContext tC)  {
         try {
             Class testClass = SymbolAbstractReader.class;
-            Method testMetoda = testClass.getDeclaredMethod("odkusniSymbol", TextContext.class);
+            Method testMetoda = testClass.getDeclaredMethod("takeSymbol", TextContext.class);
             testMetoda.setAccessible( true);
             return (String) testMetoda.invoke(symbolReader, tC);
         } catch (Exception e) {

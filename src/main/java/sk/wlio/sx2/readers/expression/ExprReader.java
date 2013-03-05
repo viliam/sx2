@@ -28,16 +28,16 @@ public class ExprReader implements TextReader<IExpression> {
     public IExpression read(TextContext tC)  {
         IExpression expr;
         if ( tC.isPrefixBracketOpen() )  {
-            expr = Readers.vrzVzatvorke().read(tC);
+            expr = Readers.exprBracket().read(tC);
         } else   {
-            expr = Readers.vrzJednduchy().read(tC);
+            expr = Readers.exprSimple().read(tC);
         }
 
         if (tC.isEndOfFile())  return expr;
 
         if (tC.isPrefixOperatorExp() ) {
-            TextReader<Operator>  opReader = Readers.opVyraz();
-            expr = new Expression(expr, opReader.read(tC), Readers.vyraz().read(tC));
+            TextReader<Operator>  opReader = Readers.opExpr();
+            expr = new Expression(expr, opReader.read(tC), Readers.expression().read(tC));
         }
 
         if (!tC.isEndOfFile() )

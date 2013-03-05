@@ -29,12 +29,12 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class DeclarationVariableReader implements TextReader<DeclarationVariable> {
 
     public DeclarationVariable read(TextContext tC)  {
-        DataType dataType = Readers.datovyTyp().read(tC);
-        Word name = Readers.slovo().read(tC);
+        DataType dataType = Readers.dataType().read(tC);
+        Word name = Readers.word().read(tC);
 
         if ( tC.isPrefixOperatorAssigment() ) {
-            Operator op = Readers.opPriradenia().read(tC);
-            IExpression v = Readers.vyraz().read(tC);
+            Operator op = Readers.opAssigment().read(tC);
+            IExpression v = Readers.expression().read(tC);
 
             Variable pre = new Variable(name);
             pre.setExpType(dataType.getExpType());

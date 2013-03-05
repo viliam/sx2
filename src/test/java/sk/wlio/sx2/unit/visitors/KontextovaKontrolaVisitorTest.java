@@ -55,8 +55,8 @@ public class KontextovaKontrolaVisitorTest {
         visitor.visit(dekPremennej);
 
         String nazov = dekPremennej.getName().toString();
-        assertEquals(dekPremennej.getDatovyTyp(),
-                visitor.getVariable(nazov).getDatovyTyp());
+        assertEquals(dekPremennej.getDataType(),
+                visitor.getVariable(nazov).getDataType());
     }
 
     @Test
@@ -94,7 +94,7 @@ public class KontextovaKontrolaVisitorTest {
 
         DeclarationVariable dekPremennejPamet = visitor.getVariable("ahoj");
         assertNotNull( dekPremennejPamet);
-        assertEquals( Enums.ExpType.BOOL, dekPremennejPamet.getDatovyTyp().getExpType() );
+        assertEquals( Enums.ExpType.BOOL, dekPremennejPamet.getDataType().getExpType() );
         assertEquals( d1.getName().getContent(), dekPremennejPamet.getName().getContent());
     }
 
@@ -147,40 +147,40 @@ public class KontextovaKontrolaVisitorTest {
         visitor.addVariable(dekPremennej);
 
         visitor.visit(variable);
-        assertEquals( variable.getExpType(), dekPremennej.getDatovyTyp().getExpType());
+        assertEquals( variable.getExpType(), dekPremennej.getDataType().getExpType());
     }
 
    @Test
     public void testVisitVyrazZlozeny() {
-        Int anInt = DummyFactory.createCislo(3);
+        Int anInt = DummyFactory.createInt(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.TIMES);
-        Variable variable = DummyFactory.createPremenna("ahoj");
+        Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.INT);
         Expression vyraz = new Expression(anInt, op, variable);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
-        visitor.addVariable(DummyFactory.createDeklaraciaPremennej("integer", "ahoj"));
+        visitor.addVariable(DummyFactory.createDecVariable("integer", "ahoj"));
         visitor.visit(vyraz);
     }
 
     @Test
     public void testVisitVyrazZlozenyPorovnanie() {
-        Int anInt = DummyFactory.createCislo(3);
+        Int anInt = DummyFactory.createInt(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.SMALLER_EQUAL);
-        Variable variable = DummyFactory.createPremenna( "ahoj");
+        Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.INT);
         Expression vyraz = new Expression(anInt, op, variable);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
-        visitor.addVariable(DummyFactory.createDeklaraciaPremennej("integer", "ahoj"));
+        visitor.addVariable(DummyFactory.createDecVariable("integer", "ahoj"));
         visitor.visit(vyraz);
     }
 
     @Test
     public void testVisitVyrazZlozenyChybny() {
-        Int anInt = DummyFactory.createCislo(3 );
+        Int anInt = DummyFactory.createInt(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.AND);
-        Variable variable = DummyFactory.createPremenna( "ahoj");
+        Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.BOOL);
         Expression vyraz = new Expression(anInt, op, variable);
 
@@ -204,20 +204,20 @@ public class KontextovaKontrolaVisitorTest {
 
     @Test
     public void testPriradenie() {
-        Variable variable = DummyFactory.createPremenna( "ahoj");
+        Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.INT);
-        Int anInt = DummyFactory.createCislo(3);
-        Assignment assignment = DummyFactory.createPriradenie(variable, anInt);
+        Int anInt = DummyFactory.createInt(3);
+        Assignment assignment = DummyFactory.createAssignment(variable, anInt);
 
         new ContextAnalysisVisitor( ).visit(assignment);
     }
 
     @Test
     public void testPriradenieZle() {
-        Variable variable = DummyFactory.createPremenna( "ahoj");
+        Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.BOOL);
-        Int anInt = DummyFactory.createCislo(3);
-        Assignment assignment = DummyFactory.createPriradenie(variable, anInt);
+        Int anInt = DummyFactory.createInt(3);
+        Assignment assignment = DummyFactory.createAssignment(variable, anInt);
 
         try {
             new ContextAnalysisVisitor( ).visit(assignment);

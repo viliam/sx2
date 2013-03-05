@@ -23,7 +23,7 @@ import static org.testng.AssertJUnit.assertEquals;
 public class TextUtilsTest {
 
     @Test
-    public void testNajdiNasledujuciZnakVriadku() {
+    public void testFindNextCharacterInLine() {
         int ns = TextUtils.findNextCharacterInLine(" 1234 56", 3);
         assertEquals("nasledujuci znak", 3, ns);
         ns = TextUtils.findNextCharacterInLine(" 12   34 56", 3);
@@ -33,7 +33,7 @@ public class TextUtilsTest {
     }
 
     @Test
-    public void testNajdiKoniecSlova() {
+    public void testFindEndOfWord() {
         //prekrocenie
         assertEquals(4 , TextUtils.findEndOfWord("aa", 4));
         //konci pismenom

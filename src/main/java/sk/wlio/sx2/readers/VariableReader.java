@@ -23,7 +23,7 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class VariableReader implements TextReader<Variable> {
 
     public Variable read(TextContext tC)  {
-        Word obsah = Readers.slovo().read(tC);
+        Word obsah = Readers.word().read(tC);
         return new Variable( obsah);
     }
 

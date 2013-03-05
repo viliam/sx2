@@ -25,11 +25,11 @@ import sk.wlio.sx2.readers.expression.ExprReader;
 import sk.wlio.sx2.visitors.ContextAnalysisVisitor;
 import sk.wlio.sx2.integra.TestAbstract;
 
-public class KontextovaKontrolaVisitorTest {
+public class ContextAnalysisVisitorTest {
 
-    class DeklaracieVisitorTestImpl extends TestAbstract<Program> {
+    class ContextAnalysisVisitorTestImpl extends TestAbstract<Program> {
 
-        public DeklaracieVisitorTestImpl() {
+        public ContextAnalysisVisitorTestImpl() {
             super(new ProgramReader(), new TestVisitor<Program>() {
                 public void visit(TextContext tC, Program slovo) {
                     ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
@@ -39,7 +39,7 @@ public class KontextovaKontrolaVisitorTest {
         }
 
         @Override
-        protected String[] getDobreVety() {
+        protected String[] getGoodSentences() {
             return new String[] {
                 "int a;  int b() { return a + 3; }",
                 "int s() { return 3+3; } int a = s();",
@@ -49,7 +49,7 @@ public class KontextovaKontrolaVisitorTest {
         }
 
         @Override
-        protected String[] getChybneVety() {
+        protected String[] getWrongSentences() {
             return new String[] {
                 "int a;  int b() { return c + 3; }",
                 " bool k = 3;", "int sum(int n) { return 3; } bool v; int a = sum(v);"
@@ -59,26 +59,26 @@ public class KontextovaKontrolaVisitorTest {
     }
 
     @Test
-    public void testTriedaOK() {
-        new DeklaracieVisitorTestImpl().testOk();
+    public void testProgramOK() {
+        new ContextAnalysisVisitorTestImpl().testOk();
     }
 
     @Test
-    public void testTriedaFail() {
-        new DeklaracieVisitorTestImpl().testFail();
+    public void testProgramFail() {
+        new ContextAnalysisVisitorTestImpl().testFail();
     }
 
-    class TypZlozenehoVyrazuTest extends TestAbstract<IExpression>  {
+    class TypeOfExpressionTest extends TestAbstract<IExpression>  {
 
         @Override
-        protected String[] getDobreVety() {
+        protected String[] getGoodSentences() {
             return new String[] {
                 "4+5", "6 < 45 - 4", " (5 + 4) * 3 "
             };
         }
 
         @Override
-        protected String[] getChybneVety() {
+        protected String[] getWrongSentences() {
             return new String[] {
                 "4+ 5 & 5 > 6",
                 " (6 < 45 - 4) + 4",
@@ -86,7 +86,7 @@ public class KontextovaKontrolaVisitorTest {
             };
         }
 
-        public TypZlozenehoVyrazuTest() {
+        public TypeOfExpressionTest() {
             super(new ExprReader(),
                 new TestVisitor<IExpression>() {
                     public void visit(TextContext tC, IExpression slovo) {
@@ -98,13 +98,13 @@ public class KontextovaKontrolaVisitorTest {
     }
 
     @Test
-    public void testZlozenyVyrazOK() {
-        new TypZlozenehoVyrazuTest().testOk();
+    public void testExpressionOk() {
+        new TypeOfExpressionTest().testOk();
     }
 
     @Test
-    public void testZlozenyVyrazFail() {
-        new TypZlozenehoVyrazuTest().testFail();
+    public void testExpressionFail() {
+        new TypeOfExpressionTest().testFail();
     }
 
 }

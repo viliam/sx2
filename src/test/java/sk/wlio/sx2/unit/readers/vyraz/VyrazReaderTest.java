@@ -29,9 +29,9 @@ public class VyrazReaderTest extends AbstractReaderTest {
     public void testVzatvorke()  {
         new TestTemplate<IExpression>(sb, new ExprReader()) {
             @Override public void nastavReader() {
-                mr.expBracket().setPosun(9,0);
+                mr.exprBracket().setPosun(9,0);
             }
-        }.run("( nieco ) , ", "expBracket;");
+        }.run("( nieco ) , ", "exprBracket;");
     }
 
     @Test
@@ -39,10 +39,10 @@ public class VyrazReaderTest extends AbstractReaderTest {
         new TestTemplate<IExpression>(sb, new ExprReader()) {
             @Override
             public  void nastavReader() {
-                mr.expSimple().setPosun( 5,0);
+                mr.exprSimple().setPosun( 5,0);
             }
 
-        }.run("nazov ", "expSimple;");
+        }.run("nazov ", "exprSimple;");
     }
 
 
@@ -50,13 +50,13 @@ public class VyrazReaderTest extends AbstractReaderTest {
     public void testZlozeny()  {
         new TestTemplate<IExpression>(sb, new ExprReader()) {
             @Override public void nastavReader() {
-                mr.expSimple().setPosun( 3,0);
-                mr.expSimple().setVystup(new TestVyraz());
+                mr.exprSimple().setPosun( 3,0);
+                mr.exprSimple().setOutput(new TestVyraz());
                 mr.opExpr().setPosun(2,0);
                 mr.expression().setPosun(4,0);
             }
 
-        }.run("ano > nie", "expSimple;opExp;expression;");
+        }.run("ano > nie", "exprSimple;opExp;expression;");
     }
 
 

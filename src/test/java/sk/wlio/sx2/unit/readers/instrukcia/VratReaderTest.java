@@ -36,9 +36,9 @@ public class VratReaderTest extends AbstractReaderTest {
             @Override
             public void nastavReader() {
                 mr.word().setPosun( 4,0) ;
-                mr.word().setVystup( new Word(null, "return"));
+                mr.word().setOutput(new Word(null, "return"));
                 mr.expression().setPosun(1, 0);
-                mr.expression().setVystup(new TestVyraz());
+                mr.expression().setOutput(new TestVyraz());
             }
         }.run("return 4;", "word;expression;");
     }
@@ -46,7 +46,7 @@ public class VratReaderTest extends AbstractReaderTest {
     @Test
     public void testNeznameSlovo() {
         mr.word().setPosun( 4,0 );
-        mr.word().setVystup( new Word(null, "trat"));
+        mr.word().setOutput(new Word(null, "trat"));
 
         TextContext tC = new TextContext("trat 4;  ");
         try {

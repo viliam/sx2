@@ -24,9 +24,9 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class BracketExpression implements TextReader<IExpression> {
 
     public IExpression read(TextContext tC)  {
-        Bracket z1 = Readers.zatvorka().read(tC);
-        IExpression expression = Readers.vyraz().read(tC);
-        Bracket z2 = Readers.zatvorka().read(tC);
+        Bracket z1 = Readers.bracket().read(tC);
+        IExpression expression = Readers.expression().read(tC);
+        Bracket z2 = Readers.bracket().read(tC);
         return new sk.wlio.sx2.beans.expression.BracketExpression(z1, expression, z2);
     }
 

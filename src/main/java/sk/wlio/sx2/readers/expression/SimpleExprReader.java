@@ -26,16 +26,16 @@ public class SimpleExprReader implements TextReader<IExpression> {
 
     public IExpression read(TextContext tC)  {
         if ( tC.isPrefixInt())
-            return Readers.cislo().read(tC);
+            return Readers.integer().read(tC);
 
         if ( tC.isPrefixVariable())
-            return Readers.premena().read(tC);
+            return Readers.variable().read(tC);
 
         if (tC.isPrefixDataType())
-            return Readers.datovyTyp().read(tC);
+            return Readers.dataType().read(tC);
 
         if (tC.isPrefixCommand() )
-                return Readers.prikaz().read(tC);
+                return Readers.command().read(tC);
 
 
         throw SxException.create( SxExTyp.UNEXPECTED_PREFIX, tC );

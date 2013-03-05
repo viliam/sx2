@@ -29,22 +29,22 @@ import java.util.List;
 public class ParameterReader implements TextReader<Parameters> {
 
     public Parameters read(TextContext tC)  {
-        Bracket z1 = Readers.zatvorka().read(tC);
+        Bracket z1 = Readers.bracket().read(tC);
         if ( tC.isPrefixBracketClosed() ) {
-            Bracket z2 = Readers.zatvorka().read(tC);
+            Bracket z2 = Readers.bracket().read(tC);
             return new Parameters(z1,z2);
         }
 
         List<IExpression> listParameter = new LinkedList<IExpression>();
         List<Comma> listComman = new LinkedList<Comma>();
         do {
-             listParameter.add(Readers.vyraz().read(tC));
+             listParameter.add(Readers.expression().read(tC));
 
              if ( tC.isPrefixComma() ) {
-                 Comma c = Readers.ciarka().read(tC);
+                 Comma c = Readers.comma().read(tC);
                  listComman.add(c);
              }  else{
-                 Bracket z2 = Readers.zatvorka().read(tC);
+                 Bracket z2 = Readers.bracket().read(tC);
                  return new Parameters( z1, z2, listParameter , listComman );
              }
         }  while ( true);

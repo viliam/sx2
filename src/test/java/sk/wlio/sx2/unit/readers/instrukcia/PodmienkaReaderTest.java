@@ -36,8 +36,8 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
             @Override
             public void nastavReader() {
                 mr.statementWord().setPosun(  3,0 );
-                mr.statementWord().setVystup(new StatementWord( null, "if"));
-                mr.bracket().setPosun(  1,0 ,  1,0 );
+                mr.statementWord().setOutput(new StatementWord(null, "if"));
+                mr.bracket().setShift(1, 0, 1, 0);
                 mr.expression().setPosun(5, 0);
                 mr.statement().setPosun(9,0);
             }
@@ -47,7 +47,7 @@ public class PodmienkaReaderTest extends AbstractReaderTest {
     @Test
     public void testNeznameSlovo() {
         mr.statementWord().setPosun(4,0);
-        mr.statementWord().setVystup( new StatementWord(null, "trat"));
+        mr.statementWord().setOutput(new StatementWord(null, "trat"));
 
         TextContext tC = new TextContext("trat 4;  ");
         try {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.integra.deklaracia;
+package sk.wlio.sx2.integra.declarations;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
@@ -30,35 +30,35 @@ import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
 
-public class DeklaraciaParameterReaderTest {
+public class DeclarationParametersReaderTest {
 
     @Test
     public void testEmpty()  {
-        DeclarationParameter dp = citajDekParameter("()");
+        DeclarationParameter dp = readDecParameters("()");
         List<Comma> ciarky = dp.getLiComma();
-        assertEquals("pocet ciarok",0 , ciarky.size());
-        List<DeclarationVariable> dekPremenne = dp.getLiDekPremennej();
-        assertEquals("pocet decVariable", 0, dekPremenne.size() );
-        assertNotNull("nenulova zatvorka1",  dp.getZ1());
-        assertNotNull("nenulova zatvorka2", dp.getZ2());
+        assertEquals("comma count",0 , ciarky.size());
+        List<DeclarationVariable> decVariable = dp.getLiDecVariable();
+        assertEquals("decVariable count", 0, decVariable.size());
+        assertNotNull("not null bracket1",  dp.getB1());
+        assertNotNull("not null bracket2", dp.getB2());
     }
 
     @Test
     public void testBasic()  {
-        DeclarationParameter dp = citajDekParameter("( bool v, int d)");
-        List<Comma> ciarky = dp.getLiComma();
-        assertEquals("count of comma",1 , ciarky.size());
-        assertNotNull("not null comma", ciarky.get(0));
-        List<DeclarationVariable> dekPremenne = dp.getLiDekPremennej();
-        assertEquals("count of variable declaration", 2, dekPremenne.size() );
-        assertNotNull("first not null comma",  dp.getZ1());
-        assertNotNull("second not null comma", dp.getZ2());
+        DeclarationParameter dp = readDecParameters("( bool v, int d)");
+        List<Comma> commas = dp.getLiComma();
+        assertEquals("count of comma", 1, commas.size());
+        assertNotNull("not null comma", commas.get(0));
+        List<DeclarationVariable> decVariables = dp.getLiDecVariable();
+        assertEquals("count of declaration variable", 2, decVariables.size());
+        assertNotNull("first not null comma",  dp.getB1());
+        assertNotNull("second not null comma", dp.getB2());
     }
 
     @Test
-    public void testChyba() {
+    public void testFail() {
         try {
-            citajDekParameter("( aa,)");
+            readDecParameters("( aa,)");
             fail();
         } catch (SxException e) {
             assertEquals( "Exception type", SxExTyp.EXPECTED_DATA_TYPE,  e.getType());
@@ -66,10 +66,9 @@ public class DeklaraciaParameterReaderTest {
 
     }
 
-    private DeclarationParameter citajDekParameter(String ts)  {
+    private DeclarationParameter readDecParameters(String ts)  {
         TextContext text = new TextContext(ts);
-        DeclarationParameter dekParameter= Readers.dekParameter().read(text);
-        return dekParameter;
+        return Readers.decParameters().read(text);
     }
 
 }

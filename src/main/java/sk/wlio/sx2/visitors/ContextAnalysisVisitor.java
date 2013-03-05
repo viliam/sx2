@@ -103,7 +103,7 @@ public class ContextAnalysisVisitor implements IVisitor {
     }
 
     public void visit(DeclarationParameter decParameter) {
-        for (DeclarationVariable decVariable: decParameter.getLiDekPremennej()) {
+        for (DeclarationVariable decVariable: decParameter.getLiDecVariable()) {
             decVariable.visit(this);
         }
     }
@@ -124,14 +124,14 @@ public class ContextAnalysisVisitor implements IVisitor {
         command.setExpType(decCommand.getDatovyTyp().getExpType());
 
         //check parameters count
-        List<DeclarationVariable> liDecVariable = decCommand.getDekParam().getLiDekPremennej();
+        List<DeclarationVariable> liDecVariable = decCommand.getDekParam().getLiDecVariable();
         List<IExpression> liParameter = command.getParameters().getParametre();
         if ( liDecVariable.size() != liParameter.size())
             throw SxException.create(SxExTyp.WRONG_PARAMETER_COUNT, command.getPosition());
 
         //check parameters type
         for (int i=0; i<liDecVariable.size(); i++)
-            if ( liDecVariable.get(i).getDatovyTyp().getExpType() != liParameter.get(i).getExpType())
+            if ( liDecVariable.get(i).getDataType().getExpType() != liParameter.get(i).getExpType())
                 throw SxException.create( SxExTyp.WRONG_DATA_TYPE, liParameter.get(i).getPosition());
 
         command.getParameters().visit(this);
@@ -148,7 +148,7 @@ public class ContextAnalysisVisitor implements IVisitor {
         if (decVariable == null)
             throw SxException.create(SxExTyp.UNKNOWN_VARIABLE, variable.getPosition());
         //set command type on the basis of declaration
-        variable.setExpType(decVariable.getDatovyTyp().getExpType());
+        variable.setExpType(decVariable.getDataType().getExpType());
     }
 
     public void visit(Assignment assignment) {

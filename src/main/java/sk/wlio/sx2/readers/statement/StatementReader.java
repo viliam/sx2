@@ -26,17 +26,17 @@ public class StatementReader implements TextReader<Statement> {
     public Statement read(TextContext tC)  {
 
         if (tC.isPrefixDataType())
-            return Readers.dekPremennej().read(tC);
+            return Readers.decVariable().read(tC);
 
         if (tC.isPrefixVariable())
-            return Readers.priradenie().read(tC);
+            return Readers.assignment().read(tC);
 
         if (tC.isPrefixStatement() ) {
             switch ( tC.vratPrefixZakazaneSlovo()) {
                 case RETURN:
-                    return Readers.vrat().read(tC);
+                    return Readers.aReturn().read(tC);
                 case IF : {
-                    return Readers.podmienka().read(tC);
+                    return Readers.condition().read(tC);
                 }
                }
 //                //3. todo (case, while, for,..)

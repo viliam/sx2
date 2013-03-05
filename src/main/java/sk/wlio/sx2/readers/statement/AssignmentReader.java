@@ -28,14 +28,14 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class AssignmentReader implements TextReader<Assignment> {
 
     public Assignment read(TextContext tC)  {
-        Variable variable = Readers.premena().read(tC);
+        Variable variable = Readers.variable().read(tC);
 
         if ( !tC.isPrefixOperatorAssigment() )
             throw SxException.create( SxExTyp.EXPECTED_OPERATOR, tC);
 
-        Operator op = Readers.opPriradenia().read(tC);
+        Operator op = Readers.opAssigment().read(tC);
 
-        IExpression v = Readers.vyraz().read(tC);
+        IExpression v = Readers.expression().read(tC);
         return new Assignment( variable, op, v, tC.readIfIsSemicolon());
     }
 

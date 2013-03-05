@@ -42,31 +42,31 @@ public class Readers {
         Readers.readers = readers;
     }
 
-    public static TextReader<Word> slovo() { return readers.word(); }
-    public static TextReader<Int> cislo() { return readers.integer(); }
-    public static TextReader<Operator> opVyraz() { return readers.opExpr(); }
-    public static TextReader<Operator> opPriradenia() { return readers.opAssignment(); }
-    public static TextReader<IExpression> vyraz() { return readers.expression(); }
-    public static TextReader<IExpression> vrzJednduchy() { return readers.expSimple(); }
-    public static TextReader<IExpression> vrzVzatvorke() { return readers.expBracket(); }
-    public static TextReader<Bracket> zatvorka() { return readers.bracket(); }
-    public static TextReader<Comma> ciarka() { return readers.comma(); }
+    public static TextReader<Word> word() { return readers.word(); }
+    public static TextReader<Int> integer() { return readers.integer(); }
+    public static TextReader<Operator> opExpr() { return readers.opExpr(); }
+    public static TextReader<Operator> opAssigment() { return readers.opAssignment(); }
+    public static TextReader<IExpression> expression() { return readers.expression(); }
+    public static TextReader<IExpression> exprSimple() { return readers.exprSimple(); }
+    public static TextReader<IExpression> exprBracket() { return readers.exprBracket(); }
+    public static TextReader<Bracket> bracket() { return readers.bracket(); }
+    public static TextReader<Comma> comma() { return readers.comma(); }
 
-    public static TextReader<DataType> datovyTyp() { return readers.dataType(); }
-    public static TextReader<StatementWord> instrukciaSlovo() { return readers.statementWord();}
+    public static TextReader<DataType> dataType() { return readers.dataType(); }
+    public static TextReader<StatementWord> statementWord() { return readers.statementWord();}
 
-    public static TextReader<Statement> instrukcia() { return readers.statement(); }
-    public static TextReader<Assignment> priradenie() { return readers.assignment(); }
-    public static TextReader<Block> blok() { return readers.block(); }
-    public static TextReader<Variable> premena() { return readers.variable(); }
-    public static TextReader<Condition> podmienka() { return readers.condition(); }
-    public static TextReader<DeclarationVariable> dekPremennej() { return readers.decVariable(); }
-    public static TextReader<Command> prikaz() { return readers.command(); }
-    public static TextReader<DeclarationCommand> dekPrikaz() { return readers.decCommand(); }
-    public static TextReader<Parameters> parametre() { return readers.paramters(); }
-    public static TextReader<DeclarationParameter> dekParameter() { return readers.decParamters(); }
-    public static TextReader<Program> dekTrieda() { return readers.program();}
-    public static TextReader<Return> vrat() { return readers.aReturn(); }
+    public static TextReader<Statement> statment() { return readers.statement(); }
+    public static TextReader<Assignment> assignment() { return readers.assignment(); }
+    public static TextReader<Block> block() { return readers.block(); }
+    public static TextReader<Variable> variable() { return readers.variable(); }
+    public static TextReader<Condition> condition() { return readers.condition(); }
+    public static TextReader<DeclarationVariable> decVariable() { return readers.decVariable(); }
+    public static TextReader<Command> command() { return readers.command(); }
+    public static TextReader<DeclarationCommand> decCommand() { return readers.decCommand(); }
+    public static TextReader<Parameters> parameters() { return readers.paramters(); }
+    public static TextReader<DeclarationParameter> decParameters() { return readers.decParamters(); }
+    public static TextReader<Program> program() { return readers.program();}
+    public static TextReader<Return> aReturn() { return readers.aReturn(); }
 
 
 }

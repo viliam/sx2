@@ -28,12 +28,12 @@ import java.util.List;
 public class BlockReader implements TextReader<Block> {
 
     public Block read(TextContext tC)  {
-        TextReader<Bracket> zR = Readers.zatvorka();
+        TextReader<Bracket> zR = Readers.bracket();
         Bracket z1 = zR.read(tC);
 
         //for each lines
         List<Statement> linesList = new LinkedList<Statement>();
-        TextReader<Statement> iR = Readers.instrukcia();
+        TextReader<Statement> iR = Readers.statment();
 
         while ( tC.nextCharacter()!='}') {
             linesList.add(iR.read(tC));

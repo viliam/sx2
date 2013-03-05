@@ -30,12 +30,12 @@ public class ProgramReader implements TextReader<Program> {
         do {
            foundIt = false;
            if ( tC.isPrefixDeclarationVariable()) {
-               program.addVariable(Readers.dekPremennej().read(tC));
+               program.addVariable(Readers.decVariable().read(tC));
                foundIt = true;
            }
 
            if ( tC.isPrefixDeclarationCommand() ) {
-               program.addCommand(Readers.dekPrikaz().read(tC));
+               program.addCommand(Readers.decCommand().read(tC));
                foundIt = true;
            }
         }  while ( foundIt);

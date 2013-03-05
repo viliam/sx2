@@ -44,40 +44,39 @@ public abstract class TestAbstract<T extends IWord> {
         this.testVisitor = testVisitor;
     }
 
-    protected abstract String[] getDobreVety();
-    protected abstract String[] getChybneVety();
+    protected abstract String[] getGoodSentences();
+    protected abstract String[] getWrongSentences();
 
     @Test
     public void testOk() {
-        for (String v: getDobreVety()) {
-            System.out.println("testovane word OK : " + v);
+        for (String v: getGoodSentences()) {
+            System.out.println("good sentences testing  : " + v);
             TextContext tC = new TextContext(v);
-            T veta= spracuj(tC);
-            assertNotNull( veta);
+            T sentence= readIt(tC);
+            assertNotNull( sentence);
 
-            testVisitor.visit( tC, veta);
+            testVisitor.visit( tC, sentence);
         }
     }
 
     @Test
     public void testFail() {
-        for (String v : getChybneVety()) {
-            System.out.println("testovane word Fail : " + v);
+        for (String v : getWrongSentences()) {
+            System.out.println("wrong sentences testing : " + v);
             try  {
                 TextContext tC = new TextContext(v);
-                T slovo = spracuj(tC);
+                T word = readIt(tC);
 
-                testVisitor.visit(tC, slovo);
+                testVisitor.visit(tC, word);
 
                 fail(v);
-                //if (tC.isEndOfFile() ) fail("");
             } catch (SxException ex) {
                 ex.printStackTrace();
             }
         }
     }
 
-    private T spracuj( TextContext tC)  {
+    private T readIt(TextContext tC)  {
         T slovo = reader.read(tC);
         assertNotNull(slovo);
         return slovo;

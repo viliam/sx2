@@ -24,27 +24,27 @@ import sk.wlio.sx2.visitors.IVisitor;
 
 public class DeclarationVariable extends WordAbstract implements Statement {
 
-    private DataType datovyTyp;
-    private Word nazov;
+    private DataType dataType;
+    private Word name;
     private Assignment assignment;
     private Comma comma;
 
-    public DeclarationVariable(DataType datovyTyp, Word nazov, Comma comma) {
-        super(datovyTyp.getPosition());
-        this.nazov = nazov;
-        this.datovyTyp = datovyTyp;
+    public DeclarationVariable(DataType dataType, Word name, Comma comma) {
+        super(dataType.getPosition());
+        this.name = name;
+        this.dataType = dataType;
         this.comma = comma;
     }
 
-    public DeclarationVariable(DataType datovyTyp, Word nazov, Assignment assignment) {
-        super(datovyTyp.getPosition());
-        this.nazov = nazov;
+    public DeclarationVariable(DataType dataType, Word name, Assignment assignment) {
+        super(dataType.getPosition());
+        this.name = name;
         this.assignment = assignment;
-        this.datovyTyp = datovyTyp;
+        this.dataType = dataType;
     }
 
-    public DataType getDatovyTyp() {
-        return datovyTyp;
+    public DataType getDataType() {
+        return dataType;
     }
 
     public void visit(IVisitor visitor) {
@@ -52,7 +52,7 @@ public class DeclarationVariable extends WordAbstract implements Statement {
     }
 
     public Word getName() {
-        return nazov;
+        return name;
     }
 
     public Assignment getAssignment() {

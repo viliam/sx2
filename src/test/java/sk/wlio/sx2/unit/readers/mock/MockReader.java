@@ -25,58 +25,59 @@ import java.util.*;
 public class MockReader<E extends IWord> implements TextReader<E> {
 
     private String readerName;
-    private StringBuffer postupVolania;
+    private StringBuffer callingSequence;
 
-    private Queue<Position> posun;
-    private Queue<E> vystup = null;
+    private Queue<Position> shift;
+    private Queue<E> output = null;
 
-    public MockReader(String readerName, StringBuffer postupVolania) {
+    public MockReader(String readerName, StringBuffer callingSequence) {
         this.readerName = readerName;
-        this.postupVolania = postupVolania;
+        this.callingSequence = callingSequence;
     }
 
     public E read(TextContext tC)  {
-        tC.setPosition(makePosun(tC.getPosition()));
-        postupVolania.append( readerName);
-        postupVolania.append(";");
-        return getVystup();
+        tC.setPosition(makeShift(tC.getPosition()));
+        callingSequence.append(readerName);
+        callingSequence.append(";");
+        return getOutput();
     }
 
-    private Position makePosun( Position inx) {
-        if (posun == null || posun.isEmpty()) {
-            throw new IllegalStateException("Neocakavam dalsi posun. " +
-                                            "Reader name  = " + this.readerName);
+    private Position makeShift(Position inx) {
+        if (shift == null || shift.isEmpty()) {
+            throw new IllegalStateException("Unexpected next shift. " +
+                                            "Reader name  = " + this.readerName +
+                                            " Position = " + inx.toString());
         }
 
-        return inx.add( posun.remove());
+        return inx.add( shift.remove());
     }
 
     public void setPosun(int x, int y) {
-        setPosun( new int[] { x,y });
+        setShift(new int[]{x, y});
     }
 
-    public void setPosun(int... posun) {
-        if (posun.length % 2 != 0 )
-            throw new IllegalArgumentException("Posun musi mat parny pocet prvkov");
-        if (this.posun == null)
-            this.posun =new LinkedList<Position>();
-        for ( int i =0; i<posun.length; i+=2)
-            this.posun.addAll( Arrays.asList(new Position(posun[i], posun[i+1])) );
+    public void setShift(int... shift) {
+        if (shift.length % 2 != 0 )
+            throw new IllegalArgumentException("Shift must by in pairs");
+        if (this.shift == null)
+            this.shift =new LinkedList<Position>();
+        for ( int i =0; i< shift.length; i+=2)
+            this.shift.addAll( Arrays.asList(new Position(shift[i], shift[i+1])) );
     }
 
 
 
 
-    protected E getVystup() {
-        if (vystup == null || vystup.isEmpty())
+    protected E getOutput() {
+        if (output == null || output.isEmpty())
             return null;
-        return vystup.remove();
+        return output.remove();
     }
 
-    public void setVystup(E... e) {
-        if (this.vystup == null)
-            this.vystup = new LinkedList<E>();
+    public void setOutput(E... e) {
+        if (this.output == null)
+            this.output = new LinkedList<E>();
 
-        this.vystup.addAll( Arrays.asList(e ));
+        this.output.addAll(Arrays.asList(e));
     }
 }

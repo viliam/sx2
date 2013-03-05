@@ -36,8 +36,8 @@ public interface IReaders {
     public TextReader<Operator> opExpr();
     public TextReader<Operator> opAssignment();
     public TextReader<IExpression> expression();
-    public TextReader<IExpression> expSimple();
-    public TextReader<IExpression> expBracket();
+    public TextReader<IExpression> exprSimple();
+    public TextReader<IExpression> exprBracket();
     public TextReader<Bracket> bracket();
     public TextReader<Comma> comma();
 

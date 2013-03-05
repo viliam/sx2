@@ -25,48 +25,48 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-public class JazykSxTest extends TestAbstract<Program> {
+public class LangSxTest extends TestAbstract<Program> {
 
-    final String DIR = JazykSxTest.class.getResource(".").getFile();
+    final String DIR = LangSxTest.class.getResource(".").getFile();
 
-    public JazykSxTest() {
+    public LangSxTest() {
         super(new ProgramReader(), new TestVisitor<Program>() {
-            public void visit(TextContext tC, Program dekTrieda) {
+            public void visit(TextContext tC, Program program) {
                 ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
-                visitor.visit(dekTrieda);
+                visitor.visit(program);
             }
         } );
     }
 
 
     @Override
-    protected String[] getDobreVety() {
-        List<String> li = readDobreProgramy();
+    protected String[] getGoodSentences() {
+        List<String> li = readGoodPrograms();
         return li.toArray(new String[li.size()]);
     }
 
     @Override
-    protected String[] getChybneVety() {
-        Map<String, String> map = readChybneProgramy();
+    protected String[] getWrongSentences() {
+        Map<String, String> map = readWrongPrograms();
         List<String> li =new ArrayList<String>( map.keySet());
         return li.toArray( new String[li.size()]);
     }
 
-    private List<String> readDobreProgramy() {
+    private List<String> readGoodPrograms() {
         List<String> li = new ArrayList<String>();
         for (File file :FileUtils.listFiles( new File( DIR), new String[] {"sx"}, false) ) {
             if (!file.getName().contains("_"))
                 try {
                     li.add( FileUtils.readFileToString( file));
                 } catch (IOException e) {
-                    System.out.println("Neviem citat subor : " + file);
+                    System.out.println("Can't read a file : " + file);
                 }
         }
 
         return li;
     }
 
-    private Map<String, String> readChybneProgramy() {
+    private Map<String, String> readWrongPrograms() {
         Map<String, String> map = new HashMap<String, String>();
         for (File file :FileUtils.listFiles( new File( DIR), new String[] {"sx"}, false) ) {
             if (file.getName().contains("_")) {

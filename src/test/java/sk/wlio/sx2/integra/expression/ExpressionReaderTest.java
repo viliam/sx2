@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.integra.vyraz;
+package sk.wlio.sx2.integra.expression;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
@@ -23,9 +23,9 @@ import sk.wlio.sx2.readers.expression.ExprReader;
 
 import static org.testng.AssertJUnit.*;
 
-public class  VyrazReaderTest {
+public class ExpressionReaderTest {
 
-    public final static String[] zloziteVyrazy = new String[] {
+    public final static String[] expression = new String[] {
             "4+3",
             "4 > 3+3",
             "5 <6 | 4 > 3+3",
@@ -33,15 +33,15 @@ public class  VyrazReaderTest {
             " ( 4 == 3 | 5 != 3 ) && p + 3 != 4 "
     };
 
-    public final static String[] chybneVyrazy = new String[] {
+    public final static String[] wrongExpressoin = new String[] {
         //" ( 4 == 3 | 5 != 3 ) + 5 >5 && p + 3 != 4 ",
         "5 <6 | 4 > 3+3 +"
     };
 
     @Test
-    public void testZloziteVyrazy()  {
-        for (String v: zloziteVyrazy) {
-            IExpression expression = citajVyraz(v);
+    public void testExpression()  {
+        for (String v: expression) {
+            IExpression expression = readExpression(v);
             assertNotNull(expression);
         }
     }
@@ -49,15 +49,15 @@ public class  VyrazReaderTest {
 
     @Test
     public void testFail() {
-        for (String v : chybneVyrazy)
+        for (String v : wrongExpressoin)
             try {
                 TextContext tC = new TextContext(v);
-                citajVyraz( tC, false);
+                readExpression(tC, false);
                 if (tC.isEndOfFile() ) fail(v);
             } catch (SxException ex) {}
     }
 
-    private IExpression citajVyraz(TextContext tC, boolean checkKoniec)  {
+    private IExpression readExpression(TextContext tC, boolean checkKoniec)  {
         IExpression expression = new ExprReader().read(tC);
         assertNotNull(expression);
 
@@ -65,9 +65,9 @@ public class  VyrazReaderTest {
         return expression;
     }
 
-    private IExpression citajVyraz(String tento)  {
+    private IExpression readExpression(String tento)  {
         TextContext tC = new TextContext(tento);
-        return citajVyraz(tC, true);
+        return readExpression(tC, true);
     }
 
 }

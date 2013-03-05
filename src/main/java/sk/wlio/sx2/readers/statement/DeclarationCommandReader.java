@@ -28,7 +28,7 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class DeclarationCommandReader implements TextReader<DeclarationCommand>  {
 
     public DeclarationCommand read(TextContext tC)  {
-       DataType dataType = Readers.datovyTyp().read(tC);
+       DataType dataType = Readers.dataType().read(tC);
        String sDataType = dataType.toString();
        if (!RezervedWordsEnum.DATA_TYPE.is(sDataType))
            throw SxException.create(SxExTyp.EXPECTED_COMMAND_DECLARATION, tC);
@@ -36,10 +36,10 @@ public class DeclarationCommandReader implements TextReader<DeclarationCommand> 
        if ( !tC.isPrefixCommand())
           throw SxException.create(SxExTyp.WRONG_COMMAND_NAME, tC);
 
-       Word name = Readers.slovo().read(tC);
+       Word name = Readers.word().read(tC);
        //odkusnem paramters
-       DeclarationParameter decParam = Readers.dekParameter().read(tC);
-       Block block = Readers.blok().read(tC);
+       DeclarationParameter decParam = Readers.decParameters().read(tC);
+       Block block = Readers.block().read(tC);
 
        return new DeclarationCommand(dataType, name, decParam, block);
     }

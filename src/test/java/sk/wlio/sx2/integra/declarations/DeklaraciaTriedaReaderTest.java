@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.integra.deklaracia;
+package sk.wlio.sx2.integra.declarations;
 
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.readers.ProgramReader;
@@ -30,14 +30,14 @@ public class DeklaraciaTriedaReaderTest extends TestAbstract<Program> {
     }
 
     @Override
-    protected String[] getDobreVety() {
+    protected String[] getGoodSentences() {
         return new String[] {
              " bool ahoj() { aReturn 3; } integer ahoj;"
         };
     }
 
     @Override
-    protected String[] getChybneVety() {
+    protected String[] getWrongSentences() {
         return new String[] {
             " bool ahoj() { aReturn 3; } integer ahoj { nie = 3 ;"
         };

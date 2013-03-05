@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.unit.readers.deklaracia;
+package sk.wlio.sx2.unit.readers.declaration;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
@@ -32,11 +32,11 @@ public class DeklaraciaPremennejReaderTest extends AbstractReaderTest {
         new TestTemplate<DeclarationVariable>(sb, new DeclarationVariableReader()) {
             @Override public void nastavReader() {
 
-                mr.dataType().setVystup( new DataType(null, "int"));
+                mr.dataType().setOutput(new DataType(null, "int"));
                 mr.dataType().setPosun( 5,0 );
-                mr.word().setPosun(  0,0 ,  1,0);
-                mr.word().setVystup( new Word(null, "a"));
-                mr.comma().setPosun(  0,0 ,  1,0);
+                mr.word().setShift(0, 0, 1, 0);
+                mr.word().setOutput(new Word(null, "a"));
+                mr.comma().setShift(0, 0, 1, 0);
             }
         }.run("int a;", "dataType;word;comma;");
     }

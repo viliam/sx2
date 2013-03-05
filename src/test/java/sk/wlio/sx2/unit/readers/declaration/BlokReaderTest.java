@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.unit.readers.deklaracia;
+package sk.wlio.sx2.unit.readers.declaration;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Position;
@@ -33,12 +33,12 @@ public class BlokReaderTest extends AbstractReaderTest {
     public void testBlok()  {
         TestTemplate<Block> tt = new TestTemplate<Block>(sb, new BlockReader()) {
             @Override public void nastavReader() {
-                mr.bracket().setVystup( new Bracket(new Position(0,0), SymbolEnum.BRACKET_NORM_OPEN));
-                mr.bracket().setPosun( 3,0 ,  2,0 );
-                mr.statement().setPosun(  7,0 ,  9,0 );
+                mr.bracket().setOutput(new Bracket(new Position(0, 0), SymbolEnum.BRACKET_NORM_OPEN));
+                mr.bracket().setShift(3, 0, 2, 0);
+                mr.statement().setShift(7, 0, 9, 0);
             }
         };
-        tt.run( "  { a = 4; integer b; } ",
+        tt.run( "  { a = 4; int b; } ",
                 "bracket;statement;statement;bracket;");
 
         Block block = tt.getVysledok();

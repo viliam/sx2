@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.integra.znak;
+package sk.wlio.sx2.integra.symbol;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
@@ -25,26 +25,23 @@ import sk.wlio.sx2.readers.Readers;
 
 import static org.testng.AssertJUnit.*;
 
-public class CiarkaReaderTest {
+public class CommaReaderTest {
 
     @Test
-     /*
-     poznamka nie je
-      */
-     public void testZakladneCiarka()  {
+     public void testBasic()  {
         TextContext tC= new TextContext("  ;");
-        Comma comma = Readers.ciarka().read(tC);
+        Comma comma = Readers.comma().read(tC);
 
-        assertEquals( "Pozicia kontrola ", new Position(2,0), comma.getPosition() );
-        assertEquals( "Cislo kontrola ", ";", comma.getSymbol() );
-        assertEquals( "Posunuty inx", new Position(3,0), tC.getPosition() );
+        assertEquals( "Position ", new Position(2,0), comma.getPosition() );
+        assertEquals( "Symbol ", ";", comma.getSymbol() );
+        assertEquals( "Position after ", new Position(3,0), tC.getPosition() );
     }
 
     @Test
-    public void testNecakalCiarku() {
+    public void testExpectedComma() {
         TextContext tC = new TextContext(" k");
         try {
-            Readers.ciarka().read(tC);
+            Readers.comma().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals( e.getType(), SxExTyp.EXPECTED_COMMA);

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.integra.deklaracia;
+package sk.wlio.sx2.integra.declarations;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
@@ -26,7 +26,7 @@ import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.fail;
 
-public class BlokReaderTest {
+public class BlockReaderTest {
     
     public final static String[] zloziteBloky = new String[] {
             " { int p = 33; }",
@@ -62,7 +62,7 @@ public class BlokReaderTest {
     }
     
     private Block citajBlok(TextContext tC, boolean checkKoniec)  {
-        IWord word = Readers.blok().read(tC);
+        IWord word = Readers.block().read(tC);
 
         assertNotNull(word);
         assertTrue( "Slovo nie je instancia Blok. Slovo.class = " + word.getClass().getName()

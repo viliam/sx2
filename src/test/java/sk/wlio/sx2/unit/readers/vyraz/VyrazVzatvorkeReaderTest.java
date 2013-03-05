@@ -30,7 +30,7 @@ public class VyrazVzatvorkeReaderTest extends AbstractReaderTest {
         new TestTemplate<IExpression>(sb, new BracketExpression()) {
             @Override
             public void nastavReader() {
-                mr.bracket().setPosun( 1, 0 , 1, 0 );
+                mr.bracket().setShift(1, 0, 1, 0);
                    mr.expression().setPosun( 4, 0 );
             }
         }.run("(ahoj)", "bracket;expression;bracket;");

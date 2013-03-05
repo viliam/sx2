@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.integra.deklaracia;
+package sk.wlio.sx2.integra.declarations;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.Enums;
@@ -29,39 +29,39 @@ import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
 
-public class DeklaraciaPremennejReaderTest {
+public class DeclarationVariableReaderTest {
     @Test
-    public void testCislo()  {
-        DeclarationVariable dekPremena = citajDekPremennej("  int a; ");
-        assertNotNull( dekPremena);
-        assertEquals( "a" , dekPremena.getName().toString());
-        assertEquals(Enums.ExpType.INT, dekPremena.getDatovyTyp().getTyp() );
-        assertEquals(new Position(2,0) , dekPremena.getPosition());
+    public void testInt()  {
+        DeclarationVariable decVariable = readDecVariable("  int a; ");
+        assertNotNull( decVariable);
+        assertEquals("a", decVariable.getName().toString());
+        assertEquals(Enums.ExpType.INT, decVariable.getDataType().getTyp() );
+        assertEquals(new Position(2, 0), decVariable.getPosition());
     }
 
     @Test
     public void testBool()  {
-        DeclarationVariable dekPremena = citajDekPremennej("  bool a; ");
-        assertNotNull( dekPremena);
-        assertEquals( "a" , dekPremena.getName().toString());
-        assertEquals(Enums.ExpType.BOOL , dekPremena.getDatovyTyp().getTyp() );
-        assertEquals(new Position(2,0) , dekPremena.getPosition());
+        DeclarationVariable decVariable = readDecVariable("  bool a; ");
+        assertNotNull( decVariable);
+        assertEquals("a", decVariable.getName().toString());
+        assertEquals(Enums.ExpType.BOOL , decVariable.getDataType().getTyp() );
+        assertEquals(new Position(2, 0), decVariable.getPosition());
     }
 
     @Test
-    public void testPriradenie()  {
-        DeclarationVariable dekPremena = citajDekPremennej(" int v = 3;");
-        assertNotNull( dekPremena);
-        assertEquals( "v" , dekPremena.getName().toString());
-        assertEquals(Enums.ExpType.INT, dekPremena.getDatovyTyp().getTyp() );
-        assertEquals(new Position(1,0) , dekPremena.getPosition());
+    public void testAssignment()  {
+        DeclarationVariable decVariable = readDecVariable(" int v = 3;");
+        assertNotNull( decVariable);
+        assertEquals("v", decVariable.getName().toString());
+        assertEquals(Enums.ExpType.INT, decVariable.getDataType().getTyp() );
+        assertEquals(new Position(1, 0), decVariable.getPosition());
 
-        Assignment p = dekPremena.getAssignment();
+        Assignment p = decVariable.getAssignment();
         assertNotNull( p);
     }
 
     @Test
-    public void testZlyDatovyTyp() {
+    public void testFail() {
         TextContext text = new TextContext("  void a; ");
         TextReader<DeclarationVariable> dpReader = new DeclarationVariableReader();
         try {
@@ -72,7 +72,7 @@ public class DeklaraciaPremennejReaderTest {
         }
     }
 
-    private DeclarationVariable citajDekPremennej(String ts)  {
+    private DeclarationVariable readDecVariable(String ts)  {
         TextContext text = new TextContext(ts);
         TextReader<DeclarationVariable> dpReader = new DeclarationVariableReader();
         DeclarationVariable dekPremena= dpReader.read(text);

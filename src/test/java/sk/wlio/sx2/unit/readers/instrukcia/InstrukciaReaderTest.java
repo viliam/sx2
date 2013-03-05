@@ -29,8 +29,8 @@ public class InstrukciaReaderTest extends AbstractReaderTest {
         new TestTemplate<Statement>(sb, new StatementReader()) {
             @Override
             public void nastavReader() {
-                mr.word().setPosun( 0,0,  0,0, 2,0);
-                mr.word().setVystup( new Word(null, "v"), new Word(null, "v"), new Word(null, "v"));
+                mr.word().setShift(0, 0, 0, 0, 2, 0);
+                mr.word().setOutput(new Word(null, "v"), new Word(null, "v"), new Word(null, "v"));
                 mr.assignment().setPosun( 0, 5);
             }
         }.run(" v = 3;", "word;word;assigment;");
@@ -41,7 +41,7 @@ public class InstrukciaReaderTest extends AbstractReaderTest {
         new TestTemplate<Statement>(sb, new StatementReader()) {
             @Override public void nastavReader() {
                 mr.word().setPosun(  5,0);
-                mr.word().setVystup( new Word(null, "int"));
+                mr.word().setOutput(new Word(null, "int"));
                 mr.decVariable().setPosun( 0, 0);
             }
         }.run(" int v = 3;", "word;decVariable;");

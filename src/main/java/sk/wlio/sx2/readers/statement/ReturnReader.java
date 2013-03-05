@@ -27,10 +27,10 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class ReturnReader implements TextReader<Return> {
 
     public Return read(TextContext tC)  {
-        Word reserWord = Readers.slovo().read(tC);
+        Word reserWord = Readers.word().read(tC);
         if ( !ReservedWordEnum.RETURN.is(reserWord.toString())  )
             throw SxException.create( SxExTyp.EXPECTED_RETURN, tC);
 
-        return new Return(reserWord, Readers.vyraz().read(tC), tC.readIfIsSemicolon());
+        return new Return(reserWord, Readers.expression().read(tC), tC.readIfIsSemicolon());
     }
 }
