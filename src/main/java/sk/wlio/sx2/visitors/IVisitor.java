@@ -35,7 +35,7 @@ public interface IVisitor {
     void visit(Parameters parameters);
 
     void visit(Operator operator);
-    void visit(DataType datovyTyp);
+    void visit(DataType dataType);
 
     void visit(DataValue dataValue);
     void visit(Int anInt);
@@ -45,9 +45,9 @@ public interface IVisitor {
     void visit(Return aReturn);
     void visit(Condition condition);
 
-    void visit(DeclarationVariable dekPremennej);
-    void visit(DeclarationCommand dekPrikaz);
-    void visit(DeclarationParameter dekParameter);
+    void visit(DeclarationVariable decVariable);
+    void visit(DeclarationCommand decCommand);
+    void visit(DeclarationParameter decParameter);
     void visit(Program program);
 
     public void visit(IWord word);

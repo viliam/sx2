@@ -16,30 +16,34 @@
 package sk.wlio.sx2.unit.parsers.declaration;
 
 import org.testng.annotations.Test;
-import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.statement.DeclarationVariable;
-import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.readers.statement.DeclarationVariableReader;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.statement.Block;
+import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
+import sk.wlio.sx2.interfaces.Statement;
+import sk.wlio.sx2.readers.statement.BlockReader;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class DeklaraciaPremennejParserTest extends AbstractParserTest {
+public class BlockParserTest extends AbstractParserTest {
 
     @Test
-    public void test()  {
-        new TestTemplate<DeclarationVariable>(sb, new DeclarationVariableReader()) {
+    public void testBasic()  {
+        TestTemplate<Block> tt = new TestTemplate<Block>(sb, new BlockReader()) {
             @Override public void setUpParsers() {
-
-                mr.dataType().setOutput(new DataType(null, "int"));
-                mr.dataType().setPosun( 5,0 );
-                mr.word().setShift(0, 0, 1, 0);
-                mr.word().setOutput(new Word(null, "a"));
-                mr.comma().setShift(0, 0, 1, 0);
+                mr.bracket().setOutput(new Bracket(new Position(0, 0), SymbolEnum.BRACKET_NORM_OPEN));
+                mr.bracket().setShift(3, 0, 2, 0);
+                mr.statement().setShift(7, 0, 9, 0);
             }
-        }.run("int a;", "dataType;word;comma;");
+        };
+        tt.run( "  { a = 4; int b; } ",
+                "bracket;statement;statement;bracket;");
+
+        Block block = tt.getVysledok();
+        Statement[] inst = block.getInstrukcie();
+        assertEquals( inst.length, 2);
     }
 
 }
-

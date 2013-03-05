@@ -52,7 +52,7 @@ public class MockReader<E extends IWord> implements SxParser<E> {
         return inx.add( shift.remove());
     }
 
-    public void setPosun(int x, int y) {
+    public void setShift(int x, int y) {
         setShift(new int[]{x, y});
     }
 

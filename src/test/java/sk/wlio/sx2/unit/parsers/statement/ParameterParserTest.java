@@ -41,7 +41,7 @@ public class ParameterParserTest extends AbstractParserTest {
             @Override public void setUpParsers() {
                 mr.bracket().setShift(2, 0, 1, 0);
                 mr.bracket().setOutput(new Bracket(null, null));
-                mr.expression().setPosun(2, 0);
+                mr.expression().setShift(2, 0);
             }
         }.run(" (ff)", "bracket;expression;bracket;");
     }
@@ -53,7 +53,7 @@ public class ParameterParserTest extends AbstractParserTest {
                 mr.bracket().setShift(2, 0, 1, 0);
                 mr.bracket().setOutput(new Bracket(null, null));
                 mr.expression().setShift(2, 0, 3, 0);
-                mr.comma().setPosun( 1, 0);
+                mr.comma().setShift(1, 0);
             }
         }.run(" (ff,1+3) ", "bracket;expression;comma;expression;bracket;");
     }

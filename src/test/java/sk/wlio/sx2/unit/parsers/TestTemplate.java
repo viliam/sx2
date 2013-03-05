@@ -32,8 +32,8 @@ public abstract class TestTemplate<T extends IWord> {
         this.sxParser = sxParser;
     }
 
-    public TextContext run(String vyraz, String postupnost )  {
-        TextContext tC = new TextContext( vyraz);
+    public TextContext run(String expr, String postupnost )  {
+        TextContext tC = new TextContext( expr);
         setUpParsers();
         result = sxParser.read(tC);
         assertEquals(postupnost, sb.toString() );

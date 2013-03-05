@@ -29,7 +29,7 @@ import sk.wlio.sx2.unit.parsers.TestTemplate;
 
 import static org.testng.AssertJUnit.*;
 
-public class DeklaraciaPrikazParserTest extends AbstractParserTest {
+public class DeclarationCommandParserTest extends AbstractParserTest {
 
     @Test
     public void testBasic()  {
@@ -37,12 +37,12 @@ public class DeklaraciaPrikazParserTest extends AbstractParserTest {
             new TestTemplate<DeclarationCommand>(sb, new DeclarationCommandReader()) {
                 @Override
                 public void setUpParsers() {
-                    mr.decParamters().setPosun( 2,0);
-                    mr.dataType().setPosun( 5,0);
+                    mr.decParamters().setShift(2, 0);
+                    mr.dataType().setShift(5, 0);
                     mr.dataType().setOutput(new DataType(null, "bool"));
                     mr.word().setShift(6, 0, 6, 0);
                     mr.word().setOutput(new Word(null, "aa"), new Word(null, "ahoj"));
-                    mr.block().setPosun( 11, 0 );
+                    mr.block().setShift(11, 0);
                 }
             };
         tt.run("  bool ahoj() { return 3; } ", "dataType;word;word;decParameter;block;");
@@ -52,12 +52,12 @@ public class DeklaraciaPrikazParserTest extends AbstractParserTest {
     }
 
     @Test
-    public void testNiejeDatovyTyp() {
+    public void testDataTypeFail() {
         try {
-            mr.dataType().setPosun( 5,0 );
+            mr.dataType().setShift(5, 0);
             mr.dataType().setOutput(new DataType(null, "boool"));
 
-            citajDekPrikaz("  boool ahoj() { return 3; } ");
+            readDecCommand("  boool ahoj() { return 3; } ");
             fail("Cakal chybu, zla declarations prikazu");
         } catch (SxException e) {
             assertEquals( "Typ chyby", SxExTyp.EXPECTED_COMMAND_DECLARATION,  e.getType());
@@ -65,26 +65,26 @@ public class DeklaraciaPrikazParserTest extends AbstractParserTest {
     }
 
     @Test
-    public void testZlyNazovPrikazu() {
+    public void testCommandNameFail() {
         try {
-            mr.dataType().setPosun( 5,0 );
+            mr.dataType().setShift(5, 0);
             mr.dataType().setOutput(new DataType(null, "bool"));
 
             mr.word().setShift(4, 0, 4, 0);
             mr.word().setOutput(new Word(null, "3ahoj"));
 
-            citajDekPrikaz("  bool 3ahoj() { aReturn 3; } ");
-            fail("Cakal chybu, zly nazov prikazu");
+            readDecCommand("  bool 3ahoj() { aReturn 3; } ");
+            fail();
         } catch (SxException e) {
             assertEquals( "Typ chyby", SxExTyp.WRONG_COMMAND_NAME,  e.getType());
         }
     }
 
-    private DeclarationCommand citajDekPrikaz(String ts)  {
+    private DeclarationCommand readDecCommand(String ts)  {
         TextContext text = new TextContext(ts);
         SxParser<DeclarationCommand> dpReader = new DeclarationCommandReader();
-        DeclarationCommand dekPrikaz= dpReader.read(text);
-        assertNotNull("nenulovy command", dekPrikaz);
-        return dekPrikaz;
+        DeclarationCommand decCommand= dpReader.read(text);
+        assertNotNull("nenulovy command", decCommand);
+        return decCommand;
     }
 }

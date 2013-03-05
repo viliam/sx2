@@ -28,7 +28,7 @@ import sk.wlio.sx2.unit.parsers.TestTemplate;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.fail;
 
-public class DeklaraciaParameterParserTest extends AbstractParserTest {
+public class DeclarationParameterParserTest extends AbstractParserTest {
 
     @Test
     public void testBasic()  {
@@ -38,7 +38,7 @@ public class DeklaraciaParameterParserTest extends AbstractParserTest {
                 public void setUpParsers() {
                     mr.bracket().setShift(1, 0, 1, 0);
                     mr.decVariable().setShift(3, 0, 2, 0);
-                    mr.comma().setPosun( 1,0 );
+                    mr.comma().setShift(1, 0);
                 }
             };
         tt.run("( aa,bb)", "bracket;decVariable;comma;decVariable;bracket;");
@@ -58,23 +58,23 @@ public class DeklaraciaParameterParserTest extends AbstractParserTest {
 
 
     @Test
-    public void testChyba() {
+    public void testFail() {
         try {
-            mr.decVariable().setPosun( 2, 0 );
+            mr.decVariable().setShift(2, 0);
             mr.bracket().setShift(1, 0, 1, 0);
-            citajDekParameter("( aa,)");
-            fail("Cakal chybu, ocakavany znak bracket alebo comma");
+            readDecParameter("( aa,)");
+            fail();
         } catch (SxException e) {
             assertEquals( "Typ chyby", SxExTyp.EXPECTED_BRACKET_OR_COMMA,  e.getType());
         }
 
     }
 
-    private DeclarationParameter citajDekParameter(String ts)  {
+    private DeclarationParameter readDecParameter(String ts)  {
+        //todo: make generic factory method to create TextContext and Parsers
         TextContext text = new TextContext(ts);
         SxParser<DeclarationParameter> dpReader = new DeclarationParameterReader();
-        DeclarationParameter dekParameter= dpReader.read(text);
-        return dekParameter;
+        return dpReader.read(text);
     }
 
 }

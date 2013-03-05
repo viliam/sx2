@@ -29,7 +29,7 @@ public class ExpressionParserTest extends AbstractParserTest {
     public void testExprBracket()  {
         new TestTemplate<IExpression>(sb, new ExprReader()) {
             @Override public void setUpParsers() {
-                mr.exprBracket().setPosun(9,0);
+                mr.exprBracket().setShift(9, 0);
             }
         }.run("( nieco ) , ", "exprBracket;");
     }
@@ -39,7 +39,7 @@ public class ExpressionParserTest extends AbstractParserTest {
         new TestTemplate<IExpression>(sb, new ExprReader()) {
             @Override
             public  void setUpParsers() {
-                mr.exprSimple().setPosun( 5,0);
+                mr.exprSimple().setShift(5, 0);
             }
 
         }.run("nazov ", "exprSimple;");
@@ -50,10 +50,10 @@ public class ExpressionParserTest extends AbstractParserTest {
     public void testExpression()  {
         new TestTemplate<IExpression>(sb, new ExprReader()) {
             @Override public void setUpParsers() {
-                mr.exprSimple().setPosun( 3,0);
+                mr.exprSimple().setShift(3, 0);
                 mr.exprSimple().setOutput(new TestVyraz());
-                mr.opExpr().setPosun(2,0);
-                mr.expression().setPosun(4,0);
+                mr.opExpr().setShift(2, 0);
+                mr.expression().setShift(4, 0);
             }
 
         }.run("ano > nie", "exprSimple;opExp;expression;");

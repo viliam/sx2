@@ -35,11 +35,11 @@ public class AssignmentParserTest extends AbstractParserTest {
         new TestTemplate<Assignment>(sb, new AssignmentReader()) {
             @Override
             public void setUpParsers() {
-                mr.variable().setPosun( 1, 0 );
+                mr.variable().setShift(1, 0);
                 mr.variable().setOutput(new Variable(new Word(new Position(1, 1))));
-                mr.opAssignment().setPosun( 1, 0 );
-                mr.expression().setPosun( 1, 0 );
-                mr.comma().setPosun(1,0);
+                mr.opAssignment().setShift(1, 0);
+                mr.expression().setShift(1, 0);
+                mr.comma().setShift(1, 0);
             }
         }.run("c=4;", "variable;opAssigment;expression;comma;");
     }
@@ -47,7 +47,7 @@ public class AssignmentParserTest extends AbstractParserTest {
     @Test
     public void testFail()  {
         try {
-            mr.variable().setPosun( 1, 0 );
+            mr.variable().setShift(1, 0);
             mr.variable().setOutput(new Variable(new Word(new Position(1, 1))));
 
             new AssignmentReader().read(new TextContext("c + 4;"));

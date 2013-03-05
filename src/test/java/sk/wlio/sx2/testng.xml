@@ -25,11 +25,11 @@
         <class name="sk.wlio.sx2.unit.parsers.statement.CommandParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.statement.ParameterParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.statement.StatementParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.declaration.DeklaraciaPremennejParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.declaration.BlokParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.declaration.DeklaraciaPrikazParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.declaration.DeklaraciaParameterParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.declaration.DeklaraciaTriedaParserTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationPremennejParserTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.declaration.BlockParserTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationPrikazParserTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationParameterParserTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationTriedaParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.expression.VariableParserTest" />
         <class name="sk.wlio.sx2.unit.parsers.expression.ExprSimpleParserTest" />
         <class name="sk.wlio.sx2.unit.parsers.statement.AssignmentParserTest" />

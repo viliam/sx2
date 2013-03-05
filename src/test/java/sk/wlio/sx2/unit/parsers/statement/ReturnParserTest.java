@@ -35,9 +35,9 @@ public class ReturnParserTest extends AbstractParserTest {
         new TestTemplate<Return>(sb, new ReturnReader()) {
             @Override
             public void setUpParsers() {
-                mr.word().setPosun( 4,0) ;
+                mr.word().setShift(4, 0) ;
                 mr.word().setOutput(new Word(null, "return"));
-                mr.expression().setPosun(1, 0);
+                mr.expression().setShift(1, 0);
                 mr.expression().setOutput(new TestVyraz());
             }
         }.run("return 4;", "word;expression;");
@@ -45,7 +45,7 @@ public class ReturnParserTest extends AbstractParserTest {
 
     @Test
     public void testFail() {
-        mr.word().setPosun( 4,0 );
+        mr.word().setShift(4, 0);
         mr.word().setOutput(new Word(null, "trat"));
 
         TextContext tC = new TextContext("trat 4;  ");

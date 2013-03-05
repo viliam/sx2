@@ -31,9 +31,9 @@ public class CommandParserTest extends AbstractParserTest {
     public void testBasic()  {
         TestTemplate<Command> tt =new TestTemplate<Command>( sb, new CommandReader()) {
             @Override public void setUpParsers() {
-                mr.word().setPosun( 4,0);
+                mr.word().setShift(4, 0);
                 mr.word().setOutput(new Word(null, "ahoj"));
-                mr.paramters().setPosun( 8,0);
+                mr.paramters().setShift(8, 0);
             }
         };
         tt.run("   ahoj(3 , p);  ","word;parameters;");

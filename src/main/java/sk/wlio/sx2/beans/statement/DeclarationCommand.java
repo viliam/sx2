@@ -22,17 +22,17 @@ import sk.wlio.sx2.visitors.IVisitor;
 
 public class DeclarationCommand extends WordAbstract {
 
-    private DataType datovyTyp;
+    private DataType dataType;
     private Word nazov;
     private DeclarationParameter dekParam;
-    private Block telo;
+    private Block body;
 
-    public DeclarationCommand(DataType datovyTyp, Word nazov, DeclarationParameter dekParam, Block telo) {
-        super(datovyTyp.getPosition());
+    public DeclarationCommand(DataType dataType, Word nazov, DeclarationParameter dekParam, Block body) {
+        super(dataType.getPosition());
         this.nazov = nazov;
         this.dekParam = dekParam;
-        this.telo = telo;
-        this.datovyTyp = datovyTyp;
+        this.body = body;
+        this.dataType = dataType;
     }
 
     public Word getName() {
@@ -56,18 +56,18 @@ public class DeclarationCommand extends WordAbstract {
     }
 
     public Block getTelo() {
-        return telo;
+        return body;
     }
 
-    public void setTelo(Block telo) {
-        this.telo = telo;
+    public void setTelo(Block body) {
+        this.body = body;
     }
 
     public DataType getDatovyTyp() {
-        return datovyTyp;
+        return dataType;
     }
 
-    public void setDatovyTyp(DataType datovyTyp) {
-        this.datovyTyp = datovyTyp;
+    public void setDatovyTyp(DataType dataType) {
+        this.dataType = dataType;
     }
 }

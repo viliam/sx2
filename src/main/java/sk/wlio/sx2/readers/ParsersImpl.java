@@ -40,7 +40,7 @@ public class ParsersImpl implements IParsers {
     public SxParser<Word> word() {  return  new WordParser(); }
     public SxParser<Int> integer() {  return   new IntReader(); }
     public SxParser<Operator> opExpr() {  return   new OperatorExpressionParser(); }
-    public SxParser<Operator> opAssignment() {  return   new OperatorPriradenieParser(); }
+    public SxParser<Operator> opAssignment() {  return   new OperatorAssignmentParser(); }
     public SxParser<IExpression> expression() {  return   new ExprReader(); }
     public SxParser<IExpression> exprSimple() {  return   new SimpleExprReader(); }
     public SxParser<IExpression> exprBracket() {  return   new BracketExpression(); }

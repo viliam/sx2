@@ -36,7 +36,7 @@ public class ExprSimpleParserTest extends AbstractParserTest {
         new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override
             public void setUpParsers() {
-                mr.integer().setPosun( 1,0 );
+                mr.integer().setShift(1, 0);
             }
         }.run("4", "int;");
     }
@@ -45,9 +45,9 @@ public class ExprSimpleParserTest extends AbstractParserTest {
     public void testVariable()  {
         new TestTemplate<IExpression>(sb, new SimpleExprReader()) {
             @Override public void setUpParsers() {
-                mr.word().setPosun( 0,0 );
+                mr.word().setShift(0, 0);
                 mr.word().setOutput(new Word(null, "asdfds"));
-                mr.variable().setPosun(  6,0) ;
+                mr.variable().setShift(6, 0) ;
             }
         }.run( "asdfds", "word;variable;");
     }
@@ -60,7 +60,7 @@ public class ExprSimpleParserTest extends AbstractParserTest {
                         6, 0, 0, 0);
                 Word word = new Word(null, "asdfds");
                 mr.word().setOutput(word, word, word);
-                mr.command().setPosun(  6,0 );
+                mr.command().setShift(6, 0);
             }
         }.run( "asdfds(aa", "word;word;word;command;");
     }

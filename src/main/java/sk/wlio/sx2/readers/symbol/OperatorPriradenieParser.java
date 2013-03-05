@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 
-public class OperatorPriradenieParser extends SymbolAbstractParser<Operator> {
+public class OperatorAssignmentParser extends SymbolAbstractParser<Operator> {
 
     @Override
     protected String[] getSymbols() {

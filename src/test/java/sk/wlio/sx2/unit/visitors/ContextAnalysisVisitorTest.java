@@ -43,66 +43,67 @@ import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
 
 public class ContextAnalysisVisitorTest {
+
     @Test
-    public void testDekPremenna() {
-        DeclarationVariable dekPremennej = new DeclarationVariable(
+    public void testDecVariable() {
+        DeclarationVariable decVariable = new DeclarationVariable(
                 new DataType( null, "bool"),
                 new Word(null, "ahoj"), new Comma(null, null)
         );
 
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
-        visitor.visit(dekPremennej);
+        visitor.visit(decVariable);
 
-        String nazov = dekPremennej.getName().toString();
-        assertEquals(dekPremennej.getDataType(),
-                visitor.getVariable(nazov).getDataType());
+        String name = decVariable.getName().toString();
+        assertEquals(decVariable.getDataType(),
+                visitor.getVariable(name).getDataType());
     }
 
     @Test
-    public void testVisitDekPrikazu() {
-        DataType datovyTyp = new DataType(new Word(null, "integer"));
-        datovyTyp.setTyp( Enums.ExpType.INT);
-        Word nazov = new Word(null, "command");
-        DeclarationParameter dekParameter =new DeclarationParameter(null, null);
-        Block telo = new Block(new Statement[0], new Bracket(null, null), null);
-        DeclarationCommand dekPrikaz =
-                new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
+    public void testDecCommand() {
+        DataType dataType = new DataType(new Word(null, "integer"));
+        dataType.setTyp(Enums.ExpType.INT);
+        Word name = new Word(null, "command");
+        DeclarationParameter decParameter =new DeclarationParameter(null, null);
+        Block body = new Block(new Statement[0], new Bracket(null, null), null);
+        DeclarationCommand decCommand =
+                new DeclarationCommand(dataType, name, decParameter, body);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
-        visitor.visit(dekPrikaz);
+        visitor.visit(decCommand);
 
-        DeclarationCommand dekPrikazPamet = visitor.getCommand("command");
-        assertNotNull( dekPrikazPamet);
-        assertEquals( Enums.ExpType.INT, dekPrikazPamet.getDatovyTyp().getExpType() );
-        assertEquals( dekPrikaz.getName().getContent(), dekPrikazPamet.getName().getContent());
+        DeclarationCommand decCommandPamet = visitor.getCommand("command");
+        assertNotNull( decCommandPamet);
+        assertEquals( Enums.ExpType.INT, decCommandPamet.getDatovyTyp().getExpType() );
+        assertEquals( decCommand.getName().getContent(), decCommandPamet.getName().getContent());
     }
 
     @Test
-    public void testDeklaraciaParameter() {
-        DataType datovyTyp = new DataType( new Word(null, "bool"));
-        datovyTyp.setTyp( Enums.ExpType.BOOL);
-        Word nazov = new Word(null, "ahoj");
-        DeclarationVariable d1 = new DeclarationVariable(datovyTyp, nazov, new Comma(null, null) );
+    public void testDecParameters() {
+        DataType dataType = new DataType( new Word(null, "bool"));
+        dataType.setTyp( Enums.ExpType.BOOL);
+        Word name = new Word(null, "ahoj");
+        DeclarationVariable d1 = new DeclarationVariable(dataType, name, new Comma(null, null) );
 
-        List<DeclarationVariable> liDekPremennaj = new ArrayList<DeclarationVariable>();
-        liDekPremennaj.add( d1);
-        DeclarationParameter dekParameter = new DeclarationParameter(null, null, null, liDekPremennaj);
+        List<DeclarationVariable> liDecVariable = new ArrayList<DeclarationVariable>();
+        liDecVariable.add(d1);
+        DeclarationParameter decParameter= new DeclarationParameter(null, null, null, liDecVariable);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
-        visitor.visit(dekParameter);
+        visitor.visit(decParameter);
 
-        DeclarationVariable dekPremennejPamet = visitor.getVariable("ahoj");
-        assertNotNull( dekPremennejPamet);
-        assertEquals( Enums.ExpType.BOOL, dekPremennejPamet.getDataType().getExpType() );
-        assertEquals( d1.getName().getContent(), dekPremennejPamet.getName().getContent());
+        DeclarationVariable decVariable= visitor.getVariable("ahoj");
+        assertNotNull( decVariable);
+        assertEquals(Enums.ExpType.BOOL, decVariable.getDataType().getExpType());
+        assertEquals(d1.getName().getContent(), decVariable.getName().getContent());
     }
 
     @Test
-    public void testVisitPrikaz() {
-        Word nazov = new Word(null, "command");
+    public void testVisitCommand() {
+        Word name = new Word(null, "command");
         Parameters parameters = new Parameters(new Bracket(null, null), null);
-        Command command = new Command(nazov, parameters);
+        Command command = new Command(name, parameters);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         try {
@@ -112,24 +113,24 @@ public class ContextAnalysisVisitorTest {
             assertEquals(SxExTyp.UNKNOWN_COMMAND, ex.getType());
         }
 
-        DataType datovyTyp = new DataType(new Word(null, "integer"));
-        datovyTyp.setTyp( Enums.ExpType.INT);
-        DeclarationParameter dekParameter =new DeclarationParameter(null, null);
-        Block telo = new Block(new Statement[] { new Return(new StatementWord( new Position(0,0), null), null, null) }
+        DataType dataType = new DataType(new Word(null, "integer"));
+        dataType.setTyp( Enums.ExpType.INT);
+        DeclarationParameter decParameter =new DeclarationParameter(null, null);
+        Block body = new Block(new Statement[] { new Return(new StatementWord( new Position(0,0), null), null, null) }
                              , new Bracket(null, null), null);
-        DeclarationCommand dekPrikaz =
-                new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
+        DeclarationCommand decCommand =
+                new DeclarationCommand(dataType, name, decParameter, body);
 
-        visitor.addCommand(dekPrikaz);
+        visitor.addCommand(decCommand);
 
         visitor.visit(command);
-        assertEquals( command.getExpType(), dekPrikaz.getDatovyTyp().getExpType());
+        assertEquals( command.getExpType(), decCommand.getDatovyTyp().getExpType());
     }
 
     @Test
-    public void testVisitPremenna() {
-        Word nazov = new Word(null, "ahoj");
-        Variable variable = new Variable( nazov);
+    public void testVisitVariable() {
+        Word name = new Word(null, "ahoj");
+        Variable variable = new Variable( name);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         try {
@@ -139,63 +140,63 @@ public class ContextAnalysisVisitorTest {
             assertEquals(SxExTyp.UNKNOWN_VARIABLE, ex.getType());
         }
 
-        DataType datovyTyp = new DataType(new Word(null, "integer"));
-        datovyTyp.setTyp( Enums.ExpType.INT);
-        DeclarationVariable dekPremennej =
-                new DeclarationVariable(datovyTyp, nazov, new Comma(null, null));
+        DataType dataType = new DataType(new Word(null, "integer"));
+        dataType.setTyp( Enums.ExpType.INT);
+        DeclarationVariable decVariable =
+                new DeclarationVariable(dataType, name, new Comma(null, null));
 
-        visitor.addVariable(dekPremennej);
+        visitor.addVariable(decVariable);
 
         visitor.visit(variable);
-        assertEquals( variable.getExpType(), dekPremennej.getDataType().getExpType());
+        assertEquals( variable.getExpType(), decVariable.getDataType().getExpType());
     }
 
    @Test
-    public void testVisitVyrazZlozeny() {
+    public void testVisitExpression() {
         Int anInt = DummyFactory.createInt(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.TIMES);
         Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.INT);
-        Expression vyraz = new Expression(anInt, op, variable);
+        Expression expr = new Expression(anInt, op, variable);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         visitor.addVariable(DummyFactory.createDecVariable("integer", "ahoj"));
-        visitor.visit(vyraz);
+        visitor.visit(expr);
     }
 
     @Test
-    public void testVisitVyrazZlozenyPorovnanie() {
+    public void testVisitExprBracket() {
         Int anInt = DummyFactory.createInt(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.SMALLER_EQUAL);
         Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.INT);
-        Expression vyraz = new Expression(anInt, op, variable);
+        Expression expr = new Expression(anInt, op, variable);
 
         ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         visitor.addVariable(DummyFactory.createDecVariable("integer", "ahoj"));
-        visitor.visit(vyraz);
+        visitor.visit(expr);
     }
 
     @Test
-    public void testVisitVyrazZlozenyChybny() {
+    public void testVisitExpressionFail() {
         Int anInt = DummyFactory.createInt(3);
         Operator op = DummyFactory.createOperator(SymbolEnum.AND);
         Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.BOOL);
-        Expression vyraz = new Expression(anInt, op, variable);
+        Expression expr = new Expression(anInt, op, variable);
 
         try {
-            new ContextAnalysisVisitor( ).visit(vyraz);
+            new ContextAnalysisVisitor( ).visit(expr);
             fail();
         } catch (SxException ex) {
             assertEquals( ex.getType(), SxExTyp.WRONG_DATA_TYPE);
         }
 
         variable.setExpType(Enums.ExpType.BOOL);
-        vyraz = new Expression(anInt, op, variable);
+        expr = new Expression(anInt, op, variable);
 
         try {
-            new ContextAnalysisVisitor( ).visit(vyraz);
+            new ContextAnalysisVisitor( ).visit(expr);
             fail();
         } catch (SxException ex) {
             assertEquals( ex.getType(), SxExTyp.WRONG_DATA_TYPE);
@@ -203,7 +204,7 @@ public class ContextAnalysisVisitorTest {
     }
 
     @Test
-    public void testPriradenie() {
+    public void testAssignment() {
         Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.INT);
         Int anInt = DummyFactory.createInt(3);
@@ -213,7 +214,7 @@ public class ContextAnalysisVisitorTest {
     }
 
     @Test
-    public void testPriradenieZle() {
+    public void testAssignmentFail() {
         Variable variable = DummyFactory.createVariable("ahoj");
         variable.setExpType(Enums.ExpType.BOOL);
         Int anInt = DummyFactory.createInt(3);

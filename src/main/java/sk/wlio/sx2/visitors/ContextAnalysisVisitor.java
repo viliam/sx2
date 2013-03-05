@@ -77,11 +77,11 @@ public class ContextAnalysisVisitor implements IVisitor {
             addCommand(decCommand);
         }
 
-        for (DeclarationVariable dekPremennej : decProgram.getMapVariable().values() )
-            dekPremennej.visit(this);
+        for (DeclarationVariable decVariable : decProgram.getMapVariable().values() )
+            decVariable.visit(this);
 
-        for (DeclarationCommand dekPrikaz : decProgram.getMapCommand().values() )
-            dekPrikaz.visit(this);
+        for (DeclarationCommand decCommand : decProgram.getMapCommand().values() )
+            decCommand.visit(this);
 
     }
 
@@ -191,7 +191,7 @@ public class ContextAnalysisVisitor implements IVisitor {
 
     public void visit(Operator operator) {}
 
-    public void visit(DataType datovyTyp) {}
+    public void visit(DataType dataType) {}
     public void visit(DataValue dataValue) {}
 
     public void visit(Int anInt) {}

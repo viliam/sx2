@@ -31,7 +31,7 @@ public class StatementParserTest extends AbstractParserTest {
             public void setUpParsers() {
                 mr.word().setShift(0, 0, 0, 0, 2, 0);
                 mr.word().setOutput(new Word(null, "v"), new Word(null, "v"), new Word(null, "v"));
-                mr.assignment().setPosun( 0, 5);
+                mr.assignment().setShift(0, 5);
             }
         }.run(" v = 3;", "word;word;assigment;");
     }
@@ -40,9 +40,9 @@ public class StatementParserTest extends AbstractParserTest {
     public void testDecVariable()  {
         new TestTemplate<Statement>(sb, new StatementReader()) {
             @Override public void setUpParsers() {
-                mr.word().setPosun(  5,0);
+                mr.word().setShift(5, 0);
                 mr.word().setOutput(new Word(null, "int"));
-                mr.decVariable().setPosun( 0, 0);
+                mr.decVariable().setShift(0, 0);
             }
         }.run(" int v = 3;", "word;decVariable;");
     }

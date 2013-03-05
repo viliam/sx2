@@ -35,18 +35,18 @@ public class ConditionParserTest extends AbstractParserTest {
         new TestTemplate<Condition>(sb, new ConditionReader()) {
             @Override
             public void setUpParsers() {
-                mr.statementWord().setPosun(  3,0 );
+                mr.statementWord().setShift(3, 0);
                 mr.statementWord().setOutput(new StatementWord(null, "if"));
                 mr.bracket().setShift(1, 0, 1, 0);
-                mr.expression().setPosun(5, 0);
-                mr.statement().setPosun(9,0);
+                mr.expression().setShift(5, 0);
+                mr.statement().setShift(9, 0);
             }
         }.run("if ( b>32) nieco();", "statementWord;bracket;expression;bracket;statement;");
     }
 
     @Test
     public void testFail() {
-        mr.statementWord().setPosun(4,0);
+        mr.statementWord().setShift(4, 0);
         mr.statementWord().setOutput(new StatementWord(null, "trat"));
 
         TextContext tC = new TextContext("trat 4;  ");

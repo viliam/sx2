@@ -31,7 +31,7 @@ public class ExprBracketParserTest extends AbstractParserTest {
             @Override
             public void setUpParsers() {
                 mr.bracket().setShift(1, 0, 1, 0);
-                   mr.expression().setPosun( 4, 0 );
+                   mr.expression().setShift(4, 0);
             }
         }.run("(ahoj)", "bracket;expression;bracket;");
     }
