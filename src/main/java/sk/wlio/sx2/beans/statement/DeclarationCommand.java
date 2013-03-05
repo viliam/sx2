@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.beans.instruction;
+package sk.wlio.sx2.beans.statement;
 
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.WordAbstract;
@@ -35,7 +35,7 @@ public class DeclarationCommand extends WordAbstract {
         this.datovyTyp = datovyTyp;
     }
 
-    public Word getNazov() {
+    public Word getName() {
         return nazov;
     }
 

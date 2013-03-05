@@ -16,8 +16,8 @@
 package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instruction.Condition;
-import sk.wlio.sx2.beans.reservedwords.InstructionWord;
+import sk.wlio.sx2.beans.reservedwords.StatementWord;
+import sk.wlio.sx2.beans.statement.Condition;
 import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.exception.SxExTyp;
@@ -30,7 +30,7 @@ import sk.wlio.sx2.interfaces.TextReader;
 public class ConditionReader implements TextReader<Condition> {
 
     public Condition read(TextContext tC)        {
-        InstructionWord ifWord = Readers.instrukciaSlovo().read(tC);
+        StatementWord ifWord = Readers.instrukciaSlovo().read(tC);
         if ( !ReservedWordEnum.IF.is(ifWord.toString())  )
             throw SxException.create( SxExTyp.CAKAL_AK, tC);
 

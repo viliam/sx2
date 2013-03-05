@@ -13,31 +13,29 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.zakazaneslova;
+package sk.wlio.sx2.readers;
 
-import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.reservedwords.DataType;
+import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.readers.RezervovaneSlovaAbstractReader;
+import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.interfaces.TextReader;
 
-public class DatovyTypReader extends RezervovaneSlovaAbstractReader<DataType> {
+public abstract class ReserverdWordAbstractReader<E extends Word> implements TextReader<E> {
 
-    public DataType read(TextContext tC)  {
-        DataType dt = new DataType( super.read(tC) );
-        dt.setTyp( Enums.ExpType.getDatovyTyp(dt));
+    public E read(TextContext tC)  {
+        Word word = Readers.slovo().read(tC);
+        String s = word.toString();
 
-        return dt;
+        if (!getZakazaneSlova().is(s))
+           throw SxException.create(getSxExceptionTyp(), tC);
+
+        return (E) word;
     }
 
-    @Override
-    protected SxExTyp getSxExceptionTyp() {
-        return SxExTyp.CAKAL_DATOVY_TYP;
-    }
+    protected abstract SxExTyp getSxExceptionTyp();
 
-    @Override
-    protected RezervedWordsEnum getZakazaneSlova() {
-        return RezervedWordsEnum.DATA_TYPE;
-    }
+    protected abstract RezervedWordsEnum getZakazaneSlova();
+
 }

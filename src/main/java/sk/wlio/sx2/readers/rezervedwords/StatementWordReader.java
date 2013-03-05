@@ -13,35 +13,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers;
+package sk.wlio.sx2.readers.rezervedwords;
 
-import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
+import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.reservedwords.StatementWord;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
+import sk.wlio.sx2.readers.ReserverdWordAbstractReader;
 
-public class RezervovaneSlovaAbstractReaderTest {
+public class StatementWordReader extends ReserverdWordAbstractReader<StatementWord> {
 
-    class TestTriedaReader extends RezervovaneSlovaAbstractReader {
-
-        @Override
-        protected SxExTyp getSxExceptionTyp() {
-            return SxExTyp.ZLY_DATOVY_TYP;
-        }
-
-        @Override
-        protected RezervedWordsEnum getZakazaneSlova() {
-//            return new TestZakazaneSlova();
-            return null;
-        }
+    public StatementWord read(TextContext tC)  {
+        return new StatementWord( super.read(tC) );
     }
 
-    class TestZakazaneSlova {
-        public boolean je(String s) {
-            return true;
-        }
-
-        public ReservedWordEnum vrat(String s) {
-            return ReservedWordEnum.IF;
-        }
+    @Override
+    protected SxExTyp getSxExceptionTyp() {
+        return SxExTyp.CAKAL_INSTRUKCIA_SLOVO;
     }
+
+    @Override
+    protected RezervedWordsEnum getZakazaneSlova() {
+        return RezervedWordsEnum.INSTRUCTION_WORD;
+    }
+
 }

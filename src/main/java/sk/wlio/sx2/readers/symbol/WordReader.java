@@ -23,44 +23,44 @@ import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.TextReader;
 
-public class SlovoReader implements TextReader<Word> {
+public class WordReader implements TextReader<Word> {
 
     public Word read(TextContext tC)  {
         tC.findNextCharacter();
         Position inx= tC.getPosition();
-        int zacX =inx.getX();
+        int beginX =inx.getX();
 
-        String riadok = tC.getRiadok();
-        String slovo = predcitajSlovo(riadok, zacX);
-        if ("".equals(slovo) )
+        String line = tC.getLine();
+        String word = lookAhead(line, beginX);
+        if ("".equals(word) )
             throw SxException.create(SxExTyp.PRAZDNE_SLOVO, tC);
 
-        int konX = zacX + slovo.length();
-        tC.setPosition(new Position(konX, inx.getY()));
-        return new Word(inx, slovo);
+        int endX = beginX + word.length();
+        tC.setPosition(new Position(endX, inx.getY()));
+        return new Word(inx, word);
     }
 
-    public static String predcitajSlovo(String riadok, int x) {
-        int konX = najdiKoniecSlova(riadok, x);
+    public static String lookAhead(String line, int x) {
+        int konX = findEndOfWord(line, x);
         if ( x >= konX) {
             return "";
         }
-        return riadok.substring(x, konX);
+        return line.substring(x, konX);
     }
 
-    private static int najdiKoniecSlova(String riadok, int x)  {
-        if (x>=riadok.length() ) return x;
-        int konX = x;
+    private static int findEndOfWord(String line, int x)  {
+        if (x>=line.length() ) return x;
+        int endX = x;
          //kym sa nerovnas zakazanym znakom ani operatorom, ani koncu riadka, tak v pohode
         do {
-            char p = riadok.charAt( konX);
-            if (!TextUtils.jePismeno(p) && !TextUtils.isInt(p))
-                return konX;
+            char p = line.charAt( endX);
+            if (!TextUtils.isLetter(p) && !TextUtils.isInt(p))
+                return endX;
 
-            konX++;
-        } while ( konX<riadok.length() );
+            endX++;
+        } while ( endX<line.length() );
 
-        return konX;
+        return endX;
     }
 
 }

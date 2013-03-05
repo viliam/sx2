@@ -18,13 +18,13 @@ package sk.wlio.sx2.unit.readers.mock;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.reservedwords.InstructionWord;
+import sk.wlio.sx2.beans.reservedwords.StatementWord;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.Variable;
-import sk.wlio.sx2.beans.instruction.*;
-import sk.wlio.sx2.beans.vyraz.Int;
+import sk.wlio.sx2.beans.statement.*;
+import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.readers.IReaders;
@@ -52,7 +52,7 @@ public class MockReaders implements IReaders {
     protected MockReader<Comma> mCiarka;
 
     protected MockReader<DataType> mDatovyTyp;
-    protected MockReader<InstructionWord> mInstrukciaSlovo;
+    protected MockReader<StatementWord> mInstrukciaSlovo;
 
     protected MockReader<Statement> mInstrukcia;
     protected MockReader<Assignment> mPriradenie;
@@ -88,7 +88,7 @@ public class MockReaders implements IReaders {
         mZatvorka = new MockReader<Bracket>("bracket", postupVolania);
         mCiarka= new MockReader<Comma>("comma", postupVolania);
 
-        mInstrukciaSlovo= new MockReader<InstructionWord>("statmentWord", postupVolania);
+        mInstrukciaSlovo= new MockReader<StatementWord>("statmentWord", postupVolania);
         mDatovyTyp= new MockReader<DataType>("dataType", postupVolania);
 
         mInstrukcia= new MockReader<Statement>("statement", postupVolania);
@@ -119,7 +119,7 @@ public class MockReaders implements IReaders {
     public MockReader<Bracket> zatvorka() {  return mZatvorka; }
     public MockReader<Comma> ciarka  () {  return mCiarka; }
 
-    public MockReader<InstructionWord> instrukciaSlovo() {  return mInstrukciaSlovo; }
+    public MockReader<StatementWord> instrukciaSlovo() {  return mInstrukciaSlovo; }
     public MockReader<DataType> datovyTyp() {  return mDatovyTyp; }
 
     public MockReader<Statement> instrukcia() {  return mInstrukcia; }

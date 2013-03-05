@@ -13,37 +13,46 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.beans.instruction;
+package sk.wlio.sx2.beans.statement;
+// Date: 3.1.2011      Time: 23:57:35
 
 import sk.wlio.sx2.beans.WordAbstract;
-import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.interfaces.IExpression;
-import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Condition extends WordAbstract implements Statement {
+import java.util.ArrayList;
+import java.util.List;
 
-    private final InstructionWord ak;
-    private final Bracket z1, z2;
-    private final IExpression vrzBool;
-    private final Statement statement;
+public class Parameters extends WordAbstract {
 
-    public Condition(InstructionWord ak, IExpression vrzBool, Statement statement, Bracket z1, Bracket z2) {
-        super(ak.getPosition());
-        this.ak = ak;
-        this.vrzBool = vrzBool;
-        this.statement = statement;
+    private Bracket z1;
+    private Bracket z2;
+    private List<Comma> ciarky = new ArrayList<Comma>();
+
+    private List<IExpression> parametre = new ArrayList<IExpression>();
+
+    public Parameters(Bracket z1, Bracket z2) {
+        super(z1.getPosition());
         this.z1 = z1;
         this.z2 = z2;
     }
 
-    public InstructionWord getAk() {
-        return ak;
+    public Parameters(Bracket z1, Bracket z2, List<IExpression> parametre, List<Comma> ciarky) {
+        super(z1.getPosition());
+        this.z1 = z1;
+        this.z2 = z2;
+        this.parametre = parametre;
+        this.ciarky = ciarky;
     }
 
-    public Statement getStatement() {
-        return statement;
+    public List<Comma> getCiarky() {
+        return ciarky;
+    }
+
+    public List<IExpression> getParametre() {
+        return parametre;
     }
 
     public Bracket getZ1() {
@@ -53,11 +62,8 @@ public class Condition extends WordAbstract implements Statement {
     public Bracket getZ2() {
         return z2;
     }
-    public IExpression getVrzBool() {
-        return vrzBool;
-    }
 
     public void visit(IVisitor visitor) {
-        visitor.visit(this);
+        visitor.visit( this);
     }
 }

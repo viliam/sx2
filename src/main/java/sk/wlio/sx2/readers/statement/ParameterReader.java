@@ -16,7 +16,7 @@
 package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instruction.Parameters;
+import sk.wlio.sx2.beans.statement.Parameters;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.interfaces.IExpression;

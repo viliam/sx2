@@ -13,19 +13,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers;
+package sk.wlio.sx2.readers.rezervedwords;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Variable;
-import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.interfaces.TextReader;
+import sk.wlio.sx2.beans.reservedwords.DataValue;
+import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
+import sk.wlio.sx2.exception.SxExTyp;
+import sk.wlio.sx2.readers.ReserverdWordAbstractReader;
 
-public class PremennaReader implements TextReader<Variable> {
+public class DataValueReader extends ReserverdWordAbstractReader<DataValue> {
 
-    public Variable read(TextContext tC)  {
-        Word obsah = Readers.slovo().read(tC);
-        return new Variable( obsah);
+    public DataValue read(TextContext tC)  {
+        return new DataValue( super.read(tC) );
     }
 
+    @Override
+    protected SxExTyp getSxExceptionTyp() {
+        return SxExTyp.CAKAL_DATOVU_HODNOTU;
+    }
+
+    @Override
+    protected RezervedWordsEnum getZakazaneSlova() {
+        return RezervedWordsEnum.DATA_VALUE;
+    }
 
 }

@@ -18,7 +18,7 @@ package sk.wlio.sx2.readers.statement;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.instruction.*;
+import sk.wlio.sx2.beans.statement.*;
 import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;

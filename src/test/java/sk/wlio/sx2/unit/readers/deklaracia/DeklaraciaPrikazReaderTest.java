@@ -18,7 +18,7 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.DeclarationCommand;
+import sk.wlio.sx2.beans.statement.DeclarationCommand;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
@@ -48,7 +48,7 @@ public class DeklaraciaPrikazReaderTest extends AbstractReaderTest {
         tt.run("  bool ahoj() { return 3; } ", "dataType;word;word;decParameter;block;");
 
         DeclarationCommand dp = tt.getVysledok();
-        assertEquals("nazov prikazu", "ahoj", dp.getNazov().toString() );
+        assertEquals("nazov prikazu", "ahoj", dp.getName().toString() );
     }
 
     @Test

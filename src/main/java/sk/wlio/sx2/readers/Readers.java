@@ -19,12 +19,12 @@ import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Variable;
-import sk.wlio.sx2.beans.instruction.*;
-import sk.wlio.sx2.beans.reservedwords.InstructionWord;
+import sk.wlio.sx2.beans.reservedwords.StatementWord;
+import sk.wlio.sx2.beans.statement.*;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.vyraz.Int;
+import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.interfaces.TextReader;
@@ -53,7 +53,7 @@ public class Readers {
     public static TextReader<Comma> ciarka() { return readers.ciarka(); }
 
     public static TextReader<DataType> datovyTyp() { return readers.datovyTyp(); }
-    public static TextReader<InstructionWord> instrukciaSlovo() { return readers.instrukciaSlovo();}
+    public static TextReader<StatementWord> instrukciaSlovo() { return readers.instrukciaSlovo();}
 
     public static TextReader<Statement> instrukcia() { return readers.instrukcia(); }
     public static TextReader<Assignment> priradenie() { return readers.priradenie(); }

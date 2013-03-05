@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.symbol.SlovoReader;
+import sk.wlio.sx2.readers.symbol.WordReader;
 
 import java.lang.reflect.Method;
 
@@ -35,7 +35,7 @@ public class SlovoReaderTest {
     @Test
     public void testCitajSlovo()  {
         TextContext tc = new TextContext("  sl34ovo  ");
-        SlovoReader sReader = new SlovoReader();
+        WordReader sReader = new WordReader();
         Word word = sReader.read(tc);
 
         assertNotNull(word);
@@ -47,7 +47,7 @@ public class SlovoReaderTest {
     @Test
     public void testNecitajSlovo() {
         TextContext tc = new TextContext("  //sl34ovo  ");
-        SlovoReader sReader = new SlovoReader();
+        WordReader sReader = new WordReader();
         try {
             sReader.read(tc);
             fail();
@@ -58,7 +58,7 @@ public class SlovoReaderTest {
 
     @Test
     public void testNajdiKoniecSlova() {
-        SlovoReader sr = new SlovoReader();
+        WordReader sr = new WordReader();
         int pozicia  = invokeNajdiKoniecSlova(sr , " nieco  ", 4 );
         assertEquals( 6, pozicia);
 
@@ -66,12 +66,12 @@ public class SlovoReaderTest {
         assertEquals( 11, pozicia);
     }
 
-    private int invokeNajdiKoniecSlova(SlovoReader slovoReader, String riadok, int x) {
+    private int invokeNajdiKoniecSlova(WordReader wordReader, String riadok, int x) {
         try {
-            Class testClass = SlovoReader.class;
+            Class testClass = WordReader.class;
             Method testMetoda = testClass.getDeclaredMethod("najdiKoniecSlova", String.class, int.class);
             testMetoda.setAccessible( true);
-            return (Integer) testMetoda.invoke(slovoReader,riadok , x);
+            return (Integer) testMetoda.invoke(wordReader,riadok , x);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

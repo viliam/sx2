@@ -32,14 +32,14 @@ public class TextUtils {
         if (i>=slovo.length() ) return i;
          //kym sa nerovnas zakazanym znakom ani operatorom, ani koncu riadka, tak v pohode
         char p = slovo.charAt(i);
-        while ( i<slovo.length() && p != ' ' && (jePismeno(p)|| isInt(p))) {
+        while ( i<slovo.length() && p != ' ' && (isLetter(p)|| isInt(p))) {
             i++;
             if ( i < slovo.length() ) p = slovo.charAt(i);
         }
         return i;
     }
 
-    public static boolean jePismeno(char a) {
+    public static boolean isLetter(char a) {
         Pattern pattern = Pattern.compile( "[a-zA-Z]" );
         Matcher matcher = pattern.matcher(String.valueOf(a));
         return matcher.matches();

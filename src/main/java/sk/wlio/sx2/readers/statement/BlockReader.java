@@ -16,7 +16,7 @@
 package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instruction.Block;
+import sk.wlio.sx2.beans.statement.Block;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.readers.Readers;

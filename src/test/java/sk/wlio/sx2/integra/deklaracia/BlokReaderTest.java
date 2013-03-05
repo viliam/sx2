@@ -17,7 +17,7 @@ package sk.wlio.sx2.integra.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instruction.Block;
+import sk.wlio.sx2.beans.statement.Block;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IWord;
 import sk.wlio.sx2.readers.Readers;

@@ -13,49 +13,39 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.beans.vyraz;
+package sk.wlio.sx2.beans.expression;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class VyrazVzatvorke implements IExpression {
+public class Int implements IExpression {
 
-    private Bracket z1;
-    private IExpression v;
-    private Bracket z2;
+    final private Integer cislo;
+    final private Position position;
 
-    public VyrazVzatvorke(Bracket z1, IExpression v, Bracket z2) {
-        this.z1 = z1;
-        this.v = v;
-        this.z2 = z2;
-    }
 
-    public Enums.ExpType getExpType() {
-        return v.getExpType();
-    }
-
-    public Position getPosition() {
-        return z1.getPosition();
+    public Int(Integer cislo, Position position) {
+        this.position = position;
+        this.cislo = cislo;
     }
 
     @Override
     public String toString() {
-        return z1.toString() + v.toString() + z2.toString();
+        return cislo.toString();
     }
 
-    public Bracket getZ1() {
-        return z1;
+    public Enums.ExpType getExpType() {
+        return Enums.ExpType.INT;
     }
 
-    public IExpression getV() {
-        return v;
+    public Integer getCislo() {
+        return cislo;
     }
 
-    public Bracket getZ2() {
-        return z2;
+    public Position getPosition() {
+        return position;
     }
 
     public void visit(IVisitor iVisitor) {

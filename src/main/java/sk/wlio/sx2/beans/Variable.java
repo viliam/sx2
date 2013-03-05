@@ -30,7 +30,7 @@ public class Variable extends WordAbstract implements IExpression {
         expType = Enums.ExpType.UNKNOWN;
     }
 
-    public Word getNazov() {
+    public Word getName() {
         return nazov;
     }
 

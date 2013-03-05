@@ -18,12 +18,12 @@ package sk.wlio.sx2.integra;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Bracket;
-import sk.wlio.sx2.beans.vyraz.Int;
+import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.readers.symbol.BracketReader;
 import sk.wlio.sx2.readers.symbol.OperatorExpressionReader;
-import sk.wlio.sx2.readers.symbol.ZatvorkaReader;
 import sk.wlio.sx2.readers.expression.*;
 import sk.wlio.sx2.interfaces.TextReader;
 
@@ -66,7 +66,7 @@ public class SxExceptionTest {
     @Test
     public void testCakalZatvorku() {
         TextContext tC = new TextContext(" c3");
-        TextReader<Bracket> zR = new ZatvorkaReader();
+        TextReader<Bracket> zR = new BracketReader();
         testException(tC, zR , SxExTyp.CAKAL_ZATVORKU);
     }
 

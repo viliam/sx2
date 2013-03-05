@@ -20,19 +20,19 @@ import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.*;
+import sk.wlio.sx2.beans.expression.Expression;
+import sk.wlio.sx2.beans.reservedwords.StatementWord;
+import sk.wlio.sx2.beans.statement.*;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.beans.reservedwords.InstructionWord;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.beans.vyraz.Int;
-import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
+import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.Statement;
-import sk.wlio.sx2.visitors.KontextovaKontrolaVisitor;
+import sk.wlio.sx2.visitors.ContextAnalysisVisitor;
 import sk.wlio.sx2.DummyFactory;
 
 import java.util.ArrayList;
@@ -51,12 +51,12 @@ public class KontextovaKontrolaVisitorTest {
         );
 
 
-        KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
+        ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         visitor.visit(dekPremennej);
 
-        String nazov = dekPremennej.getNazov().toString();
+        String nazov = dekPremennej.getName().toString();
         assertEquals(dekPremennej.getDatovyTyp(),
-                visitor.getPremenna(nazov).getDatovyTyp());
+                visitor.getVariable(nazov).getDatovyTyp());
     }
 
     @Test
@@ -69,13 +69,13 @@ public class KontextovaKontrolaVisitorTest {
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
 
-        KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
+        ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         visitor.visit(dekPrikaz);
 
-        DeclarationCommand dekPrikazPamet = visitor.getPrikaz("prikaz");
+        DeclarationCommand dekPrikazPamet = visitor.getCommand("prikaz");
         assertNotNull( dekPrikazPamet);
         assertEquals( Enums.ExpType.INT, dekPrikazPamet.getDatovyTyp().getExpType() );
-        assertEquals( dekPrikaz.getNazov().getObsah(), dekPrikazPamet.getNazov().getObsah());
+        assertEquals( dekPrikaz.getName().getContent(), dekPrikazPamet.getName().getContent());
     }
 
     @Test
@@ -89,13 +89,13 @@ public class KontextovaKontrolaVisitorTest {
         liDekPremennaj.add( d1);
         DeclarationParameter dekParameter = new DeclarationParameter(null, null, null, liDekPremennaj);
 
-        KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
+        ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         visitor.visit(dekParameter);
 
-        DeclarationVariable dekPremennejPamet = visitor.getPremenna("ahoj");
+        DeclarationVariable dekPremennejPamet = visitor.getVariable("ahoj");
         assertNotNull( dekPremennejPamet);
         assertEquals( Enums.ExpType.BOOL, dekPremennejPamet.getDatovyTyp().getExpType() );
-        assertEquals( d1.getNazov().getObsah(), dekPremennejPamet.getNazov().getObsah());
+        assertEquals( d1.getName().getContent(), dekPremennejPamet.getName().getContent());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class KontextovaKontrolaVisitorTest {
         Parameters parameters = new Parameters(new Bracket(null, null), null);
         Command command = new Command(nazov, parameters);
 
-        KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
+        ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         try {
             visitor.visit(command);
             fail();
@@ -115,12 +115,12 @@ public class KontextovaKontrolaVisitorTest {
         DataType datovyTyp = new DataType(new Word(null, "cislo"));
         datovyTyp.setTyp( Enums.ExpType.INT);
         DeclarationParameter dekParameter =new DeclarationParameter(null, null);
-        Block telo = new Block(new Statement[] { new Return(new InstructionWord( new Position(0,0), null), null, null) }
+        Block telo = new Block(new Statement[] { new Return(new StatementWord( new Position(0,0), null), null, null) }
                              , new Bracket(null, null), null);
         DeclarationCommand dekPrikaz =
                 new DeclarationCommand(datovyTyp, nazov, dekParameter, telo);
 
-        visitor.pridajPrikaz(dekPrikaz);
+        visitor.addCommand(dekPrikaz);
 
         visitor.visit(command);
         assertEquals( command.getExpType(), dekPrikaz.getDatovyTyp().getExpType());
@@ -131,7 +131,7 @@ public class KontextovaKontrolaVisitorTest {
         Word nazov = new Word(null, "ahoj");
         Variable variable = new Variable( nazov);
 
-        KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
+        ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
         try {
             visitor.visit(variable);
             fail();
@@ -144,7 +144,7 @@ public class KontextovaKontrolaVisitorTest {
         DeclarationVariable dekPremennej =
                 new DeclarationVariable(datovyTyp, nazov, new Comma(null, null));
 
-        visitor.pridajPremennu( dekPremennej);
+        visitor.addVariable(dekPremennej);
 
         visitor.visit(variable);
         assertEquals( variable.getExpType(), dekPremennej.getDatovyTyp().getExpType());
@@ -156,10 +156,10 @@ public class KontextovaKontrolaVisitorTest {
         Operator op = DummyFactory.createOperator(SymbolEnum.TIMES);
         Variable variable = DummyFactory.createPremenna("ahoj");
         variable.setExpType(Enums.ExpType.INT);
-        VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
+        Expression vyraz = new Expression(anInt, op, variable);
 
-        KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
-        visitor.pridajPremennu( DummyFactory.createDeklaraciaPremennej("cislo", "ahoj"));
+        ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
+        visitor.addVariable(DummyFactory.createDeklaraciaPremennej("cislo", "ahoj"));
         visitor.visit(vyraz);
     }
 
@@ -169,10 +169,10 @@ public class KontextovaKontrolaVisitorTest {
         Operator op = DummyFactory.createOperator(SymbolEnum.SMALLER_EQUAL);
         Variable variable = DummyFactory.createPremenna( "ahoj");
         variable.setExpType(Enums.ExpType.INT);
-        VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
+        Expression vyraz = new Expression(anInt, op, variable);
 
-        KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
-        visitor.pridajPremennu( DummyFactory.createDeklaraciaPremennej("cislo", "ahoj"));
+        ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
+        visitor.addVariable(DummyFactory.createDeklaraciaPremennej("cislo", "ahoj"));
         visitor.visit(vyraz);
     }
 
@@ -182,20 +182,20 @@ public class KontextovaKontrolaVisitorTest {
         Operator op = DummyFactory.createOperator(SymbolEnum.AND);
         Variable variable = DummyFactory.createPremenna( "ahoj");
         variable.setExpType(Enums.ExpType.BOOL);
-        VyrazZlozeny vyraz = new VyrazZlozeny(anInt, op, variable);
+        Expression vyraz = new Expression(anInt, op, variable);
 
         try {
-            new KontextovaKontrolaVisitor( ).visit(vyraz);
+            new ContextAnalysisVisitor( ).visit(vyraz);
             fail();
         } catch (SxException ex) {
             assertEquals( ex.getTyp(), SxExTyp.ZLY_DATOVY_TYP);
         }
 
         variable.setExpType(Enums.ExpType.BOOL);
-        vyraz = new VyrazZlozeny(anInt, op, variable);
+        vyraz = new Expression(anInt, op, variable);
 
         try {
-            new KontextovaKontrolaVisitor( ).visit(vyraz);
+            new ContextAnalysisVisitor( ).visit(vyraz);
             fail();
         } catch (SxException ex) {
             assertEquals( ex.getTyp(), SxExTyp.ZLY_DATOVY_TYP);
@@ -209,7 +209,7 @@ public class KontextovaKontrolaVisitorTest {
         Int anInt = DummyFactory.createCislo(3);
         Assignment assignment = DummyFactory.createPriradenie(variable, anInt);
 
-        new KontextovaKontrolaVisitor( ).visit(assignment);
+        new ContextAnalysisVisitor( ).visit(assignment);
     }
 
     @Test
@@ -220,7 +220,7 @@ public class KontextovaKontrolaVisitorTest {
         Assignment assignment = DummyFactory.createPriradenie(variable, anInt);
 
         try {
-            new KontextovaKontrolaVisitor( ).visit(assignment);
+            new ContextAnalysisVisitor( ).visit(assignment);
             fail();
         } catch (SxException e) {
             assertEquals(SxExTyp.ZLY_DATOVY_TYP, e.getTyp());

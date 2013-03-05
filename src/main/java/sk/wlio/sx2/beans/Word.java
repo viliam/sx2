@@ -29,13 +29,13 @@ public class Word extends WordAbstract {
     }
 
     public Word(Word word) {
-        this(word.getPosition(), word.getObsah());
+        this(word.getPosition(), word.getContent());
     }
 
     @Override
     public String toString() { return obsah;}
 
-    public String getObsah() {
+    public String getContent() {
         return obsah;
     }
 }

@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit.readers.instrukcia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.*;
+import sk.wlio.sx2.beans.statement.*;
 import sk.wlio.sx2.readers.statement.CommandReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;
 import sk.wlio.sx2.unit.readers.TestTemplate;

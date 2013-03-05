@@ -13,32 +13,37 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.beans.instruction;
+package sk.wlio.sx2.beans.statement;
 
 import sk.wlio.sx2.beans.WordAbstract;
+import sk.wlio.sx2.beans.reservedwords.StatementWord;
 import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class Block extends WordAbstract implements Statement {
+public class Condition extends WordAbstract implements Statement {
 
-    private Statement[] instrukcie;
-    private Bracket z1;
-    private Bracket z2;
+    private final StatementWord ak;
+    private final Bracket z1, z2;
+    private final IExpression vrzBool;
+    private final Statement statement;
 
-    public Block(Statement[] instrukcie, Bracket z1, Bracket z2) {
-        super(z1.getPosition());
+    public Condition(StatementWord ak, IExpression vrzBool, Statement statement, Bracket z1, Bracket z2) {
+        super(ak.getPosition());
+        this.ak = ak;
+        this.vrzBool = vrzBool;
+        this.statement = statement;
         this.z1 = z1;
         this.z2 = z2;
-        this.instrukcie = instrukcie;
     }
 
-    public void visit(IVisitor visitor) {
-        visitor.visit(this);
+    public StatementWord getAk() {
+        return ak;
     }
 
-    public Statement[] getInstrukcie() {
-        return instrukcie;
+    public Statement getStatement() {
+        return statement;
     }
 
     public Bracket getZ1() {
@@ -48,5 +53,11 @@ public class Block extends WordAbstract implements Statement {
     public Bracket getZ2() {
         return z2;
     }
+    public IExpression getVrzBool() {
+        return vrzBool;
+    }
 
+    public void visit(IVisitor visitor) {
+        visitor.visit(this);
+    }
 }

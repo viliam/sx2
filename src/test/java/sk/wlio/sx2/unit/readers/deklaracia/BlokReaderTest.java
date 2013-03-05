@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit.readers.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.instruction.Block;
+import sk.wlio.sx2.beans.statement.Block;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.interfaces.Statement;

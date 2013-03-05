@@ -19,7 +19,7 @@ import org.apache.commons.io.FileUtils;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.readers.ProgramReader;
-import sk.wlio.sx2.visitors.KontextovaKontrolaVisitor;
+import sk.wlio.sx2.visitors.ContextAnalysisVisitor;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class JazykSxTest extends TestAbstract<Program> {
     public JazykSxTest() {
         super(new ProgramReader(), new TestVisitor<Program>() {
             public void visit(TextContext tC, Program dekTrieda) {
-                KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
+                ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
                 visitor.visit(dekTrieda);
             }
         } );

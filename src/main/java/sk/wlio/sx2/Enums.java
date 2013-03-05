@@ -28,7 +28,7 @@ public class Enums {
 
         
         public static ExpType getDatovyTyp( DataType dt)  {
-            ReservedWordEnum zs = RezervedWordsEnum.DATA_TYPE.vrat(dt.getObsah());
+            ReservedWordEnum zs = RezervedWordsEnum.DATA_TYPE.vrat(dt.getContent());
 
             switch ( zs) {
                 case INT : return ExpType.INT;

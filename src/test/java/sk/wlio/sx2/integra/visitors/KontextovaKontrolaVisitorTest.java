@@ -18,11 +18,11 @@ package sk.wlio.sx2.integra.visitors;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Program;
-import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
+import sk.wlio.sx2.beans.expression.Expression;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.ProgramReader;
 import sk.wlio.sx2.readers.expression.ExprReader;
-import sk.wlio.sx2.visitors.KontextovaKontrolaVisitor;
+import sk.wlio.sx2.visitors.ContextAnalysisVisitor;
 import sk.wlio.sx2.integra.TestAbstract;
 
 public class KontextovaKontrolaVisitorTest {
@@ -32,7 +32,7 @@ public class KontextovaKontrolaVisitorTest {
         public DeklaracieVisitorTestImpl() {
             super(new ProgramReader(), new TestVisitor<Program>() {
                 public void visit(TextContext tC, Program slovo) {
-                    KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
+                    ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
                     visitor.visit( slovo);
                 }
             });
@@ -90,8 +90,8 @@ public class KontextovaKontrolaVisitorTest {
             super(new ExprReader(),
                 new TestVisitor<IExpression>() {
                     public void visit(TextContext tC, IExpression slovo) {
-                        KontextovaKontrolaVisitor visitor = new KontextovaKontrolaVisitor();
-                        visitor.visit( (VyrazZlozeny) slovo);
+                        ContextAnalysisVisitor visitor = new ContextAnalysisVisitor();
+                        visitor.visit( (Expression) slovo);
                     }
                 });
         }

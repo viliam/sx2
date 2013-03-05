@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.beans.vyraz;
+package sk.wlio.sx2.beans.expression;
 
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.beans.WordAbstract;
@@ -21,13 +21,13 @@ import sk.wlio.sx2.beans.symbol.Operator;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.visitors.IVisitor;
 
-public class VyrazZlozeny extends WordAbstract implements IExpression {
+public class Expression extends WordAbstract implements IExpression {
 
     protected IExpression v1;
     protected Operator op;
     protected IExpression v2;
 
-    public VyrazZlozeny(IExpression v1, Operator op, IExpression v2) {
+    public Expression(IExpression v1, Operator op, IExpression v2) {
         super(v1.getPosition());
         this.v1 = v1;
         this.op = op;

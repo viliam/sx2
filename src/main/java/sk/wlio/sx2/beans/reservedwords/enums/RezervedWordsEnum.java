@@ -38,7 +38,7 @@ public enum RezervedWordsEnum {
 
     public static boolean isWord(Word s) {
         for (RezervedWordsEnum za : RezervedWordsEnum.values()) {
-            if (za.is(s.getObsah())) return true;
+            if (za.is(s.getContent())) return true;
         }
         return false;
     }

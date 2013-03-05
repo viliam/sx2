@@ -13,46 +13,32 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.beans.instruction;
-// Date: 3.1.2011      Time: 23:57:35
+package sk.wlio.sx2.beans.statement;
 
 import sk.wlio.sx2.beans.WordAbstract;
 import sk.wlio.sx2.beans.symbol.Bracket;
-import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.visitors.IVisitor;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Block extends WordAbstract implements Statement {
 
-public class Parameters extends WordAbstract {
-
+    private Statement[] instrukcie;
     private Bracket z1;
     private Bracket z2;
-    private List<Comma> ciarky = new ArrayList<Comma>();
 
-    private List<IExpression> parametre = new ArrayList<IExpression>();
-
-    public Parameters(Bracket z1, Bracket z2) {
+    public Block(Statement[] instrukcie, Bracket z1, Bracket z2) {
         super(z1.getPosition());
         this.z1 = z1;
         this.z2 = z2;
+        this.instrukcie = instrukcie;
     }
 
-    public Parameters(Bracket z1, Bracket z2, List<IExpression> parametre, List<Comma> ciarky) {
-        super(z1.getPosition());
-        this.z1 = z1;
-        this.z2 = z2;
-        this.parametre = parametre;
-        this.ciarky = ciarky;
+    public void visit(IVisitor visitor) {
+        visitor.visit(this);
     }
 
-    public List<Comma> getCiarky() {
-        return ciarky;
-    }
-
-    public List<IExpression> getParametre() {
-        return parametre;
+    public Statement[] getInstrukcie() {
+        return instrukcie;
     }
 
     public Bracket getZ1() {
@@ -63,7 +49,4 @@ public class Parameters extends WordAbstract {
         return z2;
     }
 
-    public void visit(IVisitor visitor) {
-        visitor.visit( this);
-    }
 }

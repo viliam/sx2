@@ -19,12 +19,12 @@ import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Variable;
-import sk.wlio.sx2.beans.instruction.*;
-import sk.wlio.sx2.beans.reservedwords.InstructionWord;
+import sk.wlio.sx2.beans.reservedwords.StatementWord;
+import sk.wlio.sx2.beans.statement.*;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.vyraz.Int;
+import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.interfaces.TextReader;
@@ -56,7 +56,7 @@ public interface IReaders {
     public TextReader<Return> vrat();
     public TextReader<Condition> podmienka();
 
-    public TextReader<InstructionWord> instrukciaSlovo();
+    public TextReader<StatementWord> instrukciaSlovo();
 
 
 }

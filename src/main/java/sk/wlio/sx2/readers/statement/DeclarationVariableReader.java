@@ -17,8 +17,8 @@ package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.Assignment;
-import sk.wlio.sx2.beans.instruction.DeclarationVariable;
+import sk.wlio.sx2.beans.statement.Assignment;
+import sk.wlio.sx2.beans.statement.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.symbol.Operator;

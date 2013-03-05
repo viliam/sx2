@@ -17,8 +17,8 @@ package sk.wlio.sx2.readers.statement;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.Parameters;
-import sk.wlio.sx2.beans.instruction.Command;
+import sk.wlio.sx2.beans.statement.Parameters;
+import sk.wlio.sx2.beans.statement.Command;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.interfaces.TextReader;
 

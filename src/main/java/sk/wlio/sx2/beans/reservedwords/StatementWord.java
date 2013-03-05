@@ -18,13 +18,13 @@ package sk.wlio.sx2.beans.reservedwords;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.Word;
 
-public class InstructionWord extends Word {
+public class StatementWord extends Word {
 
-    public InstructionWord(Word word) {
+    public StatementWord(Word word) {
         super(word);
     }
 
-    public InstructionWord(Position position, String obsah) {
+    public StatementWord(Position position, String obsah) {
         super(position, obsah);
     }
 }

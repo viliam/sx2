@@ -16,28 +16,25 @@
 package sk.wlio.sx2.readers.symbol;
 
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.exception.SxException;
 
-public class ZatvorkaReader extends SymbolAbstractReader<Bracket> {
+public class CommaReader extends SymbolAbstractReader<Comma> {
 
     @Override
     protected String[] getSymbols() {
-        return SymbolsEnum.PARENTHESIS.getSymbols();
+        return SymbolsEnum.COMMAS.getSymbols();
     }
 
     @Override
-    protected Bracket create(Position position, SymbolEnum oEnum)  {
-        if (oEnum == null)
-            throw SxException.create(SxExTyp.CAKAL_ZATVORKU, position);
-        return new Bracket(position, oEnum );
+    protected Comma create(Position position, SymbolEnum oEnum)  {
+        return new Comma(position, oEnum);
     }
 
     @Override
     protected SxExTyp getExceptionTyp() {
-        return SxExTyp.CAKAL_ZATVORKU;
+        return SxExTyp.CAKAL_CIARKU;
     }
 }

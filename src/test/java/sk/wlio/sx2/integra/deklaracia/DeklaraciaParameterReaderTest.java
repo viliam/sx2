@@ -17,8 +17,8 @@ package sk.wlio.sx2.integra.deklaracia;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.instruction.DeclarationParameter;
-import sk.wlio.sx2.beans.instruction.DeclarationVariable;
+import sk.wlio.sx2.beans.statement.DeclarationParameter;
+import sk.wlio.sx2.beans.statement.DeclarationVariable;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;

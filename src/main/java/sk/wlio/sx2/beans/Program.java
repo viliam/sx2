@@ -15,34 +15,34 @@
 
 package sk.wlio.sx2.beans;
 
-import sk.wlio.sx2.beans.instruction.DeclarationCommand;
-import sk.wlio.sx2.beans.instruction.DeclarationVariable;
+import sk.wlio.sx2.beans.statement.DeclarationCommand;
+import sk.wlio.sx2.beans.statement.DeclarationVariable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Program extends WordAbstract {
 
-    final Map<String, DeclarationVariable> mapPremenna = new HashMap<String, DeclarationVariable>();
-    final Map<String, DeclarationCommand> mapPrikaz = new HashMap<String, DeclarationCommand>();
+    final Map<String, DeclarationVariable> mapVariable = new HashMap<String, DeclarationVariable>();
+    final Map<String, DeclarationCommand> mapCommand = new HashMap<String, DeclarationCommand>();
 
     public Program(Position position) {
         super(position);
     }
 
-    public void pridajPremennu( DeclarationVariable declarationVariable) {
-        mapPremenna.put( declarationVariable.getNazov().getObsah(), declarationVariable);
+    public void addVariable(DeclarationVariable declarationVariable) {
+        mapVariable.put(declarationVariable.getName().getContent(), declarationVariable);
     }
 
-    public void pridajPrikaz( DeclarationCommand declarationCommand) {
-        mapPrikaz.put( declarationCommand.getNazov().getObsah(), declarationCommand);
+    public void addCommand(DeclarationCommand declarationCommand) {
+        mapCommand.put(declarationCommand.getName().getContent(), declarationCommand);
     }
 
-    public Map<String, DeclarationCommand> getMapPrikaz() {
-        return mapPrikaz;
+    public Map<String, DeclarationCommand> getMapCommand() {
+        return mapCommand;
     }
 
-    public Map<String, DeclarationVariable> getMapPremenna() {
-        return mapPremenna;
+    public Map<String, DeclarationVariable> getMapVariable() {
+        return mapVariable;
     }
 }

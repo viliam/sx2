@@ -13,26 +13,31 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.expression;
+package sk.wlio.sx2.readers.symbol;
 
-import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.expression.Int;
+import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
+import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.interfaces.TextReader;
 
-public class IntReader implements TextReader<Int> {
+public class BracketReader extends SymbolAbstractReader<Bracket> {
 
-    public Int read(TextContext tC)  {
-        Position position = tC.findNextCharacter();
-        String aInt = Readers.slovo().read(tC).toString();
+    @Override
+    protected String[] getSymbols() {
+        return SymbolsEnum.BRACKETS.getSymbols();
+    }
 
-        try {
-            return new Int( Integer.valueOf(aInt ), position);
-        } catch (NumberFormatException e) {
-            throw SxException.create( SxExTyp.CAKAL_CISLO, tC);
-        }
+    @Override
+    protected Bracket create(Position position, SymbolEnum oEnum)  {
+        if (oEnum == null)
+            throw SxException.create(SxExTyp.CAKAL_ZATVORKU, position);
+        return new Bracket(position, oEnum );
+    }
+
+    @Override
+    protected SxExTyp getExceptionTyp() {
+        return SxExTyp.CAKAL_ZATVORKU;
     }
 }

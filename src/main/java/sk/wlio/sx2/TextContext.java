@@ -25,7 +25,7 @@ import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.readers.symbol.SlovoReader;
+import sk.wlio.sx2.readers.symbol.WordReader;
 
 public class TextContext {
 
@@ -40,7 +40,7 @@ public class TextContext {
         this.lines = lines;
     }
 
-    public String getRiadok() {
+    public String getLine() {
         return lines[inx.getY()];
     }
 
@@ -124,7 +124,7 @@ public class TextContext {
 
     public boolean isPrefixLetter()  {
         char a = nextCharacter();
-        return TextUtils.jePismeno(a);
+        return TextUtils.isLetter(a);
     }
 
     public boolean isPrefixInt()  {
@@ -199,7 +199,7 @@ public class TextContext {
         return new IsPrefixTemplateMetod() {
             @Override
             protected boolean isPrefix(Word word) {
-                return RezervedWordsEnum.DATA_TYPE.is(word.getObsah());
+                return RezervedWordsEnum.DATA_TYPE.is(word.getContent());
             }
         }.isPrefix();
     }
@@ -208,7 +208,7 @@ public class TextContext {
         return new IsPrefixTemplateMetod() {
             @Override
             protected boolean isPrefix(Word word) {
-                return RezervedWordsEnum.INSTRUCTION_WORD.is(word.getObsah());
+                return RezervedWordsEnum.INSTRUCTION_WORD.is(word.getContent());
             }
         }.isPrefix();
     }
@@ -246,7 +246,7 @@ public class TextContext {
                    return false;
 
                 Word word = Readers.slovo().read(TextContext.this);
-                return RezervedWordsEnum.DATA_TYPE.is(word.getObsah()) && isPrefixName();
+                return RezervedWordsEnum.DATA_TYPE.is(word.getContent()) && isPrefixName();
             } finally {
                 setPosition(position);
             }
@@ -275,7 +275,7 @@ public class TextContext {
 
     public ReservedWordEnum vratPrefixZakazaneSlovo()  {
         findNextCharacter();
-        String s = SlovoReader.predcitajSlovo( endOfLine(), 0);
+        String s = WordReader.lookAhead(endOfLine(), 0);
         return ReservedWordEnum.makeSymbol(s);
     }
 

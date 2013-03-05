@@ -17,7 +17,6 @@ package sk.wlio.sx2.readers.expression;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.symbol.Bracket;
-import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.readers.Readers;
 import sk.wlio.sx2.interfaces.TextReader;
@@ -28,7 +27,7 @@ public class BracketExpression implements TextReader<IExpression> {
         Bracket z1 = Readers.zatvorka().read(tC);
         IExpression expression = Readers.vyraz().read(tC);
         Bracket z2 = Readers.zatvorka().read(tC);
-        return new VyrazVzatvorke(z1, expression, z2);
+        return new sk.wlio.sx2.beans.expression.BracketExpression(z1, expression, z2);
     }
 
 }

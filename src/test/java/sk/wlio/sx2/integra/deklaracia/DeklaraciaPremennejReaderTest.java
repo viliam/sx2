@@ -19,8 +19,8 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.Enums;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.instruction.Assignment;
-import sk.wlio.sx2.beans.instruction.DeclarationVariable;
+import sk.wlio.sx2.beans.statement.Assignment;
+import sk.wlio.sx2.beans.statement.DeclarationVariable;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.statement.DeclarationVariableReader;
 import sk.wlio.sx2.interfaces.TextReader;
@@ -34,7 +34,7 @@ public class DeklaraciaPremennejReaderTest {
     public void testCislo()  {
         DeclarationVariable dekPremena = citajDekPremennej("  int a; ");
         assertNotNull( dekPremena);
-        assertEquals( "a" , dekPremena.getNazov().toString());
+        assertEquals( "a" , dekPremena.getName().toString());
         assertEquals(Enums.ExpType.INT, dekPremena.getDatovyTyp().getTyp() );
         assertEquals(new Position(2,0) , dekPremena.getPosition());
     }
@@ -43,7 +43,7 @@ public class DeklaraciaPremennejReaderTest {
     public void testBool()  {
         DeclarationVariable dekPremena = citajDekPremennej("  bool a; ");
         assertNotNull( dekPremena);
-        assertEquals( "a" , dekPremena.getNazov().toString());
+        assertEquals( "a" , dekPremena.getName().toString());
         assertEquals(Enums.ExpType.BOOL , dekPremena.getDatovyTyp().getTyp() );
         assertEquals(new Position(2,0) , dekPremena.getPosition());
     }
@@ -52,7 +52,7 @@ public class DeklaraciaPremennejReaderTest {
     public void testPriradenie()  {
         DeclarationVariable dekPremena = citajDekPremennej(" int v = 3;");
         assertNotNull( dekPremena);
-        assertEquals( "v" , dekPremena.getNazov().toString());
+        assertEquals( "v" , dekPremena.getName().toString());
         assertEquals(Enums.ExpType.INT, dekPremena.getDatovyTyp().getTyp() );
         assertEquals(new Position(1,0) , dekPremena.getPosition());
 

@@ -17,18 +17,18 @@ package sk.wlio.sx2.visitors;
 
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.Variable;
-import sk.wlio.sx2.beans.instruction.*;
+import sk.wlio.sx2.beans.expression.BracketExpression;
+import sk.wlio.sx2.beans.expression.Expression;
+import sk.wlio.sx2.beans.statement.*;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.reservedwords.DataValue;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.vyraz.Int;
-import sk.wlio.sx2.beans.vyraz.VyrazVzatvorke;
-import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
+import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.interfaces.IWord;
 
 public interface IVisitor {
-    void visit(VyrazZlozeny vyrazZlozeny);
-    void visit(VyrazVzatvorke vyrazVzatvorke);
+    void visit(Expression expression);
+    void visit(BracketExpression bracketExpression);
 
     void visit(Variable variable);
     void visit(Command command);

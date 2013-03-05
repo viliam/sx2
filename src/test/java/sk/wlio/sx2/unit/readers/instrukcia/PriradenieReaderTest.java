@@ -20,7 +20,7 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.instruction.Assignment;
+import sk.wlio.sx2.beans.statement.Assignment;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.readers.statement.AssignmentReader;
 import sk.wlio.sx2.unit.readers.AbstractReaderTest;

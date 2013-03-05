@@ -15,8 +15,8 @@
 
 package sk.wlio.sx2.readers.expression;
 import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.expression.Expression;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.vyraz.VyrazZlozeny;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
@@ -37,7 +37,7 @@ public class ExprReader implements TextReader<IExpression> {
 
         if (tC.isPrefixOperatorExp() ) {
             TextReader<Operator>  opReader = Readers.opVyraz();
-            expr = new VyrazZlozeny(expr, opReader.read(tC), Readers.vyraz().read(tC));
+            expr = new Expression(expr, opReader.read(tC), Readers.vyraz().read(tC));
         }
 
         if (!tC.isEndOfFile() )

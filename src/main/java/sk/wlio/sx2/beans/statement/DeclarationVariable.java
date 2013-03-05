@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.beans.instruction;
+package sk.wlio.sx2.beans.statement;
 
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.WordAbstract;
@@ -51,7 +51,7 @@ public class DeclarationVariable extends WordAbstract implements Statement {
         visitor.visit(this);
     }
 
-    public Word getNazov() {
+    public Word getName() {
         return nazov;
     }
 
