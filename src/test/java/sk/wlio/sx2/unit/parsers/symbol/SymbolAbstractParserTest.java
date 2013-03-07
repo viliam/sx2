@@ -28,7 +28,7 @@ import static org.testng.AssertJUnit.*;
 
 import java.lang.reflect.Method;
 
-public class SymbolAbstractReaderTest {
+public class SymbolAbstractParserTest {
 
     class TestSymbolAbstractParser extends SymbolAbstractParser<Word> {
 

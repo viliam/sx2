@@ -29,7 +29,7 @@ import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
 
-public class DeclarationVariableReaderTest {
+public class DeclarationVariableParserTest {
     @Test
     public void testInt()  {
         DeclarationVariable decVariable = readDecVariable("  int a; ");

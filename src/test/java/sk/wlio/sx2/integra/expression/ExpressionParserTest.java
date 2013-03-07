@@ -23,7 +23,7 @@ import sk.wlio.sx2.readers.expression.ExprReader;
 
 import static org.testng.AssertJUnit.*;
 
-public class ExpressionReaderTest {
+public class ExpressionParserTest {
 
     public final static String[] expression = new String[] {
             "4+3",

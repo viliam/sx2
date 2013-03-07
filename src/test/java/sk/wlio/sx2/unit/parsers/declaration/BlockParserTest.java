@@ -35,7 +35,7 @@ public class BlockParserTest extends AbstractParserTest {
             @Override public void setUpParsers() {
                 mr.bracket().setOutput(new Bracket(new Position(0, 0), SymbolEnum.BRACKET_NORM_OPEN));
                 mr.bracket().setShift(3, 0, 2, 0);
-                mr.statement().setShift(7, 0, 9, 0);
+                mr.statement().setShift(7, 0, 8, 0);
             }
         };
         tt.run( "  { a = 4; int b; } ",

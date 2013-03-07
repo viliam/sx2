@@ -20,33 +20,33 @@
   <test name="Zakladna funkcionalita" >
     <classes>
         <class name="sk.wlio.sx2.unit.parsers.symbol.WordParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.symbol.SymbolAbstractReaderTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.symbol.SymbolAbstractParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.statement.ReturnParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.statement.CommandParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.statement.ParameterParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.statement.StatementParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationPremennejParserTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationVariableParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.declaration.BlockParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationPrikazParserTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationCommandParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationParameterParserTest"/>
-        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationTriedaParserTest"/>
+        <class name="sk.wlio.sx2.unit.parsers.declaration.DeclarationProgramParserTest"/>
         <class name="sk.wlio.sx2.unit.parsers.expression.VariableParserTest" />
         <class name="sk.wlio.sx2.unit.parsers.expression.ExprSimpleParserTest" />
         <class name="sk.wlio.sx2.unit.parsers.statement.AssignmentParserTest" />
         <class name="sk.wlio.sx2.unit.parsers.statement.ConditionParserTest" />
         <class name="sk.wlio.sx2.unit.parsers.expression.IntParserTest" />
-        <class name="sk.wlio.sx2.unit.parsers.OperatorReaderTest" />
+        <class name="sk.wlio.sx2.unit.parsers.OperatorParserTest" />
         <class name="sk.wlio.sx2.unit.TextContextTest" />
         <class name="sk.wlio.sx2.unit.parsers.expression.ExpressionParserTest" />
         <class name="sk.wlio.sx2.unit.parsers.symbol.BracketParserTest" />
         <class name="sk.wlio.sx2.unit.visitors.ContextAnalysisVisitorTest" />
         <class name="sk.wlio.sx2.integra.SxExceptionTest" />
         <class name="sk.wlio.sx2.integra.LangSxTest" />
-        <class name="sk.wlio.sx2.integra.symbol.CommaReaderTest" />
-        <class name="sk.wlio.sx2.integra.declarations.DeclarationParametersReaderTest"/>
-        <class name="sk.wlio.sx2.integra.declarations.DeclarationVariableReaderTest"/>
-        <class name="sk.wlio.sx2.integra.declarations.BlockReaderTest"/>
-        <class name="sk.wlio.sx2.integra.expression.ExpressionReaderTest" />
+        <class name="sk.wlio.sx2.integra.symbol.CommaParserTest" />
+        <class name="sk.wlio.sx2.integra.declarations.DeclarationParametersParserTest"/>
+        <class name="sk.wlio.sx2.integra.declarations.DeclarationVariableParserTest"/>
+        <class name="sk.wlio.sx2.integra.declarations.BlockParserTest"/>
+        <class name="sk.wlio.sx2.integra.expression.ExpressionParserTest" />
         <class name="sk.wlio.sx2.integra.visitors.ContextAnalysisVisitorTest"/>
     </classes>
   </test>

@@ -24,7 +24,7 @@ import sk.wlio.sx2.readers.symbol.OperatorExpressionParser;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class OperatorReaderTest {
+public class OperatorParserTest {
 
     @Test
     public void testOperatorAritm()  {

@@ -25,7 +25,7 @@ import sk.wlio.sx2.readers.Readers;
 
 import static org.testng.AssertJUnit.*;
 
-public class CommaReaderTest {
+public class CommaParserTest {
 
     @Test
      public void testBasic()  {

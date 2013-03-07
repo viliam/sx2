@@ -30,7 +30,7 @@ import sk.wlio.sx2.unit.parsers.TestTemplate;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class DeclarationProgramParser extends AbstractParserTest {
+public class DeclarationProgramParserTest extends AbstractParserTest {
 
     @Test
     public void testBasic()  {
@@ -47,7 +47,7 @@ public class DeclarationProgramParser extends AbstractParserTest {
                             new Word(null, "int"), new Word(null, "ahoj"));
                     mr.decCommand().setOutput(new DeclarationCommand(new DataType(new Word(new Position(3, 3))),
                             new Word(null, "ahoj"), null, null));
-                    mr.decCommand().setShift(25, 0);
+                    mr.decCommand().setShift(26, 0);
                     mr.decVariable().setOutput(new DeclarationVariable(
                             new DataType(new Word(new Position(3, 3), "int")), new Word(null, "ahoj"), new Comma(null, SymbolEnum.SEMICOLON)));
                     mr.decVariable().setShift(12, 0);

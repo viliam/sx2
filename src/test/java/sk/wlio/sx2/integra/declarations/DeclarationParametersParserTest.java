@@ -30,7 +30,7 @@ import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
 
-public class DeclarationParametersReaderTest {
+public class DeclarationParametersParserTest {
 
     @Test
     public void testEmpty()  {

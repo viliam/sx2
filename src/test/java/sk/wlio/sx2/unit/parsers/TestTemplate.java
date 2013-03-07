@@ -21,6 +21,7 @@ import sk.wlio.sx2.interfaces.SxParser;
 
 import static org.testng.AssertJUnit.assertEquals;
 
+//todo: provide json setUp for test
 public abstract class TestTemplate<T extends IWord> {
 
     final StringBuffer sb;

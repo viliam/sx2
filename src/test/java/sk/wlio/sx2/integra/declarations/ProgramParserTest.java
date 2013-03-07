@@ -23,9 +23,9 @@ import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.fail;
 
-public class DeclarationTriedaReaderTest extends TestAbstract<Program> {
+public class ProgramParserTest extends TestAbstract<Program> {
 
-    public DeclarationTriedaReaderTest() {
+    public ProgramParserTest() {
         super( new ProgramReader());
     }
 

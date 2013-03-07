@@ -26,7 +26,7 @@ import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.fail;
 
-public class BlockReaderTest {
+public class BlockParserTest {
     
     public final static String[] zloziteBloky = new String[] {
             " { int p = 33; }",
