@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.statement.Block;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.interfaces.Statement;
-import sk.wlio.sx2.readers.statement.BlockReader;
+import sk.wlio.sx2.parsers.statement.BlockParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -31,7 +31,7 @@ public class BlockParserTest extends AbstractParserTest {
 
     @Test
     public void testBasic()  {
-        TestTemplate<Block> tt = new TestTemplate<Block>(sb, new BlockReader()) {
+        TestTemplate<Block> tt = new TestTemplate<Block>(sb, new BlockParser()) {
             @Override public void setUpParsers() {
                 mr.bracket().setOutput(new Bracket(new Position(0, 0), SymbolEnum.BRACKET_NORM_OPEN));
                 mr.bracket().setShift(3, 0, 2, 0);

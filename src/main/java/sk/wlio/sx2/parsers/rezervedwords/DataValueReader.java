@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.symbol;
+package sk.wlio.sx2.parsers.rezervedwords;
 
-import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
+import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.reservedwords.DataValue;
+import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
+import sk.wlio.sx2.parsers.ReserverdWordAbstractReader;
 
-public class OperatorExpressionParser extends SymbolAbstractParser<Operator> {
+public class DataValueReader extends ReserverdWordAbstractReader<DataValue> {
 
-    @Override
-    protected String[] getSymbols() {
-        return SymbolsEnum.OP_EXP.getSymbols();
+    public DataValue read(TextContext tC)  {
+        return new DataValue( super.read(tC) );
     }
 
     @Override
-    protected Operator create(Position position, SymbolEnum oEnum)  {
-        return new Operator(position, oEnum);
+    protected SxExTyp getSxExceptionTyp() {
+        return SxExTyp.EXPECTED_DATA_VALUE;
     }
 
     @Override
-    protected SxExTyp getExceptionType() {
-        return SxExTyp.EXPECTED_OPERATOR;
+    protected RezervedWordsEnum getZakazaneSlova() {
+        return RezervedWordsEnum.DATA_VALUE;
     }
+
 }

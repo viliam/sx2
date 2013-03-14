@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.statement.Parameters;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.readers.statement.ParameterReader;
+import sk.wlio.sx2.parsers.statement.ParameterParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -27,7 +27,7 @@ public class ParameterParserTest extends AbstractParserTest {
 
     @Test
     public void testEmpty()  {
-        new TestTemplate<Parameters>(sb, new ParameterReader()) {
+        new TestTemplate<Parameters>(sb, new ParameterParser()) {
             @Override public void setUpParsers() {
                 mr.bracket().setShift(2, 0, 1, 0);
                 mr.bracket().setOutput(new Bracket(null, SymbolEnum.BRACKET_NORM_OPEN));
@@ -37,7 +37,7 @@ public class ParameterParserTest extends AbstractParserTest {
 
     @Test
     public void testOneParameter()  {
-        new TestTemplate<Parameters>(sb, new ParameterReader()) {
+        new TestTemplate<Parameters>(sb, new ParameterParser()) {
             @Override public void setUpParsers() {
                 mr.bracket().setShift(2, 0, 1, 0);
                 mr.bracket().setOutput(new Bracket(null, null));
@@ -48,7 +48,7 @@ public class ParameterParserTest extends AbstractParserTest {
 
     @Test
     public void testMoreParameters()  {
-        new TestTemplate<Parameters>(sb, new ParameterReader()) {
+        new TestTemplate<Parameters>(sb, new ParameterParser()) {
             @Override public void setUpParsers() {
                 mr.bracket().setShift(2, 0, 1, 0);
                 mr.bracket().setOutput(new Bracket(null, null));

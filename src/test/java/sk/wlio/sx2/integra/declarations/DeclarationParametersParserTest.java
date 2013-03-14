@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.statement.DeclarationVariable;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.parsers.Readers;
 
 import java.util.List;
 

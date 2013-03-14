@@ -18,7 +18,7 @@ package sk.wlio.sx2.unit.parsers.statement;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.statement.*;
-import sk.wlio.sx2.readers.statement.CommandReader;
+import sk.wlio.sx2.parsers.statement.CommandParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -29,7 +29,7 @@ public class CommandParserTest extends AbstractParserTest {
 
     @Test
     public void testBasic()  {
-        TestTemplate<Command> tt =new TestTemplate<Command>( sb, new CommandReader()) {
+        TestTemplate<Command> tt =new TestTemplate<Command>( sb, new CommandParser()) {
             @Override public void setUpParsers() {
                 mr.word().setShift(4, 0);
                 mr.word().setOutput(new Word(null, "ahoj"));

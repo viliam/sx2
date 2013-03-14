@@ -13,29 +13,19 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers;
+package sk.wlio.sx2.parsers;
 
 import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.Word;
-import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
-import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.SxParser;
 
-public abstract class ReserverdWordAbstractReader<E extends Word> implements SxParser<E> {
+public class VariableReader implements SxParser<Variable> {
 
-    public E read(TextContext tC)  {
-        Word word = Readers.word().read(tC);
-        String s = word.toString();
-
-        if (!getZakazaneSlova().is(s))
-           throw SxException.create(getSxExceptionTyp(), tC);
-
-        return (E) word;
+    public Variable read(TextContext tC)  {
+        Word obsah = Readers.word().read(tC);
+        return new Variable( obsah);
     }
 
-    protected abstract SxExTyp getSxExceptionTyp();
-
-    protected abstract RezervedWordsEnum getZakazaneSlova();
 
 }

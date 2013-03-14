@@ -19,8 +19,8 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Operator;
-import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.readers.symbol.OperatorExpressionParser;
+import sk.wlio.sx2.parsers.Readers;
+import sk.wlio.sx2.parsers.symbol.OperatorExpressionParser;
 
 import static org.testng.AssertJUnit.assertEquals;
 

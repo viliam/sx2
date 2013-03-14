@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers;
+package sk.wlio.sx2.parsers;
 
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.Word;
@@ -28,12 +28,12 @@ import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.rezervedwords.DataTypeReader;
-import sk.wlio.sx2.readers.rezervedwords.StatementWordReader;
-import sk.wlio.sx2.readers.statement.*;
-import sk.wlio.sx2.readers.symbol.*;
-import sk.wlio.sx2.readers.expression.*;
-import sk.wlio.sx2.readers.expression.BracketExpression;
+import sk.wlio.sx2.parsers.rezervedwords.DataTypeReader;
+import sk.wlio.sx2.parsers.rezervedwords.StatementWordReader;
+import sk.wlio.sx2.parsers.statement.*;
+import sk.wlio.sx2.parsers.symbol.*;
+import sk.wlio.sx2.parsers.expression.*;
+import sk.wlio.sx2.parsers.expression.BracketExpression;
 
 public class ParsersImpl implements IParsers {
     
@@ -50,17 +50,17 @@ public class ParsersImpl implements IParsers {
     public SxParser<DataType> dataType() {  return   new DataTypeReader(); }
     public SxParser<StatementWord> statementWord() { return new StatementWordReader(); }
 
-    public SxParser<Statement> statement() {  return   new StatementReader(); }
-    public SxParser<Assignment> assignment() {  return   new AssignmentReader(); }
-    public SxParser<Condition> condition() { return new ConditionReader(); }
-    public SxParser<Block> block() {  return   new BlockReader(); }
+    public SxParser<Statement> statement() {  return   new StatementParser(); }
+    public SxParser<Assignment> assignment() {  return   new AssignmentParser(); }
+    public SxParser<Condition> condition() { return new ConditionParser(); }
+    public SxParser<Block> block() {  return   new BlockParser(); }
     public SxParser<Variable> variable() {  return   new VariableReader(); }
-    public SxParser<DeclarationVariable> decVariable() {  return   new DeclarationVariableReader(); }
-    public SxParser<Command> command() {  return   new CommandReader(); }
-    public SxParser<DeclarationCommand> decCommand() {  return   new DeclarationCommandReader(); }
+    public SxParser<DeclarationVariable> decVariable() {  return   new DeclarationVariableParser(); }
+    public SxParser<Command> command() {  return   new CommandParser(); }
+    public SxParser<DeclarationCommand> decCommand() {  return   new DeclarationCommandParser(); }
     public SxParser<Program> program() {   return new ProgramReader();  }
 
-    public SxParser<Parameters> paramters() {  return   new ParameterReader(); }
-    public SxParser<DeclarationParameter> decParamters() {  return   new DeclarationParameterReader(); }
-    public SxParser<Return> aReturn() {  return   new ReturnReader(); }
+    public SxParser<Parameters> paramters() {  return   new ParameterParser(); }
+    public SxParser<DeclarationParameter> decParamters() {  return   new DeclarationParameterParser(); }
+    public SxParser<Return> aReturn() {  return   new ReturnParser(); }
 }

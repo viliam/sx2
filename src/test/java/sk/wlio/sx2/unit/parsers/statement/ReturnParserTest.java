@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.statement.Return;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.statement.ReturnReader;
+import sk.wlio.sx2.parsers.statement.ReturnParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 import sk.wlio.sx2.unit.parsers.mock.TestVyraz;
@@ -32,7 +32,7 @@ public class ReturnParserTest extends AbstractParserTest {
 
     @Test
     public void testBasic()  {
-        new TestTemplate<Return>(sb, new ReturnReader()) {
+        new TestTemplate<Return>(sb, new ReturnParser()) {
             @Override
             public void setUpParsers() {
                 mr.word().setShift(4, 0) ;
@@ -50,7 +50,7 @@ public class ReturnParserTest extends AbstractParserTest {
 
         TextContext tC = new TextContext("trat 4;  ");
         try {
-            new ReturnReader().read(tC);
+            new ReturnParser().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals(SxExTyp.EXPECTED_RETURN, e.getType());

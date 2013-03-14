@@ -18,8 +18,7 @@ package sk.wlio.sx2.unit.parsers.expression;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Variable;
-import sk.wlio.sx2.interfaces.IWord;
-import sk.wlio.sx2.readers.VariableReader;
+import sk.wlio.sx2.parsers.VariableReader;
 
 import static org.testng.AssertJUnit.*;
 

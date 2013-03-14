@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
-import sk.wlio.sx2.readers.expression.SimpleExprReader;
+import sk.wlio.sx2.parsers.expression.SimpleExprReader;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 

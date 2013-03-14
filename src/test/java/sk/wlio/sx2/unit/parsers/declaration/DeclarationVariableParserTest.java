@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.statement.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
-import sk.wlio.sx2.readers.statement.DeclarationVariableReader;
+import sk.wlio.sx2.parsers.statement.DeclarationVariableParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -29,7 +29,7 @@ public class DeclarationVariableParserTest extends AbstractParserTest {
 
     @Test
     public void test()  {
-        new TestTemplate<DeclarationVariable>(sb, new DeclarationVariableReader()) {
+        new TestTemplate<DeclarationVariable>(sb, new DeclarationVariableParser()) {
             @Override public void setUpParsers() {
 
                 mr.dataType().setOutput(new DataType(null, "int"));

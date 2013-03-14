@@ -20,8 +20,8 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Program;
 import sk.wlio.sx2.beans.expression.Expression;
 import sk.wlio.sx2.interfaces.IExpression;
-import sk.wlio.sx2.readers.ProgramReader;
-import sk.wlio.sx2.readers.expression.ExprReader;
+import sk.wlio.sx2.parsers.ProgramReader;
+import sk.wlio.sx2.parsers.expression.ExprReader;
 import sk.wlio.sx2.visitors.ContextAnalysisVisitor;
 import sk.wlio.sx2.integra.TestAbstract;
 

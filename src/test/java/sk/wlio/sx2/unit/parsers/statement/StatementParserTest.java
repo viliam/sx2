@@ -18,7 +18,7 @@ package sk.wlio.sx2.unit.parsers.statement;
 import org.testng.annotations.Test;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.interfaces.Statement;
-import sk.wlio.sx2.readers.statement.StatementReader;
+import sk.wlio.sx2.parsers.statement.StatementParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -26,7 +26,7 @@ public class StatementParserTest extends AbstractParserTest {
 
     @Test
     public void testAssignment()  {
-        new TestTemplate<Statement>(sb, new StatementReader()) {
+        new TestTemplate<Statement>(sb, new StatementParser()) {
             @Override
             public void setUpParsers() {
                 mr.word().setShift(0, 0, 0, 0, 2, 0);
@@ -38,7 +38,7 @@ public class StatementParserTest extends AbstractParserTest {
 
     @Test
     public void testDecVariable()  {
-        new TestTemplate<Statement>(sb, new StatementReader()) {
+        new TestTemplate<Statement>(sb, new StatementParser()) {
             @Override public void setUpParsers() {
                 mr.word().setShift(5, 0);
                 mr.word().setOutput(new Word(null, "int"));

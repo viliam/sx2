@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.Variable;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.statement.Assignment;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.statement.AssignmentReader;
+import sk.wlio.sx2.parsers.statement.AssignmentParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -32,7 +32,7 @@ public class AssignmentParserTest extends AbstractParserTest {
 
     @Test
     public void testBasic()  {
-        new TestTemplate<Assignment>(sb, new AssignmentReader()) {
+        new TestTemplate<Assignment>(sb, new AssignmentParser()) {
             @Override
             public void setUpParsers() {
                 mr.variable().setShift(1, 0);
@@ -50,7 +50,7 @@ public class AssignmentParserTest extends AbstractParserTest {
             mr.variable().setShift(1, 0);
             mr.variable().setOutput(new Variable(new Word(new Position(1, 1))));
 
-            new AssignmentReader().read(new TextContext("c + 4;"));
+            new AssignmentParser().read(new TextContext("c + 4;"));
 
             fail();
         } catch (SxException ex) {

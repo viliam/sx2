@@ -24,7 +24,7 @@ import sk.wlio.sx2.beans.statement.DeclarationVariable;
 import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.readers.ProgramReader;
+import sk.wlio.sx2.parsers.ProgramReader;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 

@@ -22,7 +22,7 @@ import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.symbol.SymbolAbstractParser;
+import sk.wlio.sx2.parsers.symbol.SymbolAbstractParser;
 
 import static org.testng.AssertJUnit.*;
 

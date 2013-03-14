@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit.parsers.expression;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.interfaces.IExpression;
-import sk.wlio.sx2.readers.expression.ExprReader;
+import sk.wlio.sx2.parsers.expression.ExprReader;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 import sk.wlio.sx2.unit.parsers.mock.TestVyraz;

@@ -16,7 +16,7 @@
 package sk.wlio.sx2.integra.declarations;
 
 import sk.wlio.sx2.beans.Program;
-import sk.wlio.sx2.readers.ProgramReader;
+import sk.wlio.sx2.parsers.ProgramReader;
 import sk.wlio.sx2.integra.TestAbstract;
 
 import static org.testng.AssertJUnit.assertNotNull;

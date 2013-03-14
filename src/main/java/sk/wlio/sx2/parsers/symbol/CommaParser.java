@@ -13,31 +13,28 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.symbol;
+package sk.wlio.sx2.parsers.symbol;
 
 import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.beans.symbol.Comma;
 import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.exception.SxException;
 
-public class BracketParser extends SymbolAbstractParser<Bracket> {
+public class CommaParser extends SymbolAbstractParser<Comma> {
 
     @Override
     protected String[] getSymbols() {
-        return SymbolsEnum.BRACKETS.getSymbols();
+        return SymbolsEnum.COMMAS.getSymbols();
     }
 
     @Override
-    protected Bracket create(Position position, SymbolEnum oEnum)  {
-        if (oEnum == null)
-            throw SxException.create(SxExTyp.EXPECTED_BRACKET, position);
-        return new Bracket(position, oEnum );
+    protected Comma create(Position position, SymbolEnum oEnum)  {
+        return new Comma(position, oEnum);
     }
 
     @Override
     protected SxExTyp getExceptionType() {
-        return SxExTyp.EXPECTED_BRACKET;
+        return SxExTyp.EXPECTED_COMMA;
     }
 }

@@ -13,19 +13,21 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers;
+package sk.wlio.sx2.parsers.expression;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Variable;
-import sk.wlio.sx2.beans.Word;
+import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.SxParser;
+import sk.wlio.sx2.parsers.Readers;
 
-public class VariableReader implements SxParser<Variable> {
+public class BracketExpression implements SxParser<IExpression> {
 
-    public Variable read(TextContext tC)  {
-        Word obsah = Readers.word().read(tC);
-        return new Variable( obsah);
+    public IExpression read(TextContext tC)  {
+        Bracket z1 = Readers.bracket().read(tC);
+        IExpression expression = Readers.expression().read(tC);
+        Bracket z2 = Readers.bracket().read(tC);
+        return new sk.wlio.sx2.beans.expression.BracketExpression(z1, expression, z2);
     }
-
 
 }

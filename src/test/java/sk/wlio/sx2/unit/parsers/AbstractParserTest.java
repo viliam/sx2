@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit.parsers;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.parsers.Readers;
 import sk.wlio.sx2.unit.parsers.mock.MockParsers;
 
 public abstract class AbstractParserTest {

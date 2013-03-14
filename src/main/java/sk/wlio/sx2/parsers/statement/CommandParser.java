@@ -13,26 +13,20 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.expression;
+package sk.wlio.sx2.parsers.statement;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.expression.Int;
-import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.beans.Word;
+import sk.wlio.sx2.beans.statement.Parameters;
+import sk.wlio.sx2.beans.statement.Command;
 import sk.wlio.sx2.interfaces.SxParser;
+import sk.wlio.sx2.parsers.Readers;
 
-public class IntReader implements SxParser<Int> {
-
-    public Int read(TextContext tC)  {
-        Position position = tC.findNextCharacter();
-        String aInt = Readers.word().read(tC).toString();
-
-        try {
-            return new Int( Integer.valueOf(aInt ), position);
-        } catch (NumberFormatException e) {
-            throw SxException.create( SxExTyp.EXPECTED_INT, tC);
-        }
+public class CommandParser implements SxParser<Command> {
+    
+    public Command read(TextContext tC)  {
+        Word name = Readers.word().read(tC);
+        Parameters parameters = Readers.parameters().read(tC);
+        return new Command(name, parameters);
     }
 }

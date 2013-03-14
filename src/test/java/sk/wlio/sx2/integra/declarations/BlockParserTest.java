@@ -20,7 +20,7 @@ import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.statement.Block;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IWord;
-import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.parsers.Readers;
 
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;

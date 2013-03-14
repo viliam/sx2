@@ -23,7 +23,7 @@ import sk.wlio.sx2.beans.statement.Assignment;
 import sk.wlio.sx2.beans.statement.DeclarationVariable;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.statement.DeclarationVariableReader;
+import sk.wlio.sx2.parsers.statement.DeclarationVariableParser;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
@@ -63,7 +63,7 @@ public class DeclarationVariableParserTest {
     @Test
     public void testFail() {
         TextContext text = new TextContext("  void a; ");
-        SxParser<DeclarationVariable> dpReader = new DeclarationVariableReader();
+        SxParser<DeclarationVariable> dpReader = new DeclarationVariableParser();
         try {
             dpReader.read(text);
             fail();
@@ -74,7 +74,7 @@ public class DeclarationVariableParserTest {
 
     private DeclarationVariable readDecVariable(String ts)  {
         TextContext text = new TextContext(ts);
-        SxParser<DeclarationVariable> dpReader = new DeclarationVariableReader();
+        SxParser<DeclarationVariable> dpReader = new DeclarationVariableParser();
         DeclarationVariable dekPremena= dpReader.read(text);
         return dekPremena;
     }

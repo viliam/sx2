@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.reservedwords.StatementWord;
 import sk.wlio.sx2.beans.statement.Condition;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.statement.ConditionReader;
+import sk.wlio.sx2.parsers.statement.ConditionParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -32,7 +32,7 @@ public class ConditionParserTest extends AbstractParserTest {
 
     @Test
     public void testBasic()  {
-        new TestTemplate<Condition>(sb, new ConditionReader()) {
+        new TestTemplate<Condition>(sb, new ConditionParser()) {
             @Override
             public void setUpParsers() {
                 mr.statementWord().setShift(3, 0);
@@ -51,7 +51,7 @@ public class ConditionParserTest extends AbstractParserTest {
 
         TextContext tC = new TextContext("trat 4;  ");
         try {
-            new ConditionReader().read(tC);
+            new ConditionParser().read(tC);
             fail();
         } catch (SxException e) {
             assertEquals(SxExTyp.EXPECTED_IF, e.getType());

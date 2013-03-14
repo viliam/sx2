@@ -13,21 +13,31 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.expression;
+package sk.wlio.sx2.parsers.expression;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.symbol.Bracket;
+import sk.wlio.sx2.exception.SxExTyp;
+import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.parsers.Readers;
 
-public class BracketExpression implements SxParser<IExpression> {
+public class SimpleExprReader implements SxParser<IExpression> {
 
     public IExpression read(TextContext tC)  {
-        Bracket z1 = Readers.bracket().read(tC);
-        IExpression expression = Readers.expression().read(tC);
-        Bracket z2 = Readers.bracket().read(tC);
-        return new sk.wlio.sx2.beans.expression.BracketExpression(z1, expression, z2);
-    }
+        if ( tC.isPrefixInt())
+            return Readers.integer().read(tC);
 
+        if ( tC.isPrefixVariable())
+            return Readers.variable().read(tC);
+
+        if (tC.isPrefixDataType())
+            return Readers.dataType().read(tC);
+
+        if (tC.isPrefixCommand() )
+                return Readers.command().read(tC);
+
+
+        throw SxException.create( SxExTyp.UNEXPECTED_PREFIX, tC );
+    }
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.symbol;
+package sk.wlio.sx2.parsers.symbol;
 
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.TextUtils;

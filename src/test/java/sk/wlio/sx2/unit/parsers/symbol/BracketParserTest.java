@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.symbol.Bracket;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.Readers;
+import sk.wlio.sx2.parsers.Readers;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.fail;

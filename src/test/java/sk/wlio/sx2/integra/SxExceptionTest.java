@@ -23,9 +23,9 @@ import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.symbol.BracketParser;
-import sk.wlio.sx2.readers.symbol.OperatorExpressionParser;
-import sk.wlio.sx2.readers.expression.*;
+import sk.wlio.sx2.parsers.symbol.BracketParser;
+import sk.wlio.sx2.parsers.symbol.OperatorExpressionParser;
+import sk.wlio.sx2.parsers.expression.*;
 
 import static org.testng.AssertJUnit.*;
 

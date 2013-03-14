@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.Position;
 import sk.wlio.sx2.beans.Word;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.symbol.WordParser;
+import sk.wlio.sx2.parsers.symbol.WordParser;
 
 import java.lang.reflect.Method;
 

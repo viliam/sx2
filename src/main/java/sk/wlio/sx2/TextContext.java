@@ -24,8 +24,8 @@ import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
 import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.readers.Readers;
-import sk.wlio.sx2.readers.symbol.WordParser;
+import sk.wlio.sx2.parsers.Readers;
+import sk.wlio.sx2.parsers.symbol.WordParser;
 
 public class TextContext {
 

@@ -23,7 +23,7 @@ import sk.wlio.sx2.beans.reservedwords.DataType;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.statement.DeclarationCommandReader;
+import sk.wlio.sx2.parsers.statement.DeclarationCommandParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -34,7 +34,7 @@ public class DeclarationCommandParserTest extends AbstractParserTest {
     @Test
     public void testBasic()  {
         TestTemplate<DeclarationCommand> tt =
-            new TestTemplate<DeclarationCommand>(sb, new DeclarationCommandReader()) {
+            new TestTemplate<DeclarationCommand>(sb, new DeclarationCommandParser()) {
                 @Override
                 public void setUpParsers() {
                     mr.decParamters().setShift(2, 0);
@@ -82,7 +82,7 @@ public class DeclarationCommandParserTest extends AbstractParserTest {
 
     private DeclarationCommand readDecCommand(String ts)  {
         TextContext text = new TextContext(ts);
-        SxParser<DeclarationCommand> dpReader = new DeclarationCommandReader();
+        SxParser<DeclarationCommand> dpReader = new DeclarationCommandParser();
         DeclarationCommand decCommand= dpReader.read(text);
         assertNotNull("nenulovy command", decCommand);
         return decCommand;

@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.IExpression;
-import sk.wlio.sx2.readers.expression.ExprReader;
+import sk.wlio.sx2.parsers.expression.ExprReader;
 
 import static org.testng.AssertJUnit.*;
 

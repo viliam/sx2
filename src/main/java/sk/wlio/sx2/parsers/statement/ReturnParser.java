@@ -13,28 +13,24 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.rezervedwords;
+package sk.wlio.sx2.parsers.statement;
 
 import sk.wlio.sx2.TextContext;
-import sk.wlio.sx2.beans.reservedwords.DataValue;
-import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
+import sk.wlio.sx2.beans.Word;
+import sk.wlio.sx2.beans.statement.Return;
+import sk.wlio.sx2.beans.reservedwords.enums.ReservedWordEnum;
 import sk.wlio.sx2.exception.SxExTyp;
-import sk.wlio.sx2.readers.ReserverdWordAbstractReader;
+import sk.wlio.sx2.exception.SxException;
+import sk.wlio.sx2.parsers.Readers;
+import sk.wlio.sx2.interfaces.SxParser;
 
-public class DataValueReader extends ReserverdWordAbstractReader<DataValue> {
+public class ReturnParser implements SxParser<Return> {
 
-    public DataValue read(TextContext tC)  {
-        return new DataValue( super.read(tC) );
+    public Return read(TextContext tC)  {
+        Word reserWord = Readers.word().read(tC);
+        if ( !ReservedWordEnum.RETURN.is(reserWord.toString())  )
+            throw SxException.create( SxExTyp.EXPECTED_RETURN, tC);
+
+        return new Return(reserWord, Readers.expression().read(tC), tC.readIfIsSemicolon());
     }
-
-    @Override
-    protected SxExTyp getSxExceptionTyp() {
-        return SxExTyp.EXPECTED_DATA_VALUE;
-    }
-
-    @Override
-    protected RezervedWordsEnum getZakazaneSlova() {
-        return RezervedWordsEnum.DATA_VALUE;
-    }
-
 }

@@ -21,7 +21,7 @@ import sk.wlio.sx2.beans.statement.DeclarationParameter;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
 import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.statement.DeclarationParameterReader;
+import sk.wlio.sx2.parsers.statement.DeclarationParameterParser;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 
@@ -33,7 +33,7 @@ public class DeclarationParameterParserTest extends AbstractParserTest {
     @Test
     public void testBasic()  {
         TestTemplate<DeclarationParameter> tt =
-            new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterReader()) {
+            new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterParser()) {
                 @Override
                 public void setUpParsers() {
                     mr.bracket().setShift(1, 0, 1, 0);
@@ -47,7 +47,7 @@ public class DeclarationParameterParserTest extends AbstractParserTest {
     @Test
     public void testEmpty()  {
         TestTemplate<DeclarationParameter> tt =
-            new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterReader()) {
+            new TestTemplate<DeclarationParameter>(sb, new DeclarationParameterParser()) {
                 @Override
                 public void setUpParsers() {
                     mr.bracket().setShift(1, 0, 1, 0);
@@ -73,7 +73,7 @@ public class DeclarationParameterParserTest extends AbstractParserTest {
     private DeclarationParameter readDecParameter(String ts)  {
         //todo: make generic factory method to create TextContext and Parsers
         TextContext text = new TextContext(ts);
-        SxParser<DeclarationParameter> dpReader = new DeclarationParameterReader();
+        SxParser<DeclarationParameter> dpReader = new DeclarationParameterParser();
         return dpReader.read(text);
     }
 

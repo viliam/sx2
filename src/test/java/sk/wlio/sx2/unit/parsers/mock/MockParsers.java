@@ -28,7 +28,7 @@ import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.interfaces.IExpression;
 import sk.wlio.sx2.interfaces.Statement;
 import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.IParsers;
+import sk.wlio.sx2.parsers.IParsers;
 
 public class MockParsers implements IParsers {
 

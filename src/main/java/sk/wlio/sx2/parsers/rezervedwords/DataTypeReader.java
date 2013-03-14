@@ -13,28 +13,31 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.symbol;
+package sk.wlio.sx2.parsers.rezervedwords;
 
-import sk.wlio.sx2.beans.Position;
-import sk.wlio.sx2.beans.symbol.Comma;
-import sk.wlio.sx2.beans.symbol.enums.SymbolEnum;
-import sk.wlio.sx2.beans.symbol.enums.SymbolsEnum;
+import sk.wlio.sx2.Enums;
+import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.reservedwords.DataType;
+import sk.wlio.sx2.beans.reservedwords.enums.RezervedWordsEnum;
 import sk.wlio.sx2.exception.SxExTyp;
+import sk.wlio.sx2.parsers.ReserverdWordAbstractReader;
 
-public class CommaParser extends SymbolAbstractParser<Comma> {
+public class DataTypeReader extends ReserverdWordAbstractReader<DataType> {
 
-    @Override
-    protected String[] getSymbols() {
-        return SymbolsEnum.COMMAS.getSymbols();
+    public DataType read(TextContext tC)  {
+        DataType dt = new DataType( super.read(tC) );
+        dt.setTyp( Enums.ExpType.getDatovyTyp(dt));
+
+        return dt;
     }
 
     @Override
-    protected Comma create(Position position, SymbolEnum oEnum)  {
-        return new Comma(position, oEnum);
+    protected SxExTyp getSxExceptionTyp() {
+        return SxExTyp.EXPECTED_DATA_TYPE;
     }
 
     @Override
-    protected SxExTyp getExceptionType() {
-        return SxExTyp.EXPECTED_COMMA;
+    protected RezervedWordsEnum getZakazaneSlova() {
+        return RezervedWordsEnum.DATA_TYPE;
     }
 }

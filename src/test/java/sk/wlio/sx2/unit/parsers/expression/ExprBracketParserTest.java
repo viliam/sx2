@@ -17,7 +17,7 @@ package sk.wlio.sx2.unit.parsers.expression;
 
 import org.testng.annotations.Test;
 import sk.wlio.sx2.interfaces.IExpression;
-import sk.wlio.sx2.readers.expression.BracketExpression;
+import sk.wlio.sx2.parsers.expression.BracketExpression;
 import sk.wlio.sx2.unit.parsers.AbstractParserTest;
 import sk.wlio.sx2.unit.parsers.TestTemplate;
 

@@ -13,31 +13,26 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package sk.wlio.sx2.readers.expression;
+package sk.wlio.sx2.parsers.expression;
 
 import sk.wlio.sx2.TextContext;
+import sk.wlio.sx2.beans.Position;
+import sk.wlio.sx2.beans.expression.Int;
 import sk.wlio.sx2.exception.SxExTyp;
 import sk.wlio.sx2.exception.SxException;
-import sk.wlio.sx2.interfaces.IExpression;
+import sk.wlio.sx2.parsers.Readers;
 import sk.wlio.sx2.interfaces.SxParser;
-import sk.wlio.sx2.readers.Readers;
 
-public class SimpleExprReader implements SxParser<IExpression> {
+public class IntReader implements SxParser<Int> {
 
-    public IExpression read(TextContext tC)  {
-        if ( tC.isPrefixInt())
-            return Readers.integer().read(tC);
+    public Int read(TextContext tC)  {
+        Position position = tC.findNextCharacter();
+        String aInt = Readers.word().read(tC).toString();
 
-        if ( tC.isPrefixVariable())
-            return Readers.variable().read(tC);
-
-        if (tC.isPrefixDataType())
-            return Readers.dataType().read(tC);
-
-        if (tC.isPrefixCommand() )
-                return Readers.command().read(tC);
-
-
-        throw SxException.create( SxExTyp.UNEXPECTED_PREFIX, tC );
+        try {
+            return new Int( Integer.valueOf(aInt ), position);
+        } catch (NumberFormatException e) {
+            throw SxException.create( SxExTyp.EXPECTED_INT, tC);
+        }
     }
 }

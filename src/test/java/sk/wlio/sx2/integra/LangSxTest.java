@@ -18,7 +18,7 @@ package sk.wlio.sx2.integra;
 import org.apache.commons.io.FileUtils;
 import sk.wlio.sx2.TextContext;
 import sk.wlio.sx2.beans.Program;
-import sk.wlio.sx2.readers.ProgramReader;
+import sk.wlio.sx2.parsers.ProgramReader;
 import sk.wlio.sx2.visitors.ContextAnalysisVisitor;
 
 import java.io.File;

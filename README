@@ -1,3 +1,13 @@
-Source code of my diploma thesis.
+You are looking at source code of my diploma thesis: "Syntax and sematic analysis with design patterns".
 
-Detail description is comming soon,.
+For syntax analysis I used LL(1) parser, implemented by strategy pattern (see interface TextReader). I didn't use lexer parser, I read souce code directly from char input stream (see helper class TextContext)
+
+All parsers are organized through abstract factory pattern and singleton access. That way it is possible to change any parser with mock parser implementation in test.
+
+You will see many template methods in source code (look at TestTemplate, SymbolAbstractParser, ...)
+
+For AST I have used interpreter pattern. Every node has representing class and are stored in package beans and linked directly to gramar representation of language.
+
+And last, for sematic analysis is used visitor pattern (see ContextAnalysisVisitor).
+
+Ok,. I think the best way to see how it works is start playing with LangSxTest. This integration test parsers and checks every file in the same folder.
