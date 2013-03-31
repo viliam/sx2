@@ -38,6 +38,6 @@
 
   <extensions defaultExtensionNs="com.intellij">
       <fileTypeFactory implementation="sk.wlio.sx2.iplugin.lang.SxFileTypeFactory"/>
-      <lang.parserDefinition language="Sx" implementationClass="sk.wlio.sx2.iplugin.lang.SxParserDefinition"/>
+      <lang.parserDefinition language="sx" implementationClass="sk.wlio.sx2.iplugin.lang.SxParserDefinition"/>
   </extensions>
 </idea-plugin>

@@ -32,10 +32,10 @@ class SxLexer extends Lexer {
     this.buffer = buffer
     this.startOffset = startOffset
     this.endOffset = endOffset
-    this.tokenStart = -1
-    this.tokenEnd = -1
+    this.tokenStart = startOffset
+    this.tokenEnd = startOffset
     this.bufferPosition = startOffset
-    this.tokenType = null
+    this.tokenType = SxTokenType.WHITE_SPACE
   }
 
   override def getState : Int = 0
@@ -51,9 +51,9 @@ class SxLexer extends Lexer {
     def isLetter() = Character.isLetter( readChar() )
     def isDigit() = Character.isDigit( readChar() )
     def isWithSpace() = EMPTY_CHARACTERS.contains( readChar() )
-    def readToken( condition :  => Boolean, tSet : Option[TokenSet] ) : Option[IElementType] = {
+    def readToken( condition : () => Boolean, tSet : Option[TokenSet] ) : Option[IElementType] = {
       tokenStart = bufferPosition
-      while( condition  ) bufferPosition += 1
+      while( bufferPosition < endOffset && condition()   ) bufferPosition += 1
       tokenEnd = bufferPosition
 
       if (tSet.isDefined) {
@@ -70,10 +70,15 @@ class SxLexer extends Lexer {
       throw new IllegalStateException("Incorrect state of offsets. StartOffset = " + startOffset +
                                       ", EndOffset = " + endOffset)
 
-    if (endOffset == startOffset) return
+    if (bufferPosition >= endOffset) {
+      tokenType = null
+      return
+    }
+
+    if (endOffset == startOffset ) return
 
     if (isWithSpace()) {
-      readToken( isWithSpace , None)
+      readToken( () => isWithSpace , None)
       tokenType = SxTokenType.WHITE_SPACE
     }
     //start with number, then read number
@@ -83,12 +88,12 @@ class SxLexer extends Lexer {
     }
     //start with letter, then read word
     else if (isLetter()) {
-      val tt = readToken( isLetter || isDigit , Some(SxTokenType.RESERVED_WORDS))
+      val tt = readToken( () => { isLetter || isDigit }, Some(SxTokenType.RESERVED_WORDS))
       tokenType = tt.getOrElse( SxTokenType.IDENTIFIER )
     }
     //else it is symbol
     else {
-      val tt = readToken( !isLetter && !isDigit && !isWithSpace, Some(SxTokenType.SYMBOLS ))
+      val tt = readToken( () => {!isLetter && !isDigit && !isWithSpace }, Some(SxTokenType.SYMBOLS ))
       tokenType = tt.getOrElse( SxTokenType.UNKNOWN)
     }
   }

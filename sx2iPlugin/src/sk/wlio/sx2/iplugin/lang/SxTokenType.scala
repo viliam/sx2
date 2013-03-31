@@ -21,7 +21,7 @@ object SxTokenType extends TokenType {
       Some( elArray(1) )
   }
 
-  val WHITE_SPACE = new IElementType("WHITE_SPACE", SxLanguage)
+  val WHITE_SPACE = TokenType.WHITE_SPACE //new IElementType("WHITE_SPACE", SxLanguage)
   val UNKNOWN = new IElementType("UNKNOWN", SxLanguage)
 
   val COMMENT = new IElementType("COMMENT", SxLanguage)

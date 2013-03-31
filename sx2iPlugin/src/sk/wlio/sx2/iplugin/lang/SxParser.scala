@@ -9,9 +9,14 @@ import com.intellij.psi.tree.IElementType
 class SxParser extends PsiParser {
 
   def parse(root: IElementType, builder : PsiBuilder): ASTNode = {
-    while (!builder.eof() )
+    val m = builder.mark()
+    while (!builder.eof() ) {
       builder.advanceLexer()
+      println(" -> " + builder.getTokenType + "   text -> " + builder.getTokenText )
+    }
 
-    builder.getTreeBuilt()
+    m.done( root)
+    val a = builder.getTreeBuilt()
+    a
   }
 }
